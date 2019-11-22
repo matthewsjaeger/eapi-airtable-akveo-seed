@@ -9,12 +9,12 @@
     {
       "ProjectSettingId": "b17e1e72-4004-4f8a-8705-f26d4736dd40",
       "Name": "amqps",
-      "Value": "amqps://smqPublic:smqPublic@sassyapi-rmq.ssot.me/lucy-all-my-shows"
+      "Value": "amqps://smqPublic:smqPublic@sassyapi-rmq.ssot.me/your-effortlessapi-endpoint"
     },
     {
       "ProjectSettingId": "242425b4-fd71-4803-b244-3a4c1ec72906",
       "Name": "project-name",
-      "Value": "AllMyShows"
+      "Value": "YOUR_PROJECT_NAME"
     }
   ],
   "ProjectTranspilers": [
@@ -38,7 +38,7 @@
       "ProjectTranspilerId": "54432df3-d63c-4b26-9ede-58a90e049143",
       "Name": "SmqlToJavascriptRabbitMQ",
       "RelativePath": "/src/assets/sassymq",
-      "CommandLine": "sassymq/smql-to-javascript-rabbitmq -i ..\\..\\..\\SassyMQ\\Lexicon.smql -p legacy=false -p angular=false"
+      "CommandLine": "sassymq/smql-to-javascript-rabbitmq -i ../../../SassyMQ/Lexicon.smql -p legacy=false -p angular=false"
     },
     {
       "MatchedTranspiler": {
@@ -48,8 +48,8 @@
       },
       "ProjectTranspilerId": "0840aa2c-b6fe-442a-a35a-b51322544359",
       "Name": "XmlXsltTransform",
-      "RelativePath": "/src/app/usp/services/eapi-data-services/crm-endpoint",
-      "CommandLine": "xml-xslt-transform -i ..\\..\\..\\..\\..\\..\\ODXML\\DataSchema.odxml -i ..\\OdxmlTypescriptEAPIEndpoint.xslt -o crm-endpoint-base.ts -p name=Crm -p lower-name=crm"
+      "RelativePath": "/src/app/effortless/services/eapi-data-services/crm-endpoint",
+      "CommandLine": "xml-xslt-transform -i ../../../../../../ODXML/DataSchema.odxml -i ../OdxmlTypescriptEAPIEndpoint.xslt -o crm-endpoint-base.ts -p name=Crm -p lower-name=crm"
     }
   ]
 }
