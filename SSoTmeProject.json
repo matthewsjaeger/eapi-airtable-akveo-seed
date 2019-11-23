@@ -49,7 +49,7 @@
       "ProjectTranspilerId": "0840aa2c-b6fe-442a-a35a-b51322544359",
       "Name": "XmlXsltTransform",
       "RelativePath": "/src/app/effortless/services/eapi-data-services/crm-endpoint",
-      "CommandLine": "xml-xslt-transform -i ../../../../../../ODXML/DataSchema.odxml -i ../OdxmlTypescriptEAPIEndpoint.xslt -o crm-endpoint-base.ts -p name=Crm -p lower-name=crm"
+      "CommandLine": "effortless/odxml-to-effortlessapi-typescript-endpoint -i ../../../../../../ODXML/DataSchema.odxml -o crm-endpoint-base.ts -p name=Data -p lower-name=data"
     }
   ]
 }
