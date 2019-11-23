@@ -1,16 +1,15 @@
-import { CrmEndpointBase } from './crm-endpoint-base';
+import { DataEndpointBase } from './data-endpoint-base';
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class CrmEndpoint extends CrmEndpointBase {
+export class DataEndpoint extends DataEndpointBase {
     dataLoaded: boolean;
     reloadStaticData(actor: any) {
         if (this.dataLoaded) {
             return;
         } else {
             this.dataLoaded = true;
-            this.reloadNetworks(actor);
-            this.reloadShows(actor);
+            //this.reloadTABLEXYZ(actor);
         }
     }
 }

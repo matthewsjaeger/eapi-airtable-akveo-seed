@@ -24,7 +24,7 @@ import {
   NbTabsetModule,
 } from '@nebular/theme';
 import { GDS } from './effortless/services/gds.service';
-import { CrmEndpoint } from './effortless/services/eapi-data-services/crm-endpoint/crm-endpoint';
+import { DataEndpoint } from './effortless/services/eapi-data-services/data-endpoint/data-endpoint';
 import { NbAuthService, NbAuthJWTToken } from './@core/auth';
 import { AuthGuard } from './auth-guard.service';
 import { Globals } from './app.globals';
@@ -50,7 +50,7 @@ import { Globals } from './app.globals';
     }),
     CoreModule.forRoot(),
   ],
-  providers: [GDS, CrmEndpoint, AuthGuard, Globals],
+  providers: [GDS, DataEndpoint, AuthGuard, Globals],
   bootstrap: [AppComponent],
 })
 export class AppModule {
