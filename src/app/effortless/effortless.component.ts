@@ -6,7 +6,7 @@ import { NbMenuService, NbMenuItem } from '@nebular/theme';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'ngx-usp',
+  selector: 'ngx-effortless',
   template: `
     <ngx-one-column-layout>
       <nb-menu [items]="menu"></nb-menu>

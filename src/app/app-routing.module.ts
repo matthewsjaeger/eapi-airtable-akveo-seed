@@ -12,13 +12,13 @@ import {
 const routes: Routes = [
   {
     path: 'pages',
-    loadChildren: () => import('app/pages/pages.module')
+    loadChildren: () => import('./pages/pages.module')
       .then(m => m.PagesModule),
   },
   {
-    path: 'usp',
-    loadChildren: () => import('app/usp/usp.module')
-      .then(m => m.UspModule),
+    path: 'effortless',
+    loadChildren: () => import('./effortless/effortles.module')
+      .then(m => m.EffortlessModule),
   },
   {
     path: 'auth',
@@ -50,8 +50,8 @@ const routes: Routes = [
       },
     ],
   },
-  { path: '', redirectTo: 'usp', pathMatch: 'full' },
-  { path: '**', redirectTo: 'usp' },
+  { path: '', redirectTo: 'effortless', pathMatch: 'full' },
+  { path: '**', redirectTo: 'effortless' },
 ];
 
 const config: ExtraOptions = {

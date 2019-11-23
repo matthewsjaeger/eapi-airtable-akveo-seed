@@ -67,7 +67,7 @@ export class AppModule {
       return { "AccessToken": gds.accessToken };
     }
 
-    gds.vhost = "derek-united-senior-placement-usp";
+    gds.vhost = "your-project-endpoint";
     gds.smqUsername = "smqPublic";
     gds.smqPassword = "smqPublic";
 
