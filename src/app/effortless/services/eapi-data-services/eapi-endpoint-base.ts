@@ -33,7 +33,7 @@ export class EapiEndpointBase {
         })
     }
 
-    public doReload(smqUser: any, idName: string, lowerName: string, upperName: string, airtableWhere: string, sortField: string = '') {
+    public doReload(smqUser: any, idName: string, lowerName: string, upperName: string, airtableWhere: string, sortField: string = '', isPlural: boolean = true) {
         let self = this;
 
         if (!smqUser) smqUser = self.gds.smqUser;
@@ -51,8 +51,13 @@ export class EapiEndpointBase {
                         self[lowerName + 'ById'][item[idName]] = item;
                     })
                 }
-                self[lowerName] = items;
-                self[lowerName + '$'].next(self[lowerName]);
+                if (isPlural) {
+                    self[lowerName] = items;
+                    self[lowerName + '$'].next(self[lowerName]);
+                } else {
+                    self[lowerName] = items[0];
+                    self[lowerName + '$'].next(self[lowerName]);
+                }
             });
 
     }
