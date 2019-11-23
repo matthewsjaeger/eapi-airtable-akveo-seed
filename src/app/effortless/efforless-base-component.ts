@@ -3,15 +3,15 @@ import { OnDestroy } from '@angular/core';
 import { GDS } from './services/gds.service';
 import { NbMenuService, NbToastComponent, NbToastrService } from '@nebular/theme';
 import { Router } from '@angular/router';
-import { CrmEndpoint } from './services/eapi-data-services/crm-endpoint/crm-endpoint';
+import { DataEndpoint } from './services/eapi-data-services/data-endpoint/data-endpoint';
 
 
 export class EffortlessComponentBase implements OnDestroy {
 
-    constructor(public gds: GDS, public crm: CrmEndpoint,
+    constructor(public gds: GDS, public data: DataEndpoint,
         protected menuService: NbMenuService) {
         this.safeSubscribe(this.gds.onReady().subscribe(ready => {
-            this.crm.reloadStaticData(this.gds.smqUser);
+            this.data.reloadStaticData(this.gds.smqUser);
         }));
     }
 

@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
     </ngx-one-column-layout>
   `,
 })
-export class UspComponent implements OnInit {
+export class EffortlessComponent implements OnInit {
   items:NbMenuItem[];
   constructor(public gds: GDS, protected nbMenuService: NbMenuService, public router: Router) {
     // this.items = this.getMenu();
@@ -22,7 +22,7 @@ export class UspComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.router.navigateByUrl('/usp/inquiries');
+    this.router.navigateByUrl('/effortless/page1');
   }
 
   // getMenu() {

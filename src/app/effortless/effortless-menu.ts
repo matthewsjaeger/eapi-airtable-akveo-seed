@@ -1,79 +1,46 @@
 import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
+  
+  {
+    title: 'Page 1',
+    icon: 'home-outline',
+    link: '/effortless/page1',
+    home: true,
+  },
+  {
+    title: 'Page 2',
+    icon: 'person',
+    link: '/effortless/page2',
+  },
+  {
+    title: 'Page 3',
+    icon: 'people',
+    link: '/effortless/page3',
+  },
+  {
+    title: 'Pages',
+    icon: 'settings',
+    children: [
+      {
+        title: 'Sub page 1',
+        link: '/effortless/page1/subpage1',
+      },
+      {
+        title: 'Sub page 2',
+        link: '/effortless/page1/subpage2',
+      },
+      {
+        title: 'Sub page 3',
+        link: '/effortless/page1/subpage3',
+      },
+    ],
+  },
   {
     title: 'Login',
     icon: 'shield-outline',
     link: '/auth/login',
     hidden: false,
     expanded: false,
-  },
-  {
-    title: 'Facilities',
-    icon: 'home-outline',
-    link: '/usp/facilities',
-  },
-  {
-    title: 'Inquiries',
-    icon: 'phone-call',
-    link: '/usp/inquiries',
-    home: true,
-  },
-  {
-    title: 'Clients',
-    icon: 'person',
-    link: '/usp/clients',
-  },
-  {
-    title: 'Placements',
-    icon: 'home',
-    link: '/usp/placements',
-  },
-  {
-    title: 'Referral Sources',
-    icon: 'people',
-    link: '/usp/referral-sources',
-  },
-  {
-    title: 'Team Members',
-    icon: 'people',
-    link: '/usp/team-members',
-  },
-  {
-    title: 'Configuration',
-    icon: 'settings',
-    children: [
-      {
-        title: 'Discovery Questions',
-        link: '/usp/configuration/discovery-questions',
-      },
-      {
-        title: 'Facility Types',
-        link: '/usp/configuration/facility-types',
-      },
-      {
-        title: 'Placement Stages',
-        link: '/usp/configuration/placement-stages',
-      },
-      {
-        title: 'Price Ranges',
-        link: '/usp/configuration/price-ranges',
-      },
-      {
-        title: 'Activities',
-        pathMatch: 'prefix',
-        link: '/usp/configuration/activities',
-      },
-      {
-        title: 'ADLs',
-        pathMatch: 'prefix',
-        link: '/usp/configuration/adls',
-      },
-      {
-        title: 'Cognitive Disabilities',
-        pathMatch: 'prefix',
-        link: '/usp/configuration/cognitive-disabilities',
-      },
-    ],
   },
 ];
