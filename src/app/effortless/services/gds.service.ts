@@ -1,4 +1,4 @@
-declare var generateAdministratorActor: any;
+declare var generateAdminActor: any;
 declare var generateEmployeeActor: any;
 declare var generateCallerActor: any;
 declare var generatePayrollActor: any;
@@ -35,7 +35,6 @@ export class GDS {
   public smqPayroll: any;
   public isAdmin: boolean;
   public isEmployee: boolean;
-  public isCaller: boolean;
   public isPayroll: boolean;
   public isManager: boolean;
   public role: string;
@@ -72,7 +71,6 @@ export class GDS {
   }
 
   public logout() {
-    this.isCaller = false;
     this.isAdmin = false;
     this.isEmployee = false;
     this.whoAmI = null;
@@ -90,35 +88,22 @@ export class GDS {
       alert('ERROR AUTHENTICATING');
       return;
     }
-    gds.isCaller = false;
     gds.isAdmin = false;
     gds.isEmployee = false;
     gds.isPayroll = false;
 
-    if (gds.whoAmI.Roles.indexOf("Caller") >= 0) {
-      gds.role = 'Caller';
-      gds.isCaller = true;
-      gds.smqUser = generateCallerActor();
-    }
 
-    else  if (gds.whoAmI.Roles.indexOf("Employee") >= 0) {
+    if (gds.whoAmI.Roles.indexOf("Employee") >= 0) {
       gds.role = 'Employee';
       gds.isEmployee = true;
+      //gds.smqPayroll = generatePayrollActor();
       gds.smqUser = generateEmployeeActor();
     }
-
-    else if (gds.whoAmI.Roles.indexOf("Payroll") >= 0) {
-      gds.isPayroll = true;
-      gds.smqPayroll = generatePayrollActor();
-    }
-
-    else if (gds.whoAmI.Roles.indexOf("Administrator") >= 0) {
-      gds.role = 'Administrator';
-      gds.isEmployee = true;
-      gds.isPayroll = true;
+    else if (gds.whoAmI.Roles.indexOf("Admin") >= 0) {
+      gds.role = 'Admin';
       gds.isAdmin = true;
       //gds.smqPayroll = generatePayrollActor();
-      gds.smqUser = generateAdministratorActor();
+      gds.smqUser = generateAdminActor();
     }
 
     if (gds.smqPayroll) {

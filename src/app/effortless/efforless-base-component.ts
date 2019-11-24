@@ -44,7 +44,6 @@ export class EffortlessComponentBase implements OnDestroy {
                     else if (this.gds.isManager) url = 'pages/effortlessapi/dashboard-manager';
                     else if (this.gds.isEmployee) url = 'pages/effortlessapi/dashboard-employee';
                     else if (this.gds.isPayroll) url = 'pages/effortlessapi/dashboard-payroll';
-                    else if (this.gds.isCaller) url = 'pages/effortlessapi/dashboard-customer';
     
                     router.navigateByUrl(url);
                 }
