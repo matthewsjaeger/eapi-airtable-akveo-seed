@@ -11,11 +11,6 @@ import {
 
 const routes: Routes = [
   {
-    path: 'pages',
-    loadChildren: () => import('./pages/pages.module')
-      .then(m => m.PagesModule),
-  },
-  {
     path: 'effortless',
     loadChildren: () => import('./effortless/effortles.module')
       .then(m => m.EffortlessModule),
