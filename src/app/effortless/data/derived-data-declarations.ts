@@ -5,7 +5,7 @@ import { DataComponent } from './data.component';
 
 export class DerivedDataDeclarations {
     static derivedDeclarations = [
-        BarsComponent,
+        BarsComponent, // chhanged
         BarComponent
     ]
 

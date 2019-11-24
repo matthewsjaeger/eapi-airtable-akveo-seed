@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:msxsl="urn:schemas-microsoft-com:xslt" exclude-result-prefixes="msxsl"
+>
+    <xsl:output method="xml" indent="yes"/>
+
+    <xsl:param name="output-filename" select="'output.txt'" />
+    <xsl:include href="../CommonXsltTemplates.xslt" />
+    <xsl:template match="@* | node()">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()"/>
+        </xsl:copy>
+    </xsl:template>
+
+    <xsl:template match="/*">
+        <FileSet>
+            <FileSetFiles>
+                        <FileSetFile>
+                <RelativePath>data.component.html</RelativePath>
+                <OverwriteMode>Never</OverwriteMode>
+                <FileContents><H2>Effortless Data</H2>
+
+<p>The following links will allow you to explore (and edit) the data behind your EffortlessAPI.</p>
+
+<ol>
+    <xsl:for-each select="//ObjectDefs/ObjectDef"><xsl:variable name="od" select="." />
+    <li>&lt;a (click)="goToData('<xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />')"><xsl:value-of select="$od/PluralName" />&lt;/a></li></xsl:for-each>
+</ol>
+</FileContents>
+            </FileSetFile>
+
+<xsl:for-each select="//ObjectDefs/ObjectDef"><xsl:variable name="od" select="." />
+            <FileSetFile>
+                <RelativePath><xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />/<xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />
+                <xsl:text>.component.ts</xsl:text></RelativePath>
+                <OverwriteMode>Never</OverwriteMode>
+                <FileContents>import { Component, OnInit } from '@angular/core';
+import { Router, Route, ActivatedRoute } from '@angular/router';
+import { EffortlessComponentBase } from '../../efforless-base-component';
+import { GDS } from '../../services/gds.service';
+import { DataEndpoint } from '../../services/eapi-data-services/data-endpoint/data-endpoint';
+import { NbMenuService } from '@nebular/theme';
+import { Observable } from 'rxjs';
+
+@Component({
+  selector: 'eapi-data-<xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />',
+  templateUrl: './<xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />.component.html',
+  styleUrls: ['./<xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />.component.scss']
+})
+export class <xsl:value-of select="$od/PluralName" />Component extends EffortlessComponentBase implements OnInit {
+  <xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />$: Observable&lt;any>;
+
+  constructor(public gds : GDS, public data : DataEndpoint, public route : ActivatedRoute, 
+            protected menuService : NbMenuService, public router : Router) { 
+    super(gds, data, menuService);
+    this.<xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />$ = this.data.on<xsl:value-of select="$od/PluralName" />Change();
+  }
+
+  onGdsReady() {
+    this.reload(this);
+  }
+
+  reload(self: this) {
+    this.data.reload<xsl:value-of select="$od/PluralName" />(this.gds.smqUser);
+  }
+
+  goTo<xsl:value-of select="$od/Name" />(id) {
+    this.router.navigateByUrl('effortless/data/<xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />/<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />/' + id);
+  }
+}
+</FileContents>
+            </FileSetFile>
+            <FileSetFile>
+                <RelativePath><xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />/<xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />
+                <xsl:text>.component.spec.ts</xsl:text></RelativePath>
+                <OverwriteMode>Never</OverwriteMode>
+                <FileContents></FileContents>
+            </FileSetFile>
+            <FileSetFile>
+                <RelativePath><xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />/<xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />
+                <xsl:text>.component.scss</xsl:text></RelativePath>
+                <OverwriteMode>Never</OverwriteMode>
+                <FileContents></FileContents>
+            </FileSetFile>
+            <FileSetFile>
+                <RelativePath><xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />/<xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />
+                <xsl:text>.component.html</xsl:text></RelativePath>
+                <OverwriteMode>Never</OverwriteMode>
+                <FileContents><h2><xsl:value-of select="$od/PluralName" /></h2>
+&lt;div *ngFor="let <xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" /> of <xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />$ | async" style="padding: 1em;">
+  &lt;a nbButton (click)="goTo<xsl:value-of select="$od/Name" />(<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />.<xsl:value-of select="$od/Name" />Id)">{{ <xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />.Name }}&lt;/a>
+&lt;/div>
+          </FileContents>
+            </FileSetFile>
+            <FileSetFile>
+                <RelativePath><xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />/<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />/<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />
+                <xsl:text>.component.ts</xsl:text></RelativePath>
+                <OverwriteMode>Never</OverwriteMode>
+                <FileContents>import { Component, OnInit } from '@angular/core';
+import { Router, Route, ActivatedRoute } from '@angular/router';
+import { EffortlessComponentBase } from '../../../efforless-base-component';
+import { GDS } from '../../../services/gds.service';
+import { DataEndpoint } from '../../../services/eapi-data-services/data-endpoint/data-endpoint';
+import { NbMenuService } from '@nebular/theme';
+import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
+
+@Component({
+  selector: 'eapi-data-<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />',
+  templateUrl: './<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />.component.html',
+  styleUrls: ['./<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />.component.scss']
+})
+export class <xsl:value-of select="$od/Name" />Component extends EffortlessComponentBase implements OnInit {
+  <xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />$: Observable&lt;any>;
+  id: any;
+
+  constructor(public gds : GDS, public data : DataEndpoint, public route : ActivatedRoute, 
+            protected menuService : NbMenuService, public router : Router) { 
+    super(gds, data, menuService);
+    this.<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />$ = this.data.on<xsl:value-of select="$od/Name" />Change();
+  }
+
+  onGdsReady() {
+    this.route.params.pipe(take(1)).subscribe(params => {
+      this.id = params['<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />Id'];
+      this.reload(this);
+    });
+  }
+
+  reload(self: this) {
+    this.data.reload<xsl:value-of select="$od/Name" />Where(this.gds.smqUser, "RECORD_ID()='" + this.id + "'");
+  }
+}
+
+</FileContents>
+            </FileSetFile>
+            <FileSetFile>
+                <RelativePath><xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />/<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />/<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />
+                <xsl:text>.component.spec.ts</xsl:text></RelativePath>
+                <OverwriteMode>Never</OverwriteMode>
+                <FileContents></FileContents>
+            </FileSetFile>
+            <FileSetFile>
+                <RelativePath><xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />/<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />/<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />
+                <xsl:text>.component.scss</xsl:text></RelativePath>
+                <OverwriteMode>Never</OverwriteMode>
+                <FileContents></FileContents>
+            </FileSetFile>
+            <FileSetFile>
+                <RelativePath><xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />/<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />/<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />
+                <xsl:text>.component.html</xsl:text></RelativePath>
+                <OverwriteMode>Never</OverwriteMode>
+                <FileContents><h2>
+{{ (<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />$ | async)?.Name }} Summary
+</h2>
+More coming soon...
+          </FileContents>
+            </FileSetFile>
+</xsl:for-each>
+                <FileSetFile>
+                    <RelativePath>
+                        <xsl:text>derived-data-declarations.ts</xsl:text>
+                    </RelativePath>
+                    <xsl:element name="FileContents" xml:space="preserve">import { DataComponent } from './data.component';
+<xsl:for-each select="//ObjectDefs/ObjectDef"><xsl:variable name="od" select="." />
+import { <xsl:value-of select="$od/PluralName" />Component } from "./<xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />/<xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />.component";
+import { <xsl:value-of select="$od/Name" />Component } from './<xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />/<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />/<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />.component';</xsl:for-each>
+
+
+export class DerivedDataDeclarations {
+    static derivedDeclarations = [
+<xsl:for-each select="//ObjectDefs/ObjectDef"><xsl:variable name="od" select="." />
+        <xsl:value-of select="$od/PluralName" />Component,
+        <xsl:value-of select="$od/Name" />Component,</xsl:for-each>
+    ]
+
+    static derivedPages: any[] = [
+        {
+            path: 'data',
+            component: DataComponent,
+        },
+<xsl:for-each select="//ObjectDefs/ObjectDef"><xsl:variable name="od" select="." />
+        {
+            path: 'data/<xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />',
+            component: <xsl:value-of select="$od/PluralName" />Component,
+        },
+        {
+            path: 'data/<xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />/<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />',
+            component: <xsl:value-of select="$od/Name" />Component
+        },
+        {
+            path: 'data/<xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />/<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />/:<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />Id',
+            component: <xsl:value-of select="$od/Name" />Component
+        },</xsl:for-each>
+    ];
+};
+
+</xsl:element>
+                </FileSetFile>
+            </FileSetFiles>
+        </FileSet>
+    </xsl:template>
+</xsl:stylesheet>

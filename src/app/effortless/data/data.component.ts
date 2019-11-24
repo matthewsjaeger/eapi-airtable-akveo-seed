@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-data',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DataComponent implements OnInit {
 
-  constructor() { }
+  constructor(public router : Router) { }
 
   ngOnInit() {
   }
-
+ 
+  goToData(page) {
+    this.router.navigateByUrl('effortless/data/' + page);
+  }
 }

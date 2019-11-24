@@ -33,7 +33,7 @@ export class EapiEndpointBase {
         })
     }
 
-    public doReload(smqUser: any, idName: string, lowerName: string, upperName: string, airtableWhere: string, sortField: string = '', isPlural: boolean = true) {
+    public doReload(smqUser: any, idName: string, lowerName: string, upperName: string, airtableWhere: string, sortField: string = '', isSingular: boolean = false) {
         let self = this;
 
         if (!smqUser) smqUser = self.gds.smqUser;
@@ -51,7 +51,7 @@ export class EapiEndpointBase {
                         self[lowerName + 'ById'][item[idName]] = item;
                     })
                 }
-                if (isPlural) {
+                if (!isSingular) {
                     self[lowerName] = items;
                     self[lowerName + '$'].next(self[lowerName]);
                 } else {
