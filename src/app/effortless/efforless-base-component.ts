@@ -1,12 +1,12 @@
 import { Subscription, Observable, Subject, BehaviorSubject } from 'rxjs';
-import { OnDestroy } from '@angular/core';
+import { OnDestroy, OnInit } from '@angular/core';
 import { GDS } from './services/gds.service';
 import { NbMenuService, NbToastComponent, NbToastrService } from '@nebular/theme';
 import { Router } from '@angular/router';
 import { DataEndpoint } from './services/eapi-data-services/data-endpoint/data-endpoint';
 
 
-export class EffortlessComponentBase implements OnDestroy {
+export class EffortlessComponentBase implements OnDestroy, OnInit {
 
     constructor(public gds: GDS, public data: DataEndpoint,
         protected menuService: NbMenuService) {
@@ -21,6 +21,16 @@ export class EffortlessComponentBase implements OnDestroy {
 
     public safeSubscribe(subscription: Subscription) {
         this.subscriptions.push(subscription);
+    }
+
+    public ngOnInit() {
+        this.safeSubscribe(this.gds.onReady().subscribe(ready => {
+            this.onGdsReady()
+        }));
+    }
+
+    onGdsReady() {
+        // Do nothing here in the base class
     }
 
     public ngOnDestroy() {
@@ -41,9 +51,7 @@ export class EffortlessComponentBase implements OnDestroy {
                 if ((router.url == "/") || (router.url == url)) {
     
                     if (this.gds.isAdmin) url = 'pages/effortlessapi/dashboard-admin';
-                    else if (this.gds.isManager) url = 'pages/effortlessapi/dashboard-manager';
                     else if (this.gds.isEmployee) url = 'pages/effortlessapi/dashboard-employee';
-                    else if (this.gds.isPayroll) url = 'pages/effortlessapi/dashboard-payroll';
     
                     router.navigateByUrl(url);
                 }
