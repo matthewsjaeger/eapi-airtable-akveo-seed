@@ -14,9 +14,9 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/effortless/page2',
   },
   {
-    title: 'Page 3',
+    title: 'Data',
     icon: 'people',
-    link: '/effortless/page3',
+    link: '/effortless/data',
   },
   {
     title: 'Pages',
