@@ -116,7 +116,7 @@ import { Router, Route, ActivatedRoute } from '@angular/router';
 import { EffortlessComponentBase } from '../../../efforless-base-component';
 import { GDS } from '../../../services/gds.service';
 import { DataEndpoint } from '../../../services/eapi-data-services/data-endpoint/data-endpoint';
-import { NbMenuService } from '@nebular/theme';
+import { NbMenuService, NbToastrService } from '@nebular/theme';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 
@@ -128,14 +128,51 @@ import { take } from 'rxjs/operators';
 export class <xsl:value-of select="$od/Name" />Component extends EffortlessComponentBase implements OnInit {
   <xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />$: Observable&lt;any>;
   id: any;
+  config: any;
+  mySchema: any;
 
   constructor(public gds : GDS, public data : DataEndpoint, public route : ActivatedRoute, 
-            protected menuService : NbMenuService, public router : Router) { 
+            protected toastr : NbToastrService, protected menuService : NbMenuService, public router : Router) { 
     super(gds, data, menuService);
     this.<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />$ = this.data.on<xsl:value-of select="$od/Name" />Change();
     this.safeSubscribe(this.<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />$.subscribe(data => {
       this.loading = false;
     }));
+    
+    this.config = {};
+    this.mySchema = {
+      "definitions": {},
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "http://example.com/root.json",
+      "type": "object",
+      "title": "The Root Schema",
+      "required": [<xsl:for-each select="PropertyDefs/PropertyDef">
+        "<xsl:value-of select="Name" />",</xsl:for-each>
+      ],
+      "properties": {<xsl:for-each select="PropertyDefs/PropertyDef">
+        "<xsl:value-of select="Name" />": {
+          "$id": "#/properties/<xsl:value-of select="Name" />",
+          "type": "string",
+          "title": "The <xsl:value-of select="Name" /> Schema",
+          "default": "",
+          "examples": [
+            "abc"
+          ],
+          "pattern": "^(.*)$"
+        },</xsl:for-each>
+      }
+    };
+  }
+
+  
+  save() {
+    var payload = this.gds.createPayload();
+    payload.<xsl:value-of select="$od/Name" /> = this.data.<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />;
+    this.gds.smqUser.Update<xsl:value-of select="$od/Name" />(payload)
+        .then(reply => {
+          this.data.<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" /> = reply.<xsl:value-of select="$od/Name" />;
+          this.toastr.show('<xsl:value-of select="$od/Name" /> Saved...');
+        });
   }
 
   onGdsReady() {
@@ -150,7 +187,6 @@ export class <xsl:value-of select="$od/Name" />Component extends EffortlessCompo
     this.data.reload<xsl:value-of select="$od/Name" />Where(this.gds.smqUser, "RECORD_ID()='" + this.id + "'");
   }
 }
-
 </FileContents>
             </FileSetFile>
             <FileSetFile>
@@ -172,7 +208,8 @@ export class <xsl:value-of select="$od/Name" />Component extends EffortlessCompo
                 <FileContents><h2>
 {{ (<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />$ | async)?.Name }} Summary
 </h2>
-More coming soon...
+&lt;button nbButton (click)="save()">Save&lt;/button>
+&lt;json-editor [(record)]="data.<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />" [config]=" config" [schema]="mySchema">&lt;/json-editor>
           </FileContents>
             </FileSetFile>
 </xsl:for-each>
