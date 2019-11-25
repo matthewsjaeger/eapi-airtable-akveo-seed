@@ -48,16 +48,25 @@ import { Observable } from 'rxjs';
   styleUrls: ['./<xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />.component.scss']
 })
 export class <xsl:value-of select="$od/PluralName" />Component extends EffortlessComponentBase implements OnInit {
-  <xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />$: Observable&lt;any>;
+  searchText : string = '';
+  <xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />: any[] = [];
+  filtered<xsl:value-of select="$od/PluralName" />: any;
 
   constructor(public gds : GDS, public data : DataEndpoint, public route : ActivatedRoute, 
             protected menuService : NbMenuService, public router : Router) { 
     super(gds, data, menuService);
-    this.<xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />$ = this.data.on<xsl:value-of select="$od/PluralName" />Change();
+    this.safeSubscribe(this.data.on<xsl:value-of select="$od/PluralName" />Change().subscribe(<xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" /> => {
+      this.<xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" /> = <xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />;
+      this.filterNow();
+    }));
   }
 
   onGdsReady() {
     this.reload(this);
+  }
+
+  filterNow() {
+    this.filtered<xsl:value-of select="$od/PluralName" /> = this.<xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />.filter(<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" /> => <xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />.Name.toLowerCase().includes((this.searchText + '').toLowerCase()));      
   }
 
   reload(self: this) {
@@ -86,11 +95,17 @@ export class <xsl:value-of select="$od/PluralName" />Component extends Effortles
                 <RelativePath><xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />/<xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />
                 <xsl:text>.component.html</xsl:text></RelativePath>
                 <OverwriteMode>Never</OverwriteMode>
-                <FileContents><h2><xsl:value-of select="$od/PluralName" /></h2>
-&lt;div *ngFor="let <xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" /> of <xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />$ | async" style="padding: 1em;">
-  &lt;a nbButton (click)="goTo<xsl:value-of select="$od/Name" />(<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />.<xsl:value-of select="$od/Name" />Id)">{{ <xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />.Name }}&lt;/a>
-&lt;/div>
-          </FileContents>
+                <FileContents>&lt;reload-widget [self]="this" [loading]="loading" [reloadHandler]="reload">&lt;/reload-widget>
+&lt;input nbInput type="text" [(ngModel)]="searchText" placeholder="Filter <xsl:value-of select="$od/PluralName" />" class="float-right" (change)="filterNow()" />
+<h2><xsl:value-of select="$od/PluralName" /></h2>
+<nb-list>
+  &lt;nb-list-item *ngFor="let <xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" /> of filtered<xsl:value-of select="$od/PluralName" />" style="padding: 1em;">
+    {{ <xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />.Name }}
+    &lt;a nbButton class="float-right" size="tiny" (click)="goTo<xsl:value-of select="$od/Name" />(<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />.<xsl:value-of select="$od/Name" />Id)">
+      <nb-icon icon="external-link"></nb-icon>
+    &lt;/a>
+  &lt;/nb-list-item>
+</nb-list></FileContents>
             </FileSetFile>
             <FileSetFile>
                 <RelativePath><xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />/<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />/<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />
@@ -118,6 +133,9 @@ export class <xsl:value-of select="$od/Name" />Component extends EffortlessCompo
             protected menuService : NbMenuService, public router : Router) { 
     super(gds, data, menuService);
     this.<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />$ = this.data.on<xsl:value-of select="$od/Name" />Change();
+    this.safeSubscribe(this.<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />$.subscribe(data => {
+      this.loading = false;
+    }));
   }
 
   onGdsReady() {
@@ -128,6 +146,7 @@ export class <xsl:value-of select="$od/Name" />Component extends EffortlessCompo
   }
 
   reload(self: this) {
+    self.loading = true;
     this.data.reload<xsl:value-of select="$od/Name" />Where(this.gds.smqUser, "RECORD_ID()='" + this.id + "'");
   }
 }
