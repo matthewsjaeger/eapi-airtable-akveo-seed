@@ -66,7 +66,7 @@ export class <xsl:value-of select="$od/PluralName" />Component extends Effortles
   }
 
   filterNow() {
-    this.filtered<xsl:value-of select="$od/PluralName" /> = this.<xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />.filter(<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" /> => <xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />.Name.toLowerCase().includes((this.searchText + '').toLowerCase()));      
+    this.filtered<xsl:value-of select="$od/PluralName" /> = this.<xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />.filter(<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" /> => !this.searchText || <xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />.Name.toLowerCase().includes((this.searchText + '').toLowerCase()));      
   }
 
   reload(self: this) {
