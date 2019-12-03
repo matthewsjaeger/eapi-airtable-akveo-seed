@@ -60,7 +60,7 @@
       "ProjectTranspilerId": "995c0d60-a9ff-4c28-b5e1-4fde69bd37e5",
       "Name": "XmlXsltTransform",
       "RelativePath": "/src/app/effortless/data",
-      "CommandLine": "codee42/xml-xslt-transform -i ..\\..\\..\\..\\ODXML\\DataSchema.odxml -i CreateDataPages.xslt"
+      "CommandLine": "codee42/xml-xslt-transform -i ../../../../ODXML/DataSchema.odxml -i CreateDataPages.xslt"
     }
   ]
 }

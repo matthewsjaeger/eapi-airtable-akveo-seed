@@ -9,7 +9,8 @@ communicate with your Effortless API.
 SSoT.me `ssotme` is the dynamic package manager which keeps the code up to date.  This tool requires 
 [.Net Core 2.2](https://dotnet.microsoft.com/download) to be installed.  
 
-    > npm install ssotme -g
+    > npm install -g ssotme
+    > npm install -g @angular/cli
 
 ## Git Fork/Clone
 Fork this repository - then clone the project locally
@@ -21,8 +22,7 @@ Fork this repository - then clone the project locally
 
 ## Connecting 2 Effortless API
 
-To connect your new repository to your effortless API Endpoint, run these commands
-    > code .
+To connect your new repository to your effortless API Endpoint, run these commands:
 
     > npm install
 
@@ -33,9 +33,14 @@ To connect your new repository to your effortless API Endpoint, run these comman
 The code will start to build in the background, and VSCode will open in the root of the project. 
 Use the following instructions to tailor the example for your project.
 
-    1. Open the `src/app/app-modules.ts` lines 70 to configure your EAPI Endpoint
-    2. Do Something Else
-    2. Do x, z, y.
+
+    1. Start VS Code.  On Windows that command is 'code .'.  
+    2. Open the `src/app/app-modules.ts` lines 70 to configure your EAPI Endpoint
+    2A. Maybe fix Roles configuration.
+    3. Be sure that angular CLI is installed: 
+    4. From the command line, once the `npm install` and `ssotme -build` have completed, run `ng serve`
+    5. Open http://localhost:4200 in a browser
+    
 
 This will create a local typescript sdk for your EffortlesAPI endpoint - allowing you to immediately begin writing code:
 
