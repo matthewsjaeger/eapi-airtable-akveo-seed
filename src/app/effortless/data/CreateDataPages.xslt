@@ -76,6 +76,18 @@ export class <xsl:value-of select="$od/PluralName" />Component extends Effortles
   goTo<xsl:value-of select="$od/Name" />(id) {
     this.router.navigateByUrl('effortless/data/<xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />/<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />/' + id);
   }
+
+  delete<xsl:value-of select="$od/Name" />(<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />) {
+    var payload = this.gds.createPayload();
+    payload.<xsl:value-of select="$od/Name" /> = <xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />;
+    this.gds.smqUser.Delete<xsl:value-of select="$od/Name" />(payload).then((reply) => {
+      if (reply.ErrorMessage) {
+        alert(reply.ErrorMessage)
+      } else {
+        this.reload(this)
+      }
+    })
+  }
 }
 </FileContents>
             </FileSetFile>
@@ -101,9 +113,12 @@ export class <xsl:value-of select="$od/PluralName" />Component extends Effortles
 <nb-list>
   &lt;nb-list-item *ngFor="let <xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" /> of filtered<xsl:value-of select="$od/PluralName" />" style="padding: 1em;">
     {{ <xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />.Name }}
-    &lt;a nbButton class="float-right" size="tiny" (click)="goTo<xsl:value-of select="$od/Name" />(<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />.<xsl:value-of select="$od/Name" />Id)">
-      <nb-icon icon="external-link"></nb-icon>
-    &lt;/a>
+      &lt;a nbButton class="float-right" size="tiny" (click)="goTo<xsl:value-of select="$od/Name" />(<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />.<xsl:value-of select="$od/Name" />Id)">
+        <nb-icon icon="external-link"></nb-icon>
+      &lt;/a>
+      &lt;a nbButton class="float-right" size="tiny" status="danger" (click)="delete<xsl:value-of select="$od/Name" />(<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />)">
+        <nb-icon icon="trash"></nb-icon>
+      &lt;/a>
   &lt;/nb-list-item>
 </nb-list></FileContents>
             </FileSetFile>
@@ -186,6 +201,10 @@ export class <xsl:value-of select="$od/Name" />Component extends EffortlessCompo
     self.loading = true;
     this.data.reload<xsl:value-of select="$od/Name" />Where(this.gds.smqUser, "RECORD_ID()='" + this.id + "'");
   }
+
+  goBack() {
+    this.router.navigateByUrl('effortless/data/<xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />')
+  }
 }
 </FileContents>
             </FileSetFile>
@@ -208,6 +227,7 @@ export class <xsl:value-of select="$od/Name" />Component extends EffortlessCompo
                 <FileContents><h2>
 {{ (<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />$ | async)?.Name }} Summary
 </h2>
+&lt;button nbButton (click)="goBack()">Back&lt;/button>
 &lt;button nbButton (click)="save()">Save&lt;/button>
 &lt;json-editor [(record)]="data.<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />" [config]=" config" [schema]="mySchema">&lt;/json-editor>
           </FileContents>
