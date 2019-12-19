@@ -40,6 +40,7 @@
     "@angular/platform-browser-dynamic": "^8.2.14",
     "@angular/router": "^8.2.14",
     "@asymmetrik/ngx-leaflet": "3.0.1",
+    "@json-editor/json-editor": "^2.0.0-alpha.1",
     "@nebular/eva-icons": "4.4.0",
     "@nebular/security": "4.4.0",
     "@nebular/theme": "4.4.0",
