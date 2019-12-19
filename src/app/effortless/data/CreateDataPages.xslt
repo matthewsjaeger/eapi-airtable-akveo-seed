@@ -83,7 +83,7 @@ export class <xsl:value-of select="$od/PluralName" />Component extends Effortles
 
   
   openAddDialog() {
-    this.dialogService.open(<xsl:value-of select="$od/Name" />DialogComponent, { context: this, autoFocus: false});
+    this.dialogService.open(<xsl:value-of select="$od/Name" />DialogComponent, { context: null, autoFocus: false});
   }
 
   goBack() {
@@ -482,14 +482,21 @@ export class <xsl:value-of select="$od/Name" />DialogComponent implements OnInit
                     <xsl:element name="FileContents" xml:space="preserve">import { DataComponent } from './data.component';
 <xsl:for-each select="//ObjectDefs/ObjectDef"><xsl:variable name="od" select="." />
 import { <xsl:value-of select="$od/PluralName" />Component } from "./<xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />/<xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />.component";
-import { <xsl:value-of select="$od/Name" />Component } from './<xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />/<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />/<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />.component';</xsl:for-each>
+import { <xsl:value-of select="$od/Name" />Component } from './<xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />/<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />/<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />.component';
+import { <xsl:value-of select="$od/Name" />DialogComponent } from './<xsl:value-of select="translate($od/PluralName, $ucletters, $lcletters)" />/<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />-dialog/<xsl:value-of select="translate($od/Name, $ucletters, $lcletters)" />-dialog.component';</xsl:for-each>
 
 
 export class DerivedDataDeclarations {
     static derivedDeclarations = [
 <xsl:for-each select="//ObjectDefs/ObjectDef"><xsl:variable name="od" select="." />
         <xsl:value-of select="$od/PluralName" />Component,
-        <xsl:value-of select="$od/Name" />Component,</xsl:for-each>
+        <xsl:value-of select="$od/Name" />Component,
+        <xsl:value-of select="$od/Name" />DialogComponent,</xsl:for-each>
+    ]
+
+    static derivedEntryComponents = [
+<xsl:for-each select="//ObjectDefs/ObjectDef"><xsl:variable name="od" select="." />
+        <xsl:value-of select="$od/Name" />DialogComponent,</xsl:for-each>
     ]
 
     static derivedPages: any[] = [

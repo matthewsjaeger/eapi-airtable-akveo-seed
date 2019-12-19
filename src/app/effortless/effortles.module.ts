@@ -30,12 +30,14 @@ DerivedDataDeclarations.derivedDeclarations.forEach(feDeclaration => declaration
     NbListModule,
     NbSpinnerModule,
     ThemeModule,
-      NbMenuModule,
-      FormsModule,
-      Ng5SliderModule,
-      NbSelectModule,
-      NbInputModule,
-  ]
+    NbMenuModule,
+    FormsModule,
+    Ng5SliderModule,
+    NbSelectModule,
+    NbInputModule,
+    NbDialogModule.forChild()
+  ],
+  entryComponents: DerivedDataDeclarations.derivedEntryComponents
 })
 export class EffortlessModule {
 

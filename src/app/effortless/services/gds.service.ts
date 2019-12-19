@@ -84,7 +84,7 @@ export class GDS {
   connect() {
     console.log("LOADING ALL DATA");
     var gds = this;
-    if (!gds.whoAmI || !gds.whoAmI.Roles) {
+    if (!gds.whoAmI || !gds.whoAmI.Role) {
       alert('ERROR AUTHENTICATING');
       return;
     }
@@ -93,13 +93,13 @@ export class GDS {
     gds.isPayroll = false;
 
 
-    if (gds.whoAmI.Roles.indexOf("Employee") >= 0) {
+    if (gds.whoAmI.Role.indexOf("Employee") >= 0) {
       gds.role = 'Employee';
       gds.isEmployee = true;
       //gds.smqPayroll = generatePayrollActor();
       gds.smqUser = generateEmployeeActor();
     }
-    else if (gds.whoAmI.Roles.indexOf("Admin") >= 0) {
+    else if (gds.whoAmI.Role.indexOf("Admin") >= 0) {
       gds.role = 'Admin';
       gds.isAdmin = true;
       //gds.smqPayroll = generatePayrollActor();
