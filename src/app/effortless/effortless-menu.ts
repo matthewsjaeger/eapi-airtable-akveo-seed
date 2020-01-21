@@ -3,9 +3,9 @@ import { NbMenuItem } from '@nebular/theme';
 export const MENU_ITEMS: NbMenuItem[] = [
   
   {
-    title: 'Page 1',
+    title: 'Ionic',
     icon: 'home-outline',
-    link: '/effortless/page1',
+    link: '/effortless/ionic',
     home: true,
   },
   {

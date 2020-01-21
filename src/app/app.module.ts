@@ -28,6 +28,7 @@ import { DataEndpoint } from './effortless/services/eapi-data-services/data-endp
 import { NbAuthService, NbAuthJWTToken } from './@core/auth';
 import { AuthGuard } from './auth-guard.service';
 import { Globals } from './app.globals';
+import { Router } from '@angular/router';
 
 @NgModule({
   declarations: [AppComponent],
@@ -54,7 +55,7 @@ import { Globals } from './app.globals';
   bootstrap: [AppComponent],
 })
 export class AppModule {
-  constructor(private nbMenuService: NbMenuService, public themeService: NbThemeService, private authService: NbAuthService, private gds: GDS) {
+  constructor(private nbMenuService: NbMenuService, public themeService: NbThemeService, private authService: NbAuthService, private gds: GDS, public router: Router) {
     var gds = this.gds;
     let self = this;
     gds.firstLoad = true;
@@ -85,6 +86,9 @@ export class AppModule {
             };
             gds.smqUser.MyRoles(gds.createPayload())
               .then(function (waiReply) {
+                if (waiReply.ErrorMessage) {
+                  self.router.navigateByUrl('auth/login');
+                }
                 console.error(waiReply);
                 gds.myRoles = waiReply.Roles;
                 if (gds.firstLoad) gds.connect();
@@ -96,6 +100,7 @@ export class AppModule {
             gds.createPayload = function () {
               return { "AccessToken": gds.accessToken };
             };
+            self.router.navigateByUrl('auth/login');
             gds.dontConnect();
           }
         });

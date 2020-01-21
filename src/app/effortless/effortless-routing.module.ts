@@ -2,13 +2,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { EffortlessComponent } from './effortless.component';
-import { Page1Component } from './page1/page1.component';
+import { IonicComponent } from './ionic/ionic.component';
 
 
 let effortlessChildren = [
   {
-    path: 'page1',
-    component: Page1Component,
+    path: 'ionic',
+    component: IonicComponent,
   },
 ];
 
