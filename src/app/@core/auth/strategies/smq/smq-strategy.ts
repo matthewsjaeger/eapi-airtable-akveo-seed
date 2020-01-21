@@ -160,36 +160,35 @@ export class SmqAuthStrategy extends NbAuthStrategy {
     gds.firstLoad = true
     var payload: any;
     payload = this.gds.createPayload();
-    payload.EmailAddress = data.email;
-    payload.DemoPassword = data.password;
-    return from(gds.smqGuest.ValidateTemporaryAccessToken(payload))
+    payload.JWT = data.token;
+    console.error(data.token);
+    return from(gds.smqUser.GuestLogin(payload))
       .pipe(
-        map((res) => {
-          const reply: any = res;
-          if (Object.keys(res).includes('AccessToken')) {
-            // gds.saveAccessToken(reply.AccessToken); //keep current functionality until migration
-            return new NbAuthResult(
-              true,
-              res,
-              this.getOption(`${module}.redirect.success`),
-              [],
-              this.getOption('messages.getter')(module, res, this.options),
-              this.createToken(reply.AccessToken, requireValidToken)
-            )
-          }
-          else {
-            return new NbAuthResult(
-              false,
-              res,
-              this.getOption(`${module}.redirect.failure`),
-              this.getOption('errors.getter')(module, res, this.options)
-            )
-          }
-        }),
-        catchError((res) => {
-          return this.handleResponseError(res, module);
-        }),
-      )
+      map((res) => {
+        const reply: any = res;
+        if (Object.keys(res).includes('ErrorMessage') && res.ErrorMessage && res.ErrorMessage.length > 0) {
+          return new NbAuthResult(
+            false,
+            res,
+            this.getOption(`${module}.redirect.failure`),
+            this.getOption('errors.getter')(module, res, this.options)
+          )         
+        }
+        else {
+          return new NbAuthResult(
+            true,
+            res,
+            this.getOption(`${module}.redirect.success`),
+            [],
+            this.getOption('messages.getter')(module, res, this.options),
+            this.createToken(reply.JWT, requireValidToken)
+          )
+        }
+      }),
+      catchError((res) => {
+        return this.handleResponseError(res, module);
+      }),
+    )
   }
 
   register(data?: any): Observable<NbAuthResult> {

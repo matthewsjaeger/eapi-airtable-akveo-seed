@@ -59,30 +59,34 @@ export class AppModule {
     let self = this;
     gds.firstLoad = true;
     gds.menu = nbMenuService;
-    gds.smqGuest = window['generateGuestActor']();
-    gds.rabbitEndpoint = "wss://sassyapi-rmq.ssot.me:15673/ws";
-    gds.smqGuest.rabbitEndpoint = gds.rabbitEndpoint;
+    gds.smqUser = window['generateGAINSUserActor']();
+    gds.rabbitEndpoint = "ws://gains.smscgc.org:15674/ws";
+    gds.smqUser.rabbitEndpoint = gds.rabbitEndpoint;
     gds.accessToken = "";
     gds.createPayload = function () {
       return { "AccessToken": gds.accessToken };
     }
 
-    gds.vhost = "your-project-endpoint";
-    gds.smqUsername = "smqPublic";
-    gds.smqPassword = "smqPublic";
+    gds.vhost = "GAINS";
+    gds.smqUsername = "gainsUser";
+    gds.smqPassword = "4GrZkr46obls";
 
-    this.gds.smqGuest.connect(gds.vhost, gds.smqUsername, gds.smqPassword, function () { }, function () {
-      gds.isGuestConnected = true;
+    this.gds.smqUser.connect(gds.vhost, gds.smqUsername, gds.smqPassword, function () { }, function () {
+      console.error("got here");
+      gds.isUserConnected = true;
       self.authService.onTokenChange()
         .subscribe((token: NbAuthJWTToken) => {
+          console.error('CCC');
           if (token.isValid()) {
+            console.error('DDD');
             gds.accessToken = token.getValue()
             gds.createPayload = function () {
-              return { "AccessToken": gds.accessToken };
+              return { "JWT": gds.accessToken };
             };
-            gds.smqGuest.WhoAmI(gds.createPayload())
+            gds.smqUser.MyRoles(gds.createPayload())
               .then(function (waiReply) {
-                gds.whoAmI = waiReply.SingletonAppUser;
+                console.error(waiReply);
+                gds.myRoles = waiReply.Roles;
                 if (gds.firstLoad) gds.connect();
                 gds.firstLoad = false;
               });

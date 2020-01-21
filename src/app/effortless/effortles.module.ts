@@ -9,12 +9,9 @@ import { ReloadWidgetComponent } from './widgets/reload-widget/reload-widget.com
 import { Page1Component } from './page1/page1.component';
 import { Page2Component } from './page2/page2.component';
 import { Page3Component } from './page3/page3.component';
-import { DerivedDataDeclarations } from './data/derived-data-declarations';
-import { DataComponent } from './data/data.component';
 import { JsonEditorModule } from 'ng2-json-editor';
 
-let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, Page1Component, Page2Component, Page3Component, DataComponent];
-DerivedDataDeclarations.derivedDeclarations.forEach(feDeclaration => declarations.push(feDeclaration));
+let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, Page1Component, Page2Component, Page3Component];
 
 @NgModule({
   declarations: declarations,
@@ -37,7 +34,6 @@ DerivedDataDeclarations.derivedDeclarations.forEach(feDeclaration => declaration
     NbInputModule,
     NbDialogModule.forChild()
   ],
-  entryComponents: DerivedDataDeclarations.derivedEntryComponents
 })
 export class EffortlessModule {
 

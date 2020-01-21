@@ -45,3 +45,5 @@ Thumbs.db
 /.vs/usp/v16/.suo
 /.vs/VSWorkspaceState.json
 /package-lock.json
+/.vs/**
+/logs/**

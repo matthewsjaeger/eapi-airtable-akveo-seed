@@ -11,11 +11,16 @@ import { getDeepFromObject } from '../../helpers';
 import { NbAuthService } from '../../services/auth.service';
 import { NbAuthResult } from '../../services/auth-result';
 
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { GDS } from '../../../../effortless/services/gds.service';
+
 @Component({
   selector: 'nb-login',
   templateUrl: './login.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
+@Injectable()
 export class NbLoginComponent {
 
   redirectDelay: number = 0;
@@ -32,7 +37,7 @@ export class NbLoginComponent {
   constructor(protected service: NbAuthService,
               @Inject(NB_AUTH_OPTIONS) protected options = {},
               protected cd: ChangeDetectorRef,
-              protected router: Router) {
+              protected router: Router, private http: HttpClient, public gds: GDS) {
 
     this.redirectDelay = this.getConfigValue('forms.login.redirectDelay');
     this.showMessages = this.getConfigValue('forms.login.showMessages');
@@ -46,6 +51,13 @@ export class NbLoginComponent {
     this.messages = [];
     this.submitted = true;
 
+    //console.error('AAAAAA');
+    //this.gds.smqUser.GuestLogin({ "JWT": this.user.token }).then(resp => {
+    //  console.error('B');
+    //  console.error(resp);
+    //});;
+
+  
     this.service.authenticate(this.strategy, this.user).subscribe((result: NbAuthResult) => {
       this.submitted = false;
 
@@ -67,5 +79,9 @@ export class NbLoginComponent {
 
   getConfigValue(key: string): any {
     return getDeepFromObject(this.options, key, null);
+  }
+
+  getAuthToken() {
+    window.open("http://gains.smscgc.org/api/auth/token");
   }
 }

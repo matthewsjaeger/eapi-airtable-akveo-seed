@@ -1,7 +1,10 @@
-declare var generateAdminActor: any;
-declare var generateEmployeeActor: any;
-declare var generateCallerActor: any;
-declare var generatePayrollActor: any;
+declare var generateGuestActor: any;
+declare var generateATRActor: any;
+declare var generateAuditAgentActor: any;
+declare var generateGAINSUserActor: any;
+declare var generateBJFeltLogActor: any;
+declare var generateSlotRepairAdminActor: any;
+declare var generateGamingAgentActor: any;
 
 
 import { Injectable, ɵConsole } from '@angular/core';
@@ -9,6 +12,7 @@ import { NbMenuService } from '@nebular/theme';
 import { Observable, BehaviorSubject, Subscription, timer, combineLatest } from 'rxjs';
 import { Router } from '@angular/router';
 import { filter, share, map, catchError, take, tap } from 'rxjs/operators';
+
 interface TSWindow {
   [id: string]: any;
 }
@@ -18,22 +22,31 @@ export class GDS {
   dontConnect() {
     this.readiness$.next({});
   }
- 
+
 
   public menu: NbMenuService;
   public smqPassword: string;
   public smqUsername: string;
   public vhost: string;
   public window: TSWindow = {};
-  public isGuestConnected: boolean;
+  public isUserConnected: boolean;
   public smqGuest: any;
   public rabbitEndpoint: string;
   public accessToken: string;
   public createPayload: () => any;
-  public whoAmI: any;
+  public myRoles: any;
   public smqUser: any;
+  public smqBJFeltLog: any;
+  public smqGamingAgent: any;
+  public smqAuditAgent: any;
+  public smqATR: any;
+  public smqSlotRepairAdmin: any;
   public smqPayroll: any;
   public isAdmin: boolean;
+  public isGamingAgent: boolean;
+  public isAuditAgent: boolean;
+  public isBJFeltLog: boolean;
+  public isATR: boolean;
   public isEmployee: boolean;
   public isPayroll: boolean;
   public isManager: boolean;
@@ -46,11 +59,11 @@ export class GDS {
   public timers: Subscription[] = [];
   private readiness$: BehaviorSubject<{}> = new BehaviorSubject(null);
 
-  public onReady(): Observable<any> {    
+  public onReady(): Observable<any> {
     return this.readiness$
       .pipe(
-        filter(value => !!value),
-        share()
+      filter(value => !!value),
+      share()
       )
   }
 
@@ -65,15 +78,19 @@ export class GDS {
     localStorage.setItem('accessToken', accessToken);
     gds.smqGuest.WhoAmI(gds.createPayload())
       .then(function (waiReply) {
-        gds.whoAmI = waiReply.SingletonAppUser;
+        gds.myRoles = waiReply.SingletonAppUser;
         gds.connect();
       });
   }
 
   public logout() {
     this.isAdmin = false;
+    this.isGamingAgent = false;
+    this.isAuditAgent = false;
+    this.isBJFeltLog = false;
+    this.isATR = false;
     this.isEmployee = false;
-    this.whoAmI = null;
+    this.myRoles = null;
     Object.keys(this).forEach(key => {
       if (this[key] instanceof BehaviorSubject) {
         this[key].next(null);
@@ -84,44 +101,59 @@ export class GDS {
   connect() {
     console.log("LOADING ALL DATA");
     var gds = this;
-    if (!gds.whoAmI || !gds.whoAmI.Role) {
+    if (!gds.myRoles) {
       alert('ERROR AUTHENTICATING');
       return;
     }
     gds.isAdmin = false;
-    gds.isEmployee = false;
-    gds.isPayroll = false;
+    gds.isGamingAgent = false;
+    gds.isAuditAgent = false;
+    gds.isBJFeltLog = false;
+    gds.isATR = false;
+ 
+    gds.myRoles.forEach(role => {
+      if (role.Description == 'Administrators') {
+        gds.isAdmin = true;
+      }
+      if (role.Description == 'Gaming Agent') {
+        gds.isGamingAgent = true;
+      }
+      if (role.isAuditAgent == 'Audit Agent') {
+        gds.isAuditAgent = true;
+      }
+      if (role.Description == 'BJ Felt Log') {
+        gds.isBJFeltLog = true;
+      }
+      if (role.Description == 'ATR') {
+        gds.isATR = true;
+      }
+    });
 
-
-    if (gds.whoAmI.Role.indexOf("Employee") >= 0) {
-      gds.role = 'Employee';
-      gds.isEmployee = true;
-      //gds.smqPayroll = generatePayrollActor();
-      gds.smqUser = generateEmployeeActor();
-    }
-    else if (gds.whoAmI.Role.indexOf("Admin") >= 0) {
-      gds.role = 'Admin';
-      gds.isAdmin = true;
-      //gds.smqPayroll = generatePayrollActor();
-      gds.smqUser = generateAdminActor();
-    }
-
-    if (gds.smqPayroll) {
-      gds.smqPayroll.rabbitEndpoint = gds.rabbitEndpoint;
-      gds.smqPayroll.connect(gds.vhost, gds.smqUsername, gds.smqPassword, null, function () {
-      });
-    }
-
-
+    gds.smqUser = generateGAINSUserActor();
     gds.smqUser.rabbitEndpoint = gds.rabbitEndpoint;
-
     gds.smqUser.connect(gds.vhost, gds.smqUsername, gds.smqPassword, function () { }, function () {
-      gds.isGuestConnected = true;
+      gds.isUserConnected = true;
       gds.readiness$.next({});
     });
 
-    gds.smqUser.createPayload = gds.smqUser.createPayload || function() {
-      return { "AccessToken": gds.smqUser.accessToken || gds.accessToken};
+    gds.smqBJFeltLog = generateBJFeltLogActor();
+    gds.smqBJFeltLog.rabbitEndpoint = gds.rabbitEndpoint;
+    gds.smqBJFeltLog.connect(gds.vhost, gds.smqUsername, gds.smqPassword, function () { }, function () { });
+    gds.smqGamingAgent = generateGamingAgentActor();
+    gds.smqGamingAgent.rabbitEndpoint = gds.rabbitEndpoint;
+    gds.smqGamingAgent.connect(gds.vhost, gds.smqUsername, gds.smqPassword, function () { }, function () { });
+    gds.smqAuditAgent = generateAuditAgentActor();
+    gds.smqAuditAgent.rabbitEndpoint = gds.rabbitEndpoint;
+    gds.smqAuditAgent.connect(gds.vhost, gds.smqUsername, gds.smqPassword, function () { }, function () { });
+    gds.smqSlotRepairAdmin = generateSlotRepairAdminActor();
+    gds.smqSlotRepairAdmin.rabbitEndpoint = gds.rabbitEndpoint;
+    gds.smqSlotRepairAdmin.connect(gds.vhost, gds.smqUsername, gds.smqPassword, function () { }, function () { });
+    gds.smqATR = generateATRActor();
+    gds.smqATR.rabbitEndpoint = gds.rabbitEndpoint;
+    gds.smqATR.connect(gds.vhost, gds.smqUsername, gds.smqPassword, function () { }, function () { });
+
+    gds.smqUser.createPayload = gds.smqUser.createPayload || function () {
+      return { "AccessToken": gds.smqUser.accessToken || gds.accessToken };
     };
   }
 }

@@ -1,29 +1,60 @@
 {
+  "HiddenPaths": [],
+  "ExpandedPaths": [],
   "ShowHidden": false,
   "ShowAllFiles": false,
   "CurrentPath": "",
   "SaveDisabled": false,
   "SSoTmeProjectId": "aeef2e28-64c4-4305-b6eb-25b51422f07a",
-  "Name": "AllMyShows",
+  "Name": "akveo-gains",
+  "RootPath": "C:\\Development\\akveo-gains",
   "ProjectSettings": [
     {
-      "ProjectSettingId": "b17e1e72-4004-4f8a-8705-f26d4736dd40",
-      "Name": "amqps",
-      "Value": "amqps://smqPublic:smqPublic@sassyapi-rmq.ssot.me/your-effortlessapi-endpoint"
+      "ProjectSettingId": "9ac2ced5-53e1-48ca-8ac9-b3c4aacb3bf5",
+      "Name": "project-name",
+      "Value": "akveo-gains"
     },
     {
-      "ProjectSettingId": "242425b4-fd71-4803-b244-3a4c1ec72906",
-      "Name": "project-name",
-      "Value": "YOUR_PROJECT_NAME"
+      "ProjectSettingId": "8a11da33-fa75-4988-a0b1-a99b6689cc0b",
+      "Name": "amqps",
+      "Value": "amqps://smqPublic:smqPublic@effortlessapi-rmq.ssot.me/derek-united-senior-placement-usp"
+    },
+    {
+      "ProjectSettingId": "095a6d92-66ca-4e4e-8755-5420705abb45",
+      "Name": "dataclasses-namespace",
+      "Value": "akveo-gains.Lib.DataClasses"
     }
   ],
   "ProjectTranspilers": [
     {
       "MatchedTranspiler": {
         "TranspilerId": "ddeef526-5399-4be1-a676-8c64961e549d",
+        "AccountHolderId": "b592f368-225c-4fdf-828e-c576e46ee229",
         "Name": "SSoT",
-        "Description": "SSoT"
+        "DisplayName": "S So T",
+        "Description": "SSoT",
+        "CreatedOn": "2019-07-14T22:53:06.39",
+        "IsActive": true,
+        "CurrentRoutingKey": "amq.gen-X7WPJPrCNvnykdOzqen0xw",
+        "LowerName": "ssot",
+        "UpperName": "SSOT",
+        "LowerHyphenName": "s-so-t",
+        "TranspileRequests": [],
+        "TranspilerInstances": [],
+        "TranspilerVersions": [
+          {
+            "TranspilerVersionId": "07e943f7-ad3a-4e7f-94ac-b5f05cc6e6e8",
+            "TranspilerId": "ddeef526-5399-4be1-a676-8c64961e549d",
+            "Name": "v1",
+            "CreatedOn": "2019-07-14T22:53:07.297",
+            "IsActive": true,
+            "TranspilerFileTypeId_TranspilerInputHints": [],
+            "TranspilerInstances": [],
+            "ReplacedByTranspilerVersionId_TranspilerVersions": []
+          }
+        ]
       },
+      "CLIHandler": null,
       "ProjectTranspilerId": "6635d440-a065-4775-835b-a75b820222f3",
       "Name": "SSoT",
       "RelativePath": "",
@@ -33,8 +64,34 @@
       "MatchedTranspiler": {
         "TranspilerId": "742ad9bf-3931-4c58-a73e-1ea26ab7ad72",
         "Name": "SmqlToJavascriptRabbitMQ",
-        "Description": "Creates a Javascript client library for Rabbit MQ, given an Smtl file."
+        "DisplayName": "Smql To Javascript Rabbit M Q",
+        "Description": "Creates a Javascript client library for Rabbit MQ, given an Smtl file.",
+        "CreatedOn": "2017-09-15T22:13:31.157",
+        "IsActive": true,
+        "CurrentRoutingKey": "amq.gen-GZt_WPA6iq6kpkhR-QMoHw",
+        "LowerName": "smqltojavascriptrabbitmq",
+        "UpperName": "SMQLTOJAVASCRIPTRABBITMQ",
+        "LowerHyphenName": "smql-to-javascript-rabbit-m-q",
+        "InputFileTypeId": "87c1c579-ea4f-47db-a064-f26f9ca1d91e",
+        "OutputFileTypeId": "17eb1618-4281-4f8e-9ed7-773ae1c81245",
+        "Category": "rabbitmq",
+        "IsRecommended": true,
+        "TranspileRequests": [],
+        "TranspilerInstances": [],
+        "TranspilerVersions": [
+          {
+            "TranspilerVersionId": "17899417-5482-4537-b9b8-eca202020b7e",
+            "TranspilerId": "742ad9bf-3931-4c58-a73e-1ea26ab7ad72",
+            "Name": "v1",
+            "CreatedOn": "2017-09-15T22:13:44.64",
+            "IsActive": true,
+            "TranspilerFileTypeId_TranspilerInputHints": [],
+            "TranspilerInstances": [],
+            "ReplacedByTranspilerVersionId_TranspilerVersions": []
+          }
+        ]
       },
+      "CLIHandler": null,
       "ProjectTranspilerId": "54432df3-d63c-4b26-9ede-58a90e049143",
       "Name": "SmqlToJavascriptRabbitMQ",
       "RelativePath": "/src/assets/sassymq",
@@ -42,10 +99,38 @@
     },
     {
       "MatchedTranspiler": {
-        "TranspilerId": "4b713f03-1d9f-42f2-b02f-e3cdbd237bb3",
-        "Name": "XmlXsltTransform",
-        "Description": "Given an Xml and Xslt file, will process and \"split\" a resulting fileset."
+        "TranspilerId": "be14a6b8-d25e-4f09-b145-1a4b4a911b17",
+        "AccountHolderId": "b592f368-225c-4fdf-828e-c576e46ee229",
+        "Name": "ODXMLToEffortlessApiTypescriptEndpoint",
+        "DisplayName": "O D X M L To Effortless Api Typescript Endpoint",
+        "Description": "ODXML To Effortless Api Typescript Endpoint",
+        "CreatedOn": "2019-11-21T19:39:08.587",
+        "IsActive": true,
+        "CurrentRoutingKey": "amq.gen-X7WPJPrCNvnykdOzqen0xw",
+        "LowerName": "odxmltoeffortlessapitypescriptendpoint",
+        "UpperName": "ODXMLTOEFFORTLESSAPITYPESCRIPTENDPOINT",
+        "LowerHyphenName": "o-d-x-m-l-to-effortless-api-typescript-endpoint",
+        "ReadMeMD": "Expects a CRUD Enabled ODXML file,",
+        "InputDescriptionMD": "-o crm-endpoint-base.ts\r\n-p name=Crm\r\n-p lower-name=crm",
+        "ExampleMD": "odxml-to-effortlessapi-typescript-endpoint -i DataSchema.odxml -p Name=Foo -p lower-name=foo",
+        "InputFileTypeId": "33de424c-cfe0-498e-ae70-44da375a8fb2",
+        "OutputFileTypeId": "f8391567-b3d9-4e34-8a45-3d6bd9da4b9b",
+        "TranspileRequests": [],
+        "TranspilerInstances": [],
+        "TranspilerVersions": [
+          {
+            "TranspilerVersionId": "11e84d5d-4cb7-449a-8acd-051cebe1feb0",
+            "TranspilerId": "be14a6b8-d25e-4f09-b145-1a4b4a911b17",
+            "Name": "v1",
+            "CreatedOn": "2019-11-21T19:39:11.757",
+            "IsActive": true,
+            "TranspilerFileTypeId_TranspilerInputHints": [],
+            "TranspilerInstances": [],
+            "ReplacedByTranspilerVersionId_TranspilerVersions": []
+          }
+        ]
       },
+      "CLIHandler": null,
       "ProjectTranspilerId": "0840aa2c-b6fe-442a-a35a-b51322544359",
       "Name": "XmlXsltTransform",
       "RelativePath": "/src/app/effortless/services/eapi-data-services/data-endpoint",
@@ -54,9 +139,40 @@
     {
       "MatchedTranspiler": {
         "TranspilerId": "4b713f03-1d9f-42f2-b02f-e3cdbd237bb3",
+        "AccountHolderId": "1e876e4f-d63b-4698-bd68-3bc27876e41e",
         "Name": "XmlXsltTransform",
-        "Description": "Given an Xml and Xslt file, will process and \"split\" a resulting fileset."
+        "DisplayName": "Xml Xslt Transform",
+        "Description": "Given an Xml and Xslt file, will process and \"split\" a resulting fileset.",
+        "CreatedOn": "2017-08-30T15:45:09.907",
+        "IsActive": true,
+        "CurrentRoutingKey": "amq.gen-pwRUdyqwEq8fPN8gkK7ADg",
+        "LowerName": "xmlxslttransform",
+        "UpperName": "XMLXSLTTRANSFORM",
+        "LowerHyphenName": "xml-xslt-transform",
+        "ReadMeMD": "The tool processes the first text file it finds (which is presumed to be in xml format), with the first Xslt file provided, and includes any parameters that are passed to ssotme as well.\r\n\r\nThe output is expected to be a FileSet Xml blob with the results of the transform.",
+        "InputDescriptionMD": "At least 1 input Xml file, An Xslt file to use for the Transform operation and any additional parameters that the Xslt file uses for it's transpiling functionality.  These could be options, values, namespaces, etc.",
+        "OutputDescriptionMD": "A fileset with the result of the Xslt transform, usually including at least 1 or more files.  The example command might produce an HTML Document that describes (in english) the contents of the Xml file.  Essentially a \"report\" about the xml file. ",
+        "ExampleMD": "ssotme -install xml-xslt-transform -i MyData.xml -i CreateDocs.xslt",
+        "InputFileTypeId": "f1b92a2a-3f83-4000-9b37-57f920e14419",
+        "OutputFileTypeId": "952e47eb-3448-4627-8dc4-93dab494c957",
+        "Category": "type-conversion",
+        "IsRecommended": true,
+        "TranspileRequests": [],
+        "TranspilerInstances": [],
+        "TranspilerVersions": [
+          {
+            "TranspilerVersionId": "7e941388-752b-4b0f-9631-939b790be10f",
+            "TranspilerId": "4b713f03-1d9f-42f2-b02f-e3cdbd237bb3",
+            "Name": "v1",
+            "CreatedOn": "2017-08-30T15:45:10.653",
+            "IsActive": true,
+            "TranspilerFileTypeId_TranspilerInputHints": [],
+            "TranspilerInstances": [],
+            "ReplacedByTranspilerVersionId_TranspilerVersions": []
+          }
+        ]
       },
+      "CLIHandler": null,
       "ProjectTranspilerId": "995c0d60-a9ff-4c28-b5e1-4fde69bd37e5",
       "Name": "XmlXsltTransform",
       "RelativePath": "/src/app/effortless/data",

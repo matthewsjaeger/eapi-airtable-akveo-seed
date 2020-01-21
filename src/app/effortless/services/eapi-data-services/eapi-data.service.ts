@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { GDS } from '../gds.service';
 import { NgxXml2jsonService } from 'ngx-xml2json';
 import { EapiDataServiceBase } from './eds-base';
-declare var generateGuestActor: any;
+//declare var generateGuestActor: any;
 
 @Injectable({
   providedIn: 'root'
@@ -41,26 +41,26 @@ export class EapiDataService extends EapiDataServiceBase {
       vhost.effortlessAPIEndpoint = effortlessAPIEndpoint;
       var payload = self.gds.createPayload();
       payload.WhoAreYouRelativeUrl = 'docs/ODXML/DataSchema.odxml';
-      var localGuest = vhost.guest = generateGuestActor();
-      localGuest.rabbitEndpoint = 'ws' + (effortlessAPIEndpoint.IsSecure ? 's' : '') + '://' + effortlessAPIEndpoint.AMQPHostname + '/ws'
-      localGuest.connect(eapiVHost, 'smqPublic', 'smqPublic', null, function () {
-        localGuest.WhoAreYou(payload)
-          .then(function (reply) {
-            vhost.odxml = reply.WhoAreYouTextFileContents;
-            const parser = new DOMParser();
-            const odxmlDOM = parser.parseFromString(vhost.odxml, 'text/xml');
-            vhost.odxml = self.ngxXml2jsonService.xmlToJson(odxmlDOM);
-            payload.WhoAreYouRelativeUrl = 'docs/SassyMQ/Lexicon.smql';
-            localGuest.WhoAreYou(payload)
-              .then(function (smqlReply) {
-                vhost.smql = smqlReply.WhoAreYouTextFileContents;
-                const parser = new DOMParser();
-                const smqlDOM = parser.parseFromString(vhost.smql, 'text/xml');
-                vhost.lexicon = self.ngxXml2jsonService.xmlToJson(smqlDOM);
-                if (onConnected) onConnected(vhost);
-              });
-          });
-      });
+      //var localGuest = vhost.guest = new SMQGuest();
+      //localGuest.rabbitEndpoint = 'ws' + (effortlessAPIEndpoint.IsSecure ? 's' : '') + '://' + effortlessAPIEndpoint.AMQPHostname + '/ws'
+      //localGuest.connect(eapiVHost, 'smqPublic', 'smqPublic', null, function () {
+      //  localGuest.WhoAreYou(payload)
+      //    .then(function (reply) {
+      //      vhost.odxml = reply.WhoAreYouTextFileContents;
+      //      const parser = new DOMParser();
+      //      const odxmlDOM = parser.parseFromString(vhost.odxml, 'text/xml');
+      //      vhost.odxml = self.ngxXml2jsonService.xmlToJson(odxmlDOM);
+      //      payload.WhoAreYouRelativeUrl = 'docs/SassyMQ/Lexicon.smql';
+      //      localGuest.WhoAreYou(payload)
+      //        .then(function (smqlReply) {
+      //          vhost.smql = smqlReply.WhoAreYouTextFileContents;
+      //          const parser = new DOMParser();
+      //          const smqlDOM = parser.parseFromString(vhost.smql, 'text/xml');
+      //          vhost.lexicon = self.ngxXml2jsonService.xmlToJson(smqlDOM);
+      //          if (onConnected) onConnected(vhost);
+      //        });
+      //    });
+      //});
       vhost.getObjectDefs = function (actorName) {
         console.error('looking up objects for actor:', vhost, this, actorName);
         if (vhost.odxml && vhost.odxml.Ontology && vhost.odxml.Ontology.OntologyGroups) {
