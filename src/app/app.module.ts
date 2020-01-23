@@ -91,6 +91,7 @@ export class AppModule {
                 }
                 console.error(waiReply);
                 gds.myRoles = waiReply.Roles;
+                gds.GAINSUser = waiReply.GAINSUser;
                 if (gds.firstLoad) gds.connect();
                 gds.firstLoad = false;
               });

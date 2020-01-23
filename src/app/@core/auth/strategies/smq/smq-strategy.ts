@@ -175,6 +175,7 @@ export class SmqAuthStrategy extends NbAuthStrategy {
           )         
         }
         else {
+          gds.GAINSUser = reply.GAINSUser;
           return new NbAuthResult(
             true,
             res,

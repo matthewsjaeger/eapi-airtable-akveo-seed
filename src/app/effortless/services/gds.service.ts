@@ -51,6 +51,7 @@ export class GDS {
   public isPayroll: boolean;
   public isManager: boolean;
   public role: string;
+  public GAINSUser: any;
   public phases: any;
   public applicant: any;
   public firstLoad: boolean;
