@@ -166,7 +166,7 @@ export class SmqAuthStrategy extends NbAuthStrategy {
       .pipe(
       map((res) => {
         const reply: any = res;
-        if (Object.keys(res).includes('ErrorMessage') && res.ErrorMessage && res.ErrorMessage.length > 0) {
+        if (Object.keys(res).includes('ErrorMessage') && reply.ErrorMessage && reply.ErrorMessage.length > 0) {
           return new NbAuthResult(
             false,
             res,

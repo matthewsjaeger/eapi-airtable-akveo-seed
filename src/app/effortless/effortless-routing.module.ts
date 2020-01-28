@@ -4,7 +4,8 @@ import { NgModule } from '@angular/core';
 import { EffortlessComponent } from './effortless.component';
 import { IonicComponent } from './ionic/ionic.component';
 import { Page2Component } from './page2/page2.component';
-
+import { StorageSlotsComponent} from './storage-slots/storage-slots.component';
+import { SlotProjectsComponent} from './slot-projects/slot-projects.component';
 
 let effortlessChildren = [
   {
@@ -14,6 +15,14 @@ let effortlessChildren = [
   {
     path: 'page2',
     component: Page2Component,
+  },
+  {
+    path: 'storage-slots',
+    component: StorageSlotsComponent,
+  },
+  {
+    path: 'slot-projects',
+    component: SlotProjectsComponent,
   },
 ];
 

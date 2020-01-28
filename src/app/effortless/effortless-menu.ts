@@ -9,6 +9,16 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
+    title: 'Storage Slots',
+    icon: 'person',
+    link: '/effortless/storage-slots',
+  },
+  {
+    title: 'Slot Projects',
+    icon: 'person',
+    link: '/effortless/slot-projects',
+  },
+  {
     title: 'Page 2',
     icon: 'person',
     link: '/effortless/page2',
