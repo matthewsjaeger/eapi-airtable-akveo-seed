@@ -1,0 +1,22 @@
+<nb-card [size]="'large'">
+    <nb-card-header>
+        <button nbButton ghost size="medium" class="float-left" (click)="goBack()"><nb-icon icon="arrow-ios-back-outline"></nb-icon>Slot Projects</button>
+        <div style="text-align: center; margin:auto; padding: 5px 0 5px;"><h4>View Slot Project</h4></div>
+        <div style="text-align: center;">
+        <button nbButton shape="rectangle" status="primary" style="margin-bottom: 5px;">Edit Project</button>
+        <button nbButton shape="rectangle" status="info" style="margin-bottom: 5px;">Add/ Remove Tables</button>
+        <button nbButton shape="rectangle" status="success" style="margin-bottom: 5px;">Complete project</button>
+    </div>
+    </nb-card-header>
+    <nb-card-body>
+      <nb-list>
+          <nb-list-item>
+            <nb-toggle class="float-right"></nb-toggle>
+              <p>Active</p>
+          </nb-list-item>
+        <nb-list-item>
+          <h5>Slot 1</h5>
+        </nb-list-item>
+      </nb-list>
+    </nb-card-body>
+  </nb-card>

@@ -13,9 +13,10 @@ import { JsonEditorModule } from 'ng2-json-editor';
 import { StorageSlotsComponent} from './storage-slots/storage-slots.component';
 import { SlotProjectsComponent} from './slot-projects/slot-projects.component';
 import { SearchStorageSlotsComponent} from './storage-slots/search-storage-slots/search-storage-slots.component';
+import { SlotProjectComponent } from './slot-projects/slot-project/slot-project.component';
 
 let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComponent, Page2Component, Page3Component, 
-  StorageSlotsComponent, SlotProjectsComponent, SearchStorageSlotsComponent];
+  StorageSlotsComponent, SlotProjectsComponent, SearchStorageSlotsComponent, SlotProjectComponent];
 
 @NgModule({
   declarations: declarations,

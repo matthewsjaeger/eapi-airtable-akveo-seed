@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { GDS } from '../../services/gds.service';
 
 @Component({
   selector: 'ngx-search-storage-slots',
@@ -8,9 +9,12 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class SearchStorageSlotsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public gds: GDS, public router: Router, ) { }
 
   ngOnInit() {
   }
 
+  goBack(){
+    this.router.navigateByUrl('effortless/storage-slots');
+  }
 }

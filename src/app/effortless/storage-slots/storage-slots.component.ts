@@ -21,7 +21,7 @@ export class StorageSlotsComponent extends EffortlessComponentBase implements On
   }
 
 searchSlots(){
-  this.router.navigateByUrl('effortless/search-storage-slots');
+  this.router.navigateByUrl('effortless/search-storage-slots'); 
 }
 
 }
