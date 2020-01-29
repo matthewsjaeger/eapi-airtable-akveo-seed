@@ -12,8 +12,10 @@ import { Page3Component } from './page3/page3.component';
 import { JsonEditorModule } from 'ng2-json-editor';
 import { StorageSlotsComponent} from './storage-slots/storage-slots.component';
 import { SlotProjectsComponent} from './slot-projects/slot-projects.component';
+import { SearchStorageSlotsComponent} from './storage-slots/search-storage-slots/search-storage-slots.component';
 
-let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComponent, Page2Component, Page3Component, StorageSlotsComponent, SlotProjectsComponent];
+let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComponent, Page2Component, Page3Component, 
+  StorageSlotsComponent, SlotProjectsComponent, SearchStorageSlotsComponent];
 
 @NgModule({
   declarations: declarations,

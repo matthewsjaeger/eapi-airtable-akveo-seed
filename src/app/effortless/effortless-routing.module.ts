@@ -6,6 +6,7 @@ import { IonicComponent } from './ionic/ionic.component';
 import { Page2Component } from './page2/page2.component';
 import { StorageSlotsComponent} from './storage-slots/storage-slots.component';
 import { SlotProjectsComponent} from './slot-projects/slot-projects.component';
+import { SearchStorageSlotsComponent } from './storage-slots/search-storage-slots/search-storage-slots.component';
 
 let effortlessChildren = [
   {
@@ -23,6 +24,10 @@ let effortlessChildren = [
   {
     path: 'slot-projects',
     component: SlotProjectsComponent,
+  },
+  {
+    path: 'search-storage-slots',
+    component: SearchStorageSlotsComponent,
   },
 ];
 
