@@ -1,12 +1,13 @@
 <nb-card [size]="'large'">
     <nb-card-header>
       <button nbButton ghost size="medium" class="float-left" (click)="goBack()"><nb-icon icon="arrow-ios-back-outline"></nb-icon>Storage Slots</button>
-        <div style="text-align: center; margin-bottom: 10px; padding: 5px 0 5px;"><h4>Search Stored Slots</h4></div>
+        <h4 style="width: fit-content; margin: auto;">Search Stored Slots</h4></div>
         <input type="text" nbInput fullWidth placeholder="Search for stored slots">
     </nb-card-header>
     <nb-card-body>
       <nb-list>
         <nb-list-item>
+          <button nbButton size="small" class="float-right" (click)=openSlot()>Open Slot</button>
           Body
         </nb-list-item>
       </nb-list>

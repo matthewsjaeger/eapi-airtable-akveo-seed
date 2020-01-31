@@ -12,8 +12,11 @@ import { EffortlessComponentBase } from '../../efforless-base-component';
 })
 export class SlotProjectComponent extends EffortlessComponentBase implements OnInit {
 
+
+
   constructor(private router: Router, protected menuService: NbMenuService, public data : DataEndpoint,public gds:GDS) { 
     super(gds, data, menuService)
+    
   }
 
   ngOnInit() {
@@ -23,4 +26,7 @@ export class SlotProjectComponent extends EffortlessComponentBase implements OnI
     this.router.navigateByUrl('effortless/slot-projects');
   }
 
+  editProject(){
+    this.router.navigateByUrl('effortless/edit-project');
+  }
 }

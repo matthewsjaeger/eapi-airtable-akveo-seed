@@ -1,14 +1,14 @@
 <nb-card [size]="'large'">
     <nb-card-header>
-        <div style="text-align: center; margin-bottom: 10px; padding: 5px 0 5px;"><h4>Slot Projects</h4></div>
-        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;">Start New Project</button>
+        <h4 style="width: fit-content; margin: auto;">Slot Projects</h4></div>
+        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=newProject()>Start New Project</button>
         <input type="text" nbInput fullWidth placeholder="Search projects">
     </nb-card-header>
     <nb-card-body>
-      <nb-list>
+      <nb-list >
         <nb-list-item>
           <button nbButton size="small" class="float-right" (click)=openProject()>Open Project</button>
-          <h5>Slot Project 1</h5>
+          <h5>{{BJProject.Name}}</h5>
         </nb-list-item>
       </nb-list>
     </nb-card-body>

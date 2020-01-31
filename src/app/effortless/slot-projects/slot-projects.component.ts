@@ -12,14 +12,28 @@ import { GDS } from '../services/gds.service';
 })
 export class SlotProjectsComponent extends EffortlessComponentBase implements OnInit {
 
-  constructor(private router: Router, protected menuService: NbMenuService, public data : DataEndpoint,public gds:GDS) { 
+
+  constructor(public gds: GDS, public data: DataEndpoint, protected menuService: NbMenuService, public router: Router) { 
     super(gds, data, menuService)
+    
   }
+  
 
   ngOnInit() {
+    this.safeSubscribe(this.gds.onReady().subscribe(ready => {
+      this.reload(this);
+  }));
+  }
+
+  reload(self:this){
+    self.loading = true;
   }
 
   openProject(){
     this.router.navigateByUrl('effortless/slot-project');
+  }
+
+  newProject(){
+    this.router.navigateByUrl('effortless/new-project');
   }
 }

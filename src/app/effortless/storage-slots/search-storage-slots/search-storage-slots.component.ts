@@ -17,4 +17,8 @@ export class SearchStorageSlotsComponent implements OnInit {
   goBack(){
     this.router.navigateByUrl('effortless/storage-slots');
   }
+
+  openSlot(){
+    this.router.navigateByUrl('effortless/storage-slot')
+  }
 }
