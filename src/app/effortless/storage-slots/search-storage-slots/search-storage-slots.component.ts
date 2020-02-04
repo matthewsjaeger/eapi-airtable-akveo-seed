@@ -16,8 +16,8 @@ export class SearchStorageSlotsComponent extends EffortlessComponentBase impleme
   noResults: boolean;
   datasearch : string = '';
 
-  SlotViews: any;
-  
+  slotViews: any;
+  searchTerm: any = '';
   
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, ) { 
@@ -32,24 +32,27 @@ export class SearchStorageSlotsComponent extends EffortlessComponentBase impleme
 
 
   searchSlots(){
+    let self = this
       var payload = this.gds.createPayload();
-      payload.SearchTerm = this.datasearch;
-    console.error(this.gds);
+      payload.SearchTerm = this.searchTerm;
+
       
       this.gds.smqUser.SearchStoredSlots(payload).then(function(reply){
         console.error(reply)
         if (reply.SlotViews.length>0){
-          this.FilteredSlotsList = this.createFilteredSlots();
-          this.noResults = false;
+          self.slotViews = reply.SlotViews
+          self.FilteredSlotsList = self.createFilteredSlots();
+          self.noResults = false;
         } else {
-          this.noResults= true;
-          this.FilteredSlotsList = []
+          self.noResults= true;
+          self.FilteredSlotsList = []
         }
       });
   }
 
   selectSlot(){
     //this.gds.smqUser.currentSlots = [slot]
+    this.router.navigateByUrl('effortless/storage-slot');
   }
 
   createFilteredSlots(){

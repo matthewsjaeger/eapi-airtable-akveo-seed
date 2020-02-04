@@ -4,15 +4,15 @@
       <nb-icon icon="arrow-ios-back-outline"></nb-icon>Storage Slots
     </button>
     <h4 style="width: fit-content; margin: auto;">Search Stored Slots</h4>
-    <input class="searchBar" [(ngModel)]="data.search" autocomplete="off" (change)="searchSlots()" type="text" nbInput fullWidth
+    <input class="searchBar" [(ngModel)]="searchTerm" autocomplete="off" (change)="searchSlots()" type="text" nbInput fullWidth
       placeholder="Search for stored slots">
   </nb-card-header>
   <p *ngIf="noResults">No stored slots serial number contain: {{data.search}}</p>
   <nb-card-body>
     <nb-list>
-      <nb-list-item *ngFor="let slot of slots">
-        <button nbButton size="small" class="float-right" (click)=openSlot()>Open Slot</button>
-        {{Slot.SerialNumber}}
+      <nb-list-item *ngFor="let slot of slotViews">
+        <button nbButton size="small" class="float-right" (click)=selectSlot()>Open Slot</button>
+        {{slot.SerialNumber}}
       </nb-list-item>
     </nb-list>
   </nb-card-body>

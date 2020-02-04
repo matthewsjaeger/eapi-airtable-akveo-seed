@@ -19,6 +19,7 @@ export class StorageSlotComponent extends EffortlessComponentBase implements OnI
   constructor(public router: Router, public gds: GDS, public data: DataEndpoint, protected menuservice: NbMenuService) {
     super(gds, data, menuservice)
   
+
    }
    
 
@@ -26,7 +27,10 @@ export class StorageSlotComponent extends EffortlessComponentBase implements OnI
 
   ngOnInit() {
 
-
+    this.gds.smqUser = {}
+    this.gds.smqUser.editingSlot = false;
+    this.Slots = this.gds.GAINSUser.currentSlots;
+    console.log(this.Slots)
   }
 
   goBack(){
