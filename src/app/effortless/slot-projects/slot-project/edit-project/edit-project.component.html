@@ -1,26 +1,24 @@
 <nb-card [size]="'large'">
-    <nb-card-header>
-      <button nbButton ghost size="medium" class="float-left" (click)="goBack()"><nb-icon icon="arrow-ios-back-outline"></nb-icon>Slots Project</button>
-        <h4 style="width: fit-content; margin: auto;" >Edit Slot Project</h4></div>
-    </nb-card-header>
-    <nb-card-body>
-      <nb-list>
-        <nb-list-item>
-            <label> Name:
-                <input type="text" nbInput fullWidth placeholder="Name">
-            </label>
-        </nb-list-item>
-        <nb-list-item>
-            <label> Schedule Date:
-                <input type="text" nbInput fullWidth placeholder="Schedule Date">
-            </label> 
-        </nb-list-item>
-        <nb-list-item>
-            <label> Description:
-                <input type="text" nbInput fullWidth placeholder="Description">
-            </label>
-        </nb-list-item>
-      </nb-list>
-      <button nbButton fullWidth status="success" (click)=save()>Save</button>
-    </nb-card-body>
-  </nb-card>
+  <nb-card-header>
+    <button nbButton ghost size="medium" class="float-left" (click)="goBack()">
+      <nb-icon icon="arrow-ios-back-outline"></nb-icon>Slots Project
+    </button>
+    <h4 style="width: fit-content; margin: auto;">Edit Slot Project</h4>
+  </nb-card-header>
+  <nb-card-body>
+    <nb-list>
+      <nb-list-item>
+        <label> Name: <input type="text" nbInput placeholder="Name">
+        </label>
+      </nb-list-item>
+      <nb-list-item>
+        <label> Schedule Date: <input type="text" nbInput placeholder="Schedule Date"></label>
+      </nb-list-item>
+      <nb-list-item>
+        <label> Description: </label>
+        <textarea nbInput fullWidth placeholder="Description"></textarea>
+      </nb-list-item>
+    </nb-list>
+    <button nbButton fullWidth status="success" (click)=save()>Save</button>
+  </nb-card-body>
+</nb-card>

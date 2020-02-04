@@ -13,8 +13,12 @@ import { GDS } from '../services/gds.service';
 })
 export class StorageSlotsComponent extends EffortlessComponentBase implements OnInit {
 
-  constructor(private router: Router, protected menuService: NbMenuService, public data : DataEndpoint,public gds:GDS) { 
+  
+
+  constructor(private router: Router, protected menuService: NbMenuService, public data : DataEndpoint, public gds:GDS) { 
     super(gds, data, menuService)
+    
+    
   }
 
   ngOnInit() {

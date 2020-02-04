@@ -11,10 +11,14 @@ import { GDS } from '../services/gds.service';
   styleUrls: ['./slot-projects.component.scss']
 })
 export class SlotProjectsComponent extends EffortlessComponentBase implements OnInit {
+  
+  slotProjects: any [] = [];
+  createFilteredSlots: any;
 
 
   constructor(public gds: GDS, public data: DataEndpoint, protected menuService: NbMenuService, public router: Router) { 
     super(gds, data, menuService)
+  
     
   }
   
@@ -23,7 +27,19 @@ export class SlotProjectsComponent extends EffortlessComponentBase implements On
     this.safeSubscribe(this.gds.onReady().subscribe(ready => {
       this.reload(this);
   }));
+
+ 
+  // var payload = this.gds.createPayload();
+  // payload.SlotProject = this.gds.smqUser.selectedSlotProject;
+  // this.gds.GAINSUser.smquser.GetSlotProjects(payload).then(function(reply){
+  //   console.log(reply);
+  //   this.SlotProject = reply.SlotProject;
+  //   this.filteredSlotLists = createFilteredSlots(this.SlotProject.Slots);
+  // })
+
   }
+
+  
 
   reload(self:this){
     self.loading = true;
