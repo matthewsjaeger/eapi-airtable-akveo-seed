@@ -17,9 +17,10 @@ import { SlotProjectComponent } from './slot-projects/slot-project/slot-project.
 import { NewProjectComponent } from './slot-projects/new-project/new-project.component';
 import { EditProjectComponent } from './slot-projects/slot-project/edit-project/edit-project.component';
 import { StorageSlotComponent } from './storage-slots/search-storage-slots/storage-slot/storage-slot.component';
+import { OnFloorComponent } from './on-floor/on-floor.component';
 
 let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComponent, Page2Component, Page3Component, 
-  StorageSlotsComponent, SlotProjectsComponent, SearchStorageSlotsComponent, SlotProjectComponent, NewProjectComponent, EditProjectComponent, StorageSlotComponent];
+  StorageSlotsComponent, SlotProjectsComponent, SearchStorageSlotsComponent, SlotProjectComponent, NewProjectComponent, EditProjectComponent, StorageSlotComponent, OnFloorComponent];
 
 @NgModule({
   declarations: declarations,

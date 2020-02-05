@@ -1,19 +1,53 @@
-<nb-card [size]="'large'">
+<!-- <nb-card [size]="'large'">
   <nb-card-header>
     <button nbButton ghost size="medium" class="float-left" (click)="goBack()">
       <nb-icon icon="arrow-ios-back-outline"></nb-icon>Storage Slots
     </button>
     <h4 style="width: fit-content; margin: auto;">Search Stored Slots</h4>
-    <input class="searchBar" [(ngModel)]="searchTerm" autocomplete="off" (change)="searchSlots()" type="text" nbInput fullWidth
-      placeholder="Search for stored slots">
+    <input class="searchBar" [(ngModel)]="searchTerm" autocomplete="off" (change)="searchSlots()" type="text" nbInput
+      fullWidth placeholder="Search for stored slots">
   </nb-card-header>
   <p *ngIf="noResults">No stored slots serial number contain: {{data.search}}</p>
   <nb-card-body>
     <nb-list>
       <nb-list-item *ngFor="let slot of slotViews">
         <button nbButton size="small" class="float-right" (click)=selectSlot()>Open Slot</button>
-        {{slot.SerialNumber}}
+       </b> {{slot.SerialNumber}}
       </nb-list-item>
     </nb-list>
   </nb-card-body>
+</nb-card> -->
+
+
+<nb-card>
+  <nb-card-header>
+    <button nbButton ghost size="medium" class="float-left" (click)="goBack()">
+      <nb-icon icon="arrow-ios-back-outline"></nb-icon>Storage Slots
+    </button>
+    <h4 style="width: fit-content; margin: auto;">Search Stored Slots</h4>
+    <input class="searchBar" [(ngModel)]="searchTerm" autocomplete="off" (change)="searchSlots()" type="text" nbInput
+      fullWidth placeholder="Search for stored slots">
+  </nb-card-header>
+  <nb-card-footer>
+    <nb-list>
+      <nb-list-item *ngIf="searchTerm.trim().length < 1" style="color: red;" >
+        No search term entered
+      </nb-list-item>
+      <nb-list-item *ngIf="noResults">
+        No stored slots serial number contain: {{searchTerm}}
+      </nb-list-item>
+    </nb-list>
+  </nb-card-footer>
+</nb-card>
+
+<nb-card  *ngFor="let slot of slotViews">
+  <nb-card-header>
+    <button nbButton size="small" class="float-right" (click)=selectSlot(Slot)>Open Slot</button>
+    {{slot.SerialNumber}} 
+  </nb-card-header>
+  <nb-card-body>   
+    <b>Slot #:</b>{{slot?.SlotNumber}} <b>|</b> <b>Manufacturer:</b> {{slot.DisplayManufacturer}} <b>|</b> <b>Cabinet Model:</b>
+    {{slot.CabinetModel}} <b>|</b> <b>Game Chip:</b>{{slot.GameChip}} 
+  </nb-card-body>
+  <nb-card-footer> {{slot.WorkflowState}} </nb-card-footer>
 </nb-card>

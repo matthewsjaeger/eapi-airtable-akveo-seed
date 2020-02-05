@@ -19,6 +19,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/effortless/slot-projects',
   },
   {
+    title: 'On Floor',
+    icon: 'play-circle',
+    link: '/effortless/on-floor',
+  },
+  {
     title: 'Page 2',
     icon: 'person',
     link: '/effortless/page2',

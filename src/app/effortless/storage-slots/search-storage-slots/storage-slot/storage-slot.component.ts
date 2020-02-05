@@ -4,6 +4,7 @@ import { EffortlessComponentBase } from '../../../efforless-base-component';
 import { NbMenuService } from '@nebular/theme';
 import { DataEndpoint } from '../../../services/eapi-data-services/data-endpoint/data-endpoint';
 import { GDS } from '../../../services/gds.service';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -13,24 +14,28 @@ import { GDS } from '../../../services/gds.service';
 })
 export class StorageSlotComponent extends EffortlessComponentBase implements OnInit {
 
-  serialNumber: any;
-  Slots: any;
+  Slot: any;
+  search: any;
+  slot: any;
+  slot$: Observable<any>;
 
   constructor(public router: Router, public gds: GDS, public data: DataEndpoint, protected menuservice: NbMenuService) {
     super(gds, data, menuservice)
+    this.slot$ = this.data.onSlotsChange();
+    this.safeSubscribe(this.slot$.subscribe(data => {
+      this.slot = data
   
-
-   }
+      }))
    
 
-
+    }
 
   ngOnInit() {
-
-    this.gds.smqUser = {}
-    this.gds.smqUser.editingSlot = false;
-    this.Slots = this.gds.GAINSUser.currentSlots;
-    console.log(this.Slots)
+    // let self = this
+    // self.search = {};
+    // self.search.editingSlot = false;
+    // self.Slot = this.gds.GAINSUser.currentSlots;
+    // console.log(this.Slot)
   }
 
   goBack(){

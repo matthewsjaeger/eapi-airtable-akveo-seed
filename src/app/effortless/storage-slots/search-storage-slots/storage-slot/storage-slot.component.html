@@ -8,22 +8,22 @@
     <nb-card-body>
         <nb-list>
             <nb-list-item>
-                <label>Serial Number:</label>
+                <label>Serial Number: {{slot.SerialNumber}}</label>
             </nb-list-item>
             <nb-list-item>
-                <label>Slot #:</label>
+                <label>Slot #: {{slot.SlotNumber}} </label>
             </nb-list-item>
             <nb-list-item>
-                <label>Manufacturer:</label>
+                <label>Manufacturer: {{slot.DisplayManufacturer}} </label>
             </nb-list-item>
             <nb-list-item>
-                <label>Cabinet Model:</label>
+                <label>Cabinet Model: {{slot.CabinetModel}} </label>
             </nb-list-item>
             <nb-list-item>
-                <label>Game Chip:</label>
+                <label>Game Chip: {{slot.GameChip}} </label>
             </nb-list-item>
             <nb-list-item>
-                <label>WF State:</label>
+                <label>WF State: {{slot.WorkflowState}} </label>
             </nb-list-item>
         </nb-list>
         <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=atrInspection()>ATR

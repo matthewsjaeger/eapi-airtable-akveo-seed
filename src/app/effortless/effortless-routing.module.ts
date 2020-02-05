@@ -11,6 +11,7 @@ import { SlotProjectComponent } from './slot-projects/slot-project/slot-project.
 import { NewProjectComponent } from './slot-projects/new-project/new-project.component';
 import { EditProjectComponent } from './slot-projects/slot-project/edit-project/edit-project.component';
 import { StorageSlotComponent } from './storage-slots/search-storage-slots/storage-slot/storage-slot.component';
+import { OnFloorComponent } from './on-floor/on-floor.component';
 
 let effortlessChildren = [
   {
@@ -48,6 +49,10 @@ let effortlessChildren = [
   {
     path: 'storage-slot',
     component: StorageSlotComponent,
+  },
+  {
+    path: 'on-floor',
+    component: OnFloorComponent
   },
 ];
 
