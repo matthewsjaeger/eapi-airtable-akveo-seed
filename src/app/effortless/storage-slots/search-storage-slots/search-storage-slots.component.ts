@@ -16,7 +16,7 @@ export class SearchStorageSlotsComponent extends EffortlessComponentBase impleme
   FilteredSlotsList: any;
   noResults: boolean;
   datasearch : string = '';
-  slot: any = '';
+  slot: any = [];
 
   slotViews: any;
   searchTerm: any = '';

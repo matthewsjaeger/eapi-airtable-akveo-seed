@@ -12,6 +12,7 @@ import { NewProjectComponent } from './slot-projects/new-project/new-project.com
 import { EditProjectComponent } from './slot-projects/slot-project/edit-project/edit-project.component';
 import { StorageSlotComponent } from './storage-slots/search-storage-slots/storage-slot/storage-slot.component';
 import { OnFloorComponent } from './on-floor/on-floor.component';
+import { OnFloorSlotComponent } from './on-floor/on-floor-slot/on-floor-slot.component';
 
 let effortlessChildren = [
   {
@@ -54,6 +55,10 @@ let effortlessChildren = [
     path: 'on-floor',
     component: OnFloorComponent
   },
+  {
+    path: 'on-floor-slot/:sid',
+    component: OnFloorSlotComponent
+  }
 ];
 
 const routes: Routes = [{

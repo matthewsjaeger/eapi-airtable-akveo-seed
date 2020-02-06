@@ -7,65 +7,29 @@
         <input class="searchBar" [(ngModel)]="searchTerm" autocomplete="off" (change)="searchSlots()" type="text"
             nbInput fullWidth placeholder="Search for on floor slots">
     </nb-card-header>
-    <nb-card-body>
-
-    </nb-card-body>
     <nb-card-footer>
-        <!-- <nb-list>
+        <nb-list>
         <nb-list-item *ngIf="searchTerm.trim().length < 1" style="color: red;" >
           No search term entered
         </nb-list-item>
         <nb-list-item *ngIf="noResults">
           No stored slots serial number contain: {{searchTerm}}
         </nb-list-item>
-      </nb-list> -->
+      </nb-list>
     </nb-card-footer>
 </nb-card>
 
-<nb-tabset>
-    <nb-tab tabTitle="Active">
-        <nb-card>
-            <nb-card-header>
-                <button nbButton size="small" class="float-right" (click)=selectSlot(Slot)>Open Slot</button>
-                serial number
-            </nb-card-header>
-            <nb-card-body>
-                <b>Slot #:</b>{{slot?.SlotNumber <b>|</b> <b>Manufacturer:</b> {{slot.DisplayManufacturer <b>|</b>
-                <b>Cabinet Model:</b>
-                {{slot.CabinetModel <b>|</b> <b>Game Chip:</b>{{slot.GameChip
-            </nb-card-body>
-            <nb-card-footer> {{slot.WorkflowState </nb-card-footer>
-        </nb-card>
-        <nb-card>
-            <nb-card-header>
-                <button nbButton size="small" class="float-right" (click)=selectSlot(Slot)>Open Slot</button>
-                serial number
-            </nb-card-header>
-            <nb-card-body>
-                <b>Slot #:</b>{{slot?.SlotNumber <b>|</b> <b>Manufacturer:</b> {{slot.DisplayManufacturer <b>|</b>
-                <b>Cabinet Model:</b>
-                {{slot.CabinetModel <b>|</b> <b>Game Chip:</b>{{slot.GameChip
-            </nb-card-body>
-            <nb-card-footer> {{slot.WorkflowState </nb-card-footer>
-        </nb-card>
-    </nb-tab>
-    <nb-tab tabTitle="Not Active">
-        <nb-card>
-            <nb-card-header>
-                <button nbButton size="small" class="float-right" (click)=selectSlot(Slot)>Open Slot</button>
-                <b>Serial Number: </b>
-            </nb-card-header>
-            <nb-card-body>
-                <b>Slot #:</b>{{slot?.SlotNumber <b>|</b> <b>Manufacturer:</b> {{slot.DisplayManufacturer <b>|</b>
-                <b>Cabinet Model:</b>
-                {{slot.CabinetModel <b>|</b> <b>Game Chip:</b>{{slot.GameChip
-            </nb-card-body>
-            <nb-card-footer> {{slot.WorkflowState </nb-card-footer>
-        </nb-card>
-    </nb-tab>
-    <nb-tab tabTitle="Transactions" disabled>
-      <p>List of <strong>transactions</strong>.</p>
-    </nb-tab>
-  </nb-tabset>
+<nb-card  *ngFor="let slot of slotViews">
+    <nb-card-header>
+      <button nbButton size="small" class="float-right" (click)=selectSlot(slot)>Open Slot</button>
+      <b>Serial Number: </b>{{slot.SerialNumber}} 
+    </nb-card-header>
+    <nb-card-body>   
+      <b>Slot #:</b>{{slot?.SlotNumber}} <b>|</b> <b>Manufacturer:</b> {{slot.DisplayManufacturer}} <b>|</b> <b>Cabinet Model:</b>
+      {{slot.CabinetModel}} <b>|</b> <b>Game Chip:</b>{{slot.GameChip}} 
+    </nb-card-body>
+    <nb-card-footer> {{slot.WorkflowState}} </nb-card-footer>
+  </nb-card>
+
 
 
