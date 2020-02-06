@@ -42,8 +42,8 @@
 
 <nb-card  *ngFor="let slot of slotViews">
   <nb-card-header>
-    <button nbButton size="small" class="float-right" (click)=selectSlot(Slot)>Open Slot</button>
-    {{slot.SerialNumber}} 
+    <button nbButton size="small" class="float-right" (click)=selectSlot(slot)>Open Slot</button>
+    <b>Serial Number: </b>{{slot.SerialNumber}} 
   </nb-card-header>
   <nb-card-body>   
     <b>Slot #:</b>{{slot?.SlotNumber}} <b>|</b> <b>Manufacturer:</b> {{slot.DisplayManufacturer}} <b>|</b> <b>Cabinet Model:</b>

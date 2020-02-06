@@ -5,6 +5,7 @@ import { EffortlessComponentBase } from '../../efforless-base-component';
 import { DataEndpoint } from '../../services/eapi-data-services/data-endpoint/data-endpoint';
 import { NbMenuService, NbListComponent } from '@nebular/theme';
 import { ReplaySubject } from 'rxjs';
+import { decodeJwtPayload } from '../../../@core/auth';
 
 @Component({
   selector: 'ngx-search-storage-slots',
@@ -19,6 +20,7 @@ export class SearchStorageSlotsComponent extends EffortlessComponentBase impleme
 
   slotViews: any;
   searchTerm: any = '';
+  SlotId: any = '';
   
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, ) { 
@@ -56,7 +58,8 @@ export class SearchStorageSlotsComponent extends EffortlessComponentBase impleme
 
   selectSlot(slot){
   // this.gds.GAINSUser.currentSlots = [slot]
-    this.router.navigateByUrl('effortless/storage-slot');
+  console.error()
+    this.router.navigateByUrl('effortless/storage-slot/' + slot.SlotId);
   }
 
   createFilteredSlots(){
