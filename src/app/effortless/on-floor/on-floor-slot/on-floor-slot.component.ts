@@ -22,22 +22,24 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
 
     this.safeSubscribe(this.route.params.subscribe((params) => {
       this.sid = params['sid'];   
-
-      let self = this
-      let payload = self.gds.createPayload();
-      payload.slot = {};
-      payload.slot= self.sid;
-      console.error(self.gds);
-      self.gds.smqATR.GetSlotDetails(payload).then(function(reply){
-        self.slot = reply.Slot.SlotId;
-      }) 
-
     }));
 
 
   }
 
   ngOnInit() {
+    let self = this
+    let payload = self.gds.createPayload();
+    payload.slot = {};
+    payload.slot = self.sid;
+    console.error(self.gds);
+    self.gds.smqATR.GetSlotDetails(payload).then(function (reply) {
+      self.slot = reply.Slot.SlotId;
+    });
+  }
+
+  emergencyDropInspection(){
+    this.router.navigateByUrl('effortless/emergency-drop-inspection')
   }
 
 }

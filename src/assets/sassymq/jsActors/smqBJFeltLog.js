@@ -738,6 +738,22 @@ function generateBJFeltLogActor() {
             return deferred.promise;
         }
         
+        smqBJFeltLog.GAINSUserSearchOnFloorSlots = function() {
+            smqBJFeltLog.GAINSUserSearchOnFloorSlots('{}');
+        }
+
+        smqBJFeltLog.GAINSUserSearchOnFloorSlots = function(payload) {
+            payload = smqBJFeltLog.stringifyValue(payload);
+            var id = smqBJFeltLog.createUUID();
+            var deferred = smqBJFeltLog.waitingReply[id] = smqBJFeltLog.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Search On Floor Slots - ');
+            smqBJFeltLog.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.searchonfloorslots', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqBJFeltLog.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
         smqBJFeltLog.GAINSUserSearchShuffleMasters = function() {
             smqBJFeltLog.GAINSUserSearchShuffleMasters('{}');
         }

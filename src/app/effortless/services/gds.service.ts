@@ -101,6 +101,7 @@ export class GDS {
 
   connect() {
     console.log("LOADING ALL DATA");
+    console.log('test');
     var gds = this;
     if (!gds.myRoles) {
       alert('ERROR AUTHENTICATING');
@@ -130,12 +131,12 @@ export class GDS {
       }
     });
 
-    gds.smqUser = generateGAINSUserActor();
-    gds.smqUser.rabbitEndpoint = gds.rabbitEndpoint;
-    gds.smqUser.connect(gds.vhost, gds.smqUsername, gds.smqPassword, function () { }, function () {
-      gds.isUserConnected = true;
-      gds.readiness$.next({});
-    });
+    //gds.smqUser = generateGAINSUserActor();
+    //gds.smqUser.rabbitEndpoint = gds.rabbitEndpoint;
+    //gds.smqUser.connect(gds.vhost, gds.smqUsername, gds.smqPassword, function () { }, function () {
+    //  gds.isUserConnected = true;
+    //  gds.readiness$.next({});
+    //});
 
     gds.smqBJFeltLog = generateBJFeltLogActor();
     gds.smqBJFeltLog.rabbitEndpoint = gds.rabbitEndpoint;

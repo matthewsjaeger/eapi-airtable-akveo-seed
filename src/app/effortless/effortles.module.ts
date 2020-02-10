@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { EffortlessRoutingModule } from './effortless-routing.module';
-import { NbMenuModule, NbCardModule, NbButtonModule, NbActionsModule, NbSelectModule, NbInputModule, NbTabsetModule, NbIconModule, NbSpinnerModule, NbToggleModule, NbListModule, NbDialogModule, NbLayoutModule } from '@nebular/theme';
+import { NbMenuModule, NbCardModule, NbButtonModule, NbActionsModule, NbSelectModule, NbInputModule, NbTabsetModule, NbIconModule, NbSpinnerModule, NbToggleModule, NbListModule, NbDialogModule, NbLayoutModule, NbCheckboxComponent, NbCheckboxModule } from '@nebular/theme';
 import { ThemeModule } from '../@theme/theme.module';
 import { EffortlessComponent } from './effortless.component';
 import { FormsModule } from '@angular/forms';
@@ -19,10 +19,11 @@ import { EditProjectComponent } from './slot-projects/slot-project/edit-project/
 import { StorageSlotComponent } from './storage-slots/search-storage-slots/storage-slot/storage-slot.component';
 import { OnFloorComponent } from './on-floor/on-floor.component';
 import { OnFloorSlotComponent } from './on-floor/on-floor-slot/on-floor-slot.component';
+import { EmergencyDropInspectionComponent } from './on-floor/on-floor-slot/emergency-drop-inspection/emergency-drop-inspection.component';
 
 let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComponent, Page2Component, Page3Component,
   StorageSlotsComponent, SlotProjectsComponent, SearchStorageSlotsComponent, SlotProjectComponent, NewProjectComponent,
-   EditProjectComponent, StorageSlotComponent, OnFloorComponent, OnFloorSlotComponent];
+   EditProjectComponent, StorageSlotComponent, OnFloorComponent, OnFloorSlotComponent, EmergencyDropInspectionComponent];
 
 @NgModule({
   declarations: declarations,
@@ -44,6 +45,7 @@ let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComp
     NbSelectModule,
     NbInputModule,
     NbLayoutModule,
+    NbCheckboxModule,
     NbDialogModule.forChild()
   ],
 })

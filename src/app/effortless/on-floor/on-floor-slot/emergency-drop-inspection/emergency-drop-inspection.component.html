@@ -1,0 +1,88 @@
+<nb-card [size]="'large'">
+    <nb-card-header>
+        <h4 style="width: fit-content; margin: auto;">Emergency Drop Inspection</h4>
+    </nb-card-header>
+    <nb-card-body >
+        <nb-list>
+            <nb-list-item>
+                <label>Was the Gamming Commission notified by phone and email by <br> the approved personnel? (Surveillance notified) </label>
+                <nb-checkbox class="float-right" status="basic">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Yes</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item>
+                <label> Is the person initialing the Emergency Drop authorized? </label>
+                <nb-checkbox class="float-right" status="basic">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Yes</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item>
+                <label>GE Team Members Present:</label>
+                <nb-list>
+                    <nb-list-item>
+                        <label>Hardcount personnel:</label> 
+                        <nb-select class="float-right" placeholder="Select Showcase" [(selected)]="selectedItem">
+                            <nb-option value="">Option empty</nb-option>
+                            <nb-option value="0">Option 0</nb-option>
+                            <nb-option value="1">Option 1</nb-option>
+                            <nb-option value="2">Option 2</nb-option>
+                            <nb-option value="3">Option 3</nb-option>
+                            <nb-option value="4">Option 4</nb-option>
+                          </nb-select>
+                    </nb-list-item>
+                </nb-list>
+                <nb-list>
+                    <nb-list-item>
+                       <label>Security personnel:</label>
+                       <nb-select class="float-right" placeholder="Select Showcase" [(selected)]="selectedItem">
+                        <nb-option value="">Option empty</nb-option>
+                        <nb-option value="0">Option 0</nb-option>
+                        <nb-option value="1">Option 1</nb-option>
+                        <nb-option value="2">Option 2</nb-option>
+                        <nb-option value="3">Option 3</nb-option>
+                        <nb-option value="4">Option 4</nb-option>
+                      </nb-select>
+                    </nb-list-item>
+                </nb-list>
+                <nb-list>
+                    <nb-list-item>
+                       <label>Slot personnel:</label> 
+                       <nb-select class="float-right" placeholder="Select Showcase" [(selected)]="selectedItem">
+                        <nb-option value="">Option empty</nb-option>
+                        <nb-option value="0">Option 0</nb-option>
+                        <nb-option value="1">Option 1</nb-option>
+                        <nb-option value="2">Option 2</nb-option>
+                        <nb-option value="3">Option 3</nb-option>
+                        <nb-option value="4">Option 4</nb-option>
+                      </nb-select>
+                    </nb-list-item>
+                </nb-list>
+            </nb-list-item>
+            <nb-list-item>
+                <label>Was the Gamming Commission approved procedure followed?</label>
+                <nb-checkbox class="float-right" status="basic">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Yes</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item>
+                <label>Were the funds secured? (Appropriate team member present)</label>
+                <nb-checkbox class="float-right" status="basic">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Yes</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item>
+                <label> If immediately counted, were procedures followed properly? <br> (Team member present and cage transmittal utilized)</label>
+                <nb-checkbox class="float-right" status="basic">N/A</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Yes</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item>
+                <label> Was the Emergency Drop compliant?</label>
+                <nb-checkbox class="float-right" status="basic">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Pass</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item>
+                <label>Inspection comments:</label>
+                <textarea nbInput fullWidth placeholder="Comments"></textarea>
+            </nb-list-item>
+        </nb-list>
+        <button nbButton class="float-right" ghost size="medium" (click)="finish()">Finish</button>
+        <button nbButton ghost size="medium" (click)="cancel()">Cancel</button>
+    </nb-card-body>
+</nb-card>

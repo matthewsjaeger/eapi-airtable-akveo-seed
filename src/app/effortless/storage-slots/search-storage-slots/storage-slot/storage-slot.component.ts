@@ -18,25 +18,27 @@ export class StorageSlotComponent extends EffortlessComponentBase implements OnI
   search: any;
   slot: any;
   SlotId: any = '';
+  sid: any;
 
   constructor(public router: Router, public route: ActivatedRoute, public gds: GDS, public data: DataEndpoint, protected menuservice: NbMenuService) {
     super(gds, data, menuservice)
-    // this.safeSubscribe(this.route.params.subscribe((params) => {
-    //   this.sid = params['sid'];
+    this.safeSubscribe(this.route.params.subscribe((params) => {
+      this.sid = params['sid'];
       
-    //    }))
+       }))
        
-       let self = this
-       let payload = self.gds.createPayload();
-       payload.slot = {};
-       payload.slot= self.Slot;
-       self.gds.smqATR.GetSlotDetails(payload).then(function(reply){
-         self.slot.SlotId = reply.Slot.SlotId;
-       }) 
+
       
     }
 
   ngOnInit() {
+    let self = this
+    let payload = self.gds.createPayload();
+    payload.slot = {};
+    payload.slot= self.sid;
+    self.gds.smqATR.GetSlotDetails(payload).then(function(reply){
+      self.slot = reply.Slot.SlotId;
+    }) 
 
   }
 

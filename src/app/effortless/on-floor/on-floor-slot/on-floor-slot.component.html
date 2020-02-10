@@ -5,13 +5,13 @@
         </button>
         <h4 style="width: fit-content; margin: auto;">Storage Slot</h4>
     </nb-card-header>
-    <nb-card-body>
-        <nb-list>
+    <nb-card-body >
+        <nb-list *ngIf="slot" >
             <nb-list-item>
-                <label>Serial Number: {{slot.SerialNumber}}</label>
+                <label>Serial Number: {{slot?.SerialNumber}}</label>
             </nb-list-item>
             <nb-list-item>
-                <label>Slot #: {{slot?.SlotNumber}} </label>
+                <label>Slot #: {{slot.SlotNumber}} </label>
             </nb-list-item>
             <nb-list-item>
                 <label>Manufacturer: {{slot.DisplayManufacturer}} </label>

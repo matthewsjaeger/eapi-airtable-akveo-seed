@@ -13,6 +13,7 @@ import { EditProjectComponent } from './slot-projects/slot-project/edit-project/
 import { StorageSlotComponent } from './storage-slots/search-storage-slots/storage-slot/storage-slot.component';
 import { OnFloorComponent } from './on-floor/on-floor.component';
 import { OnFloorSlotComponent } from './on-floor/on-floor-slot/on-floor-slot.component';
+import { EmergencyDropInspectionComponent } from './on-floor/on-floor-slot/emergency-drop-inspection/emergency-drop-inspection.component';
 
 let effortlessChildren = [
   {
@@ -57,7 +58,11 @@ let effortlessChildren = [
   },
   {
     path: 'on-floor-slot/:sid',
-    component: OnFloorSlotComponent
+    component: OnFloorSlotComponent,
+  },
+  {
+    path: 'emergency-drop-inspection',
+    component: EmergencyDropInspectionComponent,
   }
 ];
 

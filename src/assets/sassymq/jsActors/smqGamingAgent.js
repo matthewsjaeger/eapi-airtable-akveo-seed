@@ -493,6 +493,342 @@ function generateGamingAgentActor() {
             return deferred.promise;
         }
         
+        smqGamingAgent.EditSealGC = function() {
+            smqGamingAgent.EditSealGC('{}');
+        }
+
+        smqGamingAgent.EditSealGC = function(payload) {
+            payload = smqGamingAgent.stringifyValue(payload);
+            var id = smqGamingAgent.createUUID();
+            var deferred = smqGamingAgent.waitingReply[id] = smqGamingAgent.defer();
+            if (smqGamingAgent.showPingPongs) console.log('Edit Seal G C - ');
+            smqGamingAgent.client.send('/exchange/gamingagentmic/gainscoordinator.onfloor.gamingagent.editsealgc', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGamingAgent.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGamingAgent.EditSealsFloor = function() {
+            smqGamingAgent.EditSealsFloor('{}');
+        }
+
+        smqGamingAgent.EditSealsFloor = function(payload) {
+            payload = smqGamingAgent.stringifyValue(payload);
+            var id = smqGamingAgent.createUUID();
+            var deferred = smqGamingAgent.waitingReply[id] = smqGamingAgent.defer();
+            if (smqGamingAgent.showPingPongs) console.log('Edit Seals Floor - ');
+            smqGamingAgent.client.send('/exchange/gamingagentmic/gainscoordinator.onfloor.gamingagent.editsealsfloor', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGamingAgent.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGamingAgent.EmergencyDropInspection = function() {
+            smqGamingAgent.EmergencyDropInspection('{}');
+        }
+
+        smqGamingAgent.EmergencyDropInspection = function(payload) {
+            payload = smqGamingAgent.stringifyValue(payload);
+            var id = smqGamingAgent.createUUID();
+            var deferred = smqGamingAgent.waitingReply[id] = smqGamingAgent.defer();
+            if (smqGamingAgent.showPingPongs) console.log('Emergency Drop Inspection - ');
+            smqGamingAgent.client.send('/exchange/gamingagentmic/gainscoordinator.onfloor.gamingagent.emergencydropinspection', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGamingAgent.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGamingAgent.GCInspection = function() {
+            smqGamingAgent.GCInspection('{}');
+        }
+
+        smqGamingAgent.GCInspection = function(payload) {
+            payload = smqGamingAgent.stringifyValue(payload);
+            var id = smqGamingAgent.createUUID();
+            var deferred = smqGamingAgent.waitingReply[id] = smqGamingAgent.defer();
+            if (smqGamingAgent.showPingPongs) console.log('G C Inspection - ');
+            smqGamingAgent.client.send('/exchange/gamingagentmic/gainscoordinator.onfloor.gamingagent.gcinspection', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGamingAgent.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGamingAgent.JPVerify100K = function() {
+            smqGamingAgent.JPVerify100K('{}');
+        }
+
+        smqGamingAgent.JPVerify100K = function(payload) {
+            payload = smqGamingAgent.stringifyValue(payload);
+            var id = smqGamingAgent.createUUID();
+            var deferred = smqGamingAgent.waitingReply[id] = smqGamingAgent.defer();
+            if (smqGamingAgent.showPingPongs) console.log('J P Verify100 K - ');
+            smqGamingAgent.client.send('/exchange/gamingagentmic/gainscoordinator.onfloor.gamingagent.jpverify100k', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGamingAgent.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGamingAgent.JPVerify10K = function() {
+            smqGamingAgent.JPVerify10K('{}');
+        }
+
+        smqGamingAgent.JPVerify10K = function(payload) {
+            payload = smqGamingAgent.stringifyValue(payload);
+            var id = smqGamingAgent.createUUID();
+            var deferred = smqGamingAgent.waitingReply[id] = smqGamingAgent.defer();
+            if (smqGamingAgent.showPingPongs) console.log('J P Verify10 K - ');
+            smqGamingAgent.client.send('/exchange/gamingagentmic/gainscoordinator.onfloor.gamingagent.jpverify10k', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGamingAgent.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGamingAgent.JPVerify20K = function() {
+            smqGamingAgent.JPVerify20K('{}');
+        }
+
+        smqGamingAgent.JPVerify20K = function(payload) {
+            payload = smqGamingAgent.stringifyValue(payload);
+            var id = smqGamingAgent.createUUID();
+            var deferred = smqGamingAgent.waitingReply[id] = smqGamingAgent.defer();
+            if (smqGamingAgent.showPingPongs) console.log('J P Verify20 K - ');
+            smqGamingAgent.client.send('/exchange/gamingagentmic/gainscoordinator.onfloor.gamingagent.jpverify20k', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGamingAgent.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGamingAgent.JPVerify50K = function() {
+            smqGamingAgent.JPVerify50K('{}');
+        }
+
+        smqGamingAgent.JPVerify50K = function(payload) {
+            payload = smqGamingAgent.stringifyValue(payload);
+            var id = smqGamingAgent.createUUID();
+            var deferred = smqGamingAgent.waitingReply[id] = smqGamingAgent.defer();
+            if (smqGamingAgent.showPingPongs) console.log('J P Verify50 K - ');
+            smqGamingAgent.client.send('/exchange/gamingagentmic/gainscoordinator.onfloor.gamingagent.jpverify50k', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGamingAgent.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGamingAgent.MediaVerification = function() {
+            smqGamingAgent.MediaVerification('{}');
+        }
+
+        smqGamingAgent.MediaVerification = function(payload) {
+            payload = smqGamingAgent.stringifyValue(payload);
+            var id = smqGamingAgent.createUUID();
+            var deferred = smqGamingAgent.waitingReply[id] = smqGamingAgent.defer();
+            if (smqGamingAgent.showPingPongs) console.log('Media Verification - ');
+            smqGamingAgent.client.send('/exchange/gamingagentmic/gainscoordinator.onfloor.gamingagent.mediaverification', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGamingAgent.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGamingAgent.RamClearPerform = function() {
+            smqGamingAgent.RamClearPerform('{}');
+        }
+
+        smqGamingAgent.RamClearPerform = function(payload) {
+            payload = smqGamingAgent.stringifyValue(payload);
+            var id = smqGamingAgent.createUUID();
+            var deferred = smqGamingAgent.waitingReply[id] = smqGamingAgent.defer();
+            if (smqGamingAgent.showPingPongs) console.log('Ram Clear Perform - ');
+            smqGamingAgent.client.send('/exchange/gamingagentmic/gainscoordinator.onfloor.gamingagent.ramclearperform', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGamingAgent.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGamingAgent.StackerFullRecord = function() {
+            smqGamingAgent.StackerFullRecord('{}');
+        }
+
+        smqGamingAgent.StackerFullRecord = function(payload) {
+            payload = smqGamingAgent.stringifyValue(payload);
+            var id = smqGamingAgent.createUUID();
+            var deferred = smqGamingAgent.waitingReply[id] = smqGamingAgent.defer();
+            if (smqGamingAgent.showPingPongs) console.log('Stacker Full Record - ');
+            smqGamingAgent.client.send('/exchange/gamingagentmic/gainscoordinator.onfloor.gamingagent.stackerfullrecord', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGamingAgent.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGamingAgent.StateOfMinnesotaInspection = function() {
+            smqGamingAgent.StateOfMinnesotaInspection('{}');
+        }
+
+        smqGamingAgent.StateOfMinnesotaInspection = function(payload) {
+            payload = smqGamingAgent.stringifyValue(payload);
+            var id = smqGamingAgent.createUUID();
+            var deferred = smqGamingAgent.waitingReply[id] = smqGamingAgent.defer();
+            if (smqGamingAgent.showPingPongs) console.log('State Of Minnesota Inspection - ');
+            smqGamingAgent.client.send('/exchange/gamingagentmic/gainscoordinator.onfloor.gamingagent.stateofminnesotainspection', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGamingAgent.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGamingAgent.CompleteConversionFloorAdv = function() {
+            smqGamingAgent.CompleteConversionFloorAdv('{}');
+        }
+
+        smqGamingAgent.CompleteConversionFloorAdv = function(payload) {
+            payload = smqGamingAgent.stringifyValue(payload);
+            var id = smqGamingAgent.createUUID();
+            var deferred = smqGamingAgent.waitingReply[id] = smqGamingAgent.defer();
+            if (smqGamingAgent.showPingPongs) console.log('Complete Conversion Floor Adv - ');
+            smqGamingAgent.client.send('/exchange/gamingagentmic/gainscoordinator.onfloor.gamingagent.completeconversionflooradv', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGamingAgent.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGamingAgent.RamClearConversion = function() {
+            smqGamingAgent.RamClearConversion('{}');
+        }
+
+        smqGamingAgent.RamClearConversion = function(payload) {
+            payload = smqGamingAgent.stringifyValue(payload);
+            var id = smqGamingAgent.createUUID();
+            var deferred = smqGamingAgent.waitingReply[id] = smqGamingAgent.defer();
+            if (smqGamingAgent.showPingPongs) console.log('Ram Clear Conversion - ');
+            smqGamingAgent.client.send('/exchange/gamingagentmic/gainscoordinator.onfloor.gamingagent.ramclearconversion', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGamingAgent.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGamingAgent.RamClearToInspect = function() {
+            smqGamingAgent.RamClearToInspect('{}');
+        }
+
+        smqGamingAgent.RamClearToInspect = function(payload) {
+            payload = smqGamingAgent.stringifyValue(payload);
+            var id = smqGamingAgent.createUUID();
+            var deferred = smqGamingAgent.waitingReply[id] = smqGamingAgent.defer();
+            if (smqGamingAgent.showPingPongs) console.log('Ram Clear To Inspect - ');
+            smqGamingAgent.client.send('/exchange/gamingagentmic/gainscoordinator.onfloor.gamingagent.ramcleartoinspect', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGamingAgent.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGamingAgent.RamClearToActive = function() {
+            smqGamingAgent.RamClearToActive('{}');
+        }
+
+        smqGamingAgent.RamClearToActive = function(payload) {
+            payload = smqGamingAgent.stringifyValue(payload);
+            var id = smqGamingAgent.createUUID();
+            var deferred = smqGamingAgent.waitingReply[id] = smqGamingAgent.defer();
+            if (smqGamingAgent.showPingPongs) console.log('Ram Clear To Active - ');
+            smqGamingAgent.client.send('/exchange/gamingagentmic/gainscoordinator.onfloor.gamingagent.ramcleartoactive', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGamingAgent.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGamingAgent.RequestActivation = function() {
+            smqGamingAgent.RequestActivation('{}');
+        }
+
+        smqGamingAgent.RequestActivation = function(payload) {
+            payload = smqGamingAgent.stringifyValue(payload);
+            var id = smqGamingAgent.createUUID();
+            var deferred = smqGamingAgent.waitingReply[id] = smqGamingAgent.defer();
+            if (smqGamingAgent.showPingPongs) console.log('Request Activation - ');
+            smqGamingAgent.client.send('/exchange/gamingagentmic/gainscoordinator.onfloor.gamingagent.requestactivation', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGamingAgent.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGamingAgent.SuspendedJPReverify100K = function() {
+            smqGamingAgent.SuspendedJPReverify100K('{}');
+        }
+
+        smqGamingAgent.SuspendedJPReverify100K = function(payload) {
+            payload = smqGamingAgent.stringifyValue(payload);
+            var id = smqGamingAgent.createUUID();
+            var deferred = smqGamingAgent.waitingReply[id] = smqGamingAgent.defer();
+            if (smqGamingAgent.showPingPongs) console.log('Suspended J P Reverify100 K - ');
+            smqGamingAgent.client.send('/exchange/gamingagentmic/gainscoordinator.onfloor.gamingagent.suspendedjpreverify100k', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGamingAgent.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGamingAgent.SuspendedJPReverify10K = function() {
+            smqGamingAgent.SuspendedJPReverify10K('{}');
+        }
+
+        smqGamingAgent.SuspendedJPReverify10K = function(payload) {
+            payload = smqGamingAgent.stringifyValue(payload);
+            var id = smqGamingAgent.createUUID();
+            var deferred = smqGamingAgent.waitingReply[id] = smqGamingAgent.defer();
+            if (smqGamingAgent.showPingPongs) console.log('Suspended J P Reverify10 K - ');
+            smqGamingAgent.client.send('/exchange/gamingagentmic/gainscoordinator.onfloor.gamingagent.suspendedjpreverify10k', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGamingAgent.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGamingAgent.SuspendedJPReverify20K = function() {
+            smqGamingAgent.SuspendedJPReverify20K('{}');
+        }
+
+        smqGamingAgent.SuspendedJPReverify20K = function(payload) {
+            payload = smqGamingAgent.stringifyValue(payload);
+            var id = smqGamingAgent.createUUID();
+            var deferred = smqGamingAgent.waitingReply[id] = smqGamingAgent.defer();
+            if (smqGamingAgent.showPingPongs) console.log('Suspended J P Reverify20 K - ');
+            smqGamingAgent.client.send('/exchange/gamingagentmic/gainscoordinator.onfloor.gamingagent.suspendedjpreverify20k', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGamingAgent.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGamingAgent.SuspendedJPReverify50K = function() {
+            smqGamingAgent.SuspendedJPReverify50K('{}');
+        }
+
+        smqGamingAgent.SuspendedJPReverify50K = function(payload) {
+            payload = smqGamingAgent.stringifyValue(payload);
+            var id = smqGamingAgent.createUUID();
+            var deferred = smqGamingAgent.waitingReply[id] = smqGamingAgent.defer();
+            if (smqGamingAgent.showPingPongs) console.log('Suspended J P Reverify50 K - ');
+            smqGamingAgent.client.send('/exchange/gamingagentmic/gainscoordinator.onfloor.gamingagent.suspendedjpreverify50k', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGamingAgent.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
             // Can also say what 'BJFeltLog' can say.
             
         
@@ -1093,6 +1429,22 @@ function generateGamingAgentActor() {
             var deferred = smqGamingAgent.waitingReply[id] = smqGamingAgent.defer();
             if (smqGAINSUser.showPingPongs) console.log('Search Stored Slots - ');
             smqGamingAgent.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.searchstoredslots', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGamingAgent.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGamingAgent.GAINSUserSearchOnFloorSlots = function() {
+            smqGamingAgent.GAINSUserSearchOnFloorSlots('{}');
+        }
+
+        smqGamingAgent.GAINSUserSearchOnFloorSlots = function(payload) {
+            payload = smqGamingAgent.stringifyValue(payload);
+            var id = smqGamingAgent.createUUID();
+            var deferred = smqGamingAgent.waitingReply[id] = smqGamingAgent.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Search On Floor Slots - ');
+            smqGamingAgent.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.searchonfloorslots', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
             
             smqGamingAgent.waitFor(id);
             

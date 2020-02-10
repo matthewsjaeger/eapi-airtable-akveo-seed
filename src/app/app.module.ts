@@ -22,6 +22,7 @@ import {
   NbMenuService,
   NbThemeService,
   NbTabsetModule,
+  NbCheckboxComponent,
 } from '@nebular/theme';
 import { GDS } from './effortless/services/gds.service';
 import { DataEndpoint } from './effortless/services/eapi-data-services/data-endpoint/data-endpoint';
@@ -43,6 +44,7 @@ import { Router } from '@angular/router';
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbDatepickerModule.forRoot(),
+  
     NbDialogModule.forRoot(),
     NbWindowModule.forRoot(),
     NbToastrModule.forRoot(),
@@ -72,7 +74,7 @@ export class AppModule {
     gds.smqUsername = "gainsUser";
     gds.smqPassword = "4GrZkr46obls";
 
-    this.gds.smqUser.connect(gds.vhost, gds.smqUsername, gds.smqPassword, function () { }, function () {
+    gds.smqUser.connect(gds.vhost, gds.smqUsername, gds.smqPassword, function () { }, function () {
       console.error("got here");
       gds.isUserConnected = true;
       self.authService.onTokenChange()
