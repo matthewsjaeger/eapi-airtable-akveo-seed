@@ -1,5 +1,5 @@
 import { RouterModule, Routes } from '@angular/router';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 
 import { EffortlessComponent } from './effortless.component';
 import { IonicComponent } from './ionic/ionic.component';
@@ -14,6 +14,10 @@ import { StorageSlotComponent } from './storage-slots/search-storage-slots/stora
 import { OnFloorComponent } from './on-floor/on-floor.component';
 import { OnFloorSlotComponent } from './on-floor/on-floor-slot/on-floor-slot.component';
 import { EmergencyDropInspectionComponent } from './on-floor/on-floor-slot/emergency-drop-inspection/emergency-drop-inspection.component';
+import { MediaVerificationComponent } from './on-floor/on-floor-slot/media-verification/media-verification.component';
+import { StackerFullRecordComponent } from './on-floor/on-floor-slot/stacker-full-record/stacker-full-record.component';
+import { VerifyTenTwentyComponent } from './on-floor/on-floor-slot/verify-ten-twenty/verify-ten-twenty.component';
+import { PreventativeMaintenanceComponent } from './on-floor/on-floor-slot/preventative-maintenance/preventative-maintenance.component';
 
 let effortlessChildren = [
   {
@@ -63,7 +67,23 @@ let effortlessChildren = [
   {
     path: 'emergency-drop-inspection',
     component: EmergencyDropInspectionComponent,
-  }
+  },
+  {
+    path: 'media-verification',
+    component: MediaVerificationComponent,
+  },
+  {
+    path: 'stacker-full-record',
+    component: StackerFullRecordComponent,
+  },
+  {
+    path: 'verify-ten-twenty',
+    component: VerifyTenTwentyComponent,
+  },
+  {
+    path: 'preventative-maintenance',
+    component: PreventativeMaintenanceComponent,
+  },
 ];
 
 const routes: Routes = [{

@@ -1,0 +1,57 @@
+<nb-card [size]="'large'">
+    <nb-card-header>
+        <h4 style="width: fit-content; margin: auto;">Media Verification</h4>
+    </nb-card-header>
+    <nb-card-body>
+        <nb-list>
+            <nb-list-item>
+                <label>Reason for Media Verification:</label>
+                <input nbInput class="float-right" placeholder="How Much?">
+            </nb-list-item>
+            <nb-list-item>
+                <label>OS Payback Percentage:</label>
+                <nb-checkbox class="float-right" status="basic">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Pass</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item>
+                <label> OS Program Number: </label>
+                <nb-checkbox class="float-right" status="basic">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Pass</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item>
+                <label> OS Max Bet:</label>
+                <nb-checkbox class="float-right" status="basic">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Pass</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item>
+                <label> Check Max Credits/Lines:</label>
+                <nb-checkbox class="float-right" status="basic">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Pass</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item>
+                <label> Check TITO: </label>
+                <nb-checkbox class="float-right" status="basic">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">No TITO</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item>
+                <label> Verify Ticket Limit of $1199:</label>
+                <nb-checkbox class="float-right" status="basic">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">no TITO</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item>
+                <label> Signature: </label>
+                <nb-checkbox class="float-right" status="basic">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Not Tested</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item>
+                <label>Record Verified Game Media Signature(s):</label>
+                <textarea nbInput fullWidth placeholder="Comments"></textarea>
+            </nb-list-item>
+        </nb-list>
+        <button nbButton class="float-right" ghost size="medium" (click)="finish()">Finish</button>
+        <button nbButton ghost size="medium" (click)="cancel()">Cancel</button>
+    </nb-card-body>
+</nb-card>

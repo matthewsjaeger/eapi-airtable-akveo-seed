@@ -1,0 +1,47 @@
+<nb-card [size]="'large'">
+    <nb-card-header>
+        <h4 style="width: fit-content; margin: auto;">Media Verification</h4>
+    </nb-card-header>
+    <nb-card-body>
+        <nb-list>
+            <nb-list-item>
+                <label>Bill Test:</label>
+                <nb-checkbox class="float-right" status="basic" (checkedChange)="toggle($event)" >Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Issues</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">N/A</nb-checkbox>
+                {{checked}}
+            </nb-list-item>
+            <nb-list-item>
+                <label> Ticket Test: </label>
+                <nb-checkbox class="float-right" status="basic">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Issues</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item>
+                <label> Cash Out and Verify Amount:</label>
+                <nb-checkbox class="float-right" status="basic">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Issues</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item>
+                <label> Correct Any Deficiencies:</label>
+                <nb-checkbox class="float-right" status="basic">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Issues</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item>
+                <label> MEAL Book Entry:</label>
+                <nb-checkbox class="float-right" status="basic">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Issues</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">N/A</nb-checkbox>
+            </nb-list-item>
+        </nb-list>
+        <button nbButton class="float-right" ghost size="medium" (click)="finish()">Finish</button>
+        <button nbButton ghost size="medium" (click)="cancel()">Cancel</button>
+    </nb-card-body>
+</nb-card>

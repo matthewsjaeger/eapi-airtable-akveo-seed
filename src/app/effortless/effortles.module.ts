@@ -20,10 +20,15 @@ import { StorageSlotComponent } from './storage-slots/search-storage-slots/stora
 import { OnFloorComponent } from './on-floor/on-floor.component';
 import { OnFloorSlotComponent } from './on-floor/on-floor-slot/on-floor-slot.component';
 import { EmergencyDropInspectionComponent } from './on-floor/on-floor-slot/emergency-drop-inspection/emergency-drop-inspection.component';
+import { VerifyTenTwentyComponent } from './on-floor/on-floor-slot/verify-ten-twenty/verify-ten-twenty.component';
+import { StackerFullRecordComponent } from './on-floor/on-floor-slot/stacker-full-record/stacker-full-record.component';
+import { MediaVerificationComponent } from './on-floor/on-floor-slot/media-verification/media-verification.component';
+import { PreventativeMaintenanceComponent } from './on-floor/on-floor-slot/preventative-maintenance/preventative-maintenance.component';
 
 let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComponent, Page2Component, Page3Component,
   StorageSlotsComponent, SlotProjectsComponent, SearchStorageSlotsComponent, SlotProjectComponent, NewProjectComponent,
-   EditProjectComponent, StorageSlotComponent, OnFloorComponent, OnFloorSlotComponent, EmergencyDropInspectionComponent];
+   EditProjectComponent, StorageSlotComponent, OnFloorComponent, OnFloorSlotComponent, EmergencyDropInspectionComponent,
+  VerifyTenTwentyComponent, StackerFullRecordComponent, MediaVerificationComponent, PreventativeMaintenanceComponent];
 
 @NgModule({
   declarations: declarations,

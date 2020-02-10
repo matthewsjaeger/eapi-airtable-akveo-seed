@@ -30,8 +30,8 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
   ngOnInit() {
     let self = this
     let payload = self.gds.createPayload();
-    payload.slot = {};
-    payload.slot = self.sid;
+    payload.Slot = {};
+    payload.Slot.SlotId = self.sid;
     console.error(self.gds);
     self.gds.smqATR.GetSlotDetails(payload).then(function (reply) {
       self.slot = reply.Slot.SlotId;
