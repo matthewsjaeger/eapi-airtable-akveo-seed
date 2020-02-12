@@ -11,10 +11,9 @@ import { NbMenuService, NbListComponent } from '@nebular/theme';
   styleUrls: ['./on-floor-slot.component.scss']
 })
 export class OnFloorSlotComponent extends EffortlessComponentBase implements OnInit {
-  Slot: any;
   search: any;
-  slot: any;
-  SlotId: any = '';
+  slot: any = {};
+  slots: any;
   sid: any;
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, public route: ActivatedRoute ) { 
@@ -34,12 +33,32 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
     payload.Slot.SlotId = self.sid;
     console.error(self.gds);
     self.gds.smqATR.GetSlotDetails(payload).then(function (reply) {
-      self.slot = reply.Slot.SlotId;
+      self.slot = reply.Slot;
     });
+  }
+
+  goBack(){
+    this.router.navigateByUrl('')
   }
 
   emergencyDropInspection(){
     this.router.navigateByUrl('effortless/emergency-drop-inspection')
+  }
+
+  jpVerifyTenTwenty(){
+    this.router.navigateByUrl('effortless/verify-ten-twenty')
+  }
+
+  mediaVerification(){
+    this.router.navigateByUrl('effortless/media-verification')
+  }
+
+  stackerFullRecord(){
+    this.router.navigateByUrl('effortless/stacker-full-record')
+  }
+
+  preventativeMaintenance(){
+    this.router.navigateByUrl('effortless/preventative-maintenance')
   }
 
 }
