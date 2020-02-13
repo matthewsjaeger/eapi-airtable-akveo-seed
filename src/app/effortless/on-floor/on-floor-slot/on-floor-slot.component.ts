@@ -42,7 +42,7 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
   }
 
   emergencyDropInspection(){
-    this.router.navigateByUrl('effortless/emergency-drop-inspection')
+    this.router.navigateByUrl('effortless/emergency-drop-inspection/' + this.sid);
   }
 
   jpVerifyTenTwenty(){
