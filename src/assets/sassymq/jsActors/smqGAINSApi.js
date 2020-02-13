@@ -704,6 +704,13 @@ function generateGAINSApiActor() {
                     }
                 }
             
+                if (smqGAINSApi.onGAINSUserGetAllPeople) {
+                    if (msg.headers && (msg.headers.destination.includes('gainscoordinator.assets.gainsuser.getallpeople'))) {
+                        var rpayload = smqGAINSApi.onGAINSUserGetAllPeople(msg.body, msg);
+                        if (rpayload) smqGAINSApi.sendReply(rpayload, msg);
+                    }
+                }
+            
                 if (smqGAINSApi.onATRGetSharedInstalledComponents) {
                     if (msg.headers && (msg.headers.destination.includes('gainscoordinator.atr.atr.getsharedinstalledcomponents'))) {
                         var rpayload = smqGAINSApi.onATRGetSharedInstalledComponents(msg.body, msg);
@@ -2667,6 +2674,22 @@ function generateGAINSApiActor() {
             var deferred = smqGAINSApi.waitingReply[id] = smqGAINSApi.defer();
             if (smqGAINSUser.showPingPongs) console.log('Remove Slot From Project - ');
             smqGAINSApi.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.removeslotfromproject', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGAINSApi.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGAINSApi.GAINSUserGetAllPeople = function() {
+            smqGAINSApi.GAINSUserGetAllPeople('{}');
+        }
+
+        smqGAINSApi.GAINSUserGetAllPeople = function(payload) {
+            payload = smqGAINSApi.stringifyValue(payload);
+            var id = smqGAINSApi.createUUID();
+            var deferred = smqGAINSApi.waitingReply[id] = smqGAINSApi.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Get All People - ');
+            smqGAINSApi.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.getallpeople', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
             
             smqGAINSApi.waitFor(id);
             

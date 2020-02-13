@@ -87,10 +87,9 @@ export class EmergencyDropInspectionComponent extends EffortlessComponentBase im
 
   finish() {
     let self = this;
+    this.updatePercentComplete();
     let payload = this.gds.createPayload();
-    payload.Checklist = this.checklist;
-    payload.ChecklistMetadata = this.checklistMetadata;
-    payload.Slot = { SlotId: this.sid };
+    payload.SlotView = { SlotId: this.sid, Checklist: this.checklist, ChecklistMetadata: this.checklistMetadata };
     this.gds.smqGamingAgent.EmergencyDropInspection(payload).then(resp => {
       if (!resp.ErrorMessage) {
         this.router.navigateByUrl('effortless/on-floor-slot/' + self.sid);

@@ -706,6 +706,13 @@ function generateATRActor() {
                     }
                 }
             
+                if (smqATR.onGAINSUserGetAllPeople) {
+                    if (msg.headers && (msg.headers.destination.includes('gainscoordinator.assets.gainsuser.getallpeople'))) {
+                        var rpayload = smqATR.onGAINSUserGetAllPeople(msg.body, msg);
+                        if (rpayload) smqATR.sendReply(rpayload, msg);
+                    }
+                }
+            
                 if (smqATR.onATRGetSharedInstalledComponents) {
                     if (msg.headers && (msg.headers.destination.includes('gainscoordinator.atr.atr.getsharedinstalledcomponents'))) {
                         var rpayload = smqATR.onATRGetSharedInstalledComponents(msg.body, msg);
@@ -3108,6 +3115,22 @@ function generateATRActor() {
             var deferred = smqATR.waitingReply[id] = smqATR.defer();
             if (smqGAINSUser.showPingPongs) console.log('Remove Slot From Project - ');
             smqATR.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.removeslotfromproject', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqATR.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqATR.GAINSUserGetAllPeople = function() {
+            smqATR.GAINSUserGetAllPeople('{}');
+        }
+
+        smqATR.GAINSUserGetAllPeople = function(payload) {
+            payload = smqATR.stringifyValue(payload);
+            var id = smqATR.createUUID();
+            var deferred = smqATR.waitingReply[id] = smqATR.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Get All People - ');
+            smqATR.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.getallpeople', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
             
             smqATR.waitFor(id);
             

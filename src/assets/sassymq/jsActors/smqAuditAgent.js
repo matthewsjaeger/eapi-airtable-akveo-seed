@@ -710,6 +710,13 @@ function generateAuditAgentActor() {
                     }
                 }
             
+                if (smqAuditAgent.onGAINSUserGetAllPeople) {
+                    if (msg.headers && (msg.headers.destination.includes('gainscoordinator.assets.gainsuser.getallpeople'))) {
+                        var rpayload = smqAuditAgent.onGAINSUserGetAllPeople(msg.body, msg);
+                        if (rpayload) smqAuditAgent.sendReply(rpayload, msg);
+                    }
+                }
+            
                 if (smqAuditAgent.onATRGetSharedInstalledComponents) {
                     if (msg.headers && (msg.headers.destination.includes('gainscoordinator.atr.atr.getsharedinstalledcomponents'))) {
                         var rpayload = smqAuditAgent.onATRGetSharedInstalledComponents(msg.body, msg);
@@ -3478,6 +3485,22 @@ function generateAuditAgentActor() {
             var deferred = smqAuditAgent.waitingReply[id] = smqAuditAgent.defer();
             if (smqGAINSUser.showPingPongs) console.log('Remove Slot From Project - ');
             smqAuditAgent.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.removeslotfromproject', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqAuditAgent.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqAuditAgent.GAINSUserGetAllPeople = function() {
+            smqAuditAgent.GAINSUserGetAllPeople('{}');
+        }
+
+        smqAuditAgent.GAINSUserGetAllPeople = function(payload) {
+            payload = smqAuditAgent.stringifyValue(payload);
+            var id = smqAuditAgent.createUUID();
+            var deferred = smqAuditAgent.waitingReply[id] = smqAuditAgent.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Get All People - ');
+            smqAuditAgent.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.getallpeople', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
             
             smqAuditAgent.waitFor(id);
             

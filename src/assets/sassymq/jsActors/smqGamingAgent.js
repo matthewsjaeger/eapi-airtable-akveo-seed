@@ -1611,6 +1611,22 @@ function generateGamingAgentActor() {
             return deferred.promise;
         }
         
+        smqGamingAgent.GAINSUserGetAllPeople = function() {
+            smqGamingAgent.GAINSUserGetAllPeople('{}');
+        }
+
+        smqGamingAgent.GAINSUserGetAllPeople = function(payload) {
+            payload = smqGamingAgent.stringifyValue(payload);
+            var id = smqGamingAgent.createUUID();
+            var deferred = smqGamingAgent.waitingReply[id] = smqGamingAgent.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Get All People - ');
+            smqGamingAgent.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.getallpeople', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGamingAgent.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
             // Can also say what 'Guest' can say.
             
         
