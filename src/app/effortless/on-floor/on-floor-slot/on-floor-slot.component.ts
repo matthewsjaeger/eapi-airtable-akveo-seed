@@ -40,7 +40,7 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
   }
 
   goBack(){
-    this.router.navigateByUrl('effortless/on-floor')
+    this.router.navigateByUrl('')
   }
 
   emergencyDropInspection(){
@@ -52,7 +52,7 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
   }
 
   mediaVerification(){
-    this.router.navigateByUrl('effortless/media-verification')
+    this.router.navigateByUrl('effortless/media-verification/' + this.sid)
   }
 
   stackerFullRecord(){

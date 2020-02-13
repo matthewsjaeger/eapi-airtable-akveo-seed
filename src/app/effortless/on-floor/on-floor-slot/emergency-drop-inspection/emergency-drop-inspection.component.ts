@@ -24,14 +24,12 @@ export class EmergencyDropInspectionComponent extends EffortlessComponentBase im
   checklistMetadata: any = {};
   people: any = [{}];
   sid: any = "";
-
   constructor (public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, public route: ActivatedRoute ) { 
     super(gds, data, menuService)
-
-    this.safeSubscribe(this.route.params.subscribe((params) => {
-      this.sid = params['sid'];
-    }));
   
+    this.safeSubscribe(this.route.params.subscribe((params) => {
+      this.sid = params['sid'];   
+    }));
   }
 
   ngOnInit() {
@@ -62,14 +60,12 @@ export class EmergencyDropInspectionComponent extends EffortlessComponentBase im
     this.checklistMetadata.ComplianceStatus = (!this.checklist.HardcountPersonnel || !this.checklist.SecurityPersonnel
       || !this.checklist.SlotPersonnel) ? 1 : (this.checklistMetadata.PercentComplete == 100) ? 0 : 2;
   };
-
   applyToChecklist = function (question, answer) {
     for (let feAnswer in this.tempChecklist[question]) {
       if (feAnswer != answer) {
         this.tempChecklist[question][feAnswer] = false;
       }
     }
-
     if (this.tempChecklist[question][answer]) {
       let fixedAnswer = answer;
       if (answer == 'NA') {
@@ -98,7 +94,8 @@ export class EmergencyDropInspectionComponent extends EffortlessComponentBase im
   }
 
   cancel(){
-    this.router.navigateByUrl('effortless/on-floor-slot'); 
+    let self = this;
+    this.router.navigateByUrl('effortless/on-floor-slot/' + self.sid); 
   }
 
 }

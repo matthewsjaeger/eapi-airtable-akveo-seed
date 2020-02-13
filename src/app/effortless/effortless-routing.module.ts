@@ -69,7 +69,7 @@ let effortlessChildren = [
     component: EmergencyDropInspectionComponent,
   },
   {
-    path: 'media-verification',
+    path: 'media-verification/:sid',
     component: MediaVerificationComponent,
   },
   {

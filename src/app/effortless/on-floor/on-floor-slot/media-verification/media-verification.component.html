@@ -6,81 +6,49 @@
         <nb-list>
             <nb-list-item>
                 <label>Reason for Media Verification:</label>
-                <input nbInput class="float-right" placeholder="How Much?">
+                <input nbInput class="float-right" placeholder="How Much?" [(ngModel)]="checklist.Verification">
             </nb-list-item>
             <nb-list-item>
                 <label>OS Payback Percentage:</label>
-                <nb-radio-group class="float-right" [(ngModel)]="payback">
-                    <nb-radio *ngFor="let payback of paybacks" 
-                    [value]="payback.value" 
-                    style="display: inline-block;">
-                        {{ payback.label }}
-                    </nb-radio>
-                </nb-radio-group>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.PaybackPercentage.Fail" (click)="applyToChecklist('PaybackPercentage','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.PaybackPercentage.Pass" (click)="applyToChecklist('PaybackPercentage','Pass')">Pass</nb-checkbox>
             </nb-list-item>
             <nb-list-item>
                 <label> OS Program Number: </label>
-                <nb-radio-group class="float-right" [(ngModel)]="program">
-                    <nb-radio *ngFor="let program of programs" 
-                    [value]="program.value" 
-                    style="display: inline-block;">
-                        {{ program.label }}
-                    </nb-radio>
-                </nb-radio-group>
-            </nb-list-item> 
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ProgramNumber.Fail" (click)="applyToChecklist('ProgramNumber','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ProgramNumber.Pass" (click)="applyToChecklist('ProgramNumber','Pass')">Pass</nb-checkbox>
+            </nb-list-item>
             <nb-list-item>
                 <label> OS Max Bet:</label>
-                <nb-radio-group class="float-right" [(ngModel)]="bet">
-                    <nb-radio *ngFor="let bet of bets" 
-                    [value]="bet.value" 
-                    style="display: inline-block;">
-                        {{ bet.label }}
-                    </nb-radio>
-                </nb-radio-group>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MaxBet.Fail" (click)="applyToChecklist('MaxBet','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MaxBet.Pass" (click)="applyToChecklist('MaxBet','Pass')">Pass</nb-checkbox>
             </nb-list-item>
             <nb-list-item>
                 <label> Check Max Credits/Lines:</label>
-                <nb-radio-group class="float-right" [(ngModel)]="credit">
-                    <nb-radio *ngFor="let credit of credits" 
-                    [value]="credit.value" 
-                    style="display: inline-block;">
-                        {{ credit.label }}
-                    </nb-radio>
-                </nb-radio-group>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MaxCredit.Fail" (click)="applyToChecklist('MaxCredit','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MaxCredit.Pass" (click)="applyToChecklist('MaxCredit','Pass')">Pass</nb-checkbox>
             </nb-list-item>
             <nb-list-item>
                 <label> Check TITO: </label>
-                <nb-radio-group class="float-right" [(ngModel)]="check">
-                    <nb-radio *ngFor="let check of checks" 
-                    [value]="check.value" 
-                    style="display: inline-block;">
-                        {{ check.label }}
-                    </nb-radio>
-                </nb-radio-group>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Check.Fail" (click)="applyToChecklist('Check','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Check.Pass" (click)="applyToChecklist('Check','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Check.NoTITO" (click)="applyToChecklist('Check','NoTITO')">No TITO</nb-checkbox>
             </nb-list-item>
             <nb-list-item>
                 <label> Verify Ticket Limit of $1199:</label>
-                <nb-radio-group class="float-right" [(ngModel)]="verify">
-                    <nb-radio *ngFor="let verify of verifys" 
-                    [value]="verify.value" 
-                    style="display: inline-block;">
-                        {{ verify.label }}
-                    </nb-radio>
-                </nb-radio-group>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TicketLimit.Fail" (click)="applyToChecklist('TicketLimit','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TicketLimit.Pass" (click)="applyToChecklist('TicketLimit','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TicketLimit.NoTITO" (click)="applyToChecklist('TicketLimit','NoTITO')">No TITO</nb-checkbox>
             </nb-list-item>
             <nb-list-item>
                 <label> Signature: </label>
-                <nb-radio-group class="float-right" [(ngModel)]="signature">
-                    <nb-radio *ngFor="let signature of signatures" 
-                    [value]="signature.value" 
-                    style="display: inline-block;">
-                        {{ signature.label }}
-                    </nb-radio>
-                </nb-radio-group>    
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Signature.Fail" (click)="applyToChecklist('Signature','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Signature.Pass" (click)="applyToChecklist('Signature','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Signature.NotTested" (click)="applyToChecklist('Signature','NotTested')">Not Tested</nb-checkbox>
             </nb-list-item>
             <nb-list-item>
                 <label>Record Verified Game Media Signature(s):</label>
-                <textarea nbInput fullWidth placeholder="Comments"></textarea>
+                <textarea nbInput fullWidth placeholder="Comments" [(ngModel)]="checklist.Comments"></textarea>
             </nb-list-item>
         </nb-list>
         <button nbButton class="float-right" ghost size="medium" (click)="finish()">Finish</button>

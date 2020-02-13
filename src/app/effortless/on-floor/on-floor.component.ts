@@ -56,6 +56,7 @@ export class OnFloorComponent extends EffortlessComponentBase implements OnInit 
     }
 
     selectSlot(slot){
+      console.error(slot.SlotId)
       this.router.navigateByUrl('effortless/on-floor-slot/' + slot.SlotId );
 
     }

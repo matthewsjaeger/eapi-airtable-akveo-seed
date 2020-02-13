@@ -14,42 +14,6 @@ export class StackerFullRecordComponent extends EffortlessComponentBase implemen
 
   checked = false;
 
-  bills = [
-    { value: 'N/A', label: 'N/A' },
-    { value: 'Pass', label: 'Pass' },
-    { value: 'Issue', label: 'Issue' },
-    { value: 'Fail', label: 'Fail' },
-  ];
-
-  tickets = [
-    { value: 'N/A', label: 'N/A' },
-    { value: 'Pass', label: 'Pass' },
-    { value: 'Issue', label: 'Issue' },
-    { value: 'Fail', label: 'Fail' },
-  ];
-
-  cashOuts = [
-    { value: 'N/A', label: 'N/A' },
-    { value: 'Pass', label: 'Pass' },
-    { value: 'Issue', label: 'Issue' },
-    { value: 'Fail', label: 'Fail' },
-  ];
-
-  deficiencies = [
-    { value: 'N/A', label: 'N/A' },
-    { value: 'Pass', label: 'Pass' },
-    { value: 'Issue', label: 'Issue' },
-    { value: 'Fail', label: 'Fail' },
-  ];
-
-  books = [
-    { value: 'N/A', label: 'N/A' },
-    { value: 'Pass', label: 'Pass' },
-    { value: 'Issue', label: 'Issue' },
-    { value: 'Fail', label: 'Fail' },
-  ];
-  
-
 
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, ) { 
