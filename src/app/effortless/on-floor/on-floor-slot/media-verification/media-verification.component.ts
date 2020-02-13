@@ -12,6 +12,46 @@ import { NbMenuService, NbListComponent } from '@nebular/theme';
 })
 export class MediaVerificationComponent extends EffortlessComponentBase implements OnInit {
 
+  paybacks = [
+    { value: 'Pass', label: 'Pass' },
+    { value: 'Fail', label: 'Fail' },
+  ];
+
+  programs = [
+    { value: 'Yes', label: 'Pass' },
+    { value: 'No', label: 'Fail' },
+  ];
+
+  bets = [
+    { value: 'Yes', label: 'Pass' },
+    { value: 'No', label: 'Fail' },
+  ];
+
+  credits = [
+    { value: 'Yes', label: 'Pass' },
+    { value: 'No', label: 'Fail' },
+  ];
+
+  checks = [
+    { value: 'Pass', label: 'Pass' },
+    { value: 'Fail', label: 'Fail' },
+    { value: 'No TITO', label: 'No TITO' },
+  ];
+
+  verifys = [
+    { value: 'Pass', label: 'Pass' },
+    { value: 'Fail', label: 'Fail' },
+    { value: 'No TITO', label: 'No TITO' },
+  ];
+
+  signatures = [
+    { value: 'Pass', label: 'Pass' },
+    { value: 'Fail', label: 'Fail' },
+    { value: 'Not Tested', label: 'Not Tested' },
+
+  ];
+  
+
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, ) { 
     super (gds, data, menuService)
 

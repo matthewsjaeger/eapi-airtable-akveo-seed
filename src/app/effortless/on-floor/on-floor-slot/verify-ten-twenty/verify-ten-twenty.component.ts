@@ -12,6 +12,16 @@ import { NbMenuService, NbListComponent } from '@nebular/theme';
 })
 export class VerifyTenTwentyComponent extends EffortlessComponentBase implements OnInit {
 
+  books = [
+    { value: 'Yes', label: 'Yes' },
+    { value: 'No', label: 'No' },
+  ];
+
+  seals = [
+    { value: 'Yes', label: 'Yes' },
+    { value: 'No', label: 'No' },
+  ];
+
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, ) { 
     super (gds, data, menuService)
 

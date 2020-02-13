@@ -36,23 +36,21 @@
             Record</button>
         <button nbButton fullWidth status="primary" style="margin-bottom: 5px;"
             (click)=preventativeMaintenance()>Preventative Maintenance</button>
-        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=scheduleDestruction()>Staker
-            Full Record</button>
-        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=scheduleReturn()>Schedule
+        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=scheduleReturn() disabled>Schedule
             Return</button>
-        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=scheduleSale()>Schedule
+        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=scheduleSale() disabled>Schedule
             Sale</button>
         <button nbButton fullWidth status="primary" style="margin-bottom: 5px;"
-            (click)=scheduleStorageToFloor()>Schedule Storage to Floor</button>
-        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=cancelScheduleEvents()>Cancel
+            (click)=scheduleStorageToFloor() disabled>Schedule Storage to Floor</button>
+        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=cancelScheduleEvents() disabled>Cancel
             Scheduled Events</button>
-        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=completeConversion()>Complete
+        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=completeConversion() disabled>Complete
             Conversion</button>
-        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=editConversion()>Edit
+        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=editConversion() disabled>Edit
             Conversion</button>
-        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=completeRemoval()>Complete
+        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=completeRemoval() disabled>Complete
             Removal</button>
-        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=editScheduleRemoval()>Edit
+        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=editScheduleRemoval() disabled>Edit
             Schedule Removal</button>
     </nb-card-body>
 </nb-card>
