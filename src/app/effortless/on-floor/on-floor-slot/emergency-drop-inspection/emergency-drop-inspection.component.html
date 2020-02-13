@@ -6,80 +6,65 @@
         <nb-list>
             <nb-list-item>
                 <label>Was the Gamming Commission notified by phone and email by <br> the approved personnel? (Surveillance notified) </label>
-                <nb-checkbox class="float-right" status="basic">No</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">Yes</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.NotifiedByPhone.No" (click)="applyToChecklist('NotifiedByPhone', 'No')">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.NotifiedByPhone.Yes" (click)="applyToChecklist('NotifiedByPhone', 'Yes')">Yes</nb-checkbox>
             </nb-list-item>
             <nb-list-item>
                 <label> Is the person initialing the Emergency Drop authorized? </label>
-                <nb-checkbox class="float-right" status="basic">No</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">Yes</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.EmergencyDropAuthorized.No" (click)="applyToChecklist('EmergencyDropAuthorized', 'No')">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.EmergencyDropAuthorized.Yes" (click)="applyToChecklist('EmergencyDropAuthorized', 'Yes')">Yes</nb-checkbox>
             </nb-list-item>
             <nb-list-item>
                 <label>GE Team Members Present:</label>
                 <nb-list>
                     <nb-list-item>
                         <label>Hardcount personnel:</label> 
-                        <nb-select class="float-right" placeholder="Select Showcase" [(selected)]="selectedItem">
-                            <nb-option value="">Option empty</nb-option>
-                            <nb-option value="0">Option 0</nb-option>
-                            <nb-option value="1">Option 1</nb-option>
-                            <nb-option value="2">Option 2</nb-option>
-                            <nb-option value="3">Option 3</nb-option>
-                            <nb-option value="4">Option 4</nb-option>
+                        <nb-select class="float-right" placeholder="Select Personnel" [(selected)]="checklist.HardcountPersonnel">
+                            <nb-option *ngFor="let person of people" [value]="person.FullName">{{person.FullName}}</nb-option>
                           </nb-select>
                     </nb-list-item>
                 </nb-list>
                 <nb-list>
                     <nb-list-item>
                        <label>Security personnel:</label>
-                       <nb-select class="float-right" placeholder="Select Showcase" [(selected)]="selectedItem">
-                        <nb-option value="">Option empty</nb-option>
-                        <nb-option value="0">Option 0</nb-option>
-                        <nb-option value="1">Option 1</nb-option>
-                        <nb-option value="2">Option 2</nb-option>
-                        <nb-option value="3">Option 3</nb-option>
-                        <nb-option value="4">Option 4</nb-option>
-                      </nb-select>
+                       <nb-select class="float-right" placeholder="Select Personnel" [(selected)]="checklist.SecurityPersonnel">
+                         <nb-option *ngFor="let person of people" [value]="person.FullName">{{person.FullName}}</nb-option>
+                       </nb-select>
                     </nb-list-item>
                 </nb-list>
                 <nb-list>
                     <nb-list-item>
                        <label>Slot personnel:</label> 
-                       <nb-select class="float-right" placeholder="Select Showcase" [(selected)]="selectedItem">
-                        <nb-option value="">Option empty</nb-option>
-                        <nb-option value="0">Option 0</nb-option>
-                        <nb-option value="1">Option 1</nb-option>
-                        <nb-option value="2">Option 2</nb-option>
-                        <nb-option value="3">Option 3</nb-option>
-                        <nb-option value="4">Option 4</nb-option>
-                      </nb-select>
+                       <nb-select class="float-right" placeholder="Select Personnel" [(selected)]="checklist.SlotPersonnel">
+                         <nb-option *ngFor="let person of people" [value]="person.FullName">{{person.FullName}}</nb-option>
+                       </nb-select>
                     </nb-list-item>
                 </nb-list>
             </nb-list-item>
             <nb-list-item>
                 <label>Was the Gamming Commission approved procedure followed?</label>
-                <nb-checkbox class="float-right" status="basic">No</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">Yes</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ApprovedProcedureFollowed.No" (click)="applyToChecklist('ApprovedProcedureFollowed', 'No')">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ApprovedProcedureFollowed.Yes" (click)="applyToChecklist('ApprovedProcedureFollowed', 'Yes')">Yes</nb-checkbox>
             </nb-list-item>
             <nb-list-item>
                 <label>Were the funds secured? (Appropriate team member present)</label>
-                <nb-checkbox class="float-right" status="basic">No</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">Yes</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.FundsSecured.No" (click)="applyToChecklist('FundsSecured', 'No')">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.FundsSecured.Yes" (click)="applyToChecklist('FundsSecured', 'Yes')">Yes</nb-checkbox>
             </nb-list-item>
             <nb-list-item>
                 <label> If immediately counted, were procedures followed properly? <br> (Team member present and cage transmittal utilized)</label>
-                <nb-checkbox class="float-right" status="basic">N/A</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">No</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">Yes</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ProceduresFollowed.NA" (click)="applyToChecklist('ProceduresFollowed', 'NA')">N/A</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ProceduresFollowed.No" (click)="applyToChecklist('ProceduresFollowed', 'No')">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ProceduresFollowed.Yes" (click)="applyToChecklist('ProceduresFollowed', 'Yes')">Yes</nb-checkbox>
             </nb-list-item>
             <nb-list-item>
                 <label> Was the Emergency Drop compliant?</label>
-                <nb-checkbox class="float-right" status="basic">Fail</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.EmergencyDropCompliant.Fail" (click)="applyToChecklist('EmergencyDropCompliant', 'Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.EmergencyDropCompliant.Pass" (click)="applyToChecklist('EmergencyDropCompliant', 'Pass')">Pass</nb-checkbox>
             </nb-list-item>
             <nb-list-item>
                 <label>Inspection comments:</label>
-                <textarea nbInput fullWidth placeholder="Comments"></textarea>
+                <textarea nbInput fullWidth placeholder="Comments" [(ngModel)]="checklist.Comments"></textarea>
             </nb-list-item>
         </nb-list>
         <button nbButton class="float-right" ghost size="medium" (click)="finish()">Finish</button>

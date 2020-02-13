@@ -22,7 +22,7 @@ import {
   NbMenuService,
   NbThemeService,
   NbTabsetModule,
-  NbCheckboxComponent,
+  NbCheckboxModule,
 } from '@nebular/theme';
 import { GDS } from './effortless/services/gds.service';
 import { DataEndpoint } from './effortless/services/eapi-data-services/data-endpoint/data-endpoint';
@@ -44,7 +44,7 @@ import { Router } from '@angular/router';
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbDatepickerModule.forRoot(),
-  
+    NbCheckboxModule,
     NbDialogModule.forRoot(),
     NbWindowModule.forRoot(),
     NbToastrModule.forRoot(),

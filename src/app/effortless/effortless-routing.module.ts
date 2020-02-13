@@ -65,11 +65,11 @@ let effortlessChildren = [
     component: OnFloorSlotComponent,
   },
   {
-    path: 'emergency-drop-inspection',
+    path: 'emergency-drop-inspection/:sid',
     component: EmergencyDropInspectionComponent,
   },
   {
-    path: 'media-verification',
+    path: 'media-verification/:sid',
     component: MediaVerificationComponent,
   },
   {
