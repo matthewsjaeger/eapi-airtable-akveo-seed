@@ -6,48 +6,43 @@
         <nb-list>
             <nb-list-item>
                 <label>Bill Test:</label>
-                <nb-radio-group class="float-right" [(ngModel)]="bill">
-                    <nb-radio *ngFor="let bill of bills" [value]="bill.value" style="display: inline-block;">
-                        {{ bill.label }}
-                    </nb-radio>
-                </nb-radio-group>
+                <nb-checkbox class="float-right" status="basic" (checkedChange)="toggle($event)">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Issues</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">N/A</nb-checkbox>
                 <input *ngIf="checked" nbInput fullWidth placeholder="How Much?">
                     
             </nb-list-item>
             <nb-list-item>
                 <label> Ticket Test: </label>
-                <nb-radio-group class="float-right" [(ngModel)]="ticket">
-                    <nb-radio *ngFor="let ticket of tickets" [value]="ticket.value" style="display: inline-block;">
-                        {{ ticket.label }}
-                    </nb-radio>
-                </nb-radio-group>
+                <nb-checkbox class="float-right" status="basic" (checkedChange)="toggle($event)">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Issues</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">N/A</nb-checkbox>
                 <input *ngIf="checked" nbInput fullWidth placeholder="How Much?">
             </nb-list-item>
             <nb-list-item>
                 <label> Cash Out and Verify Amount:</label>
-                <nb-radio-group class="float-right" [(ngModel)]="cashOut">
-                    <nb-radio *ngFor="let cashOut of cashOuts" [value]="cashOut.value" style="display: inline-block;">
-                        {{ cashOut.label }}
-                    </nb-radio>
-                </nb-radio-group>
+                <nb-checkbox class="float-right" status="basic" (checkedChange)="toggle($event)">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Issues</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">N/A</nb-checkbox>
                 <input *ngIf="checked" nbInput fullWidth placeholder="How Much?">
             </nb-list-item>
             <nb-list-item>
                 <label> Correct Any Deficiencies:</label>
-                <nb-radio-group class="float-right" [(ngModel)]="deficiencie">
-                    <nb-radio *ngFor="let deficiencie of deficiencies" [value]="deficiencie.value" style="display: inline-block;">
-                        {{ deficiencie.label }}
-                    </nb-radio>
-                </nb-radio-group>
+                <nb-checkbox class="float-right" status="basic" (checkedChange)="toggle($event)">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Issues</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">N/A</nb-checkbox>
                 <input *ngIf="checked" nbInput fullWidth placeholder="How Much?">
             </nb-list-item>
             <nb-list-item>
                 <label> MEAL Book Entry:</label>
-                <nb-radio-group class="float-right" [(ngModel)]="book">
-                    <nb-radio *ngFor="let book of books" [value]="book.value" style="display: inline-block;">
-                        {{ book.label }}
-                    </nb-radio>
-                </nb-radio-group>
+                <nb-checkbox class="float-right" status="basic" (checkedChange)="toggle($event)">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Issues</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">N/A</nb-checkbox>
                 <input *ngIf="checked" nbInput fullWidth placeholder="How Much?">
             </nb-list-item>
         </nb-list>

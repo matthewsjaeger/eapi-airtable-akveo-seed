@@ -2,32 +2,23 @@
     <nb-card-header>
         <h4 style="width: fit-content; margin: auto;">Emergency Drop Inspection</h4>
     </nb-card-header>
-    <nb-card-body>
+    <nb-card-body >
         <nb-list>
             <nb-list-item>
-                <label>Was the Gamming Commission notified by phone and email by <br> the approved personnel?
-                    (Surveillance notified) </label>
-                <nb-radio-group class="float-right" [(ngModel)]="email">
-                    <nb-radio *ngFor="let email of emails" 
-                    [value]="email.value" 
-                    style="display: inline-block;">
-                        {{ email.label }}
-                    </nb-radio>
-                </nb-radio-group>
+                <label>Was the Gamming Commission notified by phone and email by <br> the approved personnel? (Surveillance notified) </label>
+                <nb-checkbox class="float-right" status="basic">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Yes</nb-checkbox>
             </nb-list-item>
             <nb-list-item>
                 <label> Is the person initialing the Emergency Drop authorized? </label>
-                <nb-radio-group class="float-right" [(ngModel)]="authorized">
-                    <nb-radio *ngFor="let authorized of authorizeds" [value]="authorized.value" style="display: inline-block;">
-                        {{ authorized.label }}
-                    </nb-radio>
-                </nb-radio-group>
+                <nb-checkbox class="float-right" status="basic">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Yes</nb-checkbox>
             </nb-list-item>
             <nb-list-item>
                 <label>GE Team Members Present:</label>
                 <nb-list>
                     <nb-list-item>
-                        <label>Hardcount personnel:</label>
+                        <label>Hardcount personnel:</label> 
                         <nb-select class="float-right" placeholder="Select Showcase" [(selected)]="selectedItem">
                             <nb-option value="">Option empty</nb-option>
                             <nb-option value="0">Option 0</nb-option>
@@ -35,72 +26,56 @@
                             <nb-option value="2">Option 2</nb-option>
                             <nb-option value="3">Option 3</nb-option>
                             <nb-option value="4">Option 4</nb-option>
-                        </nb-select>
+                          </nb-select>
                     </nb-list-item>
                 </nb-list>
                 <nb-list>
                     <nb-list-item>
-                        <label>Security personnel:</label>
-                        <nb-select class="float-right" placeholder="Select Showcase" [(selected)]="selectedItem">
-                            <nb-option value="">Option empty</nb-option>
-                            <nb-option value="0">Option 0</nb-option>
-                            <nb-option value="1">Option 1</nb-option>
-                            <nb-option value="2">Option 2</nb-option>
-                            <nb-option value="3">Option 3</nb-option>
-                            <nb-option value="4">Option 4</nb-option>
-                        </nb-select>
+                       <label>Security personnel:</label>
+                       <nb-select class="float-right" placeholder="Select Showcase" [(selected)]="selectedItem">
+                        <nb-option value="">Option empty</nb-option>
+                        <nb-option value="0">Option 0</nb-option>
+                        <nb-option value="1">Option 1</nb-option>
+                        <nb-option value="2">Option 2</nb-option>
+                        <nb-option value="3">Option 3</nb-option>
+                        <nb-option value="4">Option 4</nb-option>
+                      </nb-select>
                     </nb-list-item>
                 </nb-list>
                 <nb-list>
                     <nb-list-item>
-                        <label>Slot personnel:</label>
-                        <nb-select class="float-right" placeholder="Select Showcase" [(selected)]="selectedItem">
-                            <nb-option value="">Option empty</nb-option>
-                            <nb-option value="0">Option 0</nb-option>
-                            <nb-option value="1">Option 1</nb-option>
-                            <nb-option value="2">Option 2</nb-option>
-                            <nb-option value="3">Option 3</nb-option>
-                            <nb-option value="4">Option 4</nb-option>
-                        </nb-select>
+                       <label>Slot personnel:</label> 
+                       <nb-select class="float-right" placeholder="Select Showcase" [(selected)]="selectedItem">
+                        <nb-option value="">Option empty</nb-option>
+                        <nb-option value="0">Option 0</nb-option>
+                        <nb-option value="1">Option 1</nb-option>
+                        <nb-option value="2">Option 2</nb-option>
+                        <nb-option value="3">Option 3</nb-option>
+                        <nb-option value="4">Option 4</nb-option>
+                      </nb-select>
                     </nb-list-item>
                 </nb-list>
             </nb-list-item>
             <nb-list-item>
                 <label>Was the Gamming Commission approved procedure followed?</label>
-                <nb-radio-group class="float-right" [(ngModel)]="procedure">
-                    <nb-radio *ngFor="let procedure of procedures" [value]="procedure.value" style="display: inline-block;">
-                        {{ procedure.label }}
-                    </nb-radio>
-                </nb-radio-group>
+                <nb-checkbox class="float-right" status="basic">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Yes</nb-checkbox>
             </nb-list-item>
             <nb-list-item>
                 <label>Were the funds secured? (Appropriate team member present)</label>
-                <nb-radio-group class="float-right" [(ngModel)]="secure">
-                    <nb-radio *ngFor="let secure of secures" [value]="secure.value" style="display: inline-block;">
-                        {{ secure.label }}
-                    </nb-radio>
-                </nb-radio-group>
+                <nb-checkbox class="float-right" status="basic">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Yes</nb-checkbox>
             </nb-list-item>
             <nb-list-item>
-                <label> If immediately counted, were procedures followed properly? <br> (Team member present and cage
-                    transmittal utilized)</label>
-                <nb-radio-group class="float-right" [(ngModel)]="followedProcedure">
-                    <nb-radio *ngFor="let followedProcedure of followedProcedures" [value]="followedProcedure.value"
-                        style="display: inline-block;">
-                        {{ followedProcedure.label }}
-                    </nb-radio>
-                </nb-radio-group>
+                <label> If immediately counted, were procedures followed properly? <br> (Team member present and cage transmittal utilized)</label>
+                <nb-checkbox class="float-right" status="basic">N/A</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Yes</nb-checkbox>
             </nb-list-item>
             <nb-list-item>
                 <label> Was the Emergency Drop compliant?</label>
-                <nb-radio-group class="float-right" 
-                [(ngModel)]="compliant">
-                    <nb-radio *ngFor="let compliant of compliants"
-                     [value]="compliant.value"
-                      style="display: inline-block;">
-                        {{ compliant.label }}
-                    </nb-radio>
-                </nb-radio-group>
+                <nb-checkbox class="float-right" status="basic">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic">Pass</nb-checkbox>
             </nb-list-item>
             <nb-list-item>
                 <label>Inspection comments:</label>

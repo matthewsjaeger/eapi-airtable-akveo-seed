@@ -38,7 +38,7 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
   }
 
   goBack(){
-    this.router.navigateByUrl('effortless/on-floor')
+    this.router.navigateByUrl('')
   }
 
   emergencyDropInspection(){

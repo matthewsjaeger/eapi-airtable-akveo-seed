@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { EffortlessRoutingModule } from './effortless-routing.module';
-import { NbMenuModule, NbCardModule, NbButtonModule, NbActionsModule, NbSelectModule, NbInputModule, NbTabsetModule, NbIconModule, NbSpinnerModule, NbToggleModule, NbListModule, NbDialogModule, NbLayoutModule, NbCheckboxModule, NbRadioModule } from '@nebular/theme';
+import { NbMenuModule, NbCardModule, NbButtonModule, NbActionsModule, NbSelectModule, NbInputModule, NbTabsetModule, NbIconModule, NbSpinnerModule, NbToggleModule, NbListModule, NbDialogModule, NbLayoutModule, NbCheckboxComponent, NbCheckboxModule } from '@nebular/theme';
 import { ThemeModule } from '../@theme/theme.module';
 import { EffortlessComponent } from './effortless.component';
 import { FormsModule } from '@angular/forms';
@@ -42,7 +42,6 @@ let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComp
     NbIconModule,
     NbToggleModule,
     NbListModule,
-    NbRadioModule,
     NbSpinnerModule,
     ThemeModule,
     NbMenuModule,
