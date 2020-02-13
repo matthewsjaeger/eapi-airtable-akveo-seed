@@ -914,6 +914,22 @@ function generateBJFeltLogActor() {
             return deferred.promise;
         }
         
+        smqBJFeltLog.GAINSUserGetAllPeople = function() {
+            smqBJFeltLog.GAINSUserGetAllPeople('{}');
+        }
+
+        smqBJFeltLog.GAINSUserGetAllPeople = function(payload) {
+            payload = smqBJFeltLog.stringifyValue(payload);
+            var id = smqBJFeltLog.createUUID();
+            var deferred = smqBJFeltLog.waitingReply[id] = smqBJFeltLog.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Get All People - ');
+            smqBJFeltLog.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.getallpeople', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqBJFeltLog.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
             // Can also say what 'Guest' can say.
             
         

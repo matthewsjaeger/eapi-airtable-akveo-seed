@@ -708,6 +708,13 @@ function generateSlotRepairAdminActor() {
                     }
                 }
             
+                if (smqSlotRepairAdmin.onGAINSUserGetAllPeople) {
+                    if (msg.headers && (msg.headers.destination.includes('gainscoordinator.assets.gainsuser.getallpeople'))) {
+                        var rpayload = smqSlotRepairAdmin.onGAINSUserGetAllPeople(msg.body, msg);
+                        if (rpayload) smqSlotRepairAdmin.sendReply(rpayload, msg);
+                    }
+                }
+            
                 if (smqSlotRepairAdmin.onATRGetSharedInstalledComponents) {
                     if (msg.headers && (msg.headers.destination.includes('gainscoordinator.atr.atr.getsharedinstalledcomponents'))) {
                         var rpayload = smqSlotRepairAdmin.onATRGetSharedInstalledComponents(msg.body, msg);
@@ -3437,6 +3444,22 @@ function generateSlotRepairAdminActor() {
             var deferred = smqSlotRepairAdmin.waitingReply[id] = smqSlotRepairAdmin.defer();
             if (smqGAINSUser.showPingPongs) console.log('Remove Slot From Project - ');
             smqSlotRepairAdmin.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.removeslotfromproject', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqSlotRepairAdmin.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqSlotRepairAdmin.GAINSUserGetAllPeople = function() {
+            smqSlotRepairAdmin.GAINSUserGetAllPeople('{}');
+        }
+
+        smqSlotRepairAdmin.GAINSUserGetAllPeople = function(payload) {
+            payload = smqSlotRepairAdmin.stringifyValue(payload);
+            var id = smqSlotRepairAdmin.createUUID();
+            var deferred = smqSlotRepairAdmin.waitingReply[id] = smqSlotRepairAdmin.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Get All People - ');
+            smqSlotRepairAdmin.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.getallpeople', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
             
             smqSlotRepairAdmin.waitFor(id);
             

@@ -152,7 +152,9 @@ export class GDS {
     gds.smqSlotRepairAdmin.connect(gds.vhost, gds.smqUsername, gds.smqPassword, function () { }, function () { });
     gds.smqATR = generateATRActor();
     gds.smqATR.rabbitEndpoint = gds.rabbitEndpoint;
-    gds.smqATR.connect(gds.vhost, gds.smqUsername, gds.smqPassword, function () { }, function () { });
+    gds.smqATR.connect(gds.vhost, gds.smqUsername, gds.smqPassword, function () { }, function () {
+      gds.readiness$.next({});
+    });
 
     gds.smqUser.createPayload = gds.smqUser.createPayload || function () {
       return { "AccessToken": gds.smqUser.accessToken || gds.accessToken };

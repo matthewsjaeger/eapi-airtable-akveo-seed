@@ -712,6 +712,13 @@ function generateAdministratorsActor() {
                     }
                 }
             
+                if (smqAdministrators.onGAINSUserGetAllPeople) {
+                    if (msg.headers && (msg.headers.destination.includes('gainscoordinator.assets.gainsuser.getallpeople'))) {
+                        var rpayload = smqAdministrators.onGAINSUserGetAllPeople(msg.body, msg);
+                        if (rpayload) smqAdministrators.sendReply(rpayload, msg);
+                    }
+                }
+            
                 if (smqAdministrators.onATRGetSharedInstalledComponents) {
                     if (msg.headers && (msg.headers.destination.includes('gainscoordinator.atr.atr.getsharedinstalledcomponents'))) {
                         var rpayload = smqAdministrators.onATRGetSharedInstalledComponents(msg.body, msg);
@@ -3551,6 +3558,22 @@ function generateAdministratorsActor() {
             var deferred = smqAdministrators.waitingReply[id] = smqAdministrators.defer();
             if (smqGAINSUser.showPingPongs) console.log('Remove Slot From Project - ');
             smqAdministrators.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.removeslotfromproject', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqAdministrators.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqAdministrators.GAINSUserGetAllPeople = function() {
+            smqAdministrators.GAINSUserGetAllPeople('{}');
+        }
+
+        smqAdministrators.GAINSUserGetAllPeople = function(payload) {
+            payload = smqAdministrators.stringifyValue(payload);
+            var id = smqAdministrators.createUUID();
+            var deferred = smqAdministrators.waitingReply[id] = smqAdministrators.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Get All People - ');
+            smqAdministrators.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.getallpeople', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
             
             smqAdministrators.waitFor(id);
             
