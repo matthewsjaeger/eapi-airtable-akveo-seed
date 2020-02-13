@@ -73,11 +73,11 @@ let effortlessChildren = [
     component: MediaVerificationComponent,
   },
   {
-    path: 'stacker-full-record',
+    path: 'stacker-full-record/:sid',
     component: StackerFullRecordComponent,
   },
   {
-    path: 'verify-ten-twenty',
+    path: 'verify-ten-twenty/:sid',
     component: VerifyTenTwentyComponent,
   },
   {

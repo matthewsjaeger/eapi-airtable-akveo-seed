@@ -46,7 +46,7 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
   }
 
   jpVerifyTenTwenty(){
-    this.router.navigateByUrl('effortless/verify-ten-twenty')
+    this.router.navigateByUrl('effortless/verify-ten-twenty/' + this.sid)
   }
 
   mediaVerification(){
@@ -54,7 +54,7 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
   }
 
   stackerFullRecord(){
-    this.router.navigateByUrl('effortless/stacker-full-record')
+    this.router.navigateByUrl('effortless/stacker-full-record/' + this.sid)
   }
 
   preventativeMaintenance(){

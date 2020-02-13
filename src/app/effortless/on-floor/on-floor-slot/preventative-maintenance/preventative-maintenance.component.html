@@ -8,50 +8,50 @@
             
             <nb-list-item>
                 <label>Vacuum Machine:</label>
-                <nb-checkbox class="float-right" status="basic">N/A</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">No</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">Yes</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Vaccum.NA" (click)="applyToChecklist('Vaccum', 'N/A')">N/A</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Vaccum.No" (click)="applyToChecklist('Vaccum', 'N/A')">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Vaccum.Yes" (click)="applyToChecklist('Vaccum', 'N/A')">Yes</nb-checkbox>
             </nb-list-item>
             <nb-list-item>
                 <label> Blow Out Logic: </label>
-                <nb-checkbox class="float-right" status="basic">N/A</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">No</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">Yes</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.BlowOut.NA" (click)="applyToChecklist('BlowOut', 'N/A')">N/A</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.BlowOut.No" (click)="applyToChecklist('BlowOut', 'No')">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.BlowOut.Yes" (click)="applyToChecklist('BlowOut', 'Yes')">Yes</nb-checkbox>
             </nb-list-item>
             <nb-list-item>
                 <label> Calibrate Touch Screen:</label>
-                <nb-checkbox class="float-right" status="basic">N/A</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">No</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">Yes</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TouchScreen.NA" (click)="applyToChecklist('TouchScreen', 'N/A')">N/A</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TouchScreen.No" (click)="applyToChecklist('TouchScreen', 'No')">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TouchScreen.Yes" (click)="applyToChecklist('TouchScreen', 'Yes')">Yes</nb-checkbox>
             </nb-list-item>
             <nb-list-item>
                 <label> Calibrate / test Button Panel:</label>
-                <nb-checkbox class="float-right" status="basic">N/A</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">No</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">Yes</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TestButton.NA" (click)="applyToChecklist('TestButton', 'N/A')">N/A</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TestButton.No" (click)="applyToChecklist('TestButton', 'No')">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TestButton.Yes" (click)="applyToChecklist('TestButton', 'Yes')">Yes</nb-checkbox>
             </nb-list-item>
             <nb-list-item><b>Test</b></nb-list-item>
             <nb-list-item>
                 <label> DBA: </label>
-                <nb-checkbox class="float-right" status="basic">N/A</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">No</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">Yes</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Dba.NA" (click)="applyToChecklist('Dba', 'N/A')">N/A</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Dba.No" (click)="applyToChecklist('Dba', 'No')">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Dba.Yes" (click)="applyToChecklist('Dba', 'Yes')">Yes</nb-checkbox>
             </nb-list-item>
             <nb-list-item>
                 <label> Printer:</label>
-                <nb-checkbox class="float-right" status="basic">N/A</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">No</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">Yes</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Printer.NA" (click)="applyToChecklist('Printer', 'N/A')">N/A</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Printer.No" (click)="applyToChecklist('Printer', 'No')">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Printer.Yes" (click)="applyToChecklist('Printer', 'Yes')">Yes</nb-checkbox>
             </nb-list-item>
             <nb-list-item>
                 <label> Door Switches: </label>
-                <nb-checkbox class="float-right" status="basic">N/A</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">No</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">Yes</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Door.NA" (click)="applyToChecklist('Door', 'N/A')">N/A</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Door.No" (click)="applyToChecklist('Door', 'No')">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Door.Yes" (click)="applyToChecklist('Door', 'Yes')">Yes</nb-checkbox>
             </nb-list-item>
             <nb-list-item>
                 <label>Comments:</label>
-                <textarea nbInput fullWidth placeholder="Comments"></textarea>
+                <textarea nbInput fullWidth placeholder="Comments" [(ngModel)]="checklist.Comments"></textarea>
             </nb-list-item>
         </nb-list>
         <button nbButton class="float-right" ghost size="medium" (click)="finish()">Finish</button>
