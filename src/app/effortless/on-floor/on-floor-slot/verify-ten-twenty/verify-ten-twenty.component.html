@@ -10,13 +10,23 @@
             </nb-list-item>
             <nb-list-item>
                 <label>MEAL Book Entry</label>
-                <nb-checkbox class="float-right" status="basic">No</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">Yes</nb-checkbox>
+                <nb-radio-group class="float-right" [(ngModel)]="book">
+                    <nb-radio *ngFor="let book of books" 
+                    [value]="book.value" 
+                    style="display: inline-block;">
+                        {{ book.label }}
+                    </nb-radio>
+                </nb-radio-group>
             </nb-list-item>
             <nb-list-item>
                 <label> Are All Seal(s) Intact? </label>
-                <nb-checkbox class="float-right" status="basic">No</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">Yes</nb-checkbox>
+                <nb-radio-group class="float-right" [(ngModel)]="seal">
+                    <nb-radio *ngFor="let seal of seals" 
+                    [value]="seal.value" 
+                    style="display: inline-block;">
+                        {{ seal.label }}
+                    </nb-radio>
+                </nb-radio-group>
             </nb-list-item>
 
 

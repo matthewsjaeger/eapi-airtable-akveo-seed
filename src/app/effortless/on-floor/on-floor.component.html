@@ -12,7 +12,7 @@
         <nb-list-item *ngIf="searchTerm.trim().length < 1" style="color: red;" >
           No search term entered
         </nb-list-item>
-        <nb-list-item *ngIf="noResults">
+        <nb-list-item *ngIf="noResults" style="color: red;">
           No stored slots serial number contain: {{searchTerm}}
         </nb-list-item>
       </nb-list>

@@ -8,46 +8,74 @@
             
             <nb-list-item>
                 <label>Vacuum Machine:</label>
-                <nb-checkbox class="float-right" status="basic">N/A</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">No</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">Yes</nb-checkbox>
+                <nb-radio-group class="float-right" [(ngModel)]="vaccum">
+                    <nb-radio *ngFor="let vaccum of vaccums" 
+                    [value]="vaccum.value" 
+                    style="display: inline-block;">
+                        {{ vaccum.label }}
+                    </nb-radio>
+                </nb-radio-group>
             </nb-list-item>
             <nb-list-item>
                 <label> Blow Out Logic: </label>
-                <nb-checkbox class="float-right" status="basic">N/A</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">No</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">Yes</nb-checkbox>
+                <nb-radio-group class="float-right" [(ngModel)]="blowOut">
+                    <nb-radio *ngFor="let blowOut of blowOuts" 
+                    [value]="blowOut.value" 
+                    style="display: inline-block;">
+                        {{ blowOut.label }}
+                    </nb-radio>
+                </nb-radio-group>
             </nb-list-item>
             <nb-list-item>
                 <label> Calibrate Touch Screen:</label>
-                <nb-checkbox class="float-right" status="basic">N/A</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">No</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">Yes</nb-checkbox>
+                <nb-radio-group class="float-right" [(ngModel)]="touchScreen">
+                    <nb-radio *ngFor="let touchScreen of touchScreens" 
+                    [value]="touchScreen.value" 
+                    style="display: inline-block;">
+                        {{ touchScreen.label }}
+                    </nb-radio>
+                </nb-radio-group>
             </nb-list-item>
             <nb-list-item>
                 <label> Calibrate / test Button Panel:</label>
-                <nb-checkbox class="float-right" status="basic">N/A</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">No</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">Yes</nb-checkbox>
+                <nb-radio-group class="float-right" [(ngModel)]="testButton">
+                    <nb-radio *ngFor="let testButton of testButtons" 
+                    [value]="testButton.value" 
+                    style="display: inline-block;">
+                        {{ testButton.label }}
+                    </nb-radio>
+                </nb-radio-group>
             </nb-list-item>
             <nb-list-item><b>Test</b></nb-list-item>
             <nb-list-item>
                 <label> DBA: </label>
-                <nb-checkbox class="float-right" status="basic">N/A</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">No</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">Yes</nb-checkbox>
+                <nb-radio-group class="float-right" [(ngModel)]="dba">
+                    <nb-radio *ngFor="let dba of dbas" 
+                    [value]="dba.value" 
+                    style="display: inline-block;">
+                        {{ dba.label }}
+                    </nb-radio>
+                </nb-radio-group>
             </nb-list-item>
             <nb-list-item>
                 <label> Printer:</label>
-                <nb-checkbox class="float-right" status="basic">N/A</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">No</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">Yes</nb-checkbox>
+                <nb-radio-group class="float-right" [(ngModel)]="printer">
+                    <nb-radio *ngFor="let printer of printers" 
+                    [value]="printer.value" 
+                    style="display: inline-block;">
+                        {{ printer.label }}
+                    </nb-radio>
+                </nb-radio-group>
             </nb-list-item>
             <nb-list-item>
                 <label> Door Switches: </label>
-                <nb-checkbox class="float-right" status="basic">N/A</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">No</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic">Yes</nb-checkbox>
+                <nb-radio-group class="float-right" [(ngModel)]="door">
+                    <nb-radio *ngFor="let door of doors" 
+                    [value]="door.value" 
+                    style="display: inline-block;">
+                        {{ door.label }}
+                    </nb-radio>
+                </nb-radio-group>
             </nb-list-item>
             <nb-list-item>
                 <label>Comments:</label>
