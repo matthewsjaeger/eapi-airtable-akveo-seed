@@ -39,8 +39,8 @@ export class MediaVerificationComponent extends EffortlessComponentBase implemen
   }
 
   updatePercentComplete = function () {
-    this.checklistMetadata.PercentComplete = 0;
-    if (this.checklist.Verification) this.checklistMetadata.PercentComplete += 10;
+    this.checklistMetadata.PercentComplete = 20;
+    if (this.checklist.Verification) this.checklistMetadata.PercentComplete += 20;
     if (this.checklist.PaybackPercentage) this.checklistMetadata.PercentComplete += 10;
     if (this.checklist.ProgramNumber) this.checklistMetadata.PercentComplete += 10;
     if (this.checklist.MaxBet) this.checklistMetadata.PercentComplete += 10;
@@ -50,8 +50,8 @@ export class MediaVerificationComponent extends EffortlessComponentBase implemen
     if (this.checklist.Signature) this.checklistMetadata.PercentComplete += 10;
     if (this.checklist.Comments) this.checklistMetadata.PercentComplete += 10;
     this.checklistMetadata.Status = (this.checklistMetadata.PercentComplete == 100) ? 4 : 1;
-    this.checklistMetadata.ComplianceStatus = (!this.checklist.HardcountPersonnel || !this.checklist.SecurityPersonnel
-      || !this.checklist.SlotPersonnel) ? 1 : (this.checklistMetadata.PercentComplete == 100) ? 0 : 2;
+    this.checklistMetadata.ComplianceStatus = (!this.checklist.Verification || !this.checklist.Comments) ? 1 : 
+    (this.checklistMetadata.PercentComplete == 100) ? 0 : 2;
   };
 
   applyToChecklist = function (question, answer) {
@@ -78,10 +78,9 @@ export class MediaVerificationComponent extends EffortlessComponentBase implemen
 
   finish() {
     let self = this;
+    this.updatePercentComplete();
     let payload = this.gds.createPayload();
-    payload.Checklist = this.checklist;
-    payload.ChecklistMetadata = this.checklistMetadata;
-    payload.Slot = { SlotId: this.sid };
+    payload.SlotView = { SlotId: this.sid, Checklist: this.checklist, ChecklistMetadata: this.checklistMetadata };
     this.gds.smqGamingAgent.MediaVerification(payload).then(resp => {
       if (!resp.ErrorMessage) {
         this.router.navigateByUrl('effortless/on-floor-slot/' + self.sid);

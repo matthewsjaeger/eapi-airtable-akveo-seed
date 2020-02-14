@@ -57,7 +57,7 @@ let effortlessChildren = [
     component: StorageSlotComponent,
   },
   {
-    path: 'on-floor',
+    path: 'on-floor/:sid',
     component: OnFloorComponent
   },
   {

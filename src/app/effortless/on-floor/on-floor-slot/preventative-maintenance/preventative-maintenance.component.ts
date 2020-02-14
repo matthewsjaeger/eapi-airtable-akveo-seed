@@ -86,4 +86,10 @@ export class PreventativeMaintenanceComponent extends EffortlessComponentBase im
     });
   }
 
+  cancel(){
+    let self = this;
+    this.router.navigateByUrl('effortless/on-floor-slot/' + self.sid); 
+  }
+
+
 }

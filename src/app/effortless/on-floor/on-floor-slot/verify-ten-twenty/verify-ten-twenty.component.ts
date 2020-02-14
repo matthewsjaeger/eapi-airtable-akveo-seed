@@ -50,7 +50,7 @@ export class VerifyTenTwentyComponent extends EffortlessComponentBase implements
 
   updatePercentComplete = function () {
     this.checklistMetadata.PercentComplete = 40;
-    if (this.checklist.JackpotAmount) this.checklistMetadata.PercentComplete += 10;
+    if (this.checklist.JackpotAmount) this.checklistMetadata.PercentComplete += 40;
     if (this.checklist.Book) this.checklistMetadata.PercentComplete += 10;
     if (this.checklist.SealIntact) this.checklistMetadata.PercentComplete += 10;
     if (this.checklist.RepairRepresentative) this.checklistMetadata.PercentComplete += 10;
@@ -58,8 +58,8 @@ export class VerifyTenTwentyComponent extends EffortlessComponentBase implements
     if (this.checklist.OperationsManager) this.checklistMetadata.PercentComplete += 10;
   
     this.checklistMetadata.Status = (this.checklistMetadata.PercentComplete == 100) ? 4 : 1;
-    this.checklistMetadata.ComplianceStatus = (!this.checklist.HardcountPersonnel || !this.checklist.SecurityPersonnel
-      || !this.checklist.SlotPersonnel) ? 1 : (this.checklistMetadata.PercentComplete == 100) ? 0 : 2;
+    this.checklistMetadata.ComplianceStatus = (!this.checklist.SecurityRepresentative
+      || !this.checklist.OperationsManager) ? 1 : (this.checklistMetadata.PercentComplete == 100) ? 0 : 2;
   };
 
   applyToChecklist = function (question, answer) {

@@ -34,25 +34,18 @@
             Verification</button>
         <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=stackerFullRecord()>Stacker Full
             Record</button>
-        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;"
-            (click)=preventativeMaintenance()>Preventative Maintenance</button>
-        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=scheduleDestruction()>Staker
-            Full Record</button>
-        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=scheduleReturn()>Schedule
-            Return</button>
-        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=scheduleSale()>Schedule
-            Sale</button>
-        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;"
-            (click)=scheduleStorageToFloor()>Schedule Storage to Floor</button>
-        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=cancelScheduleEvents()>Cancel
-            Scheduled Events</button>
-        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=completeConversion()>Complete
-            Conversion</button>
-        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=editConversion()>Edit
-            Conversion</button>
-        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=completeRemoval()>Complete
-            Removal</button>
-        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=editScheduleRemoval()>Edit
-            Schedule Removal</button>
+        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=preventativeMaintenance()>Preventative
+             Maintenance</button>
+        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=completeConversionLSC() disabled>Complete Conversion LSC</button>
+        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=completeConversionMLC() disabled>Complete Conversion MLC</button>
+        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=completeMoveToStorage() disabled>Complete Move To Storage</button>
+        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=editConversion() disabled>Edit Conversion</button>
+        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=editSealGC() disabled>edit Seal GC</button>
+        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=editSeals() disabled>Edit Seals</button>
+        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=forensicFieldChecklist() disabled>Forensic Field Checklist</button>
+        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=gcInspection() disabled>GC Inspection</button>
+        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=jpVerify100K() disabled>JP Verify $100K & Above</button>
+        
+
     </nb-card-body>
 </nb-card>
