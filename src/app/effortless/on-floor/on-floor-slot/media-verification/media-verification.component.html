@@ -4,7 +4,7 @@
     </nb-card-header>
     <nb-card-body>
         <nb-list>
-            <nb-list-item>
+            <nb-list-item class="required">
                 <label>Reason for Media Verification:</label>
                 <input nbInput class="float-right" placeholder="How Much?" [(ngModel)]="checklist.Verification">
             </nb-list-item>
@@ -46,7 +46,7 @@
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Signature.Pass" (change)="applyToChecklist('Signature','Pass')">Pass</nb-checkbox>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Signature.NotTested" (change)="applyToChecklist('Signature','NotTested')">Not Tested</nb-checkbox>
             </nb-list-item>
-            <nb-list-item>
+            <nb-list-item class="required">
                 <label>Record Verified Game Media Signature(s):</label>
                 <textarea nbInput fullWidth placeholder="Comments" [(ngModel)]="checklist.Comments"></textarea>
             </nb-list-item>

@@ -28,7 +28,7 @@
                 </nb-select>
             </nb-list-item>
 
-            <nb-list-item>
+            <nb-list-item class="required">
                 <label>Record Security Representative:</label>
                 <nb-select class="float-right" placeholder="Select Showcase" [(selected)]="checklist.SecurityRepresentative">
                     <nb-option *ngFor="let person of people" [value]="person.FullName"> {{person.FullName}} </nb-option>
@@ -36,7 +36,7 @@
                 </nb-select>
             </nb-list-item>
 
-            <nb-list-item>
+            <nb-list-item class="required">
                 <label>Record Slot Operations Manager:</label>
                 <nb-select class="float-right" placeholder="Select Showcase" [(selected)]="checklist.OperationsManager">
                     <nb-option  *ngFor="let person of people" [value]="person.FullName">{{person.FullName}}</nb-option>
