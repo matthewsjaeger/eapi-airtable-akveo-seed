@@ -36,7 +36,6 @@ export class NbLogoutComponent implements OnInit {
   logout(strategy: string): void {
     let self = this;
     this.service.logout(strategy).subscribe((result: NbAuthResult) => {      
-      self.themeService.changeTheme('cosmic');
       const redirect = result.getRedirect();
       if (redirect) {
         setTimeout(() => {
