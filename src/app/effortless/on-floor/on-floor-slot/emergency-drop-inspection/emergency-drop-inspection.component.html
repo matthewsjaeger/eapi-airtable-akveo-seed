@@ -17,7 +17,7 @@
             <nb-list-item>
                 <label>GE Team Members Present:</label>
                 <nb-list>
-                    <nb-list-item>
+                    <nb-list-item class="required">
                         <label>Hardcount personnel:</label> 
                         <nb-select class="float-right" placeholder="Select Personnel" [(selected)]="checklist.HardcountPersonnel">
                             <nb-option *ngFor="let person of people" [value]="person.FullName">{{person.FullName}}</nb-option>
@@ -25,7 +25,7 @@
                     </nb-list-item>
                 </nb-list>
                 <nb-list>
-                    <nb-list-item>
+                    <nb-list-item class="required">
                        <label>Security personnel:</label>
                        <nb-select class="float-right" placeholder="Select Personnel" [(selected)]="checklist.SecurityPersonnel">
                          <nb-option *ngFor="let person of people" [value]="person.FullName">{{person.FullName}}</nb-option>
@@ -33,7 +33,7 @@
                     </nb-list-item>
                 </nb-list>
                 <nb-list>
-                    <nb-list-item>
+                    <nb-list-item class="required">
                        <label>Slot personnel:</label> 
                        <nb-select class="float-right" placeholder="Select Personnel" [(selected)]="checklist.SlotPersonnel">
                          <nb-option *ngFor="let person of people" [value]="person.FullName">{{person.FullName}}</nb-option>
