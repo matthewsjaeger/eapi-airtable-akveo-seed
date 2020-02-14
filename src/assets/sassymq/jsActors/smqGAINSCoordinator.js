@@ -2709,7 +2709,6 @@ function generateGAINSCoordinatorActor() {
             payload = smqGAINSCoordinator.stringifyValue(payload);
             var id = smqGAINSCoordinator.createUUID();
             var deferred = smqGAINSCoordinator.waitingReply[id] = smqGAINSCoordinator.defer();
-            if (smqGuest.showPingPongs) console.log('Ping - Guest establishes a connection with the coordinator');
             smqGAINSCoordinator.client.send('/exchange/guestmic/gainscoordinator.account.guest.ping', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
             
             smqGAINSCoordinator.waitFor(id);
@@ -2725,7 +2724,6 @@ function generateGAINSCoordinatorActor() {
             payload = smqGAINSCoordinator.stringifyValue(payload);
             var id = smqGAINSCoordinator.createUUID();
             var deferred = smqGAINSCoordinator.waitingReply[id] = smqGAINSCoordinator.defer();
-            if (smqGuest.showPingPongs) console.log('Login - A Previously Unauthenticated Guest Logs in. If approved, their GAINSUser object is returned.');
             smqGAINSCoordinator.client.send('/exchange/guestmic/gainscoordinator.account.guest.login', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
             
             smqGAINSCoordinator.waitFor(id);
@@ -2737,4 +2735,3 @@ function generateGAINSCoordinatorActor() {
     return smqGAINSCoordinator;
 }
 
-                    

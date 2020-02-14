@@ -3520,7 +3520,6 @@ function generateSlotRepairAdminActor() {
             payload = smqSlotRepairAdmin.stringifyValue(payload);
             var id = smqSlotRepairAdmin.createUUID();
             var deferred = smqSlotRepairAdmin.waitingReply[id] = smqSlotRepairAdmin.defer();
-            if (smqGuest.showPingPongs) console.log('Ping - Guest establishes a connection with the coordinator');
             smqSlotRepairAdmin.client.send('/exchange/guestmic/gainscoordinator.account.guest.ping', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
             
             smqSlotRepairAdmin.waitFor(id);
@@ -3536,7 +3535,6 @@ function generateSlotRepairAdminActor() {
             payload = smqSlotRepairAdmin.stringifyValue(payload);
             var id = smqSlotRepairAdmin.createUUID();
             var deferred = smqSlotRepairAdmin.waitingReply[id] = smqSlotRepairAdmin.defer();
-            if (smqGuest.showPingPongs) console.log('Login - A Previously Unauthenticated Guest Logs in. If approved, their GAINSUser object is returned.');
             smqSlotRepairAdmin.client.send('/exchange/guestmic/gainscoordinator.account.guest.login', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
             
             smqSlotRepairAdmin.waitFor(id);
@@ -3548,4 +3546,3 @@ function generateSlotRepairAdminActor() {
     return smqSlotRepairAdmin;
 }
 
-                    

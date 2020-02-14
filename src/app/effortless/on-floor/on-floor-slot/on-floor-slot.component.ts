@@ -33,8 +33,8 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
       payload.Slot = {};
       payload.Slot.SlotId = self.sid;
       console.error(self.gds);
-      self.gds.smqATR.GetSlotDetails(payload).then(function (reply) {
-        self.slot = reply.Slot;
+      self.gds.smqUser.GetSlotViewDetails(payload).then(function (reply) {
+        self.slot = reply.SlotView;
       });
     }));
   }

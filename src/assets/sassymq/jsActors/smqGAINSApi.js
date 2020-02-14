@@ -2750,7 +2750,6 @@ function generateGAINSApiActor() {
             payload = smqGAINSApi.stringifyValue(payload);
             var id = smqGAINSApi.createUUID();
             var deferred = smqGAINSApi.waitingReply[id] = smqGAINSApi.defer();
-            if (smqGuest.showPingPongs) console.log('Ping - Guest establishes a connection with the coordinator');
             smqGAINSApi.client.send('/exchange/guestmic/gainscoordinator.account.guest.ping', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
             
             smqGAINSApi.waitFor(id);
@@ -2766,7 +2765,6 @@ function generateGAINSApiActor() {
             payload = smqGAINSApi.stringifyValue(payload);
             var id = smqGAINSApi.createUUID();
             var deferred = smqGAINSApi.waitingReply[id] = smqGAINSApi.defer();
-            if (smqGuest.showPingPongs) console.log('Login - A Previously Unauthenticated Guest Logs in. If approved, their GAINSUser object is returned.');
             smqGAINSApi.client.send('/exchange/guestmic/gainscoordinator.account.guest.login', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
             
             smqGAINSApi.waitFor(id);
@@ -2778,4 +2776,3 @@ function generateGAINSApiActor() {
     return smqGAINSApi;
 }
 
-                    
