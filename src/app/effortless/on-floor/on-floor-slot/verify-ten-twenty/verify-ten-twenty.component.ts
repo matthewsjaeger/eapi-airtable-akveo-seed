@@ -24,7 +24,7 @@ export class VerifyTenTwentyComponent extends EffortlessComponentBase implements
 
   sid: any = "";
   people: any = [{}];
-  checklistMetadata: any;
+  checklistMetadata: any = {};
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, public route: ActivatedRoute ) { 
     super (gds, data, menuService)
@@ -49,7 +49,7 @@ export class VerifyTenTwentyComponent extends EffortlessComponentBase implements
   }
 
   updatePercentComplete = function () {
-    this.checklistMetadata.PercentComplete = 0;
+    this.checklistMetadata.PercentComplete = 40;
     if (this.checklist.JackpotAmount) this.checklistMetadata.PercentComplete += 10;
     if (this.checklist.Book) this.checklistMetadata.PercentComplete += 10;
     if (this.checklist.SealIntact) this.checklistMetadata.PercentComplete += 10;
@@ -85,11 +85,10 @@ export class VerifyTenTwentyComponent extends EffortlessComponentBase implements
 
   finish() {
     let self = this;
+    this.updatePercentComplete();
     let payload = this.gds.createPayload();
-    payload.Checklist = this.checklist;
-    payload.ChecklistMetadata = this.checklistMetadata;
-    payload.Slot = { SlotId: this.sid };
-    this.gds.smqGamingAgent.JpVerify10K(payload).then(resp => {
+    payload.SlotView = { SlotId: this.sid, Checklist: this.checklist, ChecklistMetadata: this.checklistMetadata };
+    this.gds.smqGamingAgent.JPVerify10K(payload).then(resp => {
       if (!resp.ErrorMessage) {
         this.router.navigateByUrl('effortless/on-floor-slot/' + self.sid);
       }
