@@ -1045,6 +1045,13 @@ function generateGAINSCoordinatorActor() {
                     }
                 }
             
+                if (smqGAINSCoordinator.onGAINSUserGetSlotViewDetails) {
+                    if (msg.headers && (msg.headers.destination.includes('gainscoordinator.onfloor.gainsuser.getslotviewdetails'))) {
+                        var rpayload = smqGAINSCoordinator.onGAINSUserGetSlotViewDetails(msg.body, msg);
+                        if (rpayload) smqGAINSCoordinator.sendReply(rpayload, msg);
+                    }
+                }
+            
                 // Can also hear what 'GamingAgent' can hear.
                 
                 // Can also hear what 'BJFeltLog' can hear.
@@ -2649,6 +2656,22 @@ function generateGAINSCoordinatorActor() {
             var deferred = smqGAINSCoordinator.waitingReply[id] = smqGAINSCoordinator.defer();
             if (smqGAINSUser.showPingPongs) console.log('Get All People - ');
             smqGAINSCoordinator.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.getallpeople', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGAINSCoordinator.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGAINSCoordinator.GAINSUserGetSlotViewDetails = function() {
+            smqGAINSCoordinator.GAINSUserGetSlotViewDetails('{}');
+        }
+
+        smqGAINSCoordinator.GAINSUserGetSlotViewDetails = function(payload) {
+            payload = smqGAINSCoordinator.stringifyValue(payload);
+            var id = smqGAINSCoordinator.createUUID();
+            var deferred = smqGAINSCoordinator.waitingReply[id] = smqGAINSCoordinator.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Get Slot View Details - ');
+            smqGAINSCoordinator.client.send('/exchange/gainsusermic/gainscoordinator.onfloor.gainsuser.getslotviewdetails', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
             
             smqGAINSCoordinator.waitFor(id);
             

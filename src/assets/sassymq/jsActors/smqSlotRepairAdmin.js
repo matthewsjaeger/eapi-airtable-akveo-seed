@@ -1051,6 +1051,13 @@ function generateSlotRepairAdminActor() {
                     }
                 }
             
+                if (smqSlotRepairAdmin.onGAINSUserGetSlotViewDetails) {
+                    if (msg.headers && (msg.headers.destination.includes('gainscoordinator.onfloor.gainsuser.getslotviewdetails'))) {
+                        var rpayload = smqSlotRepairAdmin.onGAINSUserGetSlotViewDetails(msg.body, msg);
+                        if (rpayload) smqSlotRepairAdmin.sendReply(rpayload, msg);
+                    }
+                }
+            
                 // Can also hear what 'GamingAgent' can hear.
                 
                 // Can also hear what 'BJFeltLog' can hear.
@@ -3460,6 +3467,22 @@ function generateSlotRepairAdminActor() {
             var deferred = smqSlotRepairAdmin.waitingReply[id] = smqSlotRepairAdmin.defer();
             if (smqGAINSUser.showPingPongs) console.log('Get All People - ');
             smqSlotRepairAdmin.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.getallpeople', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqSlotRepairAdmin.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqSlotRepairAdmin.GAINSUserGetSlotViewDetails = function() {
+            smqSlotRepairAdmin.GAINSUserGetSlotViewDetails('{}');
+        }
+
+        smqSlotRepairAdmin.GAINSUserGetSlotViewDetails = function(payload) {
+            payload = smqSlotRepairAdmin.stringifyValue(payload);
+            var id = smqSlotRepairAdmin.createUUID();
+            var deferred = smqSlotRepairAdmin.waitingReply[id] = smqSlotRepairAdmin.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Get Slot View Details - ');
+            smqSlotRepairAdmin.client.send('/exchange/gainsusermic/gainscoordinator.onfloor.gainsuser.getslotviewdetails', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
             
             smqSlotRepairAdmin.waitFor(id);
             

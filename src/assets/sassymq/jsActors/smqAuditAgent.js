@@ -1053,6 +1053,13 @@ function generateAuditAgentActor() {
                     }
                 }
             
+                if (smqAuditAgent.onGAINSUserGetSlotViewDetails) {
+                    if (msg.headers && (msg.headers.destination.includes('gainscoordinator.onfloor.gainsuser.getslotviewdetails'))) {
+                        var rpayload = smqAuditAgent.onGAINSUserGetSlotViewDetails(msg.body, msg);
+                        if (rpayload) smqAuditAgent.sendReply(rpayload, msg);
+                    }
+                }
+            
                 // Can also hear what 'GamingAgent' can hear.
                 
                 // Can also hear what 'BJFeltLog' can hear.
@@ -3501,6 +3508,22 @@ function generateAuditAgentActor() {
             var deferred = smqAuditAgent.waitingReply[id] = smqAuditAgent.defer();
             if (smqGAINSUser.showPingPongs) console.log('Get All People - ');
             smqAuditAgent.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.getallpeople', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqAuditAgent.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqAuditAgent.GAINSUserGetSlotViewDetails = function() {
+            smqAuditAgent.GAINSUserGetSlotViewDetails('{}');
+        }
+
+        smqAuditAgent.GAINSUserGetSlotViewDetails = function(payload) {
+            payload = smqAuditAgent.stringifyValue(payload);
+            var id = smqAuditAgent.createUUID();
+            var deferred = smqAuditAgent.waitingReply[id] = smqAuditAgent.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Get Slot View Details - ');
+            smqAuditAgent.client.send('/exchange/gainsusermic/gainscoordinator.onfloor.gainsuser.getslotviewdetails', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
             
             smqAuditAgent.waitFor(id);
             

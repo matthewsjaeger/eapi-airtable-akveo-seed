@@ -1627,6 +1627,22 @@ function generateGamingAgentActor() {
             return deferred.promise;
         }
         
+        smqGamingAgent.GAINSUserGetSlotViewDetails = function() {
+            smqGamingAgent.GAINSUserGetSlotViewDetails('{}');
+        }
+
+        smqGamingAgent.GAINSUserGetSlotViewDetails = function(payload) {
+            payload = smqGamingAgent.stringifyValue(payload);
+            var id = smqGamingAgent.createUUID();
+            var deferred = smqGamingAgent.waitingReply[id] = smqGamingAgent.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Get Slot View Details - ');
+            smqGamingAgent.client.send('/exchange/gainsusermic/gainscoordinator.onfloor.gainsuser.getslotviewdetails', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGamingAgent.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
             // Can also say what 'Guest' can say.
             
         

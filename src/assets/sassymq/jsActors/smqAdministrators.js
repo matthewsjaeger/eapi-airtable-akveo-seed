@@ -1055,6 +1055,13 @@ function generateAdministratorsActor() {
                     }
                 }
             
+                if (smqAdministrators.onGAINSUserGetSlotViewDetails) {
+                    if (msg.headers && (msg.headers.destination.includes('gainscoordinator.onfloor.gainsuser.getslotviewdetails'))) {
+                        var rpayload = smqAdministrators.onGAINSUserGetSlotViewDetails(msg.body, msg);
+                        if (rpayload) smqAdministrators.sendReply(rpayload, msg);
+                    }
+                }
+            
                 // Can also hear what 'GamingAgent' can hear.
                 
                 // Can also hear what 'BJFeltLog' can hear.
@@ -3574,6 +3581,22 @@ function generateAdministratorsActor() {
             var deferred = smqAdministrators.waitingReply[id] = smqAdministrators.defer();
             if (smqGAINSUser.showPingPongs) console.log('Get All People - ');
             smqAdministrators.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.getallpeople', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqAdministrators.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqAdministrators.GAINSUserGetSlotViewDetails = function() {
+            smqAdministrators.GAINSUserGetSlotViewDetails('{}');
+        }
+
+        smqAdministrators.GAINSUserGetSlotViewDetails = function(payload) {
+            payload = smqAdministrators.stringifyValue(payload);
+            var id = smqAdministrators.createUUID();
+            var deferred = smqAdministrators.waitingReply[id] = smqAdministrators.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Get Slot View Details - ');
+            smqAdministrators.client.send('/exchange/gainsusermic/gainscoordinator.onfloor.gainsuser.getslotviewdetails', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
             
             smqAdministrators.waitFor(id);
             

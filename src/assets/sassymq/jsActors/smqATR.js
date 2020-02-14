@@ -1049,6 +1049,13 @@ function generateATRActor() {
                     }
                 }
             
+                if (smqATR.onGAINSUserGetSlotViewDetails) {
+                    if (msg.headers && (msg.headers.destination.includes('gainscoordinator.onfloor.gainsuser.getslotviewdetails'))) {
+                        var rpayload = smqATR.onGAINSUserGetSlotViewDetails(msg.body, msg);
+                        if (rpayload) smqATR.sendReply(rpayload, msg);
+                    }
+                }
+            
                 // Can also hear what 'GamingAgent' can hear.
                 
                 // Can also hear what 'BJFeltLog' can hear.
@@ -3131,6 +3138,22 @@ function generateATRActor() {
             var deferred = smqATR.waitingReply[id] = smqATR.defer();
             if (smqGAINSUser.showPingPongs) console.log('Get All People - ');
             smqATR.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.getallpeople', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqATR.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqATR.GAINSUserGetSlotViewDetails = function() {
+            smqATR.GAINSUserGetSlotViewDetails('{}');
+        }
+
+        smqATR.GAINSUserGetSlotViewDetails = function(payload) {
+            payload = smqATR.stringifyValue(payload);
+            var id = smqATR.createUUID();
+            var deferred = smqATR.waitingReply[id] = smqATR.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Get Slot View Details - ');
+            smqATR.client.send('/exchange/gainsusermic/gainscoordinator.onfloor.gainsuser.getslotviewdetails', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
             
             smqATR.waitFor(id);
             
