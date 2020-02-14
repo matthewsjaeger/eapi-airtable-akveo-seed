@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 import { GDS } from '../services/gds.service';
 import { EffortlessComponentBase } from '../efforless-base-component';
 import { DataEndpoint } from '../services/eapi-data-services/data-endpoint/data-endpoint';
@@ -20,9 +20,14 @@ export class OnFloorComponent extends EffortlessComponentBase implements OnInit 
   slotViews: any;
   searchTerm: any = '';
   SlotId: any = '';
+  sid: any;
 
-  constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, ) { 
+  constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, public route: ActivatedRoute ) { 
     super (gds, data, menuService)
+
+    this.safeSubscribe(this.route.params.subscribe((params) => {
+      this.sid = params['sid'];   
+    }));
 
   }
 

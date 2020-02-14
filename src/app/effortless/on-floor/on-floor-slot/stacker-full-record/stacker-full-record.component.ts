@@ -42,14 +42,13 @@ export class StackerFullRecordComponent extends EffortlessComponentBase implemen
 
   updatePercentComplete = function () {
     this.checklistMetadata.PercentComplete = 0;
-    if (this.checklist.Bill) this.checklistMetadata.PercentComplete += 10;
-    if (this.checklist.Ticket) this.checklistMetadata.PercentComplete += 10;
-    if (this.checklist.VerifyAmount) this.checklistMetadata.PercentComplete += 10;
-    if (this.checklist.Deficiencies) this.checklistMetadata.PercentComplete += 10;
-    if (this.checklist.Book) this.checklistMetadata.PercentComplete += 10;
+    if (this.checklist.Bill) this.checklistMetadata.PercentComplete += 20;
+    if (this.checklist.Ticket) this.checklistMetadata.PercentComplete += 20;
+    if (this.checklist.VerifyAmount) this.checklistMetadata.PercentComplete += 20;
+    if (this.checklist.Deficiencies) this.checklistMetadata.PercentComplete += 20;
+    if (this.checklist.Book) this.checklistMetadata.PercentComplete += 20;
     this.checklistMetadata.Status = (this.checklistMetadata.PercentComplete == 100) ? 4 : 1;
-    this.checklistMetadata.ComplianceStatus = (!this.checklist.HardcountPersonnel || !this.checklist.SecurityPersonnel
-      || !this.checklist.SlotPersonnel) ? 1 : (this.checklistMetadata.PercentComplete == 100) ? 0 : 2;
+    this.checklistMetadata.ComplianceStatus = (this.checklistMetadata.PercentComplete == 100) ? 0 : 2;
   };
 
   applyToChecklist = function (question, answer) {
@@ -75,10 +74,9 @@ export class StackerFullRecordComponent extends EffortlessComponentBase implemen
 
   finish() {
     let self = this;
+    this.updatePercentComplete();
     let payload = this.gds.createPayload();
-    payload.Checklist = this.checklist;
-    payload.ChecklistMetadata = this.checklistMetadata;
-    payload.Slot = { SlotId: this.sid };
+    payload.SlotView = { SlotId: this.sid, Checklist: this.checklist, ChecklistMetadata: this.checklistMetadata };
     this.gds.smqGamingAgent.StackerFullRecord(payload).then(resp => {
       if (!resp.ErrorMessage) {
         this.router.navigateByUrl('effortless/on-floor-slot/' + self.sid);

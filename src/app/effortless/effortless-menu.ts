@@ -21,7 +21,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'On Floor',
     icon: 'play-circle',
-    link: '/effortless/on-floor',
+    link: '/effortless/on-floor/:sid',
   },
   {
     title: 'Page 2',

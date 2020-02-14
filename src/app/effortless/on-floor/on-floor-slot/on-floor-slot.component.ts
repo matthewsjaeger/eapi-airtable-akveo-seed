@@ -15,6 +15,7 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
   slot: any = {};
   slots: any;
   sid: any;
+  slotView: any;
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, public route: ActivatedRoute ) { 
     super (gds, data, menuService)
@@ -40,7 +41,7 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
   }
 
   goBack(){
-    this.router.navigateByUrl('')
+    this.router.navigateByUrl('effortless/on-floor/' +this.sid);
   }
 
   emergencyDropInspection(){
