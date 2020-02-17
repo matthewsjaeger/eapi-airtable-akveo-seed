@@ -14,12 +14,12 @@ export class MediaVerificationComponent extends EffortlessComponentBase implemen
 
   checklist: any = {
     Verification: '',PaybackPercentage: '', ProgramNumber: '', MaxBet: '', MaxCredit: '',
-    Check: '', TicketLimit: '', Signature: '', Comments: ''
+    Check: '', TicketLimit: '', Signature: '', MediaSignature: ''
   };
 
   tempChecklist: any = {
     Verification: {}, PaybackPercentage: {}, ProgramNumber: {}, MaxBet: {}, MaxCredit: {},
-    Check: {}, TicketLimit: {}, Signature: {}, Comments: {}
+    Check: {}, TicketLimit: {}, Signature: {}, MediaSignature: {}
   };
 
   checklistMetadata: any = {};
@@ -39,7 +39,7 @@ export class MediaVerificationComponent extends EffortlessComponentBase implemen
   }
 
   updatePercentComplete = function () {
-    this.checklistMetadata.PercentComplete = 20;
+    this.checklistMetadata.PercentComplete = 0;
     if (this.checklist.Verification) this.checklistMetadata.PercentComplete += 20;
     if (this.checklist.PaybackPercentage) this.checklistMetadata.PercentComplete += 10;
     if (this.checklist.ProgramNumber) this.checklistMetadata.PercentComplete += 10;
@@ -48,9 +48,9 @@ export class MediaVerificationComponent extends EffortlessComponentBase implemen
     if (this.checklist.Check) this.checklistMetadata.PercentComplete += 10;
     if (this.checklist.TicketLimit) this.checklistMetadata.PercentComplete += 10;
     if (this.checklist.Signature) this.checklistMetadata.PercentComplete += 10;
-    if (this.checklist.Comments) this.checklistMetadata.PercentComplete += 10;
+    if (this.checklist.MediaSignature) this.checklistMetadata.PercentComplete += 10;
     this.checklistMetadata.Status = (this.checklistMetadata.PercentComplete == 100) ? 4 : 1;
-    this.checklistMetadata.ComplianceStatus = (!this.checklist.Verification || !this.checklist.Comments) ? 1 : 
+    this.checklistMetadata.ComplianceStatus = (!this.checklist.Verification || !this.checklist.MediaSignature) ? 1 : 
     (this.checklistMetadata.PercentComplete == 100) ? 0 : 2;
   };
 

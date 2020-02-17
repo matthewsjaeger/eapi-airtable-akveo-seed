@@ -829,6 +829,22 @@ function generateGamingAgentActor() {
             return deferred.promise;
         }
         
+        smqGamingAgent.PreventativeMaintenanceRecord = function() {
+            smqGamingAgent.PreventativeMaintenanceRecord('{}');
+        }
+
+        smqGamingAgent.PreventativeMaintenanceRecord = function(payload) {
+            payload = smqGamingAgent.stringifyValue(payload);
+            var id = smqGamingAgent.createUUID();
+            var deferred = smqGamingAgent.waitingReply[id] = smqGamingAgent.defer();
+            if (smqGamingAgent.showPingPongs) console.log('Preventative Maintenance Record - ');
+            smqGamingAgent.client.send('/exchange/gamingagentmic/gainscoordinator.onfloor.gamingagent.preventativemaintenancerecord', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGamingAgent.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
             // Can also say what 'BJFeltLog' can say.
             
         
