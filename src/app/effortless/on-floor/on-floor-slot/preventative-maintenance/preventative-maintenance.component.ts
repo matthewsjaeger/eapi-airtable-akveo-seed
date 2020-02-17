@@ -13,12 +13,12 @@ import { NbMenuService, NbListComponent } from '@nebular/theme';
 export class PreventativeMaintenanceComponent extends EffortlessComponentBase implements OnInit {
 
   checklist: any = {
-    Vaccum: '', BlowOut: '', TouchScreen: '', TestButton: '',
+    Vacuum: '', BlowOut: '', TouchScreen: '', TestButton: '',
     Dba: '', Printer: '', Door: '', Comments: ''
   }
 
   tempChecklist: any = {
-    Vaccum: {}, BlowOut: {}, TouchScreen: {}, TestButton: {},
+    Vacuum: {}, BlowOut: {}, TouchScreen: {}, TestButton: {},
     Dba: {}, Printer: {}, Door: {}, Comments: {}
   }
 
@@ -39,7 +39,7 @@ export class PreventativeMaintenanceComponent extends EffortlessComponentBase im
 
   updatePercentComplete = function () {
     this.checklistMetadata.PercentComplete = 0;
-    if (this.checklist.Vaccum) this.checklistMetadata.PercentComplete += 10;
+    if (this.checklist.Vacuum) this.checklistMetadata.PercentComplete += 10;
     if (this.checklist.BlowOut) this.checklistMetadata.PercentComplete += 10;
     if (this.checklist.TouchScreen) this.checklistMetadata.PercentComplete += 10;
     if (this.checklist.TestButton) this.checklistMetadata.PercentComplete += 10;
@@ -75,11 +75,11 @@ export class PreventativeMaintenanceComponent extends EffortlessComponentBase im
 
   finish() {
     let self = this;
+    this.updatePercentComplete();
     let payload = this.gds.createPayload();
-    payload.Checklist = this.checklist;
-    payload.ChecklistMetadata = this.checklistMetadata;
-    payload.Slot = { SlotId: this.sid };
-    this.gds.smqGamingAgent.EmergencyDropInspection(payload).then(resp => {
+    console.error(this.sid);
+    payload.SlotView = { SlotId: this.sid, Checklist: this.checklist, ChecklistMetadata: this.checklistMetadata };
+    this.gds.smqGamingAgent.PreventativeMaintenanceRecord(payload).then(resp => {
       if (!resp.ErrorMessage) {
         this.router.navigateByUrl('effortless/on-floor-slot/' + self.sid);
       }

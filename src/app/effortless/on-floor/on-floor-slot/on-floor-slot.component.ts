@@ -100,7 +100,7 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
   }
 
   preventativeMaintenance(){
-    this.router.navigateByUrl('effortless/preventative-maintenance')
+    this.router.navigateByUrl('effortless/preventative-maintenance/' + this.sid)
   }
 
 }
