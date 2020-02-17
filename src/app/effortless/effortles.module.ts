@@ -7,7 +7,6 @@ import { FormsModule } from '@angular/forms';
 import { Ng5SliderModule } from 'ng5-slider';
 import { ReloadWidgetComponent } from './widgets/reload-widget/reload-widget.component';
 import { IonicComponent } from './ionic/ionic.component';
-import { Page2Component } from './page2/page2.component';
 import { Page3Component } from './page3/page3.component';
 import { JsonEditorModule } from 'ng2-json-editor';
 import { StorageSlotsComponent } from './storage-slots/storage-slots.component';
@@ -25,7 +24,7 @@ import { StackerFullRecordComponent } from './on-floor/on-floor-slot/stacker-ful
 import { MediaVerificationComponent } from './on-floor/on-floor-slot/media-verification/media-verification.component';
 import { PreventativeMaintenanceComponent } from './on-floor/on-floor-slot/preventative-maintenance/preventative-maintenance.component';
 
-let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComponent, Page2Component, Page3Component,
+let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComponent, Page3Component,
   StorageSlotsComponent, SlotProjectsComponent, SearchStorageSlotsComponent, SlotProjectComponent, NewProjectComponent,
    EditProjectComponent, StorageSlotComponent, OnFloorComponent, OnFloorSlotComponent, EmergencyDropInspectionComponent,
   VerifyTenTwentyComponent, StackerFullRecordComponent, MediaVerificationComponent, PreventativeMaintenanceComponent];

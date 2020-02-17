@@ -3,7 +3,6 @@ import { NgModule, Component } from '@angular/core';
 
 import { EffortlessComponent } from './effortless.component';
 import { IonicComponent } from './ionic/ionic.component';
-import { Page2Component } from './page2/page2.component';
 import { StorageSlotsComponent} from './storage-slots/storage-slots.component';
 import { SlotProjectsComponent} from './slot-projects/slot-projects.component';
 import { SearchStorageSlotsComponent } from './storage-slots/search-storage-slots/search-storage-slots.component';
@@ -23,10 +22,6 @@ let effortlessChildren = [
   {
     path: 'ionic',
     component: IonicComponent,
-  },
-  {
-    path: 'page2',
-    component: Page2Component,
   },
   {
     path: 'storage-slots',
