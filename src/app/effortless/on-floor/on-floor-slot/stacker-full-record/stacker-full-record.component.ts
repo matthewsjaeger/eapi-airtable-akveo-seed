@@ -25,6 +25,8 @@ export class StackerFullRecordComponent extends EffortlessComponentBase implemen
   checked = false;
   sid: any;
   checklistMetadata: any = {};
+  backgroundColor: any;
+  
 
 
 
@@ -48,7 +50,8 @@ export class StackerFullRecordComponent extends EffortlessComponentBase implemen
     if (this.checklist.Deficiencies) this.checklistMetadata.PercentComplete += 20;
     if (this.checklist.Book) this.checklistMetadata.PercentComplete += 20;
     this.checklistMetadata.Status = (this.checklistMetadata.PercentComplete == 100) ? 4 : 1;
-    this.checklistMetadata.ComplianceStatus = (this.checklistMetadata.PercentComplete == 100) ? 0 : 2;
+    this.checklistMetadata.ComplianceStatus = (!this.checklist.Bill || !this.checklist.Ticket || !this.checklist.VerifyAmount
+       || !this.checklist.Deficiencies || !this.checklist.Book ) ? 1 : (this.checklistMetadata.PercentComplete == 100) ? 0 : 2;
   };
 
   applyToChecklist = function (question, answer) {
@@ -72,6 +75,8 @@ export class StackerFullRecordComponent extends EffortlessComponentBase implemen
     this.updatePercentComplete();
   }
 
+
+
   finish() {
     let self = this;
     this.updatePercentComplete();
@@ -84,9 +89,7 @@ export class StackerFullRecordComponent extends EffortlessComponentBase implemen
     });
   }
 
-  toggle(checked: boolean) {
-    this.checked = checked;
-  }
+
 
   cancel(){
     let self = this;

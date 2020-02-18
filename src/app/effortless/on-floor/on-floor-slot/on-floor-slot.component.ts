@@ -20,11 +20,11 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
   avaliableActions: any = '';
   Active: any;
 
-  constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, public route: ActivatedRoute ) { 
-    super (gds, data, menuService)
+  constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, public route: ActivatedRoute) {
+    super(gds, data, menuService)
 
     this.safeSubscribe(this.route.params.subscribe((params) => {
-      this.sid = params['sid'];   
+      this.sid = params['sid'];
     }));
 
 
@@ -77,30 +77,97 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
 
   // }
 
-  
 
-  goBack(){
-    this.router.navigateByUrl('effortless/on-floor/' +this.sid);
+
+  goBack() {
+    this.router.navigateByUrl('effortless/on-floor/' + this.sid);
   }
 
-  emergencyDropInspection(){
-    this.router.navigateByUrl('effortless/emergency-drop-inspection/' + this.sid);
-  }
-
-  jpVerifyTenTwenty(){
-    this.router.navigateByUrl('effortless/verify-ten-twenty/' + this.sid)
-  }
-
-  mediaVerification(){
-    this.router.navigateByUrl('effortless/media-verification/' + this.sid)
-  }
-
-  stackerFullRecord(){
-    this.router.navigateByUrl('effortless/stacker-full-record/' + this.sid)
-  }
-
-  preventativeMaintenance(){
+  preventativeMaintenance() {
     this.router.navigateByUrl('effortless/preventative-maintenance')
   }
+
+  activateTournamentMode() {
+
+  }
+
+  cancelScheduledEvent() {
+
+  }
+  editSealGC() {
+
+  }
+  editSeals() {
+
+  }
+  editSealsAdmin() {
+
+  }
+  emergencyDropInspection() {
+    this.router.navigateByUrl('effortless/emergency-drop-inspection/' + this.sid);
+  }
+  forensicFieldChecklist() {
+
+  }
+  gcInspection() {
+
+  }
+  jpVerify100K() {
+
+  }
+  jpVerify10K() {
+    this.router.navigateByUrl('effortless/verify-ten-twenty/' + this.sid)
+  }
+  jpVerify20K() {
+
+  }
+  jpVerify50K() {
+
+  }
+  mediaVerification() {
+    this.router.navigateByUrl('effortless/media-verification/' + this.sid)
+  }
+  quickCorrection() {
+
+  }
+  ramClearPerform() {
+
+  }
+  scheduleConversions() {
+
+  }
+  scheduleMoveToStorage() {
+
+  }
+  scheduleTournament() {
+
+  }
+  stackerFullNotification() {
+
+  }
+  stackerFullRecord() {
+    this.router.navigateByUrl('effortless/stacker-full-record/' + this.sid)
+  }
+  stateOfMinnesotaInspection() {
+
+  }
+  updateActiveSlot() {
+
+  }
+  completeConversionFloor() { }
+  completeConversionFloorAdv() { }
+  editConversionFloor() { }
+  ramClearConversion() { }
+  ramClearToInspect() { }
+  ramClearToActive() { }
+  requestActivation() { }
+  suspendedJPReverify100K() { }
+  suspendedJPReverify10K() { }
+  suspendedJPReverify20K() { }
+  suspendedJPReverify50K() { }
+  deactivateTournamentMode() { }
+
+
+
 
 }
