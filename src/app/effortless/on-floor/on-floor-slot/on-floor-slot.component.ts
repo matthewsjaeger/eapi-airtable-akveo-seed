@@ -150,6 +150,7 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
   }
   stateOfMinnesotaInspection() {
 
+    this.router.navigateByUrl('effortless/preventative-maintenance/' + this.sid)
   }
   updateActiveSlot() {
 

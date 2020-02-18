@@ -76,7 +76,7 @@ let effortlessChildren = [
     component: VerifyTenTwentyComponent,
   },
   {
-    path: 'preventative-maintenance',
+    path: 'preventative-maintenance/:sid',
     component: PreventativeMaintenanceComponent,
   },
 ];
