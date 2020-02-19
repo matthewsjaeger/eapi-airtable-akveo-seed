@@ -83,10 +83,6 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
     this.router.navigateByUrl('effortless/on-floor/' + this.sid);
   }
 
-  preventativeMaintenance() {
-    this.router.navigateByUrl('effortless/preventative-maintenance')
-  }
-
   activateTournamentMode() {
 
   }
@@ -94,13 +90,22 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
   cancelScheduledEvent() {
 
   }
+  completeConversionLSC(){
+
+  }
+  completeConversionMLC(){
+
+  }
+  completeMoveToStorage(){
+
+  }
+  deactivateTournamentMode() {
+
+  }
   editSealGC() {
 
   }
   editSeals() {
-
-  }
-  editSealsAdmin() {
 
   }
   emergencyDropInspection() {
@@ -127,10 +132,19 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
   mediaVerification() {
     this.router.navigateByUrl('effortless/media-verification/' + this.sid)
   }
+  preventativeMaintenance() {
+    this.router.navigateByUrl('effortless/preventative-maintenance/' +this.sid)
+  }
   quickCorrection() {
 
   }
+  ramClearToInspect() {
+
+  }
   ramClearPerform() {
+
+  }
+  requestActivation() {
 
   }
   scheduleConversions() {
@@ -140,9 +154,6 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
 
   }
   scheduleTournament() {
-
-  }
-  stackerFullNotification() {
 
   }
   stackerFullRecord() {
@@ -155,18 +166,18 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
   updateActiveSlot() {
 
   }
+
   completeConversionFloor() { }
   completeConversionFloorAdv() { }
   editConversionFloor() { }
   ramClearConversion() { }
-  ramClearToInspect() { }
   ramClearToActive() { }
-  requestActivation() { }
+ 
   suspendedJPReverify100K() { }
   suspendedJPReverify10K() { }
   suspendedJPReverify20K() { }
   suspendedJPReverify50K() { }
-  deactivateTournamentMode() { }
+  
 
 
 
