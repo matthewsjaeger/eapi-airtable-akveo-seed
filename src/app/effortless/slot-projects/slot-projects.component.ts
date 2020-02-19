@@ -15,7 +15,8 @@ export class SlotProjectsComponent extends EffortlessComponentBase implements On
   slotProjects: any [] = [];
   createFilteredSlots: any;
   BJProject: any;
-  slotProject: any;
+  slotProject: any = '';
+  pid: any;
 
 
   constructor(public gds: GDS, public data: DataEndpoint, protected menuService: NbMenuService, public router: Router) { 
@@ -44,8 +45,8 @@ export class SlotProjectsComponent extends EffortlessComponentBase implements On
     self.loading = true;
   }
 
-  openProject(){
-    this.router.navigateByUrl('effortless/slot-project');
+  openProject(project){
+    this.router.navigateByUrl('effortless/slot-project/' + project.SlotProjectId);
   }
 
   newProject(){

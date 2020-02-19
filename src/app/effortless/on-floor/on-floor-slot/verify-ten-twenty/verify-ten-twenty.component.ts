@@ -59,7 +59,8 @@ export class VerifyTenTwentyComponent extends EffortlessComponentBase implements
   
     this.checklistMetadata.Status = (this.checklistMetadata.PercentComplete == 100) ? 4 : 1;
     this.checklistMetadata.ComplianceStatus = (!this.checklist.SecurityRepresentative
-      || !this.checklist.OperationsManager) ? 1 : (this.checklistMetadata.PercentComplete == 100) ? 0 : 2;
+      || !this.checklist.OperationsManager || this.checklist.Book == 'No' || this.checklist.SealIntact == 'No') ? 1 : 
+      (this.checklistMetadata.PercentComplete == 100) ? 0 : 2;
   };
 
   applyToChecklist = function (question, answer) {

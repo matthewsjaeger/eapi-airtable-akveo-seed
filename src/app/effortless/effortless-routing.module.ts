@@ -36,7 +36,7 @@ let effortlessChildren = [
     component: SearchStorageSlotsComponent,
   },
   {
-    path: 'slot-project',
+    path: 'slot-project/:pid',
     component: SlotProjectComponent,
   },
   {

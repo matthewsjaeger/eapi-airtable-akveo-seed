@@ -28,7 +28,7 @@ export class SlotProjectComponent extends EffortlessComponentBase implements OnI
     this.safeSubscribe(this.gds.onReady().subscribe(ready => {
       let self = this
       let payload = self.gds.createPayload();
-      payload.SlotProject = {};
+      payload.SlotProject = {}; 
       payload.SlotProject.SlotProjectId = self.pid;
       console.error(self.gds);
       self.gds.smqUser.GetSlotViewDetails(payload).then(function (reply) {

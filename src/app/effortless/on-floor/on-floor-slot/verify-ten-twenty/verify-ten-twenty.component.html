@@ -5,16 +5,16 @@
     </nb-card-header>
     <nb-card-body>
         <nb-list>
-            <nb-list-item>
+            <nb-list-item >
                 <label>Record the Jackpot amount:</label>
                 <input nbInput class="float-right" placeholder="How Much?" [(ngModel)]="checklist.JackpotAmount" > 
             </nb-list-item>
-            <nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.Book.No ? 'rgba(255, 0, 0, 0.705)': ''">
                 <label>MEAL Book Entry</label>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Book.No" (change)="applyToChecklist('Book', 'No')">No</nb-checkbox>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Book.Yes" (change)="applyToChecklist('Book', 'Yes')">Yes</nb-checkbox>
             </nb-list-item>
-            <nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.SealIntact.No ? 'rgba(255, 0, 0, 0.705)': ''">
                 <label> Are All Seal(s) Intact? </label>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SealIntact.No" (change)="applyToChecklist('SealIntact', 'No')">No</nb-checkbox>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SealIntact.Yes" (change)="applyToChecklist('SealIntact', 'Yes')">Yes</nb-checkbox>
