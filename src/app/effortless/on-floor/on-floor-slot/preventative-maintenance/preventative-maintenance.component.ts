@@ -39,7 +39,7 @@ export class PreventativeMaintenanceComponent extends EffortlessComponentBase im
 
   updatePercentComplete = function () {
     this.checklistMetadata.PercentComplete = 0;
-    if (this.checklist.Vacuum) this.checklistMetadata.PercentComplete += 10;
+    if (this.checklist.Vacuum) this.checklistMetadata.PercentComplete += 20;
     if (this.checklist.BlowOut) this.checklistMetadata.PercentComplete += 10;
     if (this.checklist.TouchScreen) this.checklistMetadata.PercentComplete += 10;
     if (this.checklist.TestButton) this.checklistMetadata.PercentComplete += 10;
