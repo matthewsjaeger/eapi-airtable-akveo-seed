@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterModule,  } from '@angular/router';
+import { Router, RouterModule, } from '@angular/router';
 import { EffortlessComponentBase } from '../../../efforless-base-component';
 import { NbMenuService } from '@nebular/theme';
 import { DataEndpoint } from '../../../services/eapi-data-services/data-endpoint/data-endpoint';
@@ -24,25 +24,23 @@ export class StorageSlotComponent extends EffortlessComponentBase implements OnI
     super(gds, data, menuservice)
     this.safeSubscribe(this.route.params.subscribe((params) => {
       this.sid = params['sid'];
-      
-       }))
-       
-
-      
-    }
-
-  ngOnInit() {
-    let self = this
-    let payload = self.gds.createPayload();
-    payload.slot = {};
-    payload.slot= self.sid;
-    self.gds.smqATR.GetSlotDetails(payload).then(function(reply){
-      self.slot = reply.Slot.SlotId;
-    }) 
-
+    }))
   }
 
-  goBack(){
+  ngOnInit() {
+    this.safeSubscribe(this.gds.onReady().subscribe(ready => {
+      let self = this
+      let payload = self.gds.createPayload();
+      payload.Slot = {};
+      payload.Slot.SlotId = self.sid;
+      console.error(self.gds);
+      self.gds.smqUser.GetSlotViewDetails(payload).then(function (reply) {
+        self.slot = reply.SlotView;
+      });
+    }));
+  }
+
+  goBack() {
     this.router.navigateByUrl('effortless/search-storage-slots')
   }
 }

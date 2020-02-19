@@ -1,5 +1,6 @@
 <nb-card [size]="'large'">
     <nb-card-header>
+        <button nbButton ghost size="medium" class="float-left" (click)="cancel()">Cancel</button>
         <h4 style="width: fit-content; margin: auto;">Preventative Maintenance Record</h4>
     </nb-card-header>
     <nb-card-body>
@@ -12,7 +13,7 @@
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Vacuum.No" (change)="applyToChecklist('Vacuum', 'No')">No</nb-checkbox>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Vacuum.Yes" (change)="applyToChecklist('Vacuum', 'Yes')">Yes</nb-checkbox>
             </nb-list-item>
-            <nb-list-item>
+            <nb-list-item> 
                 <label> Blow Out Logic: </label>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.BlowOut.NA" (change)="applyToChecklist('BlowOut', 'NA')">N/A</nb-checkbox>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.BlowOut.No" (change)="applyToChecklist('BlowOut', 'No')">No</nb-checkbox>

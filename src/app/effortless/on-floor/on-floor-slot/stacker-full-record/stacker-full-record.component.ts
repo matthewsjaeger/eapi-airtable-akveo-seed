@@ -50,8 +50,8 @@ export class StackerFullRecordComponent extends EffortlessComponentBase implemen
     if (this.checklist.Deficiencies) this.checklistMetadata.PercentComplete += 20;
     if (this.checklist.Book) this.checklistMetadata.PercentComplete += 20;
     this.checklistMetadata.Status = (this.checklistMetadata.PercentComplete == 100) ? 4 : 1;
-    this.checklistMetadata.ComplianceStatus = (!this.checklist.Bill || !this.checklist.Ticket || !this.checklist.VerifyAmount
-       || !this.checklist.Deficiencies || !this.checklist.Book ) ? 1 : (this.checklistMetadata.PercentComplete == 100) ? 0 : 2;
+    this.checklistMetadata.ComplianceStatus = (this.checklist.Bill == 'Fail' || this.checklist.Ticket == 'Fail' || 
+    this.checklist.VerifyAmount == 'Fail' || this.checklist.Deficiencies == 'Fail' || this.checklist.Book == 'Fail' ) ? 1 : (this.checklistMetadata.PercentComplete == 100) ? 0 : 2;
   };
 
   applyToChecklist = function (question, answer) {

@@ -14,6 +14,8 @@ export class SlotProjectsComponent extends EffortlessComponentBase implements On
   
   slotProjects: any [] = [];
   createFilteredSlots: any;
+  BJProject: any;
+  slotProject: any;
 
 
   constructor(public gds: GDS, public data: DataEndpoint, protected menuService: NbMenuService, public router: Router) { 
@@ -25,17 +27,14 @@ export class SlotProjectsComponent extends EffortlessComponentBase implements On
 
   ngOnInit() {
     this.safeSubscribe(this.gds.onReady().subscribe(ready => {
-      this.reload(this);
+      let self = this
+      var payload = self.gds.createPayload();
+      // payload.SlotProject = self.slotProject
+      self.gds.smqUser.GetSlotProjects(payload).then(function(reply){
+        console.log(reply);
+        self.slotProjects = reply.SlotProjects;
+      });
   }));
-
- 
-  // var payload = this.gds.createPayload();
-  // payload.SlotProject = this.gds.smqUser.selectedSlotProject;
-  // this.gds.GAINSUser.smquser.GetSlotProjects(payload).then(function(reply){
-  //   console.log(reply);
-  //   this.SlotProject = reply.SlotProject;
-  //   this.filteredSlotLists = createFilteredSlots(this.SlotProject.Slots);
-  // })
 
   }
 

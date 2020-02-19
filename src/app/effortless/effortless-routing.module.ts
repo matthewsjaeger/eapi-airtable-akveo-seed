@@ -48,7 +48,7 @@ let effortlessChildren = [
     component: EditProjectComponent,
   },
   {
-    path: 'storage-slot',
+    path: 'storage-slot/:sid',
     component: StorageSlotComponent,
   },
   {
