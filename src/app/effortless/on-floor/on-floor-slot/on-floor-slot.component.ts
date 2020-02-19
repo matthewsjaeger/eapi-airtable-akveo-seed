@@ -118,16 +118,16 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
 
   }
   jpVerify100K() {
-
+    this.router.navigateByUrl('effortless/verify-onehundred-above/' + this.sid)
   }
   jpVerify10K() {
     this.router.navigateByUrl('effortless/verify-ten-twenty/' + this.sid)
   }
   jpVerify20K() {
-
+    this.router.navigateByUrl('effortless/verify-twenty-fifty/' + this.sid)
   }
   jpVerify50K() {
-
+    this.router.navigateByUrl('effortless/verify-fifty-onehundred/' + this.sid)
   }
   mediaVerification() {
     this.router.navigateByUrl('effortless/media-verification/' + this.sid)

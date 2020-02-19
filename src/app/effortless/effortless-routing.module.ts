@@ -17,6 +17,9 @@ import { MediaVerificationComponent } from './on-floor/on-floor-slot/media-verif
 import { StackerFullRecordComponent } from './on-floor/on-floor-slot/stacker-full-record/stacker-full-record.component';
 import { VerifyTenTwentyComponent } from './on-floor/on-floor-slot/verify-ten-twenty/verify-ten-twenty.component';
 import { PreventativeMaintenanceComponent } from './on-floor/on-floor-slot/preventative-maintenance/preventative-maintenance.component';
+import { VerifyTwentyFiftyComponent } from './on-floor/on-floor-slot/verify-twenty-fifty/verify-twenty-fifty.component';
+import { VerifyFiftyOnehundredComponent } from './on-floor/on-floor-slot/verify-fifty-onehundred/verify-fifty-onehundred.component';
+import { VerifyOnehundredAboveComponent } from './on-floor/on-floor-slot/verify-onehundred-above/verify-onehundred-above.component';
 
 let effortlessChildren = [
   {
@@ -78,6 +81,18 @@ let effortlessChildren = [
   {
     path: 'preventative-maintenance/:sid',
     component: PreventativeMaintenanceComponent,
+  },
+  {
+    path: 'verify-twenty-fifty/:sid',
+    component: VerifyTwentyFiftyComponent,
+  },
+  {
+    path: 'verify-fifty-onehundred/:sid',
+    component: VerifyFiftyOnehundredComponent ,
+  },
+  {
+    path: 'verify-onehundred-above/:sid' ,
+    component: VerifyOnehundredAboveComponent ,
   },
 ];
 

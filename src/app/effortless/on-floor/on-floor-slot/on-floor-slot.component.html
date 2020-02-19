@@ -1,4 +1,4 @@
-<nb-card [size]="'large'">
+<nb-card>
     <nb-card-header>
         <button nbButton ghost size="medium" class="float-left" (click)="goBack()">
             <nb-icon icon="arrow-ios-back-outline"></nb-icon>On Floor Slots
@@ -26,6 +26,15 @@
                 <label> <b> WF State:</b> {{slot.WorkflowState}} </label>
             </nb-list-item>
         </nb-list>
+    </nb-card-body>
+</nb-card>
+<nb-card>
+    <nb-card-header>
+         <h5 style="width: fit-content; margin:auto">Avaliable Actions</h5> 
+        </nb-card-header>
+    <nb-card-body>
+
+
         <div *ngIf=" slot.WorkflowState == 'Active' ">
             <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=cancelScheduledEvent()
                 disabled>Cancel Scheduled Event(s)</button>
@@ -48,13 +57,13 @@
             <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=gcInspection()
              disabled>GC Inspection</button>
             <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=jpVerify100K() 
-            disabled>JP Verify $100K & Above</button>
+            >JP Verify $100K & Above</button>
             <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=jpVerify10K()
              >JP Verify $10K - $19,999.99</button>
             <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=jpVerify20K() 
-            disabled>JP Verify $20K-$49,999.99</button>
+             >JP Verify $20K-$49,999.99</button>
             <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=jpVerify50K() 
-            disabled>JP Verify $50K- $99,999.99</button>
+            >JP Verify $50K- $99,999.99</button>
             <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=mediaVerification()
              >Media Verification</button>
              <button nbButton fullWidth status="primary" style="margin-bottom: 5px;"(click)=preventativeMaintenance()
@@ -262,6 +271,5 @@
             
 
         </div>
-
     </nb-card-body>
 </nb-card>
