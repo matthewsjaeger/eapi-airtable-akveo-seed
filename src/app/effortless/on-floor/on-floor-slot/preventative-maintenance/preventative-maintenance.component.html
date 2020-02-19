@@ -7,44 +7,44 @@
         <nb-list>
             <nb-list-item><b>Cleaning</b></nb-list-item>
             
-            <nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.Vacuum.No ? 'rgba(255, 0, 0, 0.705)': ''" >
                 <label>Vacuum Machine:</label>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Vacuum.NA" (change)="applyToChecklist('Vacuum', 'NA')">N/A</nb-checkbox>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Vacuum.No" (change)="applyToChecklist('Vacuum', 'No')">No</nb-checkbox>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Vacuum.Yes" (change)="applyToChecklist('Vacuum', 'Yes')">Yes</nb-checkbox>
             </nb-list-item>
-            <nb-list-item> 
+            <nb-list-item [style.backgroundColor]="tempChecklist.BlowOut.No ? 'rgba(255, 0, 0, 0.705)': ''"> 
                 <label> Blow Out Logic: </label>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.BlowOut.NA" (change)="applyToChecklist('BlowOut', 'NA')">N/A</nb-checkbox>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.BlowOut.No" (change)="applyToChecklist('BlowOut', 'No')">No</nb-checkbox>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.BlowOut.Yes" (change)="applyToChecklist('BlowOut', 'Yes')">Yes</nb-checkbox>
             </nb-list-item>
-            <nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.TouchScreen.No ? 'rgba(255, 0, 0, 0.705)': ''">
                 <label> Calibrate Touch Screen:</label>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TouchScreen.NA" (change)="applyToChecklist('TouchScreen', 'NA')">N/A</nb-checkbox>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TouchScreen.No" (change)="applyToChecklist('TouchScreen', 'No')">No</nb-checkbox>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TouchScreen.Yes" (change)="applyToChecklist('TouchScreen', 'Yes')">Yes</nb-checkbox>
             </nb-list-item>
-            <nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.TestButton.No ? 'rgba(255, 0, 0, 0.705)': ''">
                 <label> Calibrate / test Button Panel:</label>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TestButton.NA" (change)="applyToChecklist('TestButton', 'NA')">N/A</nb-checkbox>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TestButton.No" (change)="applyToChecklist('TestButton', 'No')">No</nb-checkbox>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TestButton.Yes" (change)="applyToChecklist('TestButton', 'Yes')">Yes</nb-checkbox>
             </nb-list-item>
             <nb-list-item><b>Test</b></nb-list-item>
-            <nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.Dba.No ? 'rgba(255, 0, 0, 0.705)': ''">
                 <label> DBA: </label>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Dba.NA" (change)="applyToChecklist('Dba', 'NA')">N/A</nb-checkbox>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Dba.No" (change)="applyToChecklist('Dba', 'No')">No</nb-checkbox>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Dba.Yes" (change)="applyToChecklist('Dba', 'Yes')">Yes</nb-checkbox>
             </nb-list-item>
-            <nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.Printer.No ? 'rgba(255, 0, 0, 0.705)': ''">
                 <label> Printer:</label>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Printer.NA" (change)="applyToChecklist('Printer', 'NA')">N/A</nb-checkbox>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Printer.No" (change)="applyToChecklist('Printer', 'No')">No</nb-checkbox>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Printer.Yes" (change)="applyToChecklist('Printer', 'Yes')">Yes</nb-checkbox>
             </nb-list-item>
-            <nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.Door.No ? 'rgba(255, 0, 0, 0.705)': ''">
                 <label> Door Switches: </label>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Door.NA" (change)="applyToChecklist('Door', 'NA')">N/A</nb-checkbox>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Door.No" (change)="applyToChecklist('Door', 'No')">No</nb-checkbox>

@@ -48,8 +48,9 @@ export class PreventativeMaintenanceComponent extends EffortlessComponentBase im
     if (this.checklist.Door) this.checklistMetadata.PercentComplete += 10;
     if (this.checklist.Comments) this.checklistMetadata.PercentComplete += 10;
     this.checklistMetadata.Status = (this.checklistMetadata.PercentComplete == 100) ? 4 : 1;
-    this.checklistMetadata.ComplianceStatus = (!this.checklist.HardcountPersonnel || !this.checklist.SecurityPersonnel
-      || !this.checklist.SlotPersonnel) ? 1 : (this.checklistMetadata.PercentComplete == 100) ? 0 : 2;
+    this.checklistMetadata.ComplianceStatus = (this.checklist.Vacuum == 'No' || this.checklist.BlowOut == 'No' || 
+    this.checklist.TouchScreen == 'No' || this.checklist.Dba == 'No'|| this.checklist.Printer == 'No' || this.checklist.Door == 'No')
+     ? 1 : (this.checklistMetadata.PercentComplete == 100) ? 0 : 2;
   };
 
   applyToChecklist = function (question, answer) {
