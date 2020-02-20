@@ -49,8 +49,8 @@ export class VerifyFiftyOnehundredComponent extends EffortlessComponentBase impl
   }
 
   updatePercentComplete = function () {
-    this.checklistMetadata.PercentComplete = 40;
-    if (this.checklist.JackpotAmount) this.checklistMetadata.PercentComplete += 40;
+    this.checklistMetadata.PercentComplete = 0;
+    if (this.checklist.JackpotAmount) this.checklistMetadata.PercentComplete += 20;
     if (this.checklist.Book) this.checklistMetadata.PercentComplete += 10;
     if (this.checklist.SealIntact) this.checklistMetadata.PercentComplete += 10;
     if (this.checklist.RepairRepresentative) this.checklistMetadata.PercentComplete += 10;
@@ -62,8 +62,9 @@ export class VerifyFiftyOnehundredComponent extends EffortlessComponentBase impl
   
     this.checklistMetadata.Status = (this.checklistMetadata.PercentComplete == 100) ? 4 : 1;
     this.checklistMetadata.ComplianceStatus = (!this.checklist.SecurityRepresentative
-      || !this.checklist.OperationsManager || this.checklist.Book == 'No' || this.checklist.SealIntact == 'No' ||
-       this.checklist.Verification == 'Fail') ? 1 : (this.checklistMetadata.PercentComplete == 100) ? 0 : 2;
+      || !this.checklist.OperationsManager || !this.checklist.RepairRepresentative || !this.checklist.CasinoManager ||
+       this.checklist.Book == 'No' || this.checklist.SealIntact == 'No' || this.checklist.Verification == 'Fail') ? 1 : 
+       (this.checklistMetadata.PercentComplete == 100) ? 0 : 2;
   };
 
   applyToChecklist = function (question, answer) {
@@ -92,7 +93,7 @@ export class VerifyFiftyOnehundredComponent extends EffortlessComponentBase impl
     this.updatePercentComplete();
     let payload = this.gds.createPayload();
     payload.SlotView = { SlotId: this.sid, Checklist: this.checklist, ChecklistMetadata: this.checklistMetadata };
-    this.gds.smqGamingAgent.JPVerify10K(payload).then(resp => {
+    this.gds.smqGamingAgent.JPVerify50K(payload).then(resp => {
       if (!resp.ErrorMessage) {
         this.router.navigateByUrl('effortless/on-floor-slot/' + self.sid);
       }

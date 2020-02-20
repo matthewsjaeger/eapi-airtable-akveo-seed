@@ -26,12 +26,14 @@ import { PreventativeMaintenanceComponent } from './on-floor/on-floor-slot/preve
 import { VerifyTwentyFiftyComponent } from './on-floor/on-floor-slot/verify-twenty-fifty/verify-twenty-fifty.component';
 import { VerifyFiftyOnehundredComponent } from './on-floor/on-floor-slot/verify-fifty-onehundred/verify-fifty-onehundred.component';
 import { VerifyOnehundredAboveComponent } from './on-floor/on-floor-slot/verify-onehundred-above/verify-onehundred-above.component';
+import { StateInspectionComponent } from './on-floor/on-floor-slot/state-inspection/state-inspection.component';
+import { InspectionRecordComponent } from './on-floor/on-floor-slot/state-inspection/inspection-record/inspection-record.component';
 
 let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComponent, Page3Component,
   StorageSlotsComponent, SlotProjectsComponent, SearchStorageSlotsComponent, SlotProjectComponent, NewProjectComponent,
    EditProjectComponent, StorageSlotComponent, OnFloorComponent, OnFloorSlotComponent, EmergencyDropInspectionComponent,
   VerifyTenTwentyComponent, StackerFullRecordComponent, MediaVerificationComponent, PreventativeMaintenanceComponent, VerifyTwentyFiftyComponent,
-VerifyFiftyOnehundredComponent, VerifyOnehundredAboveComponent];
+VerifyFiftyOnehundredComponent, VerifyOnehundredAboveComponent, StateInspectionComponent, InspectionRecordComponent];
 
 @NgModule({
   declarations: declarations,

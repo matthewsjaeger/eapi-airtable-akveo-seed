@@ -64,8 +64,8 @@ export class VerifyOnehundredAboveComponent extends EffortlessComponentBase impl
     if (this.checklist.MediaSignature) this.checklistMetadata.PercentComplete += 10;
   
     this.checklistMetadata.Status = (this.checklistMetadata.PercentComplete == 100) ? 4 : 1;
-    this.checklistMetadata.ComplianceStatus = (!this.checklist.SecurityRepresentative
-      || !this.checklist.OperationsManager || this.checklist.Book == 'No' || this.checklist.SealIntact == 'No' ||
+    this.checklistMetadata.ComplianceStatus = ( !this.checklist.RepairRepresentative || !this.checklist.SecurityRepresentative || 
+      !this.checklist.OperationsManager || !this.checklist.CasinoManager || this.checklist.Book == 'No' || this.checklist.SealIntact == 'No' ||
        this.checklist.Verification == 'Fail') ? 1 : (this.checklistMetadata.PercentComplete == 100) ? 0 : 2;
   };
 
@@ -95,7 +95,7 @@ export class VerifyOnehundredAboveComponent extends EffortlessComponentBase impl
     this.updatePercentComplete();
     let payload = this.gds.createPayload();
     payload.SlotView = { SlotId: this.sid, Checklist: this.checklist, ChecklistMetadata: this.checklistMetadata };
-    this.gds.smqGamingAgent.JPVerify10K(payload).then(resp => {
+    this.gds.smqGamingAgent.JPVerify100K(payload).then(resp => {
       if (!resp.ErrorMessage) {
         this.router.navigateByUrl('effortless/on-floor-slot/' + self.sid);
       }

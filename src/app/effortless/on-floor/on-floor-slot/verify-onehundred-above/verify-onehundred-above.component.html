@@ -39,7 +39,7 @@
                 </nb-select>
             </nb-list-item>
 
-            <nb-list-item >
+            <nb-list-item [style.backgroundColor]="checklist.OperationsManager ? '' : '#ff3d71'">
                 <label>Record Slot Operations Manager:</label>
                 <nb-select class="float-right" placeholder="Select Showcase" [(selected)]="checklist.OperationsManager">
                     <nb-option>None</nb-option>
