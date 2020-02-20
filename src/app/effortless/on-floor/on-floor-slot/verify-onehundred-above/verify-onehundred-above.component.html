@@ -1,1 +1,72 @@
-<p>verify-onehundred-above works!</p>
+<nb-card [size]="'large'">
+    <nb-card-header>
+        <button nbButton ghost size="medium" class="float-left" (click)="cancel()">Cancel</button>
+        <h4 style="width: fit-content; margin: auto;">JP Verify $100k Above </h4>
+    </nb-card-header>
+    <nb-card-body>
+        <nb-list>
+            <nb-list-item >
+                <label>Record the Jackpot amount:</label> 
+                <input nbInput class="float-right" placeholder="How Much?" [(ngModel)]="checklist.JackpotAmount" > 
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.Book.No ? 'rgba(255, 0, 0, 0.705)': ''">
+                <label>MEAL Book Entry</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Book.No" (change)="applyToChecklist('Book', 'No')">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Book.Yes" (change)="applyToChecklist('Book', 'Yes')">Yes</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.SealIntact.No ? 'rgba(255, 0, 0, 0.705)': ''">
+                <label> Are All Seal(s) Intact? </label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SealIntact.No" (change)="applyToChecklist('SealIntact', 'No')">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SealIntact.Yes" (change)="applyToChecklist('SealIntact', 'Yes')">Yes</nb-checkbox>
+            </nb-list-item>
+
+
+            <nb-list-item class="required">
+                <label>Record Slot Repair Representative:</label>
+                <nb-select class="float-right" placeholder="Select Showcase" [(selected)]="checklist.RepairRepresentative">
+                    <nb-option *ngFor="let person of people" [value]="person.FullName"> {{person.FullName}} </nb-option>
+                    
+                </nb-select>
+            </nb-list-item>
+
+            <nb-list-item class="required">
+                <label>Record Security Representative:</label>
+                <nb-select class="float-right" placeholder="Select Showcase" [(selected)]="checklist.SecurityRepresentative">
+                    <nb-option *ngFor="let person of people" [value]="person.FullName"> {{person.FullName}} </nb-option>
+                   
+                </nb-select>
+            </nb-list-item>
+
+            <nb-list-item >
+                <label>Record Slot Operations Manager:</label>
+                <nb-select class="float-right" placeholder="Select Showcase" [(selected)]="checklist.OperationsManager">
+                    <nb-option  *ngFor="let person of people" [value]="person.FullName">{{person.FullName}}</nb-option>
+                
+                </nb-select>
+            </nb-list-item>
+            <nb-list-item class="required">
+                <label>Record Casino Manager or Equivalent :</label>
+                <nb-select class="float-right" placeholder="Select Showcase" [(selected)]="checklist.CasinoManager">
+                    <nb-option  *ngFor="let person of people" [value]="person.FullName">{{person.FullName}}</nb-option>
+                
+                </nb-select>
+            </nb-list-item>
+            <nb-list-item>
+                <label> Is a Gaming Commission Representative Present: </label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.GamingRepresentative.No" (change)="applyToChecklist('GamingRepresentative', 'No')">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.GamingRepresentative.Yes" (change)="applyToChecklist('GamingRepresentative', 'Yes')">Yes</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.Verification.Fail ? 'rgba(255, 0, 0, 0.705)': ''">
+                <label> Signature Verification </label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Verification.Fail" (change)="applyToChecklist('Verification', 'Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Verification.Pass" (change)="applyToChecklist('Verification', 'Pass')">Pass</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item class="status-danger"> 
+                <label>Record Verified Game Media Signature(s)</label>
+                <textarea nbInput fullWidth placeholder="Enter Signatures..." status="danger" [(ngModel)]="checklist.MediaSignatures"></textarea>
+            </nb-list-item>
+        </nb-list>
+        <button nbButton class="float-right" ghost size="medium" (click)="finish()">Finish</button>
+        <button nbButton ghost size="medium" (click)="cancel()">Cancel</button>
+    </nb-card-body>
+</nb-card>
