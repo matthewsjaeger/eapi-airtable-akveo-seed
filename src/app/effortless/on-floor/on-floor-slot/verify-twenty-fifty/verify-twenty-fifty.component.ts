@@ -49,7 +49,7 @@ export class VerifyTwentyFiftyComponent extends EffortlessComponentBase implemen
   }
 
   updatePercentComplete = function () {
-    this.checklistMetadata.PercentComplete = 40;
+    this.checklistMetadata.PercentComplete = 0;
     if (this.checklist.JackpotAmount) this.checklistMetadata.PercentComplete += 40;
     if (this.checklist.Book) this.checklistMetadata.PercentComplete += 10;
     if (this.checklist.SealIntact) this.checklistMetadata.PercentComplete += 10;
@@ -59,9 +59,9 @@ export class VerifyTwentyFiftyComponent extends EffortlessComponentBase implemen
     if (this.checklist.CasinoManager) this.checklistMetadata.PercentComplete += 10;
   
     this.checklistMetadata.Status = (this.checklistMetadata.PercentComplete == 100) ? 4 : 1;
-    this.checklistMetadata.ComplianceStatus = (!this.checklist.SecurityRepresentative
-      || !this.checklist.OperationsManager || this.checklist.Book == 'No' || this.checklist.SealIntact == 'No') ? 1 : 
-      (this.checklistMetadata.PercentComplete == 100) ? 0 : 2;
+    this.checklistMetadata.ComplianceStatus = (!this.checklist.RepairRepresentative || !this.checklist.SecurityRepresentative
+      || !this.checklist.OperationsManager || !this.checklist.CasinoManager || this.checklist.Book == 'No' || 
+      this.checklist.SealIntact == 'No') ? 1 : (this.checklistMetadata.PercentComplete == 100) ? 0 : 2;
   };
 
   applyToChecklist = function (question, answer) {
@@ -90,7 +90,7 @@ export class VerifyTwentyFiftyComponent extends EffortlessComponentBase implemen
     this.updatePercentComplete();
     let payload = this.gds.createPayload();
     payload.SlotView = { SlotId: this.sid, Checklist: this.checklist, ChecklistMetadata: this.checklistMetadata };
-    this.gds.smqGamingAgent.JPVerify10K(payload).then(resp => {
+    this.gds.smqGamingAgent.JPVerify20K(payload).then(resp => {
       if (!resp.ErrorMessage) {
         this.router.navigateByUrl('effortless/on-floor-slot/' + self.sid);
       }

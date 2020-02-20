@@ -9,29 +9,31 @@
                 <label>Record the Jackpot amount:</label> 
                 <input nbInput class="float-right" placeholder="How Much?" [(ngModel)]="checklist.JackpotAmount" > 
             </nb-list-item>
-            <nb-list-item [style.backgroundColor]="tempChecklist.Book.No ? 'rgba(255, 0, 0, 0.705)': ''">
+            <nb-list-item [style.backgroundColor]="tempChecklist.Book.No ? '#ff3d71': ''">
                 <label>MEAL Book Entry</label>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Book.No" (change)="applyToChecklist('Book', 'No')">No</nb-checkbox>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Book.Yes" (change)="applyToChecklist('Book', 'Yes')">Yes</nb-checkbox>
             </nb-list-item>
-            <nb-list-item [style.backgroundColor]="tempChecklist.SealIntact.No ? 'rgba(255, 0, 0, 0.705)': ''">
+            <nb-list-item [style.backgroundColor]="tempChecklist.SealIntact.No ? '#ff3d71': ''">
                 <label> Are All Seal(s) Intact? </label>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SealIntact.No" (change)="applyToChecklist('SealIntact', 'No')">No</nb-checkbox>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SealIntact.Yes" (change)="applyToChecklist('SealIntact', 'Yes')">Yes</nb-checkbox>
             </nb-list-item>
 
 
-            <nb-list-item class="required">
+            <nb-list-item [style.backgroundColor]="checklist.RepairRepresentative ? '' : '#ff3d71'">
                 <label>Record Slot Repair Representative:</label>
                 <nb-select class="float-right" placeholder="Select Showcase" [(selected)]="checklist.RepairRepresentative">
+                    <nb-option>None</nb-option>
                     <nb-option *ngFor="let person of people" [value]="person.FullName"> {{person.FullName}} </nb-option>
                     
                 </nb-select>
             </nb-list-item>
 
-            <nb-list-item class="required">
+            <nb-list-item [style.backgroundColor]="checklist.SecurityRepresentative ? '' : '#ff3d71'">
                 <label>Record Security Representative:</label>
                 <nb-select class="float-right" placeholder="Select Showcase" [(selected)]="checklist.SecurityRepresentative">
+                    <nb-option>None</nb-option>
                     <nb-option *ngFor="let person of people" [value]="person.FullName"> {{person.FullName}} </nb-option>
                    
                 </nb-select>
@@ -40,13 +42,15 @@
             <nb-list-item >
                 <label>Record Slot Operations Manager:</label>
                 <nb-select class="float-right" placeholder="Select Showcase" [(selected)]="checklist.OperationsManager">
+                    <nb-option>None</nb-option>
                     <nb-option  *ngFor="let person of people" [value]="person.FullName">{{person.FullName}}</nb-option>
                 
                 </nb-select>
             </nb-list-item>
-            <nb-list-item class="required">
+            <nb-list-item [style.backgroundColor]="checklist.CasinoManager ? '' : '#ff3d71'">
                 <label>Record Casino Manager or Equivalent :</label>
                 <nb-select class="float-right" placeholder="Select Showcase" [(selected)]="checklist.CasinoManager">
+                    <nb-option>None</nb-option>
                     <nb-option  *ngFor="let person of people" [value]="person.FullName">{{person.FullName}}</nb-option>
                 
                 </nb-select>
@@ -56,14 +60,14 @@
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.GamingRepresentative.No" (change)="applyToChecklist('GamingRepresentative', 'No')">No</nb-checkbox>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.GamingRepresentative.Yes" (change)="applyToChecklist('GamingRepresentative', 'Yes')">Yes</nb-checkbox>
             </nb-list-item>
-            <nb-list-item [style.backgroundColor]="tempChecklist.Verification.Fail ? 'rgba(255, 0, 0, 0.705)': ''">
+            <nb-list-item [style.backgroundColor]="tempChecklist.Verification.Fail ? '#ff3d71': ''">
                 <label> Signature Verification </label>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Verification.Fail" (change)="applyToChecklist('Verification', 'Fail')">Fail</nb-checkbox>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Verification.Pass" (change)="applyToChecklist('Verification', 'Pass')">Pass</nb-checkbox>
             </nb-list-item>
-            <nb-list-item class="status-danger"> 
+            <nb-list-item  [style.backgroundColor]="checklist.MediaSignatures ? '': '#ff3d71'"> 
                 <label>Record Verified Game Media Signature(s)</label>
-                <textarea nbInput fullWidth placeholder="Enter Signatures..." status="danger" [(ngModel)]="checklist.MediaSignatures"></textarea>
+                <textarea nbInput fullWidth placeholder="Enter Signatures..." [(ngModel)]="checklist.MediaSignatures"></textarea>
             </nb-list-item>
         </nb-list>
         <button nbButton class="float-right" ghost size="medium" (click)="finish()">Finish</button>
