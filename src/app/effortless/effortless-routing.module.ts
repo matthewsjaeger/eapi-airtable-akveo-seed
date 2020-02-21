@@ -22,6 +22,10 @@ import { VerifyFiftyOnehundredComponent } from './on-floor/on-floor-slot/verify-
 import { VerifyOnehundredAboveComponent } from './on-floor/on-floor-slot/verify-onehundred-above/verify-onehundred-above.component';
 import { StateInspectionComponent } from './on-floor/on-floor-slot/state-inspection/state-inspection.component';
 import { InspectionRecordComponent } from './on-floor/on-floor-slot/state-inspection/inspection-record/inspection-record.component';
+import { GcInspectionComponent } from './on-floor/on-floor-slot/gc-inspection/gc-inspection.component';
+import { LscConversionComponent } from './on-floor/on-floor-slot/lsc-conversion/lsc-conversion.component';
+import { MlcConversionComponent } from './on-floor/on-floor-slot/mlc-conversion/mlc-conversion.component';
+import { EditSealsComponent } from './on-floor/on-floor-slot/edit-seals/edit-seals.component';
 
 let effortlessChildren = [
   {
@@ -103,6 +107,22 @@ let effortlessChildren = [
   {
     path: 'inspection-record/:sid',
     component: InspectionRecordComponent,
+  },
+  {
+    path: 'gc-inspection',
+    component: GcInspectionComponent,
+  },
+  {
+    path: 'lsc-conversion',
+    component: LscConversionComponent,
+  },
+  {
+    path: 'mlc-conversion',
+    component: MlcConversionComponent,
+  },
+  {
+    path: 'edit-seals/:sid',
+    component: EditSealsComponent,
   },
 ];
 

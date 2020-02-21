@@ -31,13 +31,16 @@ import { InspectionRecordComponent } from './on-floor/on-floor-slot/state-inspec
 import { GcInspectionComponent } from './on-floor/on-floor-slot/gc-inspection/gc-inspection.component';
 import { LscConversionComponent } from './on-floor/on-floor-slot/lsc-conversion/lsc-conversion.component';
 import { MlcConversionComponent } from './on-floor/on-floor-slot/mlc-conversion/mlc-conversion.component';
+import { EditSealsComponent } from './on-floor/on-floor-slot/edit-seals/edit-seals.component';
+import { AddSealComponent } from './on-floor/on-floor-slot/edit-seals/add-seal/add-seal.component';
+import { ReplaceSealComponent } from './on-floor/on-floor-slot/edit-seals/replace-seal/replace-seal.component';
 
 let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComponent, Page3Component,
   StorageSlotsComponent, SlotProjectsComponent, SearchStorageSlotsComponent, SlotProjectComponent, NewProjectComponent,
    EditProjectComponent, StorageSlotComponent, OnFloorComponent, OnFloorSlotComponent, EmergencyDropInspectionComponent,
   VerifyTenTwentyComponent, StackerFullRecordComponent, MediaVerificationComponent, PreventativeMaintenanceComponent, VerifyTwentyFiftyComponent,
 VerifyFiftyOnehundredComponent, VerifyOnehundredAboveComponent, StateInspectionComponent, InspectionRecordComponent, GcInspectionComponent,
-LscConversionComponent, MlcConversionComponent];
+LscConversionComponent, MlcConversionComponent, EditSealsComponent, AddSealComponent, ReplaceSealComponent];
 
 @NgModule({
   declarations: declarations,
@@ -62,6 +65,7 @@ LscConversionComponent, MlcConversionComponent];
     NbCheckboxModule,
     NbDialogModule.forChild()
   ],
+  entryComponents: [ AddSealComponent, ReplaceSealComponent]
 })
 export class EffortlessModule {
 

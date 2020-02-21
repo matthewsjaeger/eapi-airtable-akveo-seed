@@ -9,7 +9,11 @@
         <button nbButton outline status="warning" ><nb-icon icon="close-outline"></nb-icon>Break Seal</button>
     </nb-card-header>
     <nb-card-body>
-        Hello
+        <nb-list>
+            <nb-list-item (click)="selected()"[style.backgroundColor]="" >
+                <p> When this is selected the replace seal and break seal buttons should be enabled.</p>
+            </nb-list-item>
+        </nb-list>
     </nb-card-body>
     <nb-card-footer>
         <button nbButton outline status="danger" size="medium" class="float-left" (click)="cancel()"> <nb-icon icon="slash-outline"></nb-icon> Cancel</button>

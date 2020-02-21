@@ -106,7 +106,7 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
 
   }
   editSeals() {
-
+    this.router.navigateByUrl('effortless/edit-seals/' + this.sid)
   }
   emergencyDropInspection() {
     this.router.navigateByUrl('effortless/emergency-drop-inspection/' + this.sid);

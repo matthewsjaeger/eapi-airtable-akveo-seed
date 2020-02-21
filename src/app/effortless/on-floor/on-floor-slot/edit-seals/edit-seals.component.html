@@ -1,0 +1,35 @@
+<nb-card>
+    <nb-card-header>
+        <button nbButton outline size="medium" status="danger" class="float-left" (click)="cancel()">
+            <nb-icon icon="slash-outline"></nb-icon>Cancel
+        </button>
+        <h4 style="width: fit-content; margin: auto;">Edit Seals</h4>
+    </nb-card-header>
+    <nb-card-header style="display: grid; grid-template-columns: auto auto auto; grid-gap: 5px;">
+        <button nbButton outline status="success" (click)="openAddSeal()">
+            <nb-icon icon="plus-outline"></nb-icon>Add Seal
+        </button>
+        <button nbButton outline (click)="openReplaceSeal()">
+            <nb-icon icon="sync-outline"></nb-icon>Replace Seal
+        </button>
+        <button nbButton outline status="warning" >
+            <nb-icon icon="close-outline"></nb-icon>Break Seal
+        </button>
+    </nb-card-header>
+    <nb-card-body>
+        <nb-list *ngFor=" let def of componentDefList">
+            <nb-list-item >
+                <p> {{def.ToStringText}} </p>
+            </nb-list-item>
+
+        </nb-list>
+    </nb-card-body>
+    <nb-card-footer>
+        <button nbButton outline status="danger" size="medium" class="float-left" (click)="cancel()">
+            <nb-icon icon="slash-outline"></nb-icon> Cancel
+        </button>
+        <button nbButton outline size="medium" class="float-right" (click)="next()">
+            <nb-icon icon="arrowhead-right-outline"></nb-icon> Next
+        </button>
+    </nb-card-footer>
+</nb-card>
