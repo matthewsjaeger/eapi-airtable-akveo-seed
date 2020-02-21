@@ -1,6 +1,6 @@
 <nb-card [size]="'large'">
     <nb-card-header>
-        <button nbButton ghost size="medium" class="float-left" (click)="cancel()">Cancel</button>
+        <button nbButton ghost size="medium" status="danger" class="float-left" (click)="cancel()"><nb-icon icon="slash-outline"></nb-icon>Cancel</button>
         <h4 style="width: fit-content; margin: auto;">JP Verify $20k - $49,999.99</h4>
     </nb-card-header>
     <nb-card-body>
@@ -58,7 +58,7 @@
             </nb-list-item>
         </nb-list>
         <button nbButton class="float-right" ghost size="medium" (click)="finish()">Finish</button>
-        <button nbButton ghost size="medium" (click)="cancel()">Cancel</button>
+        <button nbButton ghost size="medium" status="danger" (click)="cancel()"><nb-icon icon="slash-outline"></nb-icon>Cancel</button>
     </nb-card-body>
 </nb-card>
 
