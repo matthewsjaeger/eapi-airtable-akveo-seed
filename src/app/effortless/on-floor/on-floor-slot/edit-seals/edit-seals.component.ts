@@ -20,7 +20,11 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
 
   componentList:any;
   componentDefList: any;
-
+  logicCage: any;
+  seal:any;
+  disabled: boolean;
+  modifyDisabled: boolean = true;
+  selected: string = null;
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, 
     public route: ActivatedRoute, private dialogService: NbDialogService ) { 
@@ -39,9 +43,10 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
       payload.SearchTerm = self.sid
       self.gds.smqATR.GetInstalledComponents(payload).then(function (reply){
         console.error(reply)
-        self.componentList = reply.SlotComponents
         self.componentDefList = reply.SlotComponentDefs
-      })
+        self.logicCage = reply.SlotComponent
+        self. seal = reply.SlotSeal
+      });
     }))
 
   }
@@ -65,6 +70,19 @@ openReplaceSeal(){
 
 openBreakSeal(){
   this.dialogService.open(BreakSealComponent)
+}
+
+enable(slotSealId) {
+this.modifyDisabled = !this.modifyDisabled;
+if (this.selected == slotSealId){
+  this.selected = null;
+} else {
+  this.selected = slotSealId;
+} if (this.selected != null){
+  this.modifyDisabled = false;
+} else{
+  this.modifyDisabled = true;
+}
 }
 
 

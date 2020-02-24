@@ -9,20 +9,47 @@
         <button nbButton outline status="success" (click)="openAddSeal()">
             <nb-icon icon="plus-outline"></nb-icon>Add Seal
         </button>
-        <button nbButton outline (click)="openReplaceSeal()">
+        <button nbButton outline
+         (click)="openReplaceSeal()"
+         [disabled]="modifyDisabled">
             <nb-icon icon="sync-outline"></nb-icon>Replace Seal
         </button>
-        <button nbButton outline status="warning" (click)="openBreakSeal()" >
+        <button nbButton outline status="warning" 
+        (click)="openBreakSeal()"
+        [disabled]= "modifyDisabled">
             <nb-icon icon="close-outline"></nb-icon>Break Seal
         </button>
     </nb-card-header>
-    <nb-card-body>
+    <nb-card-body >
         <nb-list *ngFor=" let def of componentDefList">
             <nb-list-item >
                 <p> {{def.ToStringText}} </p>
             </nb-list-item>
-
         </nb-list>
+        <nb-list>
+            <nb-list-item [style.backgroundColor]="seal.SlotSealId && seal.SlotSealId == selected ? '#ff3d71': ''"  
+            (click)="enable(seal.SlotSealId)"
+            *ngIf="seal && seal.SealNumber">
+                <p> <b>Seal Number:</b> {{seal.SealNumber}} </p>
+            </nb-list-item>
+            <nb-list-item *ngIf=" logicCage && logicCage.SlotComponentId ">
+                <b>Logic Cage</b>
+                <p > {{logicCage.SlotComponentId}} </p>
+            </nb-list-item>
+        </nb-list>
+
+        <!-- 
+        <nb-list >
+            <nb-list-item *ngIf=" logicCage && logicCage.SlotComponentId ">
+                <b>Logic Cage</b>
+                <p> {{logicCage.SlotComponentId}} </p>
+            </nb-list-item>
+            <nb-list-item *ngIf="seal && seal.SealNumber">
+                <p> <b>Seal Number:</b> {{seal.SealNumber}} </p>
+            </nb-list-item>
+        </nb-list> -->
+
+
     </nb-card-body>
     <nb-card-footer>
         <button nbButton outline status="danger" size="medium" class="float-left" (click)="cancel()">
