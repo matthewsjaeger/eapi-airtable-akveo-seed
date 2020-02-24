@@ -26,11 +26,13 @@ export class StateInspectionComponent extends EffortlessComponentBase implements
   }
 
 cancel(){
-  this.router.navigateByUrl('effortless/on-floor-slot/' + this.sid)
+  let self = this
+  this.router.navigateByUrl('effortless/on-floor-slot/' + self.sid)
 }
 
 next(){
-  this.router.navigateByUrl('effortless/inspection-record/' + this.sid)
+  let self = this
+  this.router.navigateByUrl('effortless/inspection-record/' + self.sid)
 }
 
 }

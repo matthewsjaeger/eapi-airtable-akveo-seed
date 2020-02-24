@@ -7,6 +7,7 @@ import { NbMenuService } from '@nebular/theme';
 import { NbDialogService } from '@nebular/theme';
 import { AddSealComponent } from './add-seal/add-seal.component';
 import { ReplaceSealComponent } from './replace-seal/replace-seal.component';
+import { BreakSealComponent } from './break-seal/break-seal.component';
 
 @Component({
   selector: 'ngx-edit-seal',
@@ -27,7 +28,7 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
 
     this.safeSubscribe(this.route.params.subscribe((params) => {
       this.sid = params['sid'];   
-    }));
+    }));  
 
   } 
 
@@ -60,6 +61,10 @@ openAddSeal(){
 
 openReplaceSeal(){
   this.dialogService.open(ReplaceSealComponent)
+}
+
+openBreakSeal(){
+  this.dialogService.open(BreakSealComponent)
 }
 
 

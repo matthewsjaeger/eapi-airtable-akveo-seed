@@ -1,11 +1,7 @@
 <nb-card style="align-items: center;">
     <nb-card-header>
-        <h4>Replace Seal</h4>
+        <h4>Break Seal </h4>
     </nb-card-header>
-    <nb-card-body>
-       <label > Scan new Seal #:</label> <br>
-        <input nbInput type="text" placeHolder="Seal #">
-    </nb-card-body>
     <nb-card-body>
         <label>Reason for Replacement</label> <br>
         <nb-select placeholder="Select Showcase" [(selected)]="selectedItem">
@@ -18,7 +14,7 @@
           </nb-select>
     </nb-card-body>
     <nb-card-footer>
-        <button nbButton class="float-left" outline status="danger" (click)="cancelReplaceSeal()">Cancel Replace Seal</button>
-        <button nbButton class="float-right" outline (click)="next()" >Next</button>
+        <button nbButton class="float-left" outline status="danger" (click)="cancelBreakSeal()">Cancel Break Seal</button>
+        <button nbButton class="float-right" outline (click)="next()" >Ok</button>
     </nb-card-footer>
 </nb-card>

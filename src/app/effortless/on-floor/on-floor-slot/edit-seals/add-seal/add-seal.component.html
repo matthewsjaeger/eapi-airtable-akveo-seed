@@ -1,4 +1,4 @@
-<nb-card size="medium" style="align-items: center;">
+<nb-card style="align-items: center;">
     <nb-card-header>
         <h4>Add Seal</h4>
     </nb-card-header>
@@ -7,7 +7,7 @@
         <input nbInput type="text" placeHolder="Seal #">
     </nb-card-body>
     <nb-card-footer>
-        <button nbButton class="float-left" outline status="danger">Cancel Add Seal</button>
-        <button nbButton class="float-right" outline>Next</button>
+        <button nbButton class="float-left" outline status="danger" (click)="cancelAddSeal()">Cancel Add Seal</button>
+        <button nbButton class="float-right" outline (click)="next()" >Next</button>
     </nb-card-footer>
 </nb-card>
