@@ -14,10 +14,10 @@ import { PlaceSlotSealsComponent } from './place-slot-seals/place-slot-seals.com
 })
 export class ReplaceSealComponent extends EffortlessComponentBase implements OnInit {
   
-  @Input() sid: any;
-  componentDefList: any;
-  logicCage: any;
-  seal: any;
+  sid: any;
+  @Input() componentDefList: any;
+  @Input() logicCage: any;
+  @Input() seal: any;
   newSealNumber: number;
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, 
@@ -32,17 +32,17 @@ export class ReplaceSealComponent extends EffortlessComponentBase implements OnI
   ngOnInit() {
     console.error(this.sid)
     
-    this.safeSubscribe(this.gds.onReady().subscribe(ready=>{
-     let self = this
-     let payload = self.gds.createPayload()
-     payload.SearchTerm = self.sid
-     self.gds.smqATR.GetInstalledComponents(payload).then(function (reply){
-       console.error(reply)
-       self.componentDefList = reply.SlotComponentDefs
-       self.logicCage = reply.SlotComponent
-       self. seal = reply.SlotSeal
-     });
-   }))
+  //   this.safeSubscribe(this.gds.onReady().subscribe(ready=>{
+  //    let self = this
+  //    let payload = self.gds.createPayload()
+  //    payload.SearchTerm = self.sid
+  //    self.gds.smqATR.GetInstalledComponents(payload).then(function (reply){
+  //      console.error(reply)
+  //      self.componentDefList = reply.SlotComponentDefs
+  //      self.logicCage = reply.SlotComponent
+  //      self. seal = reply.SlotSeal
+  //    });
+  //  }))
   }
 
   cancelReplaceSeal(){
@@ -52,7 +52,9 @@ export class ReplaceSealComponent extends EffortlessComponentBase implements OnI
   next(){
     this.dialogService.open(PlaceSlotSealsComponent, {
       context: {
-        'sid': this.sid,
+        'componentDefList': this.componentDefList,
+        'logicCage': this.logicCage,
+        'seal': this.seal,
         'newSeal': this.newSealNumber
       }
     })

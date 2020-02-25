@@ -69,7 +69,9 @@ openAddSeal(){
 openReplaceSeal(){
   this.dialogService.open(ReplaceSealComponent, {
     context:{
-      'sid': this.sid
+      'componentDefList': this.componentDefList,
+        'logicCage': this.logicCage,
+        'seal': this.seal
     }
 
   })
