@@ -4,7 +4,8 @@
     </nb-card-header>
     <nb-card-body>
        <label > Scan new Seal #:</label> <br>
-        <input nbInput type="text" placeHolder="Seal #">
+        <input nbInput type="text" placeHolder="Seal #" [(ngModel)]="newSealNumber">
+        <p *ngIf="seal && seal.SealNumber">Note: Adding this seal wiill break Seal # {{seal.SealNumber}}</p>
     </nb-card-body>
     <nb-card-body>
         <label>Reason for Replacement</label> <br>

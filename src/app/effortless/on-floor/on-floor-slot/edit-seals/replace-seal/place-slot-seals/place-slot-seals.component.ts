@@ -3,8 +3,9 @@ import { EffortlessComponentBase } from '../../../../../efforless-base-component
 import { GDS } from '../../../../../services/gds.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DataEndpoint } from '../../../../../services/eapi-data-services/data-endpoint/data-endpoint';
-import { NbMenuService, NbDialogRef } from '@nebular/theme';
+import { NbMenuService, NbDialogRef, NbDialogService } from '@nebular/theme';
 import { ReplaceSealComponent } from '../replace-seal.component';
+import { ReplaceWitnessesComponent } from './replace-witnesses/replace-witnesses.component';
 
 @Component({
   selector: 'ngx-place-slot-seals',
@@ -17,9 +18,11 @@ export class PlaceSlotSealsComponent extends EffortlessComponentBase implements 
   logicCage: any;
   seal: any;
   @Input() sid: any;
+  @Input() newSeal: number;
+  
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, 
-    public route: ActivatedRoute, protected dialogRef: NbDialogRef<PlaceSlotSealsComponent>  ) { 
+    public route: ActivatedRoute, protected dialogRef: NbDialogRef<PlaceSlotSealsComponent>, private dialogService: NbDialogService ) { 
     super (gds, data, menuService) 
 
     this.safeSubscribe(this.route.params.subscribe((params) => {
@@ -27,6 +30,7 @@ export class PlaceSlotSealsComponent extends EffortlessComponentBase implements 
     }));
   }
   ngOnInit() {
+    console.error(this.newSeal)
    console.error(this.sid)
    this.safeSubscribe(this.gds.onReady().subscribe(ready=>{
     let self = this
@@ -36,9 +40,18 @@ export class PlaceSlotSealsComponent extends EffortlessComponentBase implements 
       console.error(reply)
       self.componentDefList = reply.SlotComponentDefs
       self.logicCage = reply.SlotComponent
-      self. seal = reply.SlotSeal
+      self.seal = reply.SlotSeal
     });
   }))
+  }
+
+
+  next(){
+    this.dialogService.open(ReplaceWitnessesComponent)
+  }
+
+  cancelReplaceSeal(){
+    this.dialogRef.close()
   }
 
 }
