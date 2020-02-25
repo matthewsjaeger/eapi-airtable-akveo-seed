@@ -1,4 +1,4 @@
-<nb-card>
+<nb-card size="medium">
     <nb-card-header>
         <button nbButton outline size="medium" status="danger" class="float-left" (click)="cancel()">
             <nb-icon icon="slash-outline"></nb-icon>Cancel
@@ -21,9 +21,9 @@
         </button>
     </nb-card-header>
     <nb-card-body >
-        <nb-list *ngFor=" let def of componentDefList">
+        <nb-list *ngFor=" let def of componentDefList" >
             <nb-list-item >
-                <p> {{def.ToStringText}} </p>
+                <p style="font-size: .75rem;"> {{def.ToStringText}} </p>
             </nb-list-item>
         </nb-list>
         <nb-list>
