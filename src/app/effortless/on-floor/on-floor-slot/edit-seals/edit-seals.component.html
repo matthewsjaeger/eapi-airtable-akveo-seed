@@ -29,7 +29,7 @@
         <nb-list>
             <nb-list-item [style.backgroundColor]="seal.SlotSealId && seal.SlotSealId == selected ? '#ff3d71': ''"  
             (click)="enable(seal.SlotSealId)"
-            *ngIf="seal && seal.SealNumber">
+            *ngFor=" let seal of seal ">
                 <p> <b>Seal Number:</b> {{seal.SealNumber}} </p>
             </nb-list-item>
             <nb-list-item *ngIf=" logicCage && logicCage.SlotComponentId ">

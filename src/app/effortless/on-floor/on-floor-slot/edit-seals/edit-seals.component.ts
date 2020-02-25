@@ -46,7 +46,7 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
         console.error(reply)
         self.componentDefList = reply.SlotComponentDefs
         self.logicCage = reply.SlotComponent
-        self. seal = reply.SlotSeal
+        self.seal = reply.SlotSeals
       });
     }))
 

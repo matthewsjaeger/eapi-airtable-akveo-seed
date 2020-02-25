@@ -1,11 +1,16 @@
-<nb-card style="width: 400px; height: 400px;">
+<nb-card style="width: 800px; height: 600px;">
     <nb-card-header>
         <h5>Adding Seal #:</h5>
     </nb-card-header>
     Witnesses:
     <nb-card-body>
-        <b>Badge Number:</b> <input nbInput type="text">
+        <b>Badge Number:</b>  <input nbInput type="text" [(ngModel)]="witness" ><button class="float-right" nbButton outline (click)="add(witness)">Add</button>
     </nb-card-body>
+    <nb-list>
+        <nb-list-item>
+            {{witness}}
+        </nb-list-item>
+    </nb-list>
     <nb-card-footer>
         <button nbButton class="float-left" outline status="danger" (click)="cancelReplaceSeal()">Cancel Replace Seal</button>
         <button nbButton class="float-right" outline (click)="finish()" >Finish</button>

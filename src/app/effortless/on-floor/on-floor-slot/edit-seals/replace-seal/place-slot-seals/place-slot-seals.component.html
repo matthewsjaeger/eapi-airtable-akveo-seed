@@ -11,8 +11,8 @@
         </nb-list>
         
         <nb-list>
-            <nb-list-item *ngIf="seal && seal.SealNumber">
-                <p> <b>Seal Number:</b> {{seal.SealNumber}} </p>
+            <nb-list-item *ngFor="let seal of seal">
+                <p> <nb-checkbox class="float-left" status="basic"></nb-checkbox> <b>Seal Number:</b> {{seal.SealNumber}} </p>
             </nb-list-item>
         </nb-list>
     </nb-card-body>

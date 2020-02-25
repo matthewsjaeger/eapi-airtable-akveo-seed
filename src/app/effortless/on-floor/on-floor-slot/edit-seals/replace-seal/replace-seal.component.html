@@ -1,10 +1,10 @@
-<nb-card style="align-items: center; height: 400px; width: 400px ;">
+<nb-card style=" height: 600px; width: 800px ;">
     <nb-card-header>
         <h4>Replace Seal</h4>
     </nb-card-header>
     <nb-card-body>
        <label > Scan new Seal #:</label> <br>
-        <input nbInput type="text" placeHolder="Seal #" [(ngModel)]="newSealNumber">
+        <input nbInput type="text" placeHolder="Seal #" [(ngModel)]="newSealNumber" required>
         <p *ngIf="seal && seal.SealNumber">Note: Adding this seal wiill break Seal # {{seal.SealNumber}}</p>
     </nb-card-body>
     <nb-card-body>
