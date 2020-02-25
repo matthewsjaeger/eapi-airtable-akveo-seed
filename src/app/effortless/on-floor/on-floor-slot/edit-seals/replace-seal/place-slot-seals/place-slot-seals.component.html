@@ -1,0 +1,23 @@
+<nb-card style="width: 400px; height: 400px;">
+    <nb-card-header>
+        <h5>Adding Seal #:  </h5>
+        <p>Select components to be sealed (selecting seals will have no effect)</p>
+    </nb-card-header>
+    <nb-card-body>
+        <nb-list *ngFor=" let def of componentDefList">
+            <nb-list-item >
+                <p> {{def.ToStringText}} </p>
+            </nb-list-item>
+        </nb-list>
+        
+        <nb-list>
+            <nb-list-item *ngIf="seal && seal.SealNumber">
+                <p> <b>Seal Number:</b> {{seal.SealNumber}} </p>
+            </nb-list-item>
+        </nb-list>
+    </nb-card-body>
+    <nb-card-footer>
+        <button nbButton class="float-left" outline status="danger" (click)="cancelReplaceSeal()">Cancel Replace Seal</button>
+        <button nbButton class="float-right" outline (click)="next()" >Next</button>
+    </nb-card-footer>
+</nb-card>

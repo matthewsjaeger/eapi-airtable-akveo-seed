@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { GDS } from '../../../../services/gds.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DataEndpoint } from '../../../../services/eapi-data-services/data-endpoint/data-endpoint';
-import { NbMenuService, NbDialogRef } from '@nebular/theme';
+import { NbMenuService, NbDialogRef, NbDialogService } from '@nebular/theme';
 import { AddSealComponent } from '../add-seal/add-seal.component';
 import { EffortlessComponentBase } from '../../../../efforless-base-component';
+import { PlaceSlotSealsComponent } from './place-slot-seals/place-slot-seals.component';
 
 @Component({
   selector: 'ngx-replace-seal',
@@ -12,10 +13,11 @@ import { EffortlessComponentBase } from '../../../../efforless-base-component';
   styleUrls: ['./replace-seal.component.scss']
 })
 export class ReplaceSealComponent extends EffortlessComponentBase implements OnInit {
-  sid: any;
+  
+  @Input() sid: any;
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, 
-    public route: ActivatedRoute, protected dialogRef: NbDialogRef<ReplaceSealComponent> ) { 
+    public route: ActivatedRoute, protected dialogRef: NbDialogRef<ReplaceSealComponent>, private dialogService: NbDialogService ) { 
     super (gds, data, menuService) 
 
     this.safeSubscribe(this.route.params.subscribe((params) => {
@@ -24,10 +26,19 @@ export class ReplaceSealComponent extends EffortlessComponentBase implements OnI
 
   } 
   ngOnInit() {
+    console.error(this.sid)
   }
 
   cancelReplaceSeal(){
     this.dialogRef.close();
+  }
+
+  next(){
+    this.dialogService.open(PlaceSlotSealsComponent, {
+      context: {
+        'sid': this.sid
+      }
+    })
   }
 
 }

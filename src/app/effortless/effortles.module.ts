@@ -35,13 +35,15 @@ import { EditSealsComponent } from './on-floor/on-floor-slot/edit-seals/edit-sea
 import { AddSealComponent } from './on-floor/on-floor-slot/edit-seals/add-seal/add-seal.component';
 import { ReplaceSealComponent } from './on-floor/on-floor-slot/edit-seals/replace-seal/replace-seal.component';
 import { BreakSealComponent } from './on-floor/on-floor-slot/edit-seals/break-seal/break-seal.component';
+import { PlaceSlotSealsComponent } from './on-floor/on-floor-slot/edit-seals/replace-seal/place-slot-seals/place-slot-seals.component';
 
 let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComponent, Page3Component,
   StorageSlotsComponent, SlotProjectsComponent, SearchStorageSlotsComponent, SlotProjectComponent, NewProjectComponent,
    EditProjectComponent, StorageSlotComponent, OnFloorComponent, OnFloorSlotComponent, EmergencyDropInspectionComponent,
   VerifyTenTwentyComponent, StackerFullRecordComponent, MediaVerificationComponent, PreventativeMaintenanceComponent, VerifyTwentyFiftyComponent,
 VerifyFiftyOnehundredComponent, VerifyOnehundredAboveComponent, StateInspectionComponent, InspectionRecordComponent, GcInspectionComponent,
-LscConversionComponent, MlcConversionComponent, EditSealsComponent, AddSealComponent, ReplaceSealComponent, BreakSealComponent];
+LscConversionComponent, MlcConversionComponent, EditSealsComponent, AddSealComponent, ReplaceSealComponent, BreakSealComponent,
+PlaceSlotSealsComponent];
 
 @NgModule({
   declarations: declarations,
@@ -66,7 +68,7 @@ LscConversionComponent, MlcConversionComponent, EditSealsComponent, AddSealCompo
     NbCheckboxModule,
     NbDialogModule.forChild()
   ],
-  entryComponents: [ AddSealComponent, ReplaceSealComponent, BreakSealComponent]
+  entryComponents: [ AddSealComponent, ReplaceSealComponent, BreakSealComponent, PlaceSlotSealsComponent]
 })
 export class EffortlessModule {
 

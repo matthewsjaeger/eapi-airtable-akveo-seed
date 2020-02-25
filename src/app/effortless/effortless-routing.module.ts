@@ -26,6 +26,8 @@ import { GcInspectionComponent } from './on-floor/on-floor-slot/gc-inspection/gc
 import { LscConversionComponent } from './on-floor/on-floor-slot/lsc-conversion/lsc-conversion.component';
 import { MlcConversionComponent } from './on-floor/on-floor-slot/mlc-conversion/mlc-conversion.component';
 import { EditSealsComponent } from './on-floor/on-floor-slot/edit-seals/edit-seals.component';
+import { ReplaceSealComponent } from './on-floor/on-floor-slot/edit-seals/replace-seal/replace-seal.component';
+import { PlaceSlotSealsComponent } from './on-floor/on-floor-slot/edit-seals/replace-seal/place-slot-seals/place-slot-seals.component';
 
 let effortlessChildren = [
   {

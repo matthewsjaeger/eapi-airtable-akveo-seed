@@ -25,6 +25,7 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
   disabled: boolean;
   modifyDisabled: boolean = true;
   selected: string = null;
+  
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, 
     public route: ActivatedRoute, private dialogService: NbDialogService ) { 
@@ -64,8 +65,14 @@ openAddSeal(){
 
 }
 
+
 openReplaceSeal(){
-  this.dialogService.open(ReplaceSealComponent)
+  this.dialogService.open(ReplaceSealComponent, {
+    context:{
+      'sid': this.sid
+    }
+
+  })
 }
 
 openBreakSeal(){
