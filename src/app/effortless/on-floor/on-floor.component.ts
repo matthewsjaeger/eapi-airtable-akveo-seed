@@ -40,6 +40,7 @@ export class OnFloorComponent extends EffortlessComponentBase implements OnInit 
       var payload = this.gds.createPayload();
       payload.SearchTerm = this.searchTerm;
       self.gds.smqUser.SearchOnFloorSlots(payload).then(function(reply){
+        console.error(reply)
         if (reply.SlotViews.length>0){
           self.slotViews = reply.SlotViews
           self.FilteredSlotsList = self.createFilteredSlots();

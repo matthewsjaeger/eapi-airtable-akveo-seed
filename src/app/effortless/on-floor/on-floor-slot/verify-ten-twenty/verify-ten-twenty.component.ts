@@ -39,18 +39,19 @@ export class VerifyTenTwentyComponent extends EffortlessComponentBase implements
 
     let payload = this.gds.createPayload();
     this.gds.smqUser.GetAllPeople(payload).then(resp => {
+      console.error(resp)
       if (!resp.ErrorMessage) {
         this.people = resp.People;
         this.people.forEach(person => {
-          person.FullName = person.LastName + ', ' + person.FirstName;
+          person.FullName = person.LastName + ', ' + person.FirstName + ', ' + person.BadgeNumber;
         });
       }
     })
   }
 
   updatePercentComplete = function () {
-    this.checklistMetadata.PercentComplete = 40;
-    if (this.checklist.JackpotAmount) this.checklistMetadata.PercentComplete += 40;
+    this.checklistMetadata.PercentComplete = 0;
+    if (this.checklist.JackpotAmount) this.checklistMetadata.PercentComplete += 50;
     if (this.checklist.Book) this.checklistMetadata.PercentComplete += 10;
     if (this.checklist.SealIntact) this.checklistMetadata.PercentComplete += 10;
     if (this.checklist.RepairRepresentative) this.checklistMetadata.PercentComplete += 10;

@@ -20,15 +20,22 @@
 </nb-card>
 
 <nb-card  *ngFor="let slot of slotViews">
-    <nb-card-header class="slots" (click)=selectSlot(slot)>
+    <!-- <nb-card-header class="slots" (click)=selectSlot(slot)>
       <button nbButton size="small" class="float-right" (click)=selectSlot(slot)>Open Slot</button>
       <b>Serial Number: </b>{{slot.SerialNumber}} 
-    </nb-card-header>
-    <nb-card-body>   
-      <b>Slot #:</b>{{slot?.SlotNumber}} <b>|</b> <b>Manufacturer:</b> {{slot.DisplayManufacturer}} <b>|</b> <b>Cabinet Model:</b>
-      {{slot.CabinetModel}} <b>|</b> <b>Game Chip:</b>{{slot.GameChip}} 
+    </nb-card-header> -->
+    <nb-card-body class="slots" (click)=selectSlot(slot)>   
+      <b>Serial Number: </b>{{slot.SerialNumber}} <b>|</b> 
+      <b>Machine #:</b>{{slot.SlotNumber}} <b>|</b> 
+      <b>License #:</b>{{slot.LicenseNumber}}
+      <br>
+      <b>Location:</b>{{slot.FloorLocation}} <b>|</b>
+      <b>Zone:</b>{{slot.Zone}}  <b>|</b>
+      <b>Floor Address:</b>{{slot.Address}} <b>|</b>
+      <b>Manufacturer:</b> {{slot.DisplayManufacturer}} 
+      <i class="float-right">{{slot.WorkflowState}} </i>
+        
     </nb-card-body>
-    <nb-card-footer> {{slot.WorkflowState}} </nb-card-footer>
   </nb-card>
 
 

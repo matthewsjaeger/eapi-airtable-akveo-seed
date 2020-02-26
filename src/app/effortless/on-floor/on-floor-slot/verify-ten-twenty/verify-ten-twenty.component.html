@@ -30,11 +30,17 @@
                 </nb-select>
             </nb-list-item>
 
+            <!-- <ng-select [items]="cities"
+            bindLabel="name"
+            placeholder="Select Showcase"
+            [(ngModel)]="selectedCity">
+             </ng-select> -->
+
             <nb-list-item [style.backgroundColor]="checklist.SecurityRepresentative ? '': '#ff3d71'">
                 <label>Record Security Representative:</label>
-                <nb-select class="float-right" placeholder="Select Showcase" [(selected)]="checklist.SecurityRepresentative">
+                <nb-select class="float-right" placeholder="Select Showcase"  [(selected)]="checklist.SecurityRepresentative">
                     <nb-option>None</nb-option>
-                    <nb-option *ngFor="let person of people" [value]="person.FullName"> {{person.FullName}} </nb-option>
+                    <nb-option *ngFor="let person of people" [value]="person.FullName || person.BadgeNumber"> {{person.FullName}} </nb-option>
                    
                 </nb-select>
             </nb-list-item>

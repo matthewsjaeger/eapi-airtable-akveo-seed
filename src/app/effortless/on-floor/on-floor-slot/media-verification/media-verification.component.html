@@ -5,49 +5,49 @@
     </nb-card-header>
     <nb-card-body>
         <nb-list>
-            <nb-list-item class="required">
+            <nb-list-item [style.backgroundColor]="checklist.Verification ? '': '#ff3d71'">
                 <label>Reason for Media Verification:</label>
-                <input nbInput class="float-right" placeholder="How Much?" [(ngModel)]="checklist.Verification">
+                <input nbInput class="float-right" placeholder="Reason?" [(ngModel)]="checklist.Verification">
             </nb-list-item>
-            <nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.PaybackPercentage.Fail ? '#ff3d71': ''">
                 <label>OS Payback Percentage:</label>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.PaybackPercentage.Fail" (change)="applyToChecklist('PaybackPercentage','Fail')">Fail</nb-checkbox>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.PaybackPercentage.Pass" (change)="applyToChecklist('PaybackPercentage','Pass')">Pass</nb-checkbox>
             </nb-list-item>
-            <nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.ProgramNumber.Fail ? '#ff3d71': ''">
                 <label> OS Program Number: </label>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ProgramNumber.Fail" (change)="applyToChecklist('ProgramNumber','Fail')">Fail</nb-checkbox>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ProgramNumber.Pass" (change)="applyToChecklist('ProgramNumber','Pass')">Pass</nb-checkbox>
             </nb-list-item>
-            <nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.MaxBet.Fail ? '#ff3d71': ''">
                 <label> OS Max Bet:</label>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MaxBet.Fail" (change)="applyToChecklist('MaxBet','Fail')">Fail</nb-checkbox>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MaxBet.Pass" (change)="applyToChecklist('MaxBet','Pass')">Pass</nb-checkbox>
             </nb-list-item>
-            <nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.MaxCredit.Fail ? '#ff3d71': ''">
                 <label> Check Max Credits/Lines:</label>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MaxCredit.Fail" (change)="applyToChecklist('MaxCredit','Fail')">Fail</nb-checkbox>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MaxCredit.Pass" (change)="applyToChecklist('MaxCredit','Pass')">Pass</nb-checkbox>
             </nb-list-item>
-            <nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.Check.Fail ? '#ff3d71': ''">
                 <label> Check TITO: </label>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Check.Fail" (change)="applyToChecklist('Check','Fail')">Fail</nb-checkbox>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Check.Pass" (change)="applyToChecklist('Check','Pass')">Pass</nb-checkbox>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Check.NoTITO" (change)="applyToChecklist('Check','NoTITO')">No TITO</nb-checkbox>
             </nb-list-item>
-            <nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.TicketLimit.Fail ? '#ff3d71': ''">
                 <label> Verify Ticket Limit of $1199:</label>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TicketLimit.Fail" (change)="applyToChecklist('TicketLimit','Fail')">Fail</nb-checkbox>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TicketLimit.Pass" (change)="applyToChecklist('TicketLimit','Pass')">Pass</nb-checkbox>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TicketLimit.NoTITO" (change)="applyToChecklist('TicketLimit','NoTITO')">No TITO</nb-checkbox>
             </nb-list-item>
-            <nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.Signature.Fail ? '#ff3d71': ''">
                 <label> Signature: </label>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Signature.Fail" (change)="applyToChecklist('Signature','Fail')">Fail</nb-checkbox>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Signature.Pass" (change)="applyToChecklist('Signature','Pass')">Pass</nb-checkbox>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Signature.NotTested" (change)="applyToChecklist('Signature','NotTested')">Not Tested</nb-checkbox>
             </nb-list-item>
-            <nb-list-item class="required">
+            <nb-list-item [style.backgroundColor]="checklist.MediaSignature ? '': '#ff3d71'">
                 <label>Record Verified Game Media Signature(s):</label>
                 <textarea nbInput fullWidth placeholder="Enter signatures" [(ngModel)]="checklist.MediaSignature"></textarea>
             </nb-list-item>
