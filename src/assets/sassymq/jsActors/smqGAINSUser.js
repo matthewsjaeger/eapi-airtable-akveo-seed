@@ -649,6 +649,22 @@ function generateGAINSUserActor() {
             return deferred.promise;
         }
         
+        smqGAINSUser.GetPersonByBadgeNumber = function() {
+            smqGAINSUser.GetPersonByBadgeNumber('{}');
+        }
+
+        smqGAINSUser.GetPersonByBadgeNumber = function(payload) {
+            payload = smqGAINSUser.stringifyValue(payload);
+            var id = smqGAINSUser.createUUID();
+            var deferred = smqGAINSUser.waitingReply[id] = smqGAINSUser.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Get Person By Badge Number - ');
+            smqGAINSUser.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.getpersonbybadgenumber', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGAINSUser.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
             // Can also say what 'Guest' can say.
             
         
