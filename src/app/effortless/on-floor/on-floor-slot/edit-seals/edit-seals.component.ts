@@ -57,7 +57,7 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
   }
 
   next() {
-    this.router.navigateByUrl('effortless/inspection-record/' + this.sid)
+    this.router.navigateByUrl('effortless/edit-seals-logic-access/' + this.sid)
   }
 
   openAddSeal() {

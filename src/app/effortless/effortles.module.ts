@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { EffortlessRoutingModule } from './effortless-routing.module';
-import { NbMenuModule, NbCardModule, NbButtonModule, NbActionsModule, NbSelectModule, NbInputModule, NbTabsetModule, NbIconModule, NbSpinnerModule, NbToggleModule, NbListModule, NbDialogModule, NbLayoutModule, NbCheckboxModule } from '@nebular/theme';
+import { NbMenuModule, NbCardModule, NbButtonModule, NbActionsModule, NbSelectModule, NbInputModule, NbTabsetModule, NbIconModule, NbSpinnerModule, NbToggleModule, NbListModule, NbDialogModule, NbLayoutModule, NbCheckboxModule, NbDatepickerModule } from '@nebular/theme';
 import { ThemeModule } from '../@theme/theme.module';
 import { EffortlessComponent } from './effortless.component';
 import { FormsModule } from '@angular/forms';
@@ -37,6 +37,7 @@ import { ReplaceSealComponent } from './on-floor/on-floor-slot/edit-seals/replac
 import { BreakSealComponent } from './on-floor/on-floor-slot/edit-seals/break-seal/break-seal.component';
 import { PlaceSlotSealsComponent } from './on-floor/on-floor-slot/edit-seals/replace-seal/place-slot-seals/place-slot-seals.component';
 import { ReplaceWitnessesComponent } from './on-floor/on-floor-slot/edit-seals/replace-seal/place-slot-seals/replace-witnesses/replace-witnesses.component';
+import { EditSealsLogicAccessComponent } from './on-floor/on-floor-slot/edit-seals/edit-seals-logic-access/edit-seals-logic-access.component';
 
 let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComponent, Page3Component,
   StorageSlotsComponent, SlotProjectsComponent, SearchStorageSlotsComponent, SlotProjectComponent, NewProjectComponent,
@@ -44,7 +45,7 @@ let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComp
   VerifyTenTwentyComponent, StackerFullRecordComponent, MediaVerificationComponent, PreventativeMaintenanceComponent, VerifyTwentyFiftyComponent,
 VerifyFiftyOnehundredComponent, VerifyOnehundredAboveComponent, StateInspectionComponent, InspectionRecordComponent, GcInspectionComponent,
 LscConversionComponent, MlcConversionComponent, EditSealsComponent, AddSealComponent, ReplaceSealComponent, BreakSealComponent,
-PlaceSlotSealsComponent, ReplaceWitnessesComponent];
+PlaceSlotSealsComponent, ReplaceWitnessesComponent, EditSealsLogicAccessComponent];
 
 @NgModule({
   declarations: declarations,
@@ -68,7 +69,8 @@ PlaceSlotSealsComponent, ReplaceWitnessesComponent];
     NbLayoutModule,
     NbCheckboxModule,
     FormsModule,
-    NbDialogModule.forChild()
+    NbDialogModule.forChild(),
+    NbDatepickerModule.forRoot()
   ],
   entryComponents: [ AddSealComponent, ReplaceSealComponent, BreakSealComponent, PlaceSlotSealsComponent, ReplaceWitnessesComponent]
 })

@@ -59,7 +59,6 @@ export class VerifyTenTwentyComponent extends EffortlessComponentBase implements
 
   add(){
     let payload = this.gds.createPayload();
-    payload.BadgeNumber = 
     this.gds.smqUser.GetAllPeople(payload).then(reply =>{
       this.people = reply.People;
       this.people.forEach(person =>{

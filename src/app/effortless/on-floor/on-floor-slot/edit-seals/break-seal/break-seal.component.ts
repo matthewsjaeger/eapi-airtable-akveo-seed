@@ -12,11 +12,16 @@ import { EffortlessComponentBase } from '../../../../efforless-base-component';
   styleUrls: ['./break-seal.component.scss']
 })
 export class BreakSealComponent extends EffortlessComponentBase implements OnInit {
+
+
+   ReplacementReason: '';
+  
   sid: any;
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, 
     public route: ActivatedRoute, protected dialogRef: NbDialogRef<BreakSealComponent> ) { 
     super (gds, data, menuService) 
+
 
     this.safeSubscribe(this.route.params.subscribe((params) => {
       this.sid = params['sid'];   
@@ -26,6 +31,10 @@ export class BreakSealComponent extends EffortlessComponentBase implements OnIni
 
   ngOnInit() {
     
+  }
+
+  break(){
+
   }
 
   cancelBreakSeal(){

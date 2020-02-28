@@ -1,0 +1,48 @@
+<nb-card >
+    <nb-card-header>
+        <button nbButton outline size="medium" status="danger" class="float-left" (click)="cancel()">
+            <nb-icon icon="slash-outline"></nb-icon>Cancel
+        </button>
+        <h4 style="width: fit-content; margin: auto;">Edit Seals Logic Access</h4>
+    </nb-card-header>
+    <nb-card-body>
+        <nb-list>
+            <nb-list-item>
+                <p><b>Date & Time Accessed:</b></p>
+                <input nbInput placeholder="Pick Date" fullWidth [nbDatepicker]="formpicker">
+                <nb-datepicker #formpicker></nb-datepicker>
+            </nb-list-item>
+            <nb-list-item *ngIf="slot?.DisplayManufacturer && slot?.SerialNumber && slot?.SlotNumber && slot?.LicenseNumber">
+                <p><b>Electronic Gaming Machine Accessed:</b></p>
+                {{slot?.DisplayManufacturer}} {{ slot?.SerialNumber}} {{slot?.SlotNumber}} {{slot?.LicenseNumber}}
+            </nb-list-item>
+            <nb-list-item>
+                <p><b>Inspector Completing Log:</b></p>
+            </nb-list-item>
+            <nb-list-item>
+                <p><b>Reason for Access:</b></p>
+                <nb-select placeholder="Select Showcase" fullWidth [(selected)]="selectedItem">
+                    <nb-option value="">Option empty</nb-option>
+                    <nb-option value="0">Option 0</nb-option>
+                    <nb-option value="1">Option 1</nb-option>
+                    <nb-option value="2">Option 2</nb-option>
+                    <nb-option value="3">Option 3</nb-option>
+                    <nb-option value="4">Option 4</nb-option>
+                  </nb-select>
+            </nb-list-item>
+        </nb-list>
+    </nb-card-body>
+    <nb-card-body >
+        <h5 style=" width: fit-content; margin: auto;">Questions</h5>
+    </nb-card-body>
+    <nb-list>
+        <nb-list-item>
+            <label> What work was done preformed on the slot?</label>
+            <textarea nbInput fullWidth></textarea>
+        </nb-list-item>
+        <nb-list-item>
+            <label> Security Representative present for seal break:</label>
+
+        </nb-list-item>
+    </nb-list>
+</nb-card>
