@@ -67,6 +67,7 @@ PlaceSlotSealsComponent, ReplaceWitnessesComponent];
     NbInputModule,
     NbLayoutModule,
     NbCheckboxModule,
+    FormsModule,
     NbDialogModule.forChild()
   ],
   entryComponents: [ AddSealComponent, ReplaceSealComponent, BreakSealComponent, PlaceSlotSealsComponent, ReplaceWitnessesComponent]

@@ -30,7 +30,7 @@ export class ReplaceSealComponent extends EffortlessComponentBase implements OnI
 
   } 
   ngOnInit() {
-    console.error(this.sid)
+  
     
   //   this.safeSubscribe(this.gds.onReady().subscribe(ready=>{
   //    let self = this
@@ -58,6 +58,7 @@ export class ReplaceSealComponent extends EffortlessComponentBase implements OnI
         'newSeal': this.newSealNumber
       }
     })
+    this.dialogRef.close()
   }
 
 }

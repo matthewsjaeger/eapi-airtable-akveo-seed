@@ -18,31 +18,31 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
   sid: any;
   slot: any;
 
-  componentList:any;
+  componentList: any;
   componentDefList: any;
   logicCage: any;
-  seal:any;
+  seal: any;
   disabled: boolean;
   modifyDisabled: boolean = true;
   selected: string = null;
-  
 
-  constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, 
-    public route: ActivatedRoute, private dialogService: NbDialogService ) { 
-    super (gds, data, menuService) 
+
+  constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService,
+    public route: ActivatedRoute, private dialogService: NbDialogService) {
+    super(gds, data, menuService)
 
     this.safeSubscribe(this.route.params.subscribe((params) => {
-      this.sid = params['sid'];   
-    }));  
+      this.sid = params['sid'];
+    }));
 
-  } 
+  }
 
   ngOnInit() {
-    this.safeSubscribe(this.gds.onReady().subscribe(ready=>{
+    this.safeSubscribe(this.gds.onReady().subscribe(ready => {
       let self = this
       let payload = self.gds.createPayload()
       payload.SearchTerm = self.sid
-      self.gds.smqATR.GetInstalledComponents(payload).then(function (reply){
+      self.gds.smqATR.GetInstalledComponents(payload).then(function (reply) {
         console.error(reply)
         self.componentDefList = reply.SlotComponentDefs
         self.logicCage = reply.SlotComponent
@@ -52,47 +52,47 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
 
   }
 
-cancel(){
-  this.router.navigateByUrl('effortless/on-floor-slot/' + this.sid)
-}
+  cancel() {
+    this.router.navigateByUrl('effortless/on-floor-slot/' + this.sid)
+  }
 
-next(){
-  this.router.navigateByUrl('effortless/inspection-record/' + this.sid)
-}
+  next() {
+    this.router.navigateByUrl('effortless/inspection-record/' + this.sid)
+  }
 
-openAddSeal(){
-  this.dialogService.open(AddSealComponent)
+  openAddSeal() {
+    this.dialogService.open(AddSealComponent)
 
-}
+  }
 
 
-openReplaceSeal(){
-  this.dialogService.open(ReplaceSealComponent, {
-    context:{
-      'componentDefList': this.componentDefList,
+  openReplaceSeal() {
+    this.dialogService.open(ReplaceSealComponent, {
+      context: {
+        'componentDefList': this.componentDefList,
         'logicCage': this.logicCage,
         'seal': this.seal
+      }
+
+    })
+  }
+
+  openBreakSeal() {
+    this.dialogService.open(BreakSealComponent)
+  }
+
+  enable(slotSealId) {
+    this.modifyDisabled = !this.modifyDisabled;
+    if (this.selected == slotSealId) {
+      this.selected = null;
+    } else {
+      this.selected = slotSealId;
+    } if (this.selected != null) {
+      this.modifyDisabled = false;
+    } else {
+      this.modifyDisabled = true;
     }
-
-  })
-}
-
-openBreakSeal(){
-  this.dialogService.open(BreakSealComponent)
-}
-
-enable(slotSealId) {
-this.modifyDisabled = !this.modifyDisabled;
-if (this.selected == slotSealId){
-  this.selected = null;
-} else {
-  this.selected = slotSealId;
-} if (this.selected != null){
-  this.modifyDisabled = false;
-} else{
-  this.modifyDisabled = true;
-}
-}
+  }
 
 
 }

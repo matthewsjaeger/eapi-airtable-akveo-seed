@@ -1,47 +1,59 @@
 <nb-card [size]="'large'">
     <nb-card-header>
-        <button nbButton ghost size="medium" status="danger" class="float-left" (click)="cancel()"><nb-icon icon="slash-outline"></nb-icon>Cancel</button>
+        <button nbButton ghost size="medium" status="danger" class="float-left" (click)="cancel()">
+            <nb-icon icon="slash-outline"></nb-icon>Cancel
+        </button>
         <h4 style="width: fit-content; margin: auto;">JP Verify $10k - $19,999.99</h4>
     </nb-card-header>
     <nb-card-body>
         <nb-list>
-            <nb-list-item >
-                <label>Record the Jackpot amount:</label> 
-                <input nbInput class="float-right" placeholder="How Much?" [(ngModel)]="checklist.JackpotAmount" > 
+            <nb-list-item>
+                <label>Record the Jackpot amount:</label>
+                <input nbInput class="float-right" placeholder="How Much?" [(ngModel)]="checklist.JackpotAmount">
             </nb-list-item>
             <nb-list-item [style.backgroundColor]="tempChecklist.Book.No ? '#ff3d71': ''">
                 <label>MEAL Book Entry</label>
-                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Book.No" (change)="applyToChecklist('Book', 'No')">No</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Book.Yes" (change)="applyToChecklist('Book', 'Yes')">Yes</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Book.No"
+                    (change)="applyToChecklist('Book', 'No')">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Book.Yes"
+                    (change)="applyToChecklist('Book', 'Yes')">Yes</nb-checkbox>
             </nb-list-item>
             <nb-list-item [style.backgroundColor]="tempChecklist.SealIntact.No ? '#ff3d71': ''">
                 <label> Are All Seal(s) Intact? </label>
-                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SealIntact.No" (change)="applyToChecklist('SealIntact', 'No')">No</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SealIntact.Yes" (change)="applyToChecklist('SealIntact', 'Yes')">Yes</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SealIntact.No"
+                    (change)="applyToChecklist('SealIntact', 'No')">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SealIntact.Yes"
+                    (change)="applyToChecklist('SealIntact', 'Yes')">Yes</nb-checkbox>
             </nb-list-item>
+
+
 
 
             <nb-list-item>
                 <label>Record Slot Repair Representative:</label>
-                <nb-select class="float-right" placeholder="Select Showcase" [(selected)]="checklist.RepairRepresentative">
+                <input nbInput [(ngModel)]="badgeNumber" type="text" placeholder="BadgeNumber">
+
+
+                <button nbButton class="float-right" size="small" outline (click)="add()">Add</button>
+                <div>
+                    <p *ngFor=" let person of people">{{person.NameBadge }}</p>
+                </div>
+
+                <!-- <nb-select class="float-right" placeholder="Select Showcase" [(selected)]="checklist.RepairRepresentative">
                     <nb-option>None</nb-option>
                     <nb-option *ngFor="let person of people" [value]="person.FullName"> {{person.FullName}} </nb-option>
                     
-                </nb-select>
+                </nb-select> -->
             </nb-list-item>
 
-            <!-- <ng-select [items]="cities"
-            bindLabel="name"
-            placeholder="Select Showcase"
-            [(ngModel)]="selectedCity">
-             </ng-select> -->
 
             <nb-list-item [style.backgroundColor]="checklist.SecurityRepresentative ? '': '#ff3d71'">
                 <label>Record Security Representative:</label>
-                <nb-select class="float-right" placeholder="Select Showcase"  [(selected)]="checklist.SecurityRepresentative">
+                <nb-select class="float-right" placeholder="Select Showcase"
+                    [(selected)]="checklist.SecurityRepresentative">
                     <nb-option>None</nb-option>
-                    <nb-option *ngFor="let person of people" [value]="person.FullName || person.BadgeNumber"> {{person.FullName}} </nb-option>
-                   
+                    <nb-option *ngFor="let person of people" [value]="person.FullName"> {{person.FullName}} </nb-option>
+
                 </nb-select>
             </nb-list-item>
 
@@ -49,12 +61,14 @@
                 <label>Record Slot Operations Manager:</label>
                 <nb-select class="float-right" placeholder="Select Showcase" [(selected)]="checklist.OperationsManager">
                     <nb-option>None</nb-option>
-                    <nb-option  *ngFor="let person of people" [value]="person.FullName">{{person.FullName}}</nb-option>
-                
+                    <nb-option *ngFor="let person of people" [value]="person.FullName">{{person.FullName}}</nb-option>
+
                 </nb-select>
             </nb-list-item>
         </nb-list>
         <button nbButton class="float-right" ghost size="medium" (click)="finish()">Finish</button>
-        <button nbButton ghost size="medium" status="danger" (click)="cancel()"><nb-icon icon="slash-outline"></nb-icon>Cancel</button>
+        <button nbButton ghost size="medium" status="danger" (click)="cancel()">
+            <nb-icon icon="slash-outline"></nb-icon>Cancel
+        </button>
     </nb-card-body>
 </nb-card>

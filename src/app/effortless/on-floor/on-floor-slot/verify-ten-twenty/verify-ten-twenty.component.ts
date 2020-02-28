@@ -25,6 +25,11 @@ export class VerifyTenTwentyComponent extends EffortlessComponentBase implements
   sid: any = "";
   people: any = [{}];
   checklistMetadata: any = {};
+  badgeNumber:any;
+  person: any;
+  
+
+
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, public route: ActivatedRoute ) { 
     super (gds, data, menuService)
@@ -33,21 +38,44 @@ export class VerifyTenTwentyComponent extends EffortlessComponentBase implements
       this.sid = params['sid'];   
     }));
 
-  }
+  } 
 
   ngOnInit() {
 
-    let payload = this.gds.createPayload();
-    this.gds.smqUser.GetAllPeople(payload).then(resp => {
-      console.error(resp)
-      if (!resp.ErrorMessage) {
-        this.people = resp.People;
-        this.people.forEach(person => {
-          person.FullName = person.LastName + ', ' + person.FirstName + ', ' + person.BadgeNumber;
-        });
-      }
-    })
+    // let payload = this.gds.createPayload();
+    // this.gds.smqUser.GetAllPeople(payload).then(resp => {
+    //   // console.error(resp)
+    //   if (!resp.ErrorMessage) {
+    //     this.people = resp.People;
+    //     this.people.forEach(person => {
+    //       person.FullName = person.LastName + ', ' + person.FirstName + ', ' + person.BadgeNumber;
+    //     });
+    //   }
+    // })
   }
+
+
+ 
+
+  add(){
+    let payload = this.gds.createPayload();
+    payload.BadgeNumber = 
+    this.gds.smqUser.GetAllPeople(payload).then(reply =>{
+      this.people = reply.People;
+      this.people.forEach(person =>{
+        person.NameBadge = person.FirstName + ', ' + person.FirstName + ', ' + person.BadgeNumber;
+      })  
+
+    
+      console.error(this.badgeNumber)
+    })
+
+  // this.badgeNumber = this.number
+  }
+
+
+
+
 
   updatePercentComplete = function () {
     this.checklistMetadata.PercentComplete = 0;
