@@ -25,8 +25,10 @@ export class VerifyTenTwentyComponent extends EffortlessComponentBase implements
   sid: any = "";
   people: any = [{}];
   checklistMetadata: any = {};
-  badgeNumber:any;
+  
   person: any;
+  badgeNumber: any;
+
   
 
 
@@ -41,6 +43,7 @@ export class VerifyTenTwentyComponent extends EffortlessComponentBase implements
   } 
 
   ngOnInit() {
+    
 
     // let payload = this.gds.createPayload();
     // this.gds.smqUser.GetAllPeople(payload).then(resp => {
@@ -59,19 +62,16 @@ export class VerifyTenTwentyComponent extends EffortlessComponentBase implements
 
   add(){
     let payload = this.gds.createPayload();
-    this.gds.smqUser.GetAllPeople(payload).then(reply =>{
-      this.people = reply.People;
-      this.people.forEach(person =>{
-        person.NameBadge = person.FirstName + ', ' + person.FirstName + ', ' + person.BadgeNumber;
-      })  
-
-    
-      console.error(this.badgeNumber)
+    payload.SearchTerm = this.checklist.RepairRepresentative
+    this.gds.smqUser.GetPersonByBadgeNumber(payload).then(reply =>{
+      this.person = reply.Person
+      console.error(this.person)
     })
-
-  // this.badgeNumber = this.number
   }
 
+  delete() {
+      
+}
 
 
 

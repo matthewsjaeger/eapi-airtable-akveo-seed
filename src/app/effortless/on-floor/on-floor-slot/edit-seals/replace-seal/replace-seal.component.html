@@ -5,8 +5,8 @@
     <nb-card-body>
        <label > Scan new Seal #:</label> <br>
         <input nbInput type="text" placeHolder="Seal #" [(ngModel)]="newSealNumber" required>
-        <p *ngIf="seal && seal.SealNumber">Note: Adding this seal wiill break Seal # {{seal.SealNumber}}</p>
-    </nb-card-body>
+        <p style="color: red;" *ngFor=" let seal of seal" >Note: Adding this seal wiill break Seal # {{seal.SealNumber}}</p>
+    </nb-card-body> 
     <nb-card-body>
         <label>Reason for Replacement</label> <br>
         <nb-select placeholder="Select Showcase" [(selected)]="selectedItem">

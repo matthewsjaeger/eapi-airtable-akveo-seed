@@ -17,7 +17,7 @@ export class ReplaceSealComponent extends EffortlessComponentBase implements OnI
   sid: any;
   @Input() componentDefList: any;
   @Input() logicCage: any;
-  @Input() seal: any;
+  @Input() seal: any = '';
   newSealNumber: number;
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, 
@@ -30,7 +30,7 @@ export class ReplaceSealComponent extends EffortlessComponentBase implements OnI
 
   } 
   ngOnInit() {
-  
+  console.error(this.seal)
     
   //   this.safeSubscribe(this.gds.onReady().subscribe(ready=>{
   //    let self = this
