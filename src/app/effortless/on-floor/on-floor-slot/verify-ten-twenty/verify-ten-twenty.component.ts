@@ -23,11 +23,15 @@ export class VerifyTenTwentyComponent extends EffortlessComponentBase implements
   };
 
   sid: any = "";
-  people: any = [{}];
+
   checklistMetadata: any = {};
   
-  person: any;
-  badgeNumber: any;
+  
+  
+  personRepair: any;
+  personSecurity: any;
+  personOperations: any;
+ 
 
   
 
@@ -60,18 +64,37 @@ export class VerifyTenTwentyComponent extends EffortlessComponentBase implements
 
  
 
-  add(){
+  addRepair(){
     let payload = this.gds.createPayload();
     payload.SearchTerm = this.checklist.RepairRepresentative
     this.gds.smqUser.GetPersonByBadgeNumber(payload).then(reply =>{
-      this.person = reply.Person
-      console.error(this.person)
+      this.personRepair = reply.Person
+      this.checklist.RepairRepresentative = '';
+     
+      
     })
   }
 
-  delete() {
+  addSecurity(){
+    let payload = this.gds.createPayload();
+    payload.SearchTerm = this.checklist.SecurityRepresentative
+    this.gds.smqUser.GetPersonByBadgeNumber(payload).then(reply =>{
+      this.personSecurity = reply.Person
+      this.checklist.SecurityRepresentative = '';
       
-}
+    })
+  }
+
+  addOperations(){
+    let payload = this.gds.createPayload();
+    payload.SearchTerm = this.checklist.OperationsManager
+    this.gds.smqUser.GetPersonByBadgeNumber(payload).then(reply =>{
+      this.personOperations = reply.Person
+      this.checklist.OperationsManager = '';
+      
+    })
+  }
+  
 
 
 

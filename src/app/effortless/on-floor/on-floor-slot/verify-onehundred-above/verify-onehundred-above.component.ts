@@ -27,6 +27,10 @@ export class VerifyOnehundredAboveComponent extends EffortlessComponentBase impl
   sid: any = "";
   people: any = [{}];
   checklistMetadata: any = {};
+  personRepair: any;
+  personSecurity: any;
+  personOperations: any;
+  personManager: any;
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, public route: ActivatedRoute ) { 
     super (gds, data, menuService)
@@ -47,6 +51,47 @@ export class VerifyOnehundredAboveComponent extends EffortlessComponentBase impl
           person.FullName = person.LastName + ', ' + person.FirstName;
         });
       }
+    })
+  }
+
+  addRepair(){
+    let payload = this.gds.createPayload();
+    payload.SearchTerm = this.checklist.RepairRepresentative
+    this.gds.smqUser.GetPersonByBadgeNumber(payload).then(reply =>{
+      this.personRepair = reply.Person
+      this.checklist.RepairRepresentative = '';
+     
+      
+    })
+  }
+
+  addSecurity(){
+    let payload = this.gds.createPayload();
+    payload.SearchTerm = this.checklist.SecurityRepresentative
+    this.gds.smqUser.GetPersonByBadgeNumber(payload).then(reply =>{
+      this.personSecurity = reply.Person
+      this.checklist.SecurityRepresentative = '';
+      
+    })
+  }
+
+  addOperations(){
+    let payload = this.gds.createPayload();
+    payload.SearchTerm = this.checklist.OperationsManager
+    this.gds.smqUser.GetPersonByBadgeNumber(payload).then(reply =>{
+      this.personOperations = reply.Person
+      this.checklist.OperationsManager = '';
+      
+    })
+  }
+
+  addManager(){
+    let payload = this.gds.createPayload();
+    payload.SearchTerm = this.checklist.CasinoManager
+    this.gds.smqUser.GetPersonByBadgeNumber(payload).then(reply =>{
+      this.personManager = reply.Person
+      this.checklist.CasinoManager = '';
+      
     })
   }
 
