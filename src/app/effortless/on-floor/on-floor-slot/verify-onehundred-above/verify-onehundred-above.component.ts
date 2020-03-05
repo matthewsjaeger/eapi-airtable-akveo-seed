@@ -25,7 +25,7 @@ export class VerifyOnehundredAboveComponent extends EffortlessComponentBase impl
   };
 
   sid: any = "";
-  people: any = [{}];
+  
   checklistMetadata: any = {};
   personRepair: any;
   personSecurity: any;
@@ -46,16 +46,6 @@ export class VerifyOnehundredAboveComponent extends EffortlessComponentBase impl
   }
 
   ngOnInit() {
-
-    let payload = this.gds.createPayload();
-    this.gds.smqUser.GetAllPeople(payload).then(resp => {
-      if (!resp.ErrorMessage) {
-        this.people = resp.People;
-        this.people.forEach(person => {
-          person.FullName = person.LastName + ', ' + person.FirstName;
-        });
-      }
-    })
   }
 
   addRepair(){

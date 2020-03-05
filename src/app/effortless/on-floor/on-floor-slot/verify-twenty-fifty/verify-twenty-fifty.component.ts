@@ -23,7 +23,7 @@ export class VerifyTwentyFiftyComponent extends EffortlessComponentBase implemen
   };
 
   sid: any = "";
-  people: any = [{}];
+  
   checklistMetadata: any = {};
   personRepair: any;
   personSecurity: any;

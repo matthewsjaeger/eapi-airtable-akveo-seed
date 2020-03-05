@@ -1,6 +1,6 @@
 <nb-card>
     <nb-card-header>
-        <button nbButton outline size="medium" status="danger" class="float-left" (click)="cancel()"><nb-icon icon="slash-outline"></nb-icon>Cancel</button>
+        <button nbButton outline size="medium" status="danger" class="float-left"><nb-icon icon="slash-outline"></nb-icon>Cancel</button>
         <h4 style="width: fit-content; margin: auto;">State Of Minnesota Inspection</h4>
     </nb-card-header>
     <nb-card-header style="display: grid; grid-template-columns: auto auto auto; grid-gap: 5px;">
@@ -10,7 +10,7 @@
     </nb-card-header>
     <nb-card-body>
         <nb-list>
-            <nb-list-item (click)="selected()"[style.backgroundColor]="" >
+            <nb-list-item >
                 <p> When this is selected the replace seal and break seal buttons should be enabled.</p>
             </nb-list-item>
         </nb-list>

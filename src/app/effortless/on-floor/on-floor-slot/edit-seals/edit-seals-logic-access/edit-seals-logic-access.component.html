@@ -1,6 +1,6 @@
 <nb-card >
     <nb-card-header>
-        <button nbButton outline size="medium" status="danger" class="float-left" (click)="cancel()">
+        <button nbButton outline size="medium" status="danger" class="float-left" >
             <nb-icon icon="slash-outline"></nb-icon>Cancel
         </button>
         <h4 style="width: fit-content; margin: auto;">Edit Seals Logic Access</h4>
@@ -14,35 +14,57 @@
             </nb-list-item>
             <nb-list-item *ngIf="slot?.DisplayManufacturer && slot?.SerialNumber && slot?.SlotNumber && slot?.LicenseNumber">
                 <p><b>Electronic Gaming Machine Accessed:</b></p>
-                {{slot?.DisplayManufacturer}} {{ slot?.SerialNumber}} {{slot?.SlotNumber}} {{slot?.LicenseNumber}}
+                <b>Manufacturer:</b> {{slot?.DisplayManufacturer}} <b>Serial #:</b> {{ slot?.SerialNumber}} <b>Slot#:</b> {{slot?.SlotNumber}} <b>Lic#:</b> {{slot?.LicenseNumber}}
             </nb-list-item>
-            <nb-list-item>
-                <p><b>Inspector Completing Log:</b></p>
+            <nb-list-item *ngIf="user">
+                <p><b>Inspector Completing Log:</b> {{user?.Name}} </p>
             </nb-list-item>
-            <nb-list-item>
+            <nb-list-item [style.backgroundColor]="checklist.AccessReason ? '': '#ff3d71'" >
                 <p><b>Reason for Access:</b></p>
-                <nb-select placeholder="Select Showcase" fullWidth [(selected)]="selectedItem">
+                <nb-select placeholder="Select Showcase" fullWidth [(selected)]="checklist.AccessReason">
                     <nb-option value="">Option empty</nb-option>
-                    <nb-option value="0">Option 0</nb-option>
-                    <nb-option value="1">Option 1</nb-option>
-                    <nb-option value="2">Option 2</nb-option>
-                    <nb-option value="3">Option 3</nb-option>
-                    <nb-option value="4">Option 4</nb-option>
+                    <nb-option value="0">Enable Game/ Change Priviledged Option</nb-option>
+                    <nb-option value="1">PM</nb-option>
+                    <nb-option value="2">Replace Battery</nb-option>
+                    <nb-option value="3">Replace Fan</nb-option>
+                    <nb-option value="4">Replace Logic</nb-option>
+                    <nb-option value="4">Replace Video Card</nb-option>
+                    <nb-option value="4">Reset Logic</nb-option>
+                    <nb-option value="4">Software Failure</nb-option>
+                    <nb-option value="4">Toggle/ Replace Logic Door Switch</nb-option>
+                    <nb-option value="4">Troubleshoot/ Swap Logic Board or Media </nb-option>
                   </nb-select>
             </nb-list-item>
+
+            <!-- <nb-list-item [style.backgroundColor]="checklist.RepairRepresentative ? '': '#ff3d71'">
+                <label>Record Slot Repair Representative:</label>
+                <nb-select class="float-right" placeholder="Select Showcase" [(selected)]="checklist.RepairRepresentative">
+                    <nb-option>None</nb-option>
+                    <nb-option *ngFor="let person of people" [value]="person.FullName"> {{person.FullName}} </nb-option>
+                    
+                </nb-select> -->
+            
         </nb-list>
     </nb-card-body>
     <nb-card-body >
         <h5 style=" width: fit-content; margin: auto;">Questions</h5>
     </nb-card-body>
     <nb-list>
-        <nb-list-item>
-            <label> What work was done preformed on the slot?</label>
-            <textarea nbInput fullWidth></textarea>
+        <nb-list-item [style.backgroundColor]="checklist.WorkPerformed ? '': '#ff3d71'">
+            <label> What work was done performed on the slot?</label>
+            <textarea nbInput fullWidth  [(ngModel)]="checklist.WorkPerformed"></textarea>
         </nb-list-item>
-        <nb-list-item>
+        <nb-list-item [style.backgroundColor]="personSecurity ? '': '#ff3d71'">
             <label> Security Representative present for seal break:</label>
-
+            <button nbButton class="float-right" size="small" outline (click)="addSecurity()">Add</button>
+            <input  nbInput [(ngModel)]="security" type="text" placeholder="BadgeNumber" class="float-right" style="margin-right: 1rem;">
+           <nb-list>
+                <nb-list-item *ngIf="personSecurity ">
+                    <label [(ngModel)]="checklist.SecurityRepresentative" ngDefaultControl > {{checklist.SecurityRepresentative}} </label>
+                </nb-list-item>
+            </nb-list>
         </nb-list-item>
     </nb-list>
+    <button nbButton class="float-right" ghost size="medium" (click)="finish()">Finish</button>
+    <button nbButton ghost size="medium" status="danger" ><nb-icon icon="slash-outline"></nb-icon>Cancel</button>
 </nb-card>
