@@ -1,4 +1,4 @@
-<nb-card size="medium">
+<nb-card size="large">
     <nb-card-header>
         <button nbButton outline size="medium" status="danger" class="float-left" (click)="cancel()">
             <nb-icon icon="slash-outline"></nb-icon>Cancel
@@ -21,18 +21,23 @@
         </button>
     </nb-card-header>
     <nb-card-body >
-        <nb-list *ngFor=" let def of componentDefList" >
-            <nb-list-item >
+        <nb-list 
+        *ngFor=" let def of componentDefList" 
+        (click)="enable(seal.SlotSealId)"
+         >
+            <nb-list-item>
                 <p style="font-size: .75rem;"> {{def.ToStringText}} </p>
             </nb-list-item>
         </nb-list>
-        <nb-list>
-            <nb-list-item [style.backgroundColor]="seal.SlotSealId && seal.SlotSealId == selected ? '#ff3d71': ''"  
-            (click)="enable(seal.SlotSealId)"
-            *ngFor=" let seal of seal ">
+        <nb-list [style.backgroundColor]="seal.SlotSealId  == selected ? '#D3D3D3': ''"  
+        (click)="enable(seal.SlotSealId)"
+        *ngFor=" let seal of seal ">
+            <nb-list-item >
                 <p> <b>Seal Number:</b> {{seal.SealNumber}} </p>
             </nb-list-item>
-            <nb-list-item *ngIf=" logicCage && logicCage.SlotComponentId ">
+        </nb-list>
+        <nb-list *ngIf=" logicCage && logicCage.SlotComponentId " (click)="enable(seal.SlotSealId)">
+            <nb-list-item >
                 <b>Logic Cage</b>
                 <p > {{logicCage.SlotComponentId}} </p>
             </nb-list-item>

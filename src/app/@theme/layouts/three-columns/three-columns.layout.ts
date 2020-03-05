@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'ngx-three-columns-layout',
   styleUrls: ['./three-columns.layout.scss'],
   template: `
-    <nb-layout windowMode>
+    <nb-layout>
       <nb-layout-header fixed>
         <ngx-header></ngx-header>
       </nb-layout-header>
@@ -23,7 +23,7 @@ import { Component } from '@angular/core';
       <nb-layout-column class="small">
       </nb-layout-column>
 
-      <nb-layout-footer fixed>
+      <nb-layout-footer>
         <ngx-footer></ngx-footer>
       </nb-layout-footer>
     </nb-layout>

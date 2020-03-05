@@ -20,6 +20,7 @@ export class PlaceSlotSealsComponent extends EffortlessComponentBase implements 
   @Input() componentDefList: any;
   @Input() logicCage: any;
   @Input() seal: any;
+  @Input() replacement: any;
   
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, 
@@ -32,17 +33,8 @@ export class PlaceSlotSealsComponent extends EffortlessComponentBase implements 
   }
   ngOnInit() {
     console.error(this.newSeal)
-  //  this.safeSubscribe(this.gds.onReady().subscribe(ready=>{
-  //   let self = this
-  //   let payload = self.gds.createPayload()
-  //   payload.SearchTerm = self.sid
-  //   self.gds.smqATR.GetInstalledComponents(payload).then(function (reply){
-  //     console.error(reply)
-  //     self.componentDefList = reply.SlotComponentDefs
-  //     self.logicCage = reply.SlotComponent
-  //     self.seal = reply.SlotSeal
-  //   });
-  // }))
+    console.error(this.replacement)
+ 
   }
 
 

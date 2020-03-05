@@ -17,6 +17,7 @@ export class ReplaceWitnessesComponent extends EffortlessComponentBase implement
   sid: any;
   witness: any;
   name: any;
+  person: any;
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, 
     public route: ActivatedRoute, protected dialogRef: NbDialogRef<ReplaceWitnessesComponent>  ) { 
@@ -33,9 +34,14 @@ export class ReplaceWitnessesComponent extends EffortlessComponentBase implement
 
   }
   
-  add(witness){
-    console.error(this.witness);
-    
+  add(){
+    let payload = this.gds.createPayload();
+    payload.SearchTerm = this.witness
+    this.gds.smqUser.GetPersonByBadgeNumber(payload).then(reply =>{
+      this.person = reply.Person
+      this.witness = '';
+      
+    })
   }
   
 

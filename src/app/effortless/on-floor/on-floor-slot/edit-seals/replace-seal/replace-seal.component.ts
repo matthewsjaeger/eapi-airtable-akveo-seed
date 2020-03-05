@@ -19,6 +19,7 @@ export class ReplaceSealComponent extends EffortlessComponentBase implements OnI
   @Input() logicCage: any;
   @Input() seal: any = '';
   newSealNumber: number;
+  replacementReason: any;
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, 
     public route: ActivatedRoute, protected dialogRef: NbDialogRef<ReplaceSealComponent>, private dialogService: NbDialogService ) { 
@@ -32,17 +33,6 @@ export class ReplaceSealComponent extends EffortlessComponentBase implements OnI
   ngOnInit() {
   console.error(this.seal)
     
-  //   this.safeSubscribe(this.gds.onReady().subscribe(ready=>{
-  //    let self = this
-  //    let payload = self.gds.createPayload()
-  //    payload.SearchTerm = self.sid
-  //    self.gds.smqATR.GetInstalledComponents(payload).then(function (reply){
-  //      console.error(reply)
-  //      self.componentDefList = reply.SlotComponentDefs
-  //      self.logicCage = reply.SlotComponent
-  //      self. seal = reply.SlotSeal
-  //    });
-  //  }))
   }
 
   cancelReplaceSeal(){
@@ -55,8 +45,8 @@ export class ReplaceSealComponent extends EffortlessComponentBase implements OnI
         'componentDefList': this.componentDefList,
         'logicCage': this.logicCage,
         'seal': this.seal,
-        'newSeal': this.newSealNumber
-      }
+        'newSeal': this.newSealNumber,
+        'replacement': this.replacementReason      }
     })
     this.dialogRef.close()
   }

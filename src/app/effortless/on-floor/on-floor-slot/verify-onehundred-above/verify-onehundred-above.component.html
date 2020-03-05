@@ -24,10 +24,10 @@
             <nb-list-item [style.backgroundColor]="personRepair ? '': '#ff3d71'">
                 <label> <b>Record Slot Repair Representative:</b> </label>
                 <button nbButton class="float-right" size="small" outline (click)="addRepair()">Add</button>
-                <input  nbInput [(ngModel)]="checklist.RepairRepresentative" type="text" placeholder="BadgeNumber" class="float-right" style="margin-right: 1rem;">
+                <input  nbInput [(ngModel)]="repair" type="text" placeholder="BadgeNumber" class="float-right" style="margin-right: 1rem;">
                <nb-list>
                     <nb-list-item *ngIf="personRepair">
-                        <label >{{personRepair.FirstName }} {{personRepair.LastName}}, {{personRepair.BadgeNumber}} </label>
+                        <label [(ngModel)]="checklist.RepairRepresentative" ngDefaultControl > {{checklist.RepairRepresentative}} </label>
                     </nb-list-item>
                 </nb-list>
             </nb-list-item>
@@ -35,10 +35,10 @@
             <nb-list-item [style.backgroundColor]="personSecurity? '': '#ff3d71'">
                 <label> <b>Record Security Representative:</b> </label>
                 <button nbButton class="float-right" size="small" outline (click)="addSecurity()">Add</button>
-                <input  nbInput [(ngModel)]="checklist.SecurityRepresentative" type="text" placeholder="BadgeNumber" class="float-right" style="margin-right: 1rem;">
+                <input  nbInput [(ngModel)]="security" type="text" placeholder="BadgeNumber" class="float-right" style="margin-right: 1rem;">
                <nb-list>
                     <nb-list-item *ngIf="personSecurity ">
-                        <label >{{personSecurity.FirstName }} {{personSecurity.LastName}}, {{personSecurity.BadgeNumber}} </label>
+                        <label [(ngModel)]="checklist.SecurityRepresentative" ngDefaultControl > {{checklist.SecurityRepresentative}} </label>
                     </nb-list-item>
                 </nb-list>
             </nb-list-item>
@@ -46,10 +46,10 @@
             <nb-list-item [style.backgroundColor]="personOperations ? '': '#ff3d71'">
                 <label> <b>Record Slot Operations Manager:</b> </label>
                 <button nbButton class="float-right" size="small" outline (click)="addOperations()">Add</button>
-                <input  nbInput [(ngModel)]="checklist.OperationsManager" type="text" placeholder="BadgeNumber" class="float-right" style="margin-right: 1rem;">
+                <input  nbInput [(ngModel)]="operations" type="text" placeholder="BadgeNumber" class="float-right" style="margin-right: 1rem;">
                <nb-list>
                     <nb-list-item *ngIf="personOperations">
-                        <label >{{personOperations.FirstName }} {{personOperations.LastName}}, {{personOperations.BadgeNumber}} </label>
+                        <label [(ngModel)]="checklist.OperationsManager" ngDefaultControl > {{checklist.OperationsManager}} </label>
                     </nb-list-item>
                 </nb-list>
             </nb-list-item>
@@ -57,10 +57,10 @@
             <nb-list-item [style.backgroundColor]="personManager ? '': '#ff3d71'">
                 <label> <b>Record Casino Manager or Equivlent:</b> </label>
                 <button nbButton class="float-right" size="small" outline (click)="addManager()">Add</button>
-                <input  nbInput [(ngModel)]="checklist.CasinoManager" type="text" placeholder="BadgeNumber" class="float-right" style="margin-right: 1rem;">
+                <input  nbInput [(ngModel)]="manager" type="text" placeholder="BadgeNumber" class="float-right" style="margin-right: 1rem;">
                <nb-list>
                     <nb-list-item *ngIf="personManager">
-                        <label >{{personManager.FirstName }} {{personManager.LastName}}, {{personManager.BadgeNumber}} </label>
+                        <label [(ngModel)]="checklist.CasinoManager" ngDefaultControl > {{checklist.CasinoManager}} </label>
                     </nb-list-item>
                 </nb-list>
             </nb-list-item>

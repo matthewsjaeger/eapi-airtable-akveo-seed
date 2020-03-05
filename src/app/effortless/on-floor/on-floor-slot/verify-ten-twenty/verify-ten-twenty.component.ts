@@ -72,20 +72,20 @@ export class VerifyTenTwentyComponent extends EffortlessComponentBase implements
     payload.SearchTerm = this.repair
     this.gds.smqUser.GetPersonByBadgeNumber(payload).then(reply =>{
       this.personRepair = reply.Person
-      this.checklist.RepairRepresentative = this.personRepair.FirstName + ', ' + this.personRepair.LastName + ', ' + this.personRepair.BadgeNumber;
+      this.checklist.RepairRepresentative = this.personRepair.FirstName + ' ' + this.personRepair.LastName + ', ' + this.personRepair.BadgeNumber;
       this.repair = ''
       
      
       
     })
-  }
+  } 
 
   addSecurity(){
     let payload = this.gds.createPayload();
     payload.SearchTerm = this.security
     this.gds.smqUser.GetPersonByBadgeNumber(payload).then(reply =>{
       this.personSecurity = reply.Person
-      this.checklist.SecurityRepresentative = this.personSecurity.FirstName + ', ' + this.personSecurity.LastName + ', ' + this.personSecurity.BadgeNumber;
+      this.checklist.SecurityRepresentative = this.personSecurity.FirstName + ' ' + this.personSecurity.LastName + ', ' + this.personSecurity.BadgeNumber;
       this.security = '';
       
     })
@@ -96,7 +96,7 @@ export class VerifyTenTwentyComponent extends EffortlessComponentBase implements
     payload.SearchTerm = this.operations
     this.gds.smqUser.GetPersonByBadgeNumber(payload).then(reply =>{
       this.personOperations = reply.Person
-      this.checklist.OperationsManager = this.personOperations.FirstName + ', ' + this.personOperations.LastName + ', ' + this.personOperations.BadgeNumber;
+      this.checklist.OperationsManager = this.personOperations.FirstName + ' ' + this.personOperations.LastName + ', ' + this.personOperations.BadgeNumber;
       this.operations = '';
     })
   }
