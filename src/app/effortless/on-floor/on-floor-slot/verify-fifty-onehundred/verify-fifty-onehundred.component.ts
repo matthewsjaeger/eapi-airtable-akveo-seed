@@ -51,7 +51,7 @@ export class VerifyFiftyOnehundredComponent extends EffortlessComponentBase impl
     payload.SearchTerm = this.repair
     this.gds.smqUser.GetPersonByBadgeNumber(payload).then(reply =>{
       this.personRepair = reply.Person
-      this.checklist.RepairRepresentative = this.personRepair.FirstName + ' ' + this.personRepair.LastName + ', ' + this.personRepair.BadgeNumber;
+      this.checklist.RepairRepresentative = this.personRepair.FirstName + ' ' + this.personRepair.LastName + ', ' + this.personRepair.SecurityUserId;
       this.repair = '';
     })
   }
@@ -61,7 +61,7 @@ export class VerifyFiftyOnehundredComponent extends EffortlessComponentBase impl
     payload.SearchTerm = this.security
     this.gds.smqUser.GetPersonByBadgeNumber(payload).then(reply =>{
       this.personSecurity = reply.Person
-      this.checklist.SecurityRepresentative = this.personSecurity.FirstName + ' ' + this.personSecurity.LastName + ', ' + this.personSecurity.BadgeNumber;
+      this.checklist.SecurityRepresentative = this.personSecurity.FirstName + ' ' + this.personSecurity.LastName + ', ' + this.personSecurity.SecurityUserId;
       this.security = ''; 
     })
   }
@@ -71,7 +71,7 @@ export class VerifyFiftyOnehundredComponent extends EffortlessComponentBase impl
     payload.SearchTerm = this.operations
     this.gds.smqUser.GetPersonByBadgeNumber(payload).then(reply =>{
       this.personOperations = reply.Person
-      this.checklist.OperationsManager = this.personOperations.FirstName + ' ' + this.personOperations.LastName + ', ' + this.personOperations.BadgeNumber;
+      this.checklist.OperationsManager = this.personOperations.FirstName + ' ' + this.personOperations.LastName + ', ' + this.personOperations.SecurityUserIdr;
       this.operations = '';
     })
   }
@@ -81,7 +81,7 @@ export class VerifyFiftyOnehundredComponent extends EffortlessComponentBase impl
     payload.SearchTerm = this.manager
     this.gds.smqUser.GetPersonByBadgeNumber(payload).then(reply =>{
       this.personManager = reply.Person
-      this.checklist.CasinoManager = this.personManager.FirstName + ' ' + this.personManager.LastName + ', ' + this.personManager.BadgeNumber;
+      this.checklist.CasinoManager = this.personManager.FirstName + ' ' + this.personManager.LastName + ', ' + this.personManager.SecurityUserId;
       this.manager = '';      
     })
   }

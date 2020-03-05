@@ -27,7 +27,7 @@
                 <input  nbInput [(ngModel)]="repair" type="text" placeholder="BadgeNumber" class="float-right" style="margin-right: 1rem;">
                <nb-list>
                     <nb-list-item *ngIf="personRepair">
-                        <label [(ngModel)]="checklist.RepairRepresentative" ngDefaultControl > {{checklist.RepairRepresentative}} </label>
+                        <label [(ngModel)]="checklist.RepairRepresentative" ngDefaultControl > {{personRepair.FirstName}} {{personRepair.LastName}}, {{personRepair.BadgeNumber}}</label>
                     </nb-list-item>
                 </nb-list>
             </nb-list-item>
@@ -38,7 +38,7 @@
                 <input  nbInput [(ngModel)]="security" type="text" placeholder="BadgeNumber" class="float-right" style="margin-right: 1rem;">
                <nb-list>
                     <nb-list-item *ngIf="personSecurity ">
-                        <label [(ngModel)]="checklist.SecurityRepresentative" ngDefaultControl > {{checklist.SecurityRepresentative}} </label>
+                        <label [(ngModel)]="checklist.SecurityRepresentative" ngDefaultControl > {{personSecurity.FirstName}} {{personSecurity.LastName}}, {{personSecurity.BadgeNumber}} </label>
                     </nb-list-item>
                 </nb-list>
             </nb-list-item>
@@ -49,7 +49,7 @@
                 <input  nbInput [(ngModel)]="operations" type="text" placeholder="BadgeNumber" class="float-right" style="margin-right: 1rem;">
                <nb-list>
                     <nb-list-item *ngIf="personOperations">
-                        <label [(ngModel)]="checklist.OperationsManager" ngDefaultControl > {{checklist.OperationsManager}} </label>
+                        <label [(ngModel)]="checklist.OperationsManager" ngDefaultControl > {{personOperations.FirstName}} {{personOperations.LastName}}, {{personOperations.BadgeNumber}} </label>
                     </nb-list-item>
                 </nb-list>
             </nb-list-item>
@@ -60,7 +60,7 @@
                 <input  nbInput [(ngModel)]="manager" type="text" placeholder="BadgeNumber" class="float-right" style="margin-right: 1rem;">
                <nb-list>
                     <nb-list-item *ngIf="personManager">
-                        <label [(ngModel)]="checklist.CasinoManager" ngDefaultControl > {{checklist.CasinoManager}} </label>
+                        <label [(ngModel)]="checklist.CasinoManager" ngDefaultControl > {{personManager.FirstName}} {{personManager.LastName}}, {{personManager.BadgeNumber}} </label>
                     </nb-list-item>
                 </nb-list>
             </nb-list-item>
