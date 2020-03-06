@@ -56,6 +56,10 @@ export class VerifyFiftyOnehundredComponent extends EffortlessComponentBase impl
     })
   }
 
+  deleteRepair(){
+    this.personRepair = ''
+   }
+
   addSecurity(){
     let payload = this.gds.createPayload();
     payload.SearchTerm = this.security
@@ -65,6 +69,10 @@ export class VerifyFiftyOnehundredComponent extends EffortlessComponentBase impl
       this.security = ''; 
     })
   }
+
+  deleteSecurity(){
+    this.personSecurity = ''
+   }
 
   addOperations(){
     let payload = this.gds.createPayload();
@@ -76,6 +84,10 @@ export class VerifyFiftyOnehundredComponent extends EffortlessComponentBase impl
     })
   }
 
+  deleteOperations(){
+    this.personOperations = ''
+   }
+
   addManager(){
     let payload = this.gds.createPayload();
     payload.SearchTerm = this.manager
@@ -85,6 +97,10 @@ export class VerifyFiftyOnehundredComponent extends EffortlessComponentBase impl
       this.manager = '';      
     })
   }
+
+  deleteManager(){
+    this.personManager = ''
+   }
 
   updatePercentComplete = function () {
     this.checklistMetadata.PercentComplete = 0;

@@ -74,11 +74,12 @@ export class VerifyTenTwentyComponent extends EffortlessComponentBase implements
       this.personRepair = reply.Person
       this.checklist.RepairRepresentative = this.personRepair.FirstName + ' ' + this.personRepair.LastName + ', ' + this.personRepair.SecurityUserId;
       this.repair = ''
-      
-     
-      
     })
   } 
+
+  deleteRepair(){
+   this.personRepair = ''
+  }
 
   addSecurity(){
     let payload = this.gds.createPayload();
@@ -91,6 +92,10 @@ export class VerifyTenTwentyComponent extends EffortlessComponentBase implements
     })
   }
 
+  deleteSecurity(){
+    this.personSecurity = ''
+   }
+
   addOperations(){
     let payload = this.gds.createPayload();
     payload.SearchTerm = this.operations
@@ -100,6 +105,12 @@ export class VerifyTenTwentyComponent extends EffortlessComponentBase implements
       this.operations = '';
     })
   }
+
+  deleteOperations(){
+    this.personOperations = ''
+   }
+
+  
   
 
 

@@ -1,33 +1,44 @@
 <nb-card [size]="'large'">
     <nb-card-header>
-        <button nbButton ghost size="medium" status="danger" class="float-left" (click)="cancel()"><nb-icon icon="slash-outline"></nb-icon>Cancel</button>
+        <button nbButton ghost size="medium" status="danger" class="float-left" (click)="cancel()">
+            <nb-icon icon="slash-outline"></nb-icon>Cancel
+        </button>
         <h4 style="width: fit-content; margin: auto;">JP Verify $20k - $49,999.99</h4>
     </nb-card-header>
     <nb-card-body>
         <nb-list>
-            <nb-list-item >
-                <label>Record the Jackpot amount:</label> 
-                <input nbInput class="float-right" placeholder="How Much?" [(ngModel)]="checklist.JackpotAmount" > 
+            <nb-list-item>
+                <label>Record the Jackpot amount:</label>
+                <input nbInput class="float-right" placeholder="How Much?" [(ngModel)]="checklist.JackpotAmount">
             </nb-list-item>
             <nb-list-item [style.backgroundColor]="tempChecklist.Book.No ? '#ff3d71': ''">
                 <label>MEAL Book Entry</label>
-                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Book.No" (change)="applyToChecklist('Book', 'No')">No</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Book.Yes" (change)="applyToChecklist('Book', 'Yes')">Yes</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Book.No"
+                    (change)="applyToChecklist('Book', 'No')">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Book.Yes"
+                    (change)="applyToChecklist('Book', 'Yes')">Yes</nb-checkbox>
             </nb-list-item>
             <nb-list-item [style.backgroundColor]="tempChecklist.SealIntact.No ? '#ff3d71': ''">
                 <label> Are All Seal(s) Intact? </label>
-                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SealIntact.No" (change)="applyToChecklist('SealIntact', 'No')">No</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SealIntact.Yes" (change)="applyToChecklist('SealIntact', 'Yes')">Yes</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SealIntact.No"
+                    (change)="applyToChecklist('SealIntact', 'No')">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SealIntact.Yes"
+                    (change)="applyToChecklist('SealIntact', 'Yes')">Yes</nb-checkbox>
             </nb-list-item>
 
 
             <nb-list-item [style.backgroundColor]="personRepair ? '': '#ff3d71'">
                 <label> <b>Record Slot Repair Representative:</b> </label>
                 <button nbButton class="float-right" size="small" outline (click)="addRepair()">Add</button>
-                <input  nbInput [(ngModel)]="repair" type="text" placeholder="BadgeNumber" class="float-right" style="margin-right: 1rem;">
-               <nb-list>
+                <input nbInput [(ngModel)]="repair" type="text" placeholder="BadgeNumber" class="float-right"
+                    style="margin-right: 1rem;">
+                <nb-list>
                     <nb-list-item *ngIf="personRepair">
-                        <label [(ngModel)]="checklist.RepairRepresentative" ngDefaultControl > {{personRepair.FirstName}} {{personRepair.LastName}}, {{personRepair.BadgeNumber}} </label>
+                        <label [(ngModel)]="checklist.RepairRepresentative" ngDefaultControl> {{personRepair.FirstName}}
+                            {{personRepair.LastName}}, {{personRepair.BadgeNumber}} </label>
+                            <button nbButton ghost status="danger" size="small" (click)="deleteRepair()">
+                                <nb-icon icon="close-outline"></nb-icon>
+                            </button>
                     </nb-list-item>
                 </nb-list>
             </nb-list-item>
@@ -35,10 +46,16 @@
             <nb-list-item [style.backgroundColor]="personSecurity? '': '#ff3d71'">
                 <label> <b>Record Security Representative:</b> </label>
                 <button nbButton class="float-right" size="small" outline (click)="addSecurity()">Add</button>
-                <input  nbInput [(ngModel)]="security" type="text" placeholder="BadgeNumber" class="float-right" style="margin-right: 1rem;">
-               <nb-list>
+                <input nbInput [(ngModel)]="security" type="text" placeholder="BadgeNumber" class="float-right"
+                    style="margin-right: 1rem;">
+                <nb-list>
                     <nb-list-item *ngIf="personSecurity ">
-                        <label [(ngModel)]="checklist.SecurityRepresentative" ngDefaultControl > {{personSecurity.FirstName}} {{personSecurity.LastName}}, {{personSecurity.BadgeNumber}}</label>
+                        <label [(ngModel)]="checklist.SecurityRepresentative" ngDefaultControl>
+                            {{personSecurity.FirstName}} {{personSecurity.LastName}},
+                            {{personSecurity.BadgeNumber}}</label>
+                            <button nbButton ghost status="danger" size="small" (click)="deleteSecurity()">
+                                <nb-icon icon="close-outline"></nb-icon>
+                            </button>
                     </nb-list-item>
                 </nb-list>
             </nb-list-item>
@@ -46,10 +63,16 @@
             <nb-list-item [style.backgroundColor]="personOperations ? '': '#ff3d71'">
                 <label> <b>Record Slot Operations Manager:</b> </label>
                 <button nbButton class="float-right" size="small" outline (click)="addOperations()">Add</button>
-                <input  nbInput [(ngModel)]="operations" type="text" placeholder="BadgeNumber" class="float-right" style="margin-right: 1rem;">
-               <nb-list>
+                <input nbInput [(ngModel)]="operations" type="text" placeholder="BadgeNumber" class="float-right"
+                    style="margin-right: 1rem;">
+                <nb-list>
                     <nb-list-item *ngIf="personOperations">
-                        <label [(ngModel)]="checklist.OperationsManager" ngDefaultControl > {{personOperations.FirstName}} {{personOperations.LastName}}, {{personOperations.BadgeNumber}} </label>
+                        <label [(ngModel)]="checklist.OperationsManager" ngDefaultControl>
+                            {{personOperations.FirstName}} {{personOperations.LastName}},
+                            {{personOperations.BadgeNumber}} </label>
+                            <button nbButton ghost status="danger" size="small" (click)="deleteOperations()">
+                                <nb-icon icon="close-outline"></nb-icon>
+                            </button>
                     </nb-list-item>
                 </nb-list>
             </nb-list-item>
@@ -57,18 +80,24 @@
             <nb-list-item [style.backgroundColor]="personManager ? '': '#ff3d71'">
                 <label> <b>Record Casino Manager or Equivlent:</b> </label>
                 <button nbButton class="float-right" size="small" outline (click)="addManager()">Add</button>
-                <input  nbInput [(ngModel)]="manager" type="text" placeholder="BadgeNumber" class="float-right" style="margin-right: 1rem;">
-               <nb-list>
+                <input nbInput [(ngModel)]="manager" type="text" placeholder="BadgeNumber" class="float-right"
+                    style="margin-right: 1rem;">
+                <nb-list>
                     <nb-list-item *ngIf="personManager">
-                        <label [(ngModel)]="checklist.CasinoManager" ngDefaultControl > {{personManager.FirstName}} {{personManager.LastName}}, {{personManager.BadgeNumber}} </label>
+                        <label [(ngModel)]="checklist.CasinoManager" ngDefaultControl> {{personManager.FirstName}}
+                            {{personManager.LastName}}, {{personManager.BadgeNumber}} </label>
+                            <button nbButton ghost status="danger" size="small" (click)="deleteManager()">
+                                <nb-icon icon="close-outline"></nb-icon>
+                            </button>
                     </nb-list-item>
                 </nb-list>
             </nb-list-item>
 
-            
+
         </nb-list>
         <button nbButton class="float-right" ghost size="medium" (click)="finish()">Finish</button>
-        <button nbButton ghost size="medium" status="danger" (click)="cancel()"><nb-icon icon="slash-outline"></nb-icon>Cancel</button>
+        <button nbButton ghost size="medium" status="danger" (click)="cancel()">
+            <nb-icon icon="slash-outline"></nb-icon>Cancel
+        </button>
     </nb-card-body>
 </nb-card>
-
