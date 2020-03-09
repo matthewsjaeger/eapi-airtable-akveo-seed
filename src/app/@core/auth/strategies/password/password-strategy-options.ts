@@ -48,7 +48,7 @@ export class NbPasswordAuthStrategyOptions extends NbAuthStrategyOptions {
       success: '/',
       failure: null,
     },
-    defaultErrors: ['Login/Email combination is not correct, please try again.'],
+    defaultErrors: ['Invalid or expired auth token, please try again.'],
     defaultMessages: ['You have been successfully logged in.'],
   };
   register?: boolean | NbPasswordStrategyModule = {
