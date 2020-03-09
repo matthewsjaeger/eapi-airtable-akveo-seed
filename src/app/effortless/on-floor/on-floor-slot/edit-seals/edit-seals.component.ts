@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { EffortlessComponentBase } from '../../../efforless-base-component';
 import { GDS } from '../../../services/gds.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -25,6 +25,10 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
   disabled: boolean;
   modifyDisabled: boolean = true;
   selected: string = null;
+  
+  @Output() newSealNumber: any;
+  @Output() replacement: any;
+
 
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService,
@@ -38,6 +42,7 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
   }
 
   ngOnInit() {
+    console.error('replacement', this.replacement)
     this.safeSubscribe(this.gds.onReady().subscribe(ready => {
       let self = this
       let payload = self.gds.createPayload()

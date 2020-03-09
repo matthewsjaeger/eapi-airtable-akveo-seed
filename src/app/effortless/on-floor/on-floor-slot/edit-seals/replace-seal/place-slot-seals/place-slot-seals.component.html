@@ -1,18 +1,24 @@
 <nb-card style="width: 800px; height: 600px;">
     <nb-card-header>
-        <h5 >Adding Seal #: {{newSeal}}  </h5>
+        <h5 >Adding Seal #: {{newSealNumber}}  </h5>
         <p>Select components to be sealed (selecting seals will have no effect)</p>
     </nb-card-header>
     <nb-card-body>
         <nb-list *ngFor=" let def of componentDefList">
             <nb-list-item >
-                <nb-checkbox class="float-left" status="basic"></nb-checkbox> <p> {{def.ToStringText}} </p>
+                 <nb-checkbox [(ngModel)]="newComponentDefList"  ngDefaultControl class="float-left" status="basic"> {{def.ToStringText}} </nb-checkbox>  
             </nb-list-item>
         </nb-list>
         
         <nb-list>
             <nb-list-item *ngFor="let seal of seal">
-                <p> <nb-checkbox class="float-left" status="basic"></nb-checkbox> <b>Seal Number:</b> {{seal.SealNumber}} </p>
+                 <nb-checkbox [(ngModel)]="newSeal"  ngDefaultControl class="float-left" status="basic"> <b>Seal Number:</b> {{seal.SealNumber}}</nb-checkbox>  
+            </nb-list-item>
+        </nb-list>
+        <nb-list *ngIf=" logicCage && logicCage.SlotComponentId" >
+            <nb-list-item >
+                
+                 <nb-checkbox [(ngModel)]="newLogicCage"  ngDefaultControl class="float-left" status="basic"><b>Logic Cage:</b> {{logicCage.SlotComponentId}} </nb-checkbox>
             </nb-list-item>
         </nb-list>
     </nb-card-body>

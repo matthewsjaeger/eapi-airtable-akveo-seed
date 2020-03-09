@@ -18,6 +18,11 @@ export class ReplaceWitnessesComponent extends EffortlessComponentBase implement
   witness: any;
   name: any;
   person: any;
+  @Input() newSealNumber: number;
+  @Input() newComponentDefList: any =[];
+  @Input() newLogicCage: any =[];
+  @Input() newSeal: any ;
+  @Input() replacement: any;
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, 
     public route: ActivatedRoute, protected dialogRef: NbDialogRef<ReplaceWitnessesComponent>  ) { 
@@ -28,9 +33,19 @@ export class ReplaceWitnessesComponent extends EffortlessComponentBase implement
     }));
   }
   ngOnInit() {
+    console.error("oldseal",this.newSeal)
+    console.error( "new seal #", this.newSealNumber)
+    console.error( "logic cage", this.newLogicCage)
+    console.error("Def list", this.newComponentDefList)
   }
 
   finish(){
+    this.dialogRef.close({
+      context:{
+        'newSealNumber': this.newSealNumber,
+        'replacement': this.replacement
+      }
+    })
 
   }
   
@@ -42,6 +57,10 @@ export class ReplaceWitnessesComponent extends EffortlessComponentBase implement
       this.witness = '';
       
     })
+  }
+
+  delete(){
+    this.person = ''
   }
   
 

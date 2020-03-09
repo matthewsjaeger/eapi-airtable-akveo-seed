@@ -3,19 +3,24 @@
         <h5>Adding Seal #:</h5>
     </nb-card-header>
     <nb-card-body>
-        <b>Badge Number:</b>  
-        <input nbInput type="text" [(ngModel)]="witness" style="margin: 0 0 10px 10px;"><button class="float-right" nbButton outline (click)="add()">Add</button>
-    <nb-list>
-        <nb-list-item>
-            <b>Witnesses:</b>
-        </nb-list-item>
-        <nb-list-item *ngIf="person" >
-            {{person.FirstName}} {{person.LastName}}, {{person.BadgeNumber}}
-        </nb-list-item>
-    </nb-list>
-</nb-card-body>
+        <b>Badge Number:</b>
+        <input nbInput type="text" [(ngModel)]="witness" style="margin: 0 0 10px 10px;"><button class="float-right"
+            nbButton outline (click)="add()">Add</button>
+        <nb-list>
+            <nb-list-item>
+                <b>Witnesses:</b>
+            </nb-list-item>
+            <nb-list-item *ngIf="person">
+                {{person.FirstName}} {{person.LastName}}, {{person.BadgeNumber}}
+                <button nbButton ghost status="danger" size="small" (click)="delete()">
+                    <nb-icon icon="close-outline"></nb-icon>
+                </button>
+            </nb-list-item>
+        </nb-list>
+    </nb-card-body>
     <nb-card-footer>
-        <button nbButton class="float-left" outline status="danger" (click)="cancelReplaceSeal()">Cancel Replace Seal</button>
-        <button nbButton class="float-right" outline (click)="finish()" >Finish</button>
+        <button nbButton class="float-left" outline status="danger" (click)="cancelReplaceSeal()">Cancel Replace
+            Seal</button>
+        <button nbButton class="float-right" outline (click)="finish()">Finish</button>
     </nb-card-footer>
 </nb-card>

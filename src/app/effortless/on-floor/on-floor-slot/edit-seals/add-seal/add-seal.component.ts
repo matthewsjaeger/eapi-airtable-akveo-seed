@@ -12,6 +12,8 @@ import { EffortlessComponentBase } from '../../../../efforless-base-component';
 })
 export class AddSealComponent extends EffortlessComponentBase implements OnInit {
   sid:any;
+  seal: any;
+  seals: any;
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, 
     public route: ActivatedRoute, protected dialogRef: NbDialogRef<AddSealComponent> ) { 
@@ -24,10 +26,23 @@ export class AddSealComponent extends EffortlessComponentBase implements OnInit 
   } 
 
   ngOnInit() {
+    this.safeSubscribe(this.gds.onReady().subscribe(ready => {
+      let self = this
+      let payload = self.gds.createPayload()
+      payload.SearchTerm = self.seals
+      self.gds.smqATR.GetInstalledComponents(payload).then(function (reply) {
+        console.error(reply)
+        self.seal = reply.SlotSeals
+        
+      });
+    }))
+  
   }
 
   cancelAddSeal(){
     this.dialogRef.close()
   }
 
+  next(){}
+   
 }

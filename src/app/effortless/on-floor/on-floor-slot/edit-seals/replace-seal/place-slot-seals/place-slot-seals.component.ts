@@ -16,11 +16,15 @@ export class PlaceSlotSealsComponent extends EffortlessComponentBase implements 
   
  
   sid: any;
-  @Input() newSeal: number;
+  @Input() newSealNumber: number;
   @Input() componentDefList: any;
   @Input() logicCage: any;
   @Input() seal: any;
   @Input() replacement: any;
+  newComponentDefList: any = [];
+  newLogicCage: any = [];
+  newSeal: any = [];
+
   
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, 
@@ -32,14 +36,29 @@ export class PlaceSlotSealsComponent extends EffortlessComponentBase implements 
     }));
   }
   ngOnInit() {
-    console.error(this.newSeal)
+    console.error(this.newSealNumber)
     console.error(this.replacement)
  
   }
 
+  defListChecked(){
+    
+  }
 
-  next(){
-    this.dialogService.open(ReplaceWitnessesComponent)
+
+
+
+    next(){
+
+      this.dialogService.open(ReplaceWitnessesComponent, {
+        context: {
+          'newComponentDefList': this.newComponentDefList,
+          'newLogicCage': this.newLogicCage,
+          'newSeal': this.newSeal,
+          'newSealNumber': this.newSealNumber,
+               }
+      })
+    this.dialogRef.close()
   }
 
   cancelReplaceSeal(){

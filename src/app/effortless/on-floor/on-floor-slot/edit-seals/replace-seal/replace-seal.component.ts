@@ -13,11 +13,13 @@ import { PlaceSlotSealsComponent } from './place-slot-seals/place-slot-seals.com
   styleUrls: ['./replace-seal.component.scss']
 })
 export class ReplaceSealComponent extends EffortlessComponentBase implements OnInit {
+
+  
   
   sid: any;
   @Input() componentDefList: any;
   @Input() logicCage: any;
-  @Input() seal: any = '';
+  @Input() seal: any;
   newSealNumber: number;
   replacementReason: any;
 
@@ -31,7 +33,6 @@ export class ReplaceSealComponent extends EffortlessComponentBase implements OnI
 
   } 
   ngOnInit() {
-  console.error(this.seal)
     
   }
 
@@ -40,15 +41,19 @@ export class ReplaceSealComponent extends EffortlessComponentBase implements OnI
   }
 
   next(){
+
     this.dialogService.open(PlaceSlotSealsComponent, {
       context: {
         'componentDefList': this.componentDefList,
         'logicCage': this.logicCage,
         'seal': this.seal,
-        'newSeal': this.newSealNumber,
+        'newSealNumber': this.newSealNumber,
         'replacement': this.replacementReason      }
     })
-    this.dialogRef.close()
+   
+      this.dialogRef.close()
+
+  
   }
 
 }
