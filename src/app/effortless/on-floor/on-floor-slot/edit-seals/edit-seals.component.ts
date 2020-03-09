@@ -28,6 +28,7 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
   
   @Output() newSealNumber: any;
   @Output() replacement: any;
+  @Output() witness: any;
 
 
 
@@ -42,7 +43,7 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
   }
 
   ngOnInit() {
-    console.error('replacement', this.replacement)
+    
     this.safeSubscribe(this.gds.onReady().subscribe(ready => {
       let self = this
       let payload = self.gds.createPayload()
@@ -99,5 +100,6 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
     }
   }
 
+ 
 
 }

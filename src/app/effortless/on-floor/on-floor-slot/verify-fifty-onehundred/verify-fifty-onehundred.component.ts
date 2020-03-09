@@ -79,7 +79,7 @@ export class VerifyFiftyOnehundredComponent extends EffortlessComponentBase impl
     payload.SearchTerm = this.operations
     this.gds.smqUser.GetPersonByBadgeNumber(payload).then(reply =>{
       this.personOperations = reply.Person
-      this.checklist.OperationsManager = this.personOperations.FirstName + ' ' + this.personOperations.LastName + ', ' + this.personOperations.SecurityUserIdr;
+      this.checklist.OperationsManager = this.personOperations.FirstName + ' ' + this.personOperations.LastName + ', ' + this.personOperations.SecurityUserId;
       this.operations = '';
     })
   }
