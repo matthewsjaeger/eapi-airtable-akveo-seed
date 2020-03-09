@@ -100,10 +100,10 @@
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Verification.Pass"
                     (change)="applyToChecklist('Verification', 'Pass')">Pass</nb-checkbox>
             </nb-list-item>
-            <nb-list-item [style.backgroundColor]="checklist.MediaSignatures ? '': '#ff3d71'">
-                <label>Record Verified Game Media Signature(s)</label>
+            <nb-list-item [style.backgroundColor]="checklist.MediaSignature ? '': '#ff3d71'">
+                <label>Record Verified Game Media Signatures:</label>
                 <textarea nbInput fullWidth placeholder="Enter Signatures..."
-                    [(ngModel)]="checklist.MediaSignatures"></textarea>
+                    [(ngModel)]="checklist.MediaSignature"></textarea>
             </nb-list-item>
         </nb-list>
         <button nbButton class="float-right" ghost size="medium" (click)="finish()">Finish</button>
