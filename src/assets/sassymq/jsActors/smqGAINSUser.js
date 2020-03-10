@@ -665,6 +665,22 @@ function generateGAINSUserActor() {
             return deferred.promise;
         }
         
+        smqGAINSUser.ValidateNewSealNumber = function() {
+            smqGAINSUser.ValidateNewSealNumber('{}');
+        }
+
+        smqGAINSUser.ValidateNewSealNumber = function(payload) {
+            payload = smqGAINSUser.stringifyValue(payload);
+            var id = smqGAINSUser.createUUID();
+            var deferred = smqGAINSUser.waitingReply[id] = smqGAINSUser.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Validate New Seal Number - ');
+            smqGAINSUser.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.validatenewsealnumber', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGAINSUser.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
             // Can also say what 'Guest' can say.
             
         
