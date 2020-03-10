@@ -7,13 +7,12 @@
         <nb-list *ngFor=" let def of componentDefList">
             <nb-list-item >
                  <nb-checkbox 
-                 
-                 checked
-                 (change)="checkChange($event)"
-                 
-                 [ngModel]="newComponentDefList"
                 
-                 
+                 checked
+                 [checked]="def.Checked"
+                 (change)="def.Checked"
+                 value="def.SlotComponentDefId"
+                
                   ngDefaultControl class="float-left" status="basic"> {{def.ToStringText}} </nb-checkbox>  
             </nb-list-item>
         </nb-list>
