@@ -39,8 +39,6 @@ export class PlaceSlotSealsComponent extends EffortlessComponentBase implements 
   ngOnInit() {
     // console.error(this.newSealNumber)
     // console.error(this.replacement)
-    console.error("gds");
-    console.error(this.gds.editSealPayload);
 
   }
 
@@ -58,23 +56,15 @@ export class PlaceSlotSealsComponent extends EffortlessComponentBase implements 
 
   next() {
     let self = this;
-    console.error(this.newComponentDefList)
     let addedSeal = { SealNumber: this.newSealNumber, ComponentLinks: [] };
     this.componentDefList.forEach(def => {
       if (def.Checked) {
         let checkedComponent: any = {};
-        console.error("component list");
-        console.error(self.componentList);
         self.componentList.forEach(comp => {
-          console.error("compare");
-          console.error(comp.Component);
-          console.error(def.SlotComponentDefId);
           if (comp.Component == def.SlotComponentDefId) {
             checkedComponent = comp;
           }
         })
-        console.error('Bla');
-        console.error(checkedComponent);
         addedSeal.ComponentLinks.push({ SealedComponents: checkedComponent.SlotComponentId });
       }
     });
