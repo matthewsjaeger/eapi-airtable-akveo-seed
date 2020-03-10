@@ -18,6 +18,7 @@ export class ReplaceWitnessesComponent extends EffortlessComponentBase implement
   witness: any;
   name: any;
   person: any;
+  people: any = [];
   @Input() newSealNumber: number;
   @Input() newComponentDefList: any =[];
   @Input() newLogicCage: any =[];
@@ -40,7 +41,10 @@ export class ReplaceWitnessesComponent extends EffortlessComponentBase implement
     console.error("Def list", this.newComponentDefList)
   }
 
-  finish(){
+  finish() {
+    this.people.forEach(person => {
+      this.gds.editSealPayload.Witnesses.push(person.BadgeNumber);
+    })
     this.dialogRef.close({
       context:{
         'newSealNumber': this.newSealNumber,
@@ -55,19 +59,16 @@ export class ReplaceWitnessesComponent extends EffortlessComponentBase implement
     let payload = this.gds.createPayload();
     payload.SearchTerm = this.witnesses
     this.gds.smqUser.GetPersonByBadgeNumber(payload).then(reply =>{
-      this.person = reply.Person
-      this.witness = this.person.FirstName + ' ' + this.person.LastName + ', ' + this.person.SecurityUserId;
-      this.witnesses = '';
-      
+      this.people.push(reply.Person);     
     })
   }
 
-  delete(){
-    this.person = ''
+  delete(wit) {
+    this.people = this.people.filter(person => person.SecurityUserId != wit.SecurityUserId);
   }
   
 
-  cancelReplaceSeal(){
+  cancelReplaceSeal() {
     this.dialogRef.close()
   }
 

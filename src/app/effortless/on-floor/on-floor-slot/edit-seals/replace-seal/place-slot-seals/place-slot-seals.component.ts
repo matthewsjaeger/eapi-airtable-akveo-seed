@@ -17,12 +17,13 @@ export class PlaceSlotSealsComponent extends EffortlessComponentBase implements 
 
   sid: any;
   @Input() newSealNumber: number;
-  @Input() componentDefList: any;
+  @Input() componentDefList: any = [];
+  @Input() componentList: any = [];
   @Input() logicCage: any;
   @Input() seal: any;
   @Input() replacement: any;
   newComponentDefList: any = [{}];
-  newLogicCage: any = {};
+  newLogicCage: any = false;
   newSeal: any = {};
 
 
@@ -38,6 +39,8 @@ export class PlaceSlotSealsComponent extends EffortlessComponentBase implements 
   ngOnInit() {
     // console.error(this.newSealNumber)
     // console.error(this.replacement)
+    console.error("gds");
+    console.error(this.gds.editSealPayload);
 
   }
 
@@ -50,11 +53,35 @@ export class PlaceSlotSealsComponent extends EffortlessComponentBase implements 
 
 
   protected open(closeOnBackdropClick: boolean) {
-    this.dialogService.open(ReplaceWitnessesComponent, { closeOnBackdropClick });
+    //this.dialogService.open(ReplaceWitnessesComponent, { closeOnBackdropClick });
   }
 
   next() {
+    let self = this;
     console.error(this.newComponentDefList)
+    let addedSeal = { SealNumber: this.newSealNumber, ComponentLinks: [] };
+    this.componentDefList.forEach(def => {
+      if (def.Checked) {
+        let checkedComponent: any = {};
+        console.error("component list");
+        console.error(self.componentList);
+        self.componentList.forEach(comp => {
+          console.error("compare");
+          console.error(comp.Component);
+          console.error(def.SlotComponentDefId);
+          if (comp.Component == def.SlotComponentDefId) {
+            checkedComponent = comp;
+          }
+        })
+        console.error('Bla');
+        console.error(checkedComponent);
+        addedSeal.ComponentLinks.push({ SealedComponents: checkedComponent.SlotComponentId });
+      }
+    });
+    if (this.newLogicCage) {
+      addedSeal.ComponentLinks.push({SealedComponents: this.logicCage.SlotComponentId})
+    }
+    this.gds.editSealPayload.AddedSeals.push(addedSeal);//{SealNumber, ComponentLinks }
     this.open(false)
     this.dialogService.open(ReplaceWitnessesComponent, {
       context: {

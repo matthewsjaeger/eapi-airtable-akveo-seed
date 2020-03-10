@@ -26,7 +26,7 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
   disabled: boolean;
   modifyDisabled: boolean = true;
   selected: string = null;
-  
+
   @Output() newSealNumber = new EventEmitter();
   @Output() replacement: any;
   @Output() witness: any;
@@ -51,13 +51,15 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
       self.gds.smqATR.GetInstalledComponents(payload).then(function (reply) {
         console.error(reply)
         self.componentDefList = reply.SlotComponentDefs
+        self.componentList = reply.SlotComponents;
         self.logicCage = reply.SlotComponent
         self.seal = reply.SlotSeals
       });
     }))
+    this.createGDSPayload();
 
   }
-  
+
 
   cancel() {
     this.router.navigateByUrl('effortless/on-floor-slot/' + this.sid)
@@ -78,16 +80,27 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
   }
 
   protected openReplace(closeOnBackdropClick: boolean) {
-    this.dialogService.open(ReplaceSealComponent, { closeOnBackdropClick });
+    //this.dialogService.open(ReplaceSealComponent, { closeOnBackdropClick });
   }
 
   openReplaceSeal() {
-    this.openReplace(false)
+    this.openReplace(false);
+    let replacedSeal: any = {};
+    this.seal.forEach(specificSeal => {
+      if (specificSeal.SlotSealId == this.selected) {
+        replacedSeal = specificSeal;
+        console.error("replaced seal");
+        console.error(replacedSeal);
+      }
+    });
+    console.log('AAAAA');
+    console.log()
     this.dialogService.open(ReplaceSealComponent, {
       context: {
         'componentDefList': this.componentDefList,
+        'componentList': this.componentList,
         'logicCage': this.logicCage,
-        'seal': this.seal
+        'seal': replacedSeal
       }
 
     })
@@ -100,7 +113,7 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
   openBreakSeal() {
     this.openBreak(false)
     this.dialogService.open(BreakSealComponent)
-    
+
   }
 
   enable(slotSealId) {
@@ -116,8 +129,18 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
     }
   }
 
-  
+  createGDSPayload() {
+    this.gds.editSealPayload = {
+      SlotView: {},
+      Witnesses: [],
+      LogicAccess: {},
+      BrokenSeals: [],
+      AddedSeals: []
+    }
+  }
 
- 
+
+
+
 
 }
