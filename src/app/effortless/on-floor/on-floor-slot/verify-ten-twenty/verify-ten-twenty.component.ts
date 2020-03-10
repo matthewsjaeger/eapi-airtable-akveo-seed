@@ -80,7 +80,7 @@ export class VerifyTenTwentyComponent extends EffortlessComponentBase implements
   deleteRepair(){
    this.personRepair = ''
   }
-
+ 
   addSecurity(){
     let payload = this.gds.createPayload();
     payload.SearchTerm = this.security

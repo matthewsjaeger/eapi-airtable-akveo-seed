@@ -13,55 +13,61 @@ import { ReplaceWitnessesComponent } from './replace-witnesses/replace-witnesses
   styleUrls: ['./place-slot-seals.component.scss']
 })
 export class PlaceSlotSealsComponent extends EffortlessComponentBase implements OnInit {
-  
- 
+
+
   sid: any;
   @Input() newSealNumber: number;
   @Input() componentDefList: any;
   @Input() logicCage: any;
   @Input() seal: any;
   @Input() replacement: any;
-  newComponentDefList: any = [];
-  newLogicCage: any = [];
-  newSeal: any = [];
+  newComponentDefList: any = [{}];
+  newLogicCage: any = {};
+  newSeal: any = {};
 
-  
 
-  constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, 
-    public route: ActivatedRoute, protected dialogRef: NbDialogRef<PlaceSlotSealsComponent>, private dialogService: NbDialogService ) { 
-    super (gds, data, menuService) 
+
+  constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService,
+    public route: ActivatedRoute, protected dialogRef: NbDialogRef<PlaceSlotSealsComponent>, private dialogService: NbDialogService) {
+    super(gds, data, menuService)
 
     this.safeSubscribe(this.route.params.subscribe((params) => {
-      this.sid = params['sid'];   
+      this.sid = params['sid'];
     }));
   }
   ngOnInit() {
-    console.error(this.newSealNumber)
-    console.error(this.replacement)
- 
+    // console.error(this.newSealNumber)
+    // console.error(this.replacement)
+
   }
 
-  defListChecked(){
+  
+
+  checkChange(event){
     
+    }
+    
+
+
+  protected open(closeOnBackdropClick: boolean) {
+    this.dialogService.open(ReplaceWitnessesComponent, { closeOnBackdropClick });
   }
 
-
-
-
-    next(){
-
-      this.dialogService.open(ReplaceWitnessesComponent, {
-        context: {
-          'newComponentDefList': this.newComponentDefList,
-          'newLogicCage': this.newLogicCage,
-          'newSeal': this.newSeal,
-          'newSealNumber': this.newSealNumber,
-               }
-      })
+  next() {
+    console.error(this.newComponentDefList)
+    this.open(false)
+    this.dialogService.open(ReplaceWitnessesComponent, {
+      context: {
+        'newComponentDefList': this.newComponentDefList,
+        'newLogicCage': this.newLogicCage,
+        'newSeal': this.newSeal,
+        'newSealNumber': this.newSealNumber,
+      }
+    })
     this.dialogRef.close()
   }
 
-  cancelReplaceSeal(){
+  cancelReplaceSeal() {
     this.dialogRef.close()
   }
 

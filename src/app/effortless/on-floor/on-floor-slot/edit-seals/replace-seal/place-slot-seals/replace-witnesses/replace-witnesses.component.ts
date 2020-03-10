@@ -23,6 +23,7 @@ export class ReplaceWitnessesComponent extends EffortlessComponentBase implement
   @Input() newLogicCage: any =[];
   @Input() newSeal: any ;
   @Input() replacement: any;
+  witnesses: any;
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, 
     public route: ActivatedRoute, protected dialogRef: NbDialogRef<ReplaceWitnessesComponent>  ) { 
@@ -33,9 +34,9 @@ export class ReplaceWitnessesComponent extends EffortlessComponentBase implement
     }));
   }
   ngOnInit() {
-    console.error("oldseal",this.newSeal)
-    console.error( "new seal #", this.newSealNumber)
-    console.error( "logic cage", this.newLogicCage)
+    // console.error("oldseal",this.newSeal)
+    // console.error( "new seal #", this.newSealNumber)
+    // console.error( "logic cage", this.newLogicCage)
     console.error("Def list", this.newComponentDefList)
   }
 
@@ -43,7 +44,8 @@ export class ReplaceWitnessesComponent extends EffortlessComponentBase implement
     this.dialogRef.close({
       context:{
         'newSealNumber': this.newSealNumber,
-        'replacement': this.replacement
+        'replacement': this.replacement,
+        'witness': this.witness
       }
     })
 
@@ -51,10 +53,11 @@ export class ReplaceWitnessesComponent extends EffortlessComponentBase implement
   
   add(){
     let payload = this.gds.createPayload();
-    payload.SearchTerm = this.witness
+    payload.SearchTerm = this.witnesses
     this.gds.smqUser.GetPersonByBadgeNumber(payload).then(reply =>{
       this.person = reply.Person
-      this.witness = '';
+      this.witness = this.person.FirstName + ' ' + this.person.LastName + ', ' + this.person.SecurityUserId;
+      this.witnesses = '';
       
     })
   }

@@ -27,11 +27,10 @@
     <nb-card-body class="slots" (click)=selectSlot(slot)>   
       <b>Serial Number: </b>{{slot.SerialNumber}} <b>|</b> 
       <b>Machine #:</b>{{slot.SlotNumber}} <b>|</b> 
-      <b>License #:</b>{{slot.LicenseNumber}}
+      <b>License #:</b>{{slot.LicenseNumber}} <b>|</b>
+      <b>Location:</b>{{slot.DisplayLocation}} 
       <br>
-      <b>Location:</b>{{slot.DisplayLocation}} <b>|</b>
       <b>Zone:</b>{{slot.Zone}}  <b>|</b>
-      <br>
       <b>Floor Address:</b>{{slot.Address}} <b>|</b>
       <b>Manufacturer:</b> {{slot.DisplayManufacturer}} 
       <i class="float-right">{{slot.WorkflowState}} </i>

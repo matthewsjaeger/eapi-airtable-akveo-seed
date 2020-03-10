@@ -6,7 +6,15 @@
     <nb-card-body>
         <nb-list *ngFor=" let def of componentDefList">
             <nb-list-item >
-                 <nb-checkbox [(ngModel)]="newComponentDefList"  ngDefaultControl class="float-left" status="basic"> {{def.ToStringText}} </nb-checkbox>  
+                 <nb-checkbox 
+                 
+                 checked
+                 (change)="checkChange($event)"
+                 
+                 [ngModel]="newComponentDefList"
+                
+                 
+                  ngDefaultControl class="float-left" status="basic"> {{def.ToStringText}} </nb-checkbox>  
             </nb-list-item>
         </nb-list>
         

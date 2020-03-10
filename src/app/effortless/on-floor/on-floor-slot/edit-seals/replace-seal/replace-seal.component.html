@@ -1,15 +1,15 @@
-<nb-card style=" height: 500px; width: 500px ;">
+<nb-card style=" height: 400px; width: 400px ;">
     <nb-card-header>
-        <h4>Replace Seal</h4>
+        <h4 style="text-align: center;">Replace Seal</h4>
     </nb-card-header>
-    <nb-card-body>
+    <nb-card-body style="text-align: center;">
        <label > Scan new Seal #:</label> <br>
         <input nbInput type="text" placeHolder="Seal #" [(ngModel)]="newSealNumber" required>
-        <p style="color: red;" *ngFor=" let seal of seal" >Note: Adding this seal wiill break Seal # {{seal.SealNumber}}</p>
-    </nb-card-body> 
-    <nb-card-body>
+        <br>
+        <p style="color: red; margin: 20px 0 30px 0;"  *ngFor=" let seal of seal" >Note: Adding this seal wiill break Seal # {{seal.SealNumber}}</p> 
+    
         <label>Reason for Replacement</label> <br>
-        <nb-select placeholder="Select Showcase" [(selected)]="replacementReason">
+        <nb-select placeholder="Replacement Reason" fullWidth [(selected)]="replacementReason">
             <nb-option value="Conversion">Conversion</nb-option>
             <nb-option value="RAM Clearared">RAM Cleared</nb-option>
             <nb-option value="Missing Seal">Missing Seal</nb-option>
@@ -23,7 +23,7 @@
           </nb-select>
     </nb-card-body>
     <nb-card-footer>
-        <button nbButton class="float-left" outline status="danger" (click)="cancelReplaceSeal()">Cancel Replace Seal</button>
+        <button nbButton class="float-left" outline status="danger" (click)="cancelReplaceSeal()">Cancel</button>
         <button nbButton class="float-right" outline (click)="next()" >Next</button>
     </nb-card-footer>
 </nb-card>

@@ -1,17 +1,17 @@
-<nb-card style="width: 800px; height: 600px;">
-    <nb-card-header>
+<nb-card style="width: 400px; height: 400px;">
+    <nb-card-header style="text-align: center;">
         <h5>Adding Seal #:</h5>
     </nb-card-header>
     <nb-card-body>
         <b>Badge Number:</b>
-        <input nbInput type="text" [(ngModel)]="witness" style="margin: 0 0 10px 10px;"><button class="float-right"
-            nbButton outline (click)="add()">Add</button>
+        <input nbInput type="text" [(ngModel)]="witnesses" style="margin: 0 0 10px 10px;">
+        <button class="float-right" nbButton outline (click)="add()">Add</button>
         <nb-list>
             <nb-list-item>
                 <b>Witnesses:</b>
             </nb-list-item>
             <nb-list-item *ngIf="person">
-                {{person.FirstName}} {{person.LastName}}, {{person.BadgeNumber}}
+              <label [(ngModel)]="witness" ngDefaultControl></label>  {{person.FirstName}} {{person.LastName}}, {{person.BadgeNumber}}
                 <button nbButton ghost status="danger" size="small" (click)="delete()">
                     <nb-icon icon="close-outline"></nb-icon>
                 </button>
@@ -19,8 +19,7 @@
         </nb-list>
     </nb-card-body>
     <nb-card-footer>
-        <button nbButton class="float-left" outline status="danger" (click)="cancelReplaceSeal()">Cancel Replace
-            Seal</button>
+        <button nbButton class="float-left" outline status="danger" (click)="cancelReplaceSeal()">Cancel</button>
         <button nbButton class="float-right" outline (click)="finish()">Finish</button>
     </nb-card-footer>
 </nb-card>

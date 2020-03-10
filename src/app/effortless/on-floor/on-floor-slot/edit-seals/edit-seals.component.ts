@@ -3,11 +3,12 @@ import { EffortlessComponentBase } from '../../../efforless-base-component';
 import { GDS } from '../../../services/gds.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DataEndpoint } from '../../../services/eapi-data-services/data-endpoint/data-endpoint';
-import { NbMenuService } from '@nebular/theme';
+import { NbMenuService, NbDialogRef } from '@nebular/theme';
 import { NbDialogService } from '@nebular/theme';
 import { AddSealComponent } from './add-seal/add-seal.component';
 import { ReplaceSealComponent } from './replace-seal/replace-seal.component';
 import { BreakSealComponent } from './break-seal/break-seal.component';
+import { EventEmitter } from 'events';
 
 @Component({
   selector: 'ngx-edit-seal',
@@ -26,7 +27,7 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
   modifyDisabled: boolean = true;
   selected: string = null;
   
-  @Output() newSealNumber: any;
+  @Output() newSealNumber = new EventEmitter();
   @Output() replacement: any;
   @Output() witness: any;
 
@@ -43,7 +44,6 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
   }
 
   ngOnInit() {
-    
     this.safeSubscribe(this.gds.onReady().subscribe(ready => {
       let self = this
       let payload = self.gds.createPayload()
@@ -57,6 +57,7 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
     }))
 
   }
+  
 
   cancel() {
     this.router.navigateByUrl('effortless/on-floor-slot/' + this.sid)
@@ -66,13 +67,22 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
     this.router.navigateByUrl('effortless/edit-seals-logic-access/' + this.sid)
   }
 
+
+  protected openAdd(closeOnBackdropClick: boolean) {
+    this.dialogService.open(AddSealComponent, { closeOnBackdropClick });
+  }
   openAddSeal() {
+    this.openAdd(false);
     this.dialogService.open(AddSealComponent)
 
   }
 
+  protected openReplace(closeOnBackdropClick: boolean) {
+    this.dialogService.open(ReplaceSealComponent, { closeOnBackdropClick });
+  }
 
   openReplaceSeal() {
+    this.openReplace(false)
     this.dialogService.open(ReplaceSealComponent, {
       context: {
         'componentDefList': this.componentDefList,
@@ -83,8 +93,14 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
     })
   }
 
+  protected openBreak(closeOnBackdropClick: boolean) {
+    this.dialogService.open(BreakSealComponent, { closeOnBackdropClick });
+  }
+
   openBreakSeal() {
+    this.openBreak(false)
     this.dialogService.open(BreakSealComponent)
+    
   }
 
   enable(slotSealId) {
@@ -99,6 +115,8 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
       this.modifyDisabled = true;
     }
   }
+
+  
 
  
 

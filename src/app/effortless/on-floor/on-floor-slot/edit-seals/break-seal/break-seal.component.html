@@ -1,25 +1,25 @@
-<nb-card style="align-items: center;">
-    <nb-card-header>
+<nb-card style="height: 300px; width: 400px ;">
+    <nb-card-header style="text-align: center;">
         <h4>Break Seal </h4>
     </nb-card-header>
-    <nb-card-body>
+    <nb-card-body style="text-align: center;" >
         <label>Reason for Replacement</label> <br>
-        <nb-select placeholder="Select Showcase" [(selected)]="ReplacementReason">
-            <nb-option value="">Option empty</nb-option>
-            <nb-option value="0">Conversion</nb-option>
-            <nb-option value="1">RAM Cleared</nb-option>
-            <nb-option value="2">Missing Seal</nb-option>
-            <nb-option value="3">Broken Seal</nb-option>
-            <nb-option value="4">Seal Defective</nb-option>
-            <nb-option value="5">Jackpot Verification</nb-option>
-            <nb-option value="6">Machine or Option Set-up</nb-option>
-            <nb-option value="7">GC Slot Inspection</nb-option>
-            <nb-option value="8">IA Slot Inspection</nb-option>
-            <nb-option value="9">MFG Never Shipped</nb-option>
+        <nb-select placeholder="Replacement Reason" fullWidth [(selected)]="ReplacementReason">
+            <nb-option ></nb-option>
+            <nb-option value="Conversion">Conversion</nb-option>
+            <nb-option value="RAM Cleared">RAM Cleared</nb-option>
+            <nb-option value="Missing Seal">Missing Seal</nb-option>
+            <nb-option value="Broken Seal">Broken Seal</nb-option>
+            <nb-option value="Seal Defective">Seal Defective</nb-option>
+            <nb-option value="Jackpot Verification">Jackpot Verification</nb-option>
+            <nb-option value="Machine or Option Set-up">Machine or Option Set-up</nb-option>
+            <nb-option value="GC Slot Inspection">GC Slot Inspection</nb-option>
+            <nb-option value="IA Slot Inspection">IA Slot Inspection</nb-option>
+            <nb-option value="MFG Never Shipped">MFG Never Shipped</nb-option>
           </nb-select>
     </nb-card-body>
     <nb-card-footer>
-        <button nbButton class="float-left" outline status="danger" (click)="cancelBreakSeal()">Cancel Break Seal</button>
+        <button nbButton class="float-left" outline status="danger" (click)="cancelBreakSeal()">Cancel</button>
         <button nbButton class="float-right" outline (click)="break()">Ok</button>
     </nb-card-footer>
 </nb-card>
