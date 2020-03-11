@@ -23,7 +23,7 @@ export class GDS {
     this.readiness$.next({});
   }
 
-
+  public editSealPayload: any;
   public menu: NbMenuService;
   public smqPassword: string;
   public smqUsername: string;

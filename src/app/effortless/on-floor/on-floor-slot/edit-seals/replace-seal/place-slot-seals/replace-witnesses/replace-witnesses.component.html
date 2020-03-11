@@ -10,9 +10,9 @@
             <nb-list-item>
                 <b>Witnesses:</b>
             </nb-list-item>
-            <nb-list-item *ngIf="person">
-              <label [(ngModel)]="witness" ngDefaultControl></label>  {{person.FirstName}} {{person.LastName}}, {{person.BadgeNumber}}
-                <button nbButton ghost status="danger" size="small" (click)="delete()">
+            <nb-list-item *ngFor="let wit of people">
+              <label>  {{wit.FirstName}} {{wit.LastName}}, {{wit.BadgeNumber}}</label>
+                <button nbButton ghost status="danger" size="small" (click)="delete(wit)">
                     <nb-icon icon="close-outline"></nb-icon>
                 </button>
             </nb-list-item>

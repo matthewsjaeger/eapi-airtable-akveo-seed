@@ -3,14 +3,11 @@
         <h5 >Adding Seal #: {{newSealNumber}}  </h5>
         <p>Select components to be sealed (selecting seals will have no effect)</p>
     </nb-card-header>
-    <nb-card-body>
-        <nb-list *ngFor=" let def of componentDefList">
-            <nb-list-item >
+    <nb-card-body *ngIf="componentDefList && componentDefList.length > 0">
+        <nb-list >
+            <nb-list-item *ngFor=" let def of componentDefList" >
                  <nb-checkbox 
-                
-                 checked
-                 [checked]="def.Checked"
-                 (change)="def.Checked"
+                 [(ngModel)]="def.Checked"
                  value="def.SlotComponentDefId"
                 
                   ngDefaultControl class="float-left" status="basic"> {{def.ToStringText}} </nb-checkbox>  

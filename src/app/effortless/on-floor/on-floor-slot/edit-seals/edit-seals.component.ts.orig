@@ -128,6 +128,11 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
     }
   }
 
+<<<<<<< HEAD
+
+
+
+=======
   createGDSPayload() {
     this.gds.editSealPayload = {
       SlotView: {},
@@ -141,5 +146,6 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
 
 
 
+>>>>>>> 9163b0b57b1d119bc15e11780d4e7336c1e113fd
 
 }

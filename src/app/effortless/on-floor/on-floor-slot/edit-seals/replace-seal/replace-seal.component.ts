@@ -18,6 +18,7 @@ export class ReplaceSealComponent extends EffortlessComponentBase implements OnI
 
   sid: any;
   @Input() componentDefList: any;
+  @Input() componentList: any;
   @Input() logicCage: any;
   @Input() seal: any;
   newSealNumber: number;
@@ -33,7 +34,6 @@ export class ReplaceSealComponent extends EffortlessComponentBase implements OnI
 
   }
   ngOnInit() {
-
   }
 
   cancelReplaceSeal() {
@@ -42,13 +42,15 @@ export class ReplaceSealComponent extends EffortlessComponentBase implements OnI
 
 
   protected open(closeOnBackdropClick: boolean) {
-    this.dialogService.open(PlaceSlotSealsComponent, { closeOnBackdropClick });
+    //this.dialogService.open(PlaceSlotSealsComponent, { closeOnBackdropClick });
   }
   next() {
+    this.gds.editSealPayload.BrokenSeals.push({ SealNumber: this.seal.SealNumber, BrokenReason: this.replacementReason})
     this.open(false)
     this.dialogService.open(PlaceSlotSealsComponent, {
       context: {
         'componentDefList': this.componentDefList,
+        'componentList': this.componentList,
         'logicCage': this.logicCage,
         'seal': this.seal,
         'newSealNumber': this.newSealNumber,

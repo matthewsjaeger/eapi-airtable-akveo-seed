@@ -50,11 +50,19 @@ export class PlaceSlotSealsComponent extends EffortlessComponentBase implements 
     
 
 
+<<<<<<< HEAD
   // protected open(closeOnBackdropClick: boolean) {
-    //this.dialogService.open(ReplaceWitnessesComponent, { closeOnBackdropClick });
+  //   this.dialogService.open(ReplaceWitnessesComponent, { closeOnBackdropClick });
   // }
 
   next(closeOnBackdropClick: boolean) {
+    this.next(false);
+=======
+  protected open(closeOnBackdropClick: boolean) {
+    //this.dialogService.open(ReplaceWitnessesComponent, { closeOnBackdropClick });
+  }
+
+  next() {
     let self = this;
     let addedSeal = { SealNumber: this.newSealNumber, ComponentLinks: [] };
     this.componentDefList.forEach(def => {
@@ -72,6 +80,8 @@ export class PlaceSlotSealsComponent extends EffortlessComponentBase implements 
       addedSeal.ComponentLinks.push({SealedComponents: this.logicCage.SlotComponentId})
     }
     this.gds.editSealPayload.AddedSeals.push(addedSeal);//{SealNumber, ComponentLinks }
+    this.open(false)
+>>>>>>> 9163b0b57b1d119bc15e11780d4e7336c1e113fd
     this.dialogService.open(ReplaceWitnessesComponent, {
       context: {
         'newComponentDefList': this.newComponentDefList,

@@ -6,7 +6,7 @@
        <label > Scan new Seal #:</label> <br>
         <input nbInput type="text" placeHolder="Seal #" [(ngModel)]="newSealNumber" required>
         <br>
-        <p style="color: red; margin: 20px 0 30px 0;"  *ngFor=" let seal of seal" >Note: Adding this seal wiill break Seal # {{seal.SealNumber}}</p> 
+        <p style="color: red; margin: 20px 0 30px 0;"  *ngIf="seal" >Note: Adding this seal will break Seal # {{seal.SealNumber}}</p> 
     
         <label>Reason for Replacement</label> <br>
         <nb-select placeholder="Replacement Reason" fullWidth [(selected)]="replacementReason">
