@@ -17,8 +17,11 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
   slots: any = {};
   sid: any;
   slotView: any;
+<<<<<<< Updated upstream
   avaliableActions: any = '';
   Active: any;
+=======
+>>>>>>> Stashed changes
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, public route: ActivatedRoute) {
     super(gds, data, menuService)
@@ -43,6 +46,7 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
     }));
   }
 
+<<<<<<< Updated upstream
   // configureActions = function(){
   //   let self = this
   //   self.avaliableActions = {
@@ -80,11 +84,15 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
 
 
   goBack() {
-    this.router.navigateByUrl('effortless/on-floor/' +this.sid);
+    this.router.navigateByUrl('effortless/on-floor/' + this.sid);
   }
 
   activateTournamentMode() {
 
+=======
+  goBack(){
+    this.router.navigateByUrl('effortless/on-floor/' +this.sid);
+>>>>>>> Stashed changes
   }
 
   cancelScheduledEvent() {

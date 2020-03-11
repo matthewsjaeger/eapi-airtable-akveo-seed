@@ -26,7 +26,7 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
   disabled: boolean;
   modifyDisabled: boolean = true;
   selected: string = null;
-  
+
   @Output() newSealNumber = new EventEmitter();
   @Output() replacement: any;
   @Output() witness: any;
@@ -57,7 +57,7 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
     }))
 
   }
-  
+
 
   cancel() {
     this.router.navigateByUrl('effortless/on-floor-slot/' + this.sid)
@@ -74,7 +74,6 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
   openAddSeal() {
     this.openAdd(false);
     this.dialogService.open(AddSealComponent)
-
   }
 
   protected openReplace(closeOnBackdropClick: boolean) {
@@ -100,7 +99,7 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
   openBreakSeal() {
     this.openBreak(false)
     this.dialogService.open(BreakSealComponent)
-    
+
   }
 
   enable(slotSealId) {
@@ -116,8 +115,8 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
     }
   }
 
-  
 
- 
+
+
 
 }

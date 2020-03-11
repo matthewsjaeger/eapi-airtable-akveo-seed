@@ -50,7 +50,11 @@ export class MediaVerificationComponent extends EffortlessComponentBase implemen
     if (this.checklist.Signature) this.checklistMetadata.PercentComplete += 10;
     if (this.checklist.MediaSignature) this.checklistMetadata.PercentComplete += 10;
     this.checklistMetadata.Status = (this.checklistMetadata.PercentComplete == 100) ? 4 : 1;
+<<<<<<< Updated upstream
+    this.checklistMetadata.ComplianceStatus = (!this.checklist.Verification || !this.checklist.MediaSignature) ? 1 : 
+=======
     this.checklistMetadata.ComplianceStatus = (!this.checklist.Verification || !this.checklist.Comments) ? 1 : 
+>>>>>>> Stashed changes
     (this.checklistMetadata.PercentComplete == 100) ? 0 : 2;
   };
 

@@ -49,13 +49,12 @@ export class PlaceSlotSealsComponent extends EffortlessComponentBase implements 
     
 
 
-  protected open(closeOnBackdropClick: boolean) {
-    this.dialogService.open(ReplaceWitnessesComponent, { closeOnBackdropClick });
-  }
+  // protected open(closeOnBackdropClick: boolean) {
+  //   this.dialogService.open(ReplaceWitnessesComponent, { closeOnBackdropClick });
+  // }
 
-  next() {
-    console.error(this.newComponentDefList)
-    this.open(false)
+  next(closeOnBackdropClick: boolean) {
+    this.next(false);
     this.dialogService.open(ReplaceWitnessesComponent, {
       context: {
         'newComponentDefList': this.newComponentDefList,

@@ -20,7 +20,11 @@
 </nb-card>
 
 <nb-card  *ngFor="let slot of slotViews">
+<<<<<<< Updated upstream
+    <!-- <nb-card-header class="slots" (click)=selectSlot(slot)>
+=======
     <nb-card-header class="slots" (click)=selectSlot(slot)>
+>>>>>>> Stashed changes
       <button nbButton size="small" class="float-right" (click)=selectSlot(slot)>Open Slot</button>
       <b>Serial Number: </b>{{slot.SerialNumber}} 
     </nb-card-header> -->

@@ -1,5 +1,6 @@
 nb-list :hover{
     background-color:#edf1f7;
+<<<<<<< Updated upstream
     }
 
     div{
@@ -9,3 +10,7 @@ nb-list :hover{
     }
 
    
+
+=======
+    }
+>>>>>>> Stashed changes
