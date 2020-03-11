@@ -80,7 +80,7 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
 
 
   goBack() {
-    this.router.navigateByUrl('effortless/on-floor/' +this.sid);
+    this.router.navigateByUrl('effortless/on-floor/' + this.sid);
   }
 
   activateTournamentMode() {

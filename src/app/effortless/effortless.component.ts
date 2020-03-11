@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
 import { MENU_ITEMS } from './effortless-menu';
 import { GDS } from './services/gds.service';
@@ -19,14 +19,18 @@ import { EffortlessComponentBase } from './efforless-base-component';
 export class EffortlessComponent extends EffortlessComponentBase implements OnInit {
   items:NbMenuItem[];
   constructor(public gds: GDS, public data : DataEndpoint, public toastr : NbToastrService,
-    protected menuService: NbMenuService, public router: Router) {
+    protected menuService: NbMenuService, public router: Router, private cd: ChangeDetectorRef) {
     super(gds, data, menuService)
-    // this.items = this.getMenu();
+    //this.items = this.getMenu();
     
   }
 
   ngOnInit() {
-    this.goToDashboard(this.router, this.toastr)
+    //this.goToDashboard(this.router, this.toastr)
+    setTimeout(() => {
+      this.cd.detectChanges();
+    }, 1000);
+    console.error("we are actually hitting this page.");
   }
   
   menu = MENU_ITEMS;  
