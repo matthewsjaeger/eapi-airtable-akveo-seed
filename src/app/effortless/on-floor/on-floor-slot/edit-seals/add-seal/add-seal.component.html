@@ -4,7 +4,7 @@
     </nb-card-header>
     <nb-card-body style="text-align: center;">
        <label  style="margin-top: 30px;"> Scan new Seal #:</label> <br>
-        <input nbInput type="text" placeHolder="Seal #">
+        <input nbInput type="text" placeHolder="Seal #" [(ngModel)]="newSealNumber">
     </nb-card-body>
     <nb-card-footer>
         <button nbButton class="float-left" outline status="danger" (click)="cancelAddSeal()">Cancel</button>

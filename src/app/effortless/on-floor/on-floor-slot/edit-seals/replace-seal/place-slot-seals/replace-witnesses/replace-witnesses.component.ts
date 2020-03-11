@@ -59,7 +59,11 @@ export class ReplaceWitnessesComponent extends EffortlessComponentBase implement
     let payload = this.gds.createPayload();
     payload.SearchTerm = this.witnesses
     this.gds.smqUser.GetPersonByBadgeNumber(payload).then(reply =>{
-      this.people.push(reply.Person);     
+      if (reply.ErrorMessage) {
+      alert(reply.ErrorMessage)
+      } else{
+      this.people.push(reply.Person);   
+    }
     })
   }
 

@@ -9,50 +9,33 @@
         <button nbButton outline status="success" (click)="openAddSeal()">
             <nb-icon icon="plus-outline"></nb-icon>Add Seal
         </button>
-        <button nbButton outline
-         (click)="openReplaceSeal()"
-         [disabled]="modifyDisabled">
+        <button nbButton outline (click)="openReplaceSeal()" [disabled]="modifyDisabled">
             <nb-icon icon="sync-outline"></nb-icon>Replace Seal
         </button>
-        <button nbButton outline status="warning" 
-        (click)="openBreakSeal()"
-        [disabled]= "modifyDisabled">
+        <button nbButton outline status="warning" (click)="openBreakSeal()" [disabled]="modifyDisabled">
             <nb-icon icon="close-outline"></nb-icon>Break Seal
         </button>
     </nb-card-header>
-    <nb-card-body >
-        <nb-list 
-        *ngFor=" let def of componentDefList" 
-        (click)="enable(seal.SlotSealId)"
-         >
-            <nb-list-item>
-                <p style="font-size: .75rem;"> {{def.ToStringText}} </p>
+    <nb-card-body>
+        <nb-list *ngFor=" let def of componentDefList" (click)="enable(seal.SlotSealId)">
+            <nb-list-item class="py-2">
+                <p style="font-size: .75rem;" class="m-0"> {{def.ToStringText}} </p>
             </nb-list-item>
         </nb-list>
-        <nb-list [style.backgroundColor]="seal.SlotSealId  == selected ? '#D3D3D3': ''"  
-        (click)="enable(seal.SlotSealId)"
-        *ngFor=" let seal of seal ">
-            <nb-list-item >
-                <p> <b>Seal Number:</b> {{seal.SealNumber}} </p>
+        <nb-list [style.backgroundColor]="seal.SlotSealId  == selected ? '#D3D3D3': ''"
+            (click)="enable(seal.SlotSealId)" *ngFor=" let seal of seal ">
+            <nb-list-item>
+                <p class="m-0"> <b>Seal Number:</b> {{seal.SealNumber}} </p>
             </nb-list-item>
         </nb-list>
         <nb-list *ngIf=" logicCage && logicCage.SlotComponentId " (click)="enable(seal.SlotSealId)">
-            <nb-list-item >
-                <b>Logic Cage</b>
-                <p > {{logicCage.SlotComponentId}} </p>
+            <nb-list-item>
+               
+                <p class="m-0">  <b>Logic Cage</b> {{logicCage.SlotComponentId}} </p>
             </nb-list-item>
         </nb-list>
 
-        <!-- 
-        <nb-list >
-            <nb-list-item *ngIf=" logicCage && logicCage.SlotComponentId ">
-                <b>Logic Cage</b>
-                <p> {{logicCage.SlotComponentId}} </p>
-            </nb-list-item>
-            <nb-list-item *ngIf="seal && seal.SealNumber">
-                <p> <b>Seal Number:</b> {{seal.SealNumber}} </p>
-            </nb-list-item>
-        </nb-list> -->
+      
 
 
     </nb-card-body>

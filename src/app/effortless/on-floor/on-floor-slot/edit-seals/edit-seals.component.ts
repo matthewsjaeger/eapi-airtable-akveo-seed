@@ -70,20 +70,22 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
   }
 
 
-  protected openAdd(closeOnBackdropClick: boolean) {
-    this.dialogService.open(AddSealComponent, { closeOnBackdropClick });
-  }
+ 
   openAddSeal() {
-    this.openAdd(false);
-    this.dialogService.open(AddSealComponent)
+    
+    this.dialogService.open(AddSealComponent, {
+      context: {
+        'componentDefList': this.componentDefList,
+        'componentList': this.componentList,
+        'logicCage': this.logicCage,
+      }
+    })
   }
 
-  protected openReplace(closeOnBackdropClick: boolean) {
-    //this.dialogService.open(ReplaceSealComponent, { closeOnBackdropClick });
-  }
+  
 
   openReplaceSeal() {
-    this.openReplace(false);
+    
     let replacedSeal: any = {};
     this.seal.forEach(specificSeal => {
       if (specificSeal.SlotSealId == this.selected) {
@@ -105,12 +107,10 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
     })
   }
 
-  protected openBreak(closeOnBackdropClick: boolean) {
-    this.dialogService.open(BreakSealComponent, { closeOnBackdropClick });
-  }
+ 
 
   openBreakSeal() {
-    this.openBreak(false)
+   
     this.dialogService.open(BreakSealComponent)
 
   }

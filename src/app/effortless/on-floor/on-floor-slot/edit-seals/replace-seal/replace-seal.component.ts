@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { GDS } from '../../../../services/gds.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DataEndpoint } from '../../../../services/eapi-data-services/data-endpoint/data-endpoint';
-import { NbMenuService, NbDialogRef, NbDialogService } from '@nebular/theme';
+import { NbMenuService, NbDialogRef, NbDialogService, NbToastrService } from '@nebular/theme';
 import { AddSealComponent } from '../add-seal/add-seal.component';
 import { EffortlessComponentBase } from '../../../../efforless-base-component';
 import { PlaceSlotSealsComponent } from './place-slot-seals/place-slot-seals.component';
@@ -23,9 +23,10 @@ export class ReplaceSealComponent extends EffortlessComponentBase implements OnI
   @Input() seal: any;
   newSealNumber: number;
   replacementReason: any;
+  sealNumber: any;
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService,
-    public route: ActivatedRoute, protected dialogRef: NbDialogRef<ReplaceSealComponent>, private dialogService: NbDialogService) {
+    public route: ActivatedRoute, protected dialogRef: NbDialogRef<ReplaceSealComponent>, private dialogService: NbDialogService, public toastr: NbToastrService) {
     super(gds, data, menuService)
 
     this.safeSubscribe(this.route.params.subscribe((params) => {
@@ -41,26 +42,32 @@ export class ReplaceSealComponent extends EffortlessComponentBase implements OnI
   }
 
 
-  protected open(closeOnBackdropClick: boolean) {
-    //this.dialogService.open(PlaceSlotSealsComponent, { closeOnBackdropClick });
-  }
+
+
   next() {
-    this.gds.editSealPayload.BrokenSeals.push({ SealNumber: this.seal.SealNumber, BrokenReason: this.replacementReason})
-    this.open(false)
-    this.dialogService.open(PlaceSlotSealsComponent, {
-      context: {
-        'componentDefList': this.componentDefList,
-        'componentList': this.componentList,
-        'logicCage': this.logicCage,
-        'seal': this.seal,
-        'newSealNumber': this.newSealNumber,
-        'replacement': this.replacementReason
+    let payload = this.gds.createPayload();
+    payload.SearchTerm = this.newSealNumber
+    this.gds.smqUser.ValidateNewSealNumber(payload).then(reply => {
+      this.sealNumber = reply.SealNumber
+      if (reply.ErrorMessage) {
+        this.toastr.warning(reply.ErrorMessage)
+       
+      } else {
+        console.error(reply)
+        this.gds.editSealPayload.BrokenSeals.push({ SealNumber: this.seal.SealNumber, BrokenReason: this.replacementReason })
+        this.dialogService.open(PlaceSlotSealsComponent, {
+          context: {
+            'componentDefList': this.componentDefList,
+            'componentList': this.componentList,
+            'logicCage': this.logicCage,
+            'seal': this.seal,
+            'newSealNumber': this.newSealNumber,
+            'replacement': this.replacementReason
+          }
+        })
+        this.dialogRef.close()
       }
     })
-
-    this.dialogRef.close()
-
-
   }
 
 }
