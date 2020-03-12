@@ -14,7 +14,7 @@ import { EffortlessComponentBase } from '../../../../efforless-base-component';
 export class BreakSealComponent extends EffortlessComponentBase implements OnInit {
 
 
-  ReplacementReason: '';
+  ReplacementReason: any;
 
   sid: any;
 

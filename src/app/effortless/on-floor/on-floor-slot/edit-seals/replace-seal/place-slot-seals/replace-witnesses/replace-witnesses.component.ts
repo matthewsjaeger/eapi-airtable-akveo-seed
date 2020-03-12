@@ -3,9 +3,7 @@ import { GDS } from '../../../../../../services/gds.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DataEndpoint } from '../../../../../../services/eapi-data-services/data-endpoint/data-endpoint';
 import { NbMenuService, NbDialogRef } from '@nebular/theme';
-import { PlaceSlotSealsComponent } from '../place-slot-seals.component';
 import { EffortlessComponentBase } from '../../../../../../efforless-base-component';
-import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'ngx-replace-witnesses',

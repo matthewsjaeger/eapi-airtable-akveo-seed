@@ -112,7 +112,7 @@ let effortlessChildren = [
     component: InspectionRecordComponent,
   },
   {
-    path: 'gc-inspection',
+    path: 'gc-inspection/:sid',
     component: GcInspectionComponent,
   },
   {

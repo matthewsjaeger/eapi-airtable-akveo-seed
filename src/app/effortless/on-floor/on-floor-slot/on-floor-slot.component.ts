@@ -115,7 +115,7 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
 
   }
   gcInspection() {
-
+    this.router.navigateByUrl('effortless/gc-inspection/' + this.sid)
   }
   jpVerify100K() {
     this.router.navigateByUrl('effortless/verify-onehundred-above/' + this.sid)

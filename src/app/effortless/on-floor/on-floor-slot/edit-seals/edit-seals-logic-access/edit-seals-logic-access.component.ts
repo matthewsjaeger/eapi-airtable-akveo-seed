@@ -13,7 +13,7 @@ import { EffortlessComponentBase } from '../../../../efforless-base-component';
 export class EditSealsLogicAccessComponent extends EffortlessComponentBase implements OnInit {
 
   checklist: any = {
-    WorkPerformed: '', SecurityRepresentative: '', AccessReason: ''};
+    WorkPerformed: '', SecurityRepresentative: '', AccessReason: '', TimeAccessed: ''};
 
   checklistMetadata: any = {};
   sid: any;
@@ -51,14 +51,20 @@ export class EditSealsLogicAccessComponent extends EffortlessComponentBase imple
     payload.SearchTerm = this.security
     this.gds.smqUser.GetPersonByBadgeNumber(payload).then(reply =>{
       this.personSecurity = reply.Person
-      this.checklist.SecurityRepresentative = this.personSecurity.FirstName + ' ' + this.personSecurity.LastName + ', ' + this.personSecurity.BadgeNumber;
+      this.checklist.SecurityRepresentative = this.personSecurity.FirstName + ' ' + this.personSecurity.LastName + ', ' + this.personSecurity.SecurityUserId;
       this.security = ''; 
     })
   }
 
+  delete(){
+    this.personSecurity = ''
+  }
+
+
   updatePercentComplete = function () {
     this.checklistMetadata.PercentComplete = 0;
     if (this.checklist.WorkPerformed) this.checklistMetadata.PercentComplete += 90;
+    if (this.checklist.AccessReason) this.checklistMetadata.PercentComplete += 10;
     if (this.checklist.SecurityRepresentative) this.checklistMetadata.PercentComplete += 10;
    
   
