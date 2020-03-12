@@ -63,14 +63,14 @@ export class EditSealsLogicAccessComponent extends EffortlessComponentBase imple
 
   updatePercentComplete = function () {
     this.checklistMetadata.PercentComplete = 0;
-    if (this.checklist.WorkPerformed) this.checklistMetadata.PercentComplete += 90;
+    if (this.checklist.TimeAccessed) this.checklistMetadata.PercentComplete += 70;
+    if (this.checklist.WorkPerformed) this.checklistMetadata.PercentComplete += 10;
     if (this.checklist.AccessReason) this.checklistMetadata.PercentComplete += 10;
     if (this.checklist.SecurityRepresentative) this.checklistMetadata.PercentComplete += 10;
    
   
     this.checklistMetadata.Status = (this.checklistMetadata.PercentComplete == 100) ? 4 : 1;
-    this.checklistMetadata.ComplianceStatus = (!this.checklist.SecurityRepresentative
-      || !this.checklist.OperationsManager || !this.checklist.WorkPerformed || !this.checklist.SecurityRepresentative ) ? 1 : 
+    this.checklistMetadata.ComplianceStatus = (!this.checklist.AccessReason || !this.checklist.WorkPerformed || !this.checklist.SecurityRepresentative ) ? 1 : 
        (this.checklistMetadata.PercentComplete == 100) ? 0 : 2;
   };
 
