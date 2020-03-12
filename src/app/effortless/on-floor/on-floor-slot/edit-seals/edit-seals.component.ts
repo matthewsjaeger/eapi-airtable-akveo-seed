@@ -110,8 +110,19 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
  
 
   openBreakSeal() {
+
+    let brokenSeal: any={};
+    this.seal.forEach(specificSeal =>{
+      if (specificSeal.SlotSealId == this.selected){
+        brokenSeal = specificSeal;
+      }
+    })
    
-    this.dialogService.open(BreakSealComponent)
+    this.dialogService.open(BreakSealComponent,{
+      context: {
+        'seal': brokenSeal
+      }
+    })
 
   }
 

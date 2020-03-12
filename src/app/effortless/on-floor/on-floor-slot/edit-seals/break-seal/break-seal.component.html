@@ -1,10 +1,10 @@
 <nb-card style="height: 300px; width: 400px ;">
     <nb-card-header style="text-align: center;">
-        <h4>Break Seal </h4>
+        <h4>Break Seal # {{seal.SealNumber}} </h4>
     </nb-card-header>
     <nb-card-body style="text-align: center;" >
         <label>Reason for Replacement</label> <br>
-        <nb-select placeholder="Replacement Reason" fullWidth [(selected)]="ReplacementReason">
+        <nb-select placeholder="Replacement Reason" fullWidth [(selected)]="replacementReason">
             <nb-option ></nb-option>
             <nb-option value="Conversion">Conversion</nb-option>
             <nb-option value="RAM Cleared">RAM Cleared</nb-option>

@@ -53,8 +53,9 @@ export class ReplaceSealComponent extends EffortlessComponentBase implements OnI
         this.toastr.warning(reply.ErrorMessage)
        
       } else {
-        console.error(reply)
+        
         this.gds.editSealPayload.BrokenSeals.push({ SealNumber: this.seal.SealNumber, BrokenReason: this.replacementReason })
+        console.error(this.seal.SealNumber)
         this.dialogService.open(PlaceSlotSealsComponent, {
           context: {
             'componentDefList': this.componentDefList,
