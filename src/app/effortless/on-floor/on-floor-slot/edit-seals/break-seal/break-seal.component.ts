@@ -37,8 +37,8 @@ export class BreakSealComponent extends EffortlessComponentBase implements OnIni
   break() {
     this.gds.editSealPayload.BrokenSeals.push({ SealNumber: this.seal.SealNumber, BrokenReason: this.replacementReason });
     this.dialogRef.close()
-console.error(this.seal.SealNumber)
-console.error(this.replacementReason)
+    console.error(this.seal.SealNumber)
+    console.error(this.replacementReason)
   }
 
   cancelBreakSeal() {
