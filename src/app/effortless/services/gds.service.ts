@@ -24,6 +24,7 @@ export class GDS {
   }
 
   public editSealPayload: any;
+  public editSealsUpdated$: BehaviorSubject<boolean> = new BehaviorSubject(null);
   public menu: NbMenuService;
   public smqPassword: string;
   public smqUsername: string;

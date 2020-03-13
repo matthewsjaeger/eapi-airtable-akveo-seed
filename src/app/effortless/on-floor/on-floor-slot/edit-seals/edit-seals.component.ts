@@ -23,6 +23,7 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
   componentDefList: any;
   logicCage: any;
   seal: any;
+  originalSeals: any;
   disabled: boolean;
   modifyDisabled: boolean = true;
   selected: string = null;
@@ -41,6 +42,10 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
       this.sid = params['sid'];
     }));
 
+    this.safeSubscribe(this.gds.editSealsUpdated$.subscribe(updated => {
+      this.generateNewSealsList();
+    }));
+
   }
 
   ngOnInit() {
@@ -54,6 +59,7 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
         self.componentList = reply.SlotComponents;
         self.logicCage = reply.SlotComponent
         self.seal = reply.SlotSeals
+        self.originalSeals = reply.SlotSeals;
       });
     }))
     this.createGDSPayload();
@@ -146,6 +152,27 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
       LogicAccess: {},
       BrokenSeals: [],
       AddedSeals: []
+    }
+  }
+
+  generateNewSealsList() {
+    if (this.gds.editSealPayload) {
+      let newList = this.originalSeals;
+      this.gds.editSealPayload.AddedSeals.forEach(addedSeal => {
+        console.error("adding seal");
+        console.error(addedSeal);
+        newList.push(addedSeal);
+      });
+      this.gds.editSealPayload.BrokenSeals.forEach(brokenSeal => {
+        console.error("removing seal");
+        console.error(brokenSeal);
+        newList = newList.filter(seal => seal.SealNumber != brokenSeal.SealNumber);
+      });
+      console.error("new list");
+      console.error(newList);
+      this.seal = newList;
+      this.selected = null;
+      this.modifyDisabled = true;
     }
   }
 
