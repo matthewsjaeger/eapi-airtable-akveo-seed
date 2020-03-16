@@ -13,9 +13,11 @@ import { EffortlessComponentBase } from '../../../../efforless-base-component';
 export class EditSealsLogicAccessComponent extends EffortlessComponentBase implements OnInit {
 
   checklist: any = {
-    WorkPerformed: '', SecurityRepresentative: '', AccessReason: '', TimeAccessed: ''};
-
+    WorkPerformed: '', SecurityRepresentative: ''
+  };
   checklistMetadata: any = {};
+  accessReason: any = "";
+  timeAccessed: any = "";
   sid: any;
   slot: any;
   security: any;
@@ -46,48 +48,62 @@ export class EditSealsLogicAccessComponent extends EffortlessComponentBase imple
     }));
   }
 
-  addSecurity(){
+  addSecurity() {
     let payload = this.gds.createPayload();
     payload.SearchTerm = this.security
-    this.gds.smqUser.GetPersonByBadgeNumber(payload).then(reply =>{
+    this.gds.smqUser.GetPersonByBadgeNumber(payload).then(reply => {
       this.personSecurity = reply.Person
       this.checklist.SecurityRepresentative = this.personSecurity.FirstName + ' ' + this.personSecurity.LastName + ', ' + this.personSecurity.SecurityUserId;
-      this.security = ''; 
+      this.security = '';
     })
   }
 
-  delete(){
+  delete() {
     this.personSecurity = ''
   }
 
 
   updatePercentComplete = function () {
     this.checklistMetadata.PercentComplete = 0;
-    if (this.checklist.TimeAccessed) this.checklistMetadata.PercentComplete += 70;
-    if (this.checklist.WorkPerformed) this.checklistMetadata.PercentComplete += 10;
-    if (this.checklist.AccessReason) this.checklistMetadata.PercentComplete += 10;
-    if (this.checklist.SecurityRepresentative) this.checklistMetadata.PercentComplete += 10;
-   
-  
+    if (this.checklist.WorkPerformed) this.checklistMetadata.PercentComplete += 50;
+    if (this.checklist.SecurityRepresentative) this.checklistMetadata.PercentComplete += 50;
     this.checklistMetadata.Status = (this.checklistMetadata.PercentComplete == 100) ? 4 : 1;
-    this.checklistMetadata.ComplianceStatus = (!this.checklist.AccessReason || !this.checklist.WorkPerformed || !this.checklist.SecurityRepresentative ) ? 1 : 
-       (this.checklistMetadata.PercentComplete == 100) ? 0 : 2;
+    this.checklistMetadata.ComplianceStatus = (!this.checklist.WorkPerformed || !this.checklist.SecurityRepresentative) ? 1 :
+      (this.checklistMetadata.PercentComplete == 100) ? 0 : 2;
   };
 
-  finish(){
+  finish() {
     let self = this;
     this.updatePercentComplete();
     let payload = this.gds.createPayload();
     payload.SlotView = { SlotId: this.sid, Checklist: this.checklist, ChecklistMetadata: this.checklistMetadata };
-    this.gds.smqGamingAgent.EditSealsFloor(payload).then(resp => {
+    payload.Witnesses = this.gds.editSealPayload.Witnesses;
+    payload.LogicAccess = { AccessDate: this.timeAccessed, Reason: this.accessReason };
+    payload.BrokenSeals = this.gds.editSealPayload.BrokenSeals;
+    payload.AddedSeals = this.gds.editSealPayload.AddedSeals;
+    this.gds.smqSlotRepairAdmin.EditSeals(payload).then(resp => {
       if (!resp.ErrorMessage) {
+        this.gds.editSealPayload = {
+          SlotView: {},
+          Witnesses: [],
+          LogicAccess: {},
+          BrokenSeals: [],
+          AddedSeals: []
+        }
         this.router.navigateByUrl('effortless/on-floor-slot/' + self.sid);
       }
     });
   }
 
-  cancel(){
-    this.router.navigateByUrl('effortless/edit-seals/' + this.sid)
+  cancel() {
+    this.gds.editSealPayload = {
+      SlotView: {},
+      Witnesses: [],
+      LogicAccess: {},
+      BrokenSeals: [],
+      AddedSeals: []
+    }
+    this.router.navigateByUrl('effortless/on-floor-slot/' + this.sid);
   }
 
 }

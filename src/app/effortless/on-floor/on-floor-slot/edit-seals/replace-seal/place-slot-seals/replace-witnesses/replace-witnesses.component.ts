@@ -41,7 +41,7 @@ export class ReplaceWitnessesComponent extends EffortlessComponentBase implement
 
   finish() {
     this.people.forEach(person => {
-      this.gds.editSealPayload.Witnesses.push(person.BadgeNumber);
+      this.gds.editSealPayload.Witnesses.push(person);
     });
     this.gds.editSealsUpdated$.next(true);
     this.dialogRef.close({

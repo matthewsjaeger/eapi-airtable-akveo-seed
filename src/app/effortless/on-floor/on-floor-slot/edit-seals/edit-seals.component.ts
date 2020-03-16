@@ -100,8 +100,6 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
         console.error(replacedSeal);
       }
     });
-    console.log('AAAAA');
-    console.log()
     this.dialogService.open(ReplaceSealComponent, {
       context: {
         'componentDefList': this.componentDefList,

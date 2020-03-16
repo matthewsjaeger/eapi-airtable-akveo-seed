@@ -9,7 +9,7 @@
         <nb-list>
             <nb-list-item>
                 <p><b>Date & Time Accessed:</b></p>
-                <input nbInput placeholder="Pick Date" fullWidth [nbDatepicker]="formpicker" [(ngModel)]="checklist.TimeAccessed">
+                <input nbInput placeholder="Pick Date" fullWidth [nbDatepicker]="formpicker" [(ngModel)]="timeAccessed">
                 <nb-datepicker #formpicker></nb-datepicker>
             </nb-list-item>
             <nb-list-item
@@ -21,9 +21,9 @@
             <nb-list-item *ngIf="user">
                 <p><b>Inspector Completing Log:</b> {{user?.Name}} </p>
             </nb-list-item>
-            <nb-list-item [style.backgroundColor]="checklist.AccessReason ? '': '#ff3d71'">
-                <label><b>Reason for Access:</b></label>
-                <nb-select placeholder="Reason For Access" fullWidth [(selected)]="checklist.AccessReason">
+            <nb-list-item [style.backgroundColor]="accessReason ? '': '#ff3d71'">
+                <p><b>Reason for Access:</b></p>
+                <nb-select placeholder="Reason For Access" fullWidth [(selected)]="accessReason">
                     <nb-option ></nb-option>
                     <nb-option value="Enable Game">Enable Game/ Change Priviledged Option</nb-option>
                     <nb-option value="PM">PM</nb-option>
