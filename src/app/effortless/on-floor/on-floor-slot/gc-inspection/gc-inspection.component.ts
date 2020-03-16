@@ -40,20 +40,20 @@ export class GcInspectionComponent extends EffortlessComponentBase implements On
   }
 
   updatePercentComplete = function () {
-    this.checklistMetadata.PercentComplete = 0;
-    if (this.checklist.InspectionReason) this.checklistMetadata.PercentComplete += 7.6;
-    if (this.checklist.MachineCompliant) this.checklistMetadata.PercentComplete += 7.6;
-    if (this.checklist.ProgramMatch) this.checklistMetadata.PercentComplete += 7.6;
-    if (this.checklist.SignaturesVerified) this.checklistMetadata.PercentComplete += 7.6;
-    if (this.checklist.SettingsVerified) this.checklistMetadata.PercentComplete += 7.6;
-    if (this.checklist.MachineYield) this.checklistMetadata.PercentComplete += 7.6;
-    if (this.checklist.LimitsAccurate) this.checklistMetadata.PercentComplete += 7.6;
-    if (this.checklist.Progressive) this.checklistMetadata.PercentComplete += 7.6;
-    if (this.checklist.CurrencyMeters) this.checklistMetadata.PercentComplete += 7.6;
-    if (this.checklist.DoorMeters) this.checklistMetadata.PercentComplete += 7.6;
-    if (this.checklist.TicketInformation) this.checklistMetadata.PercentComplete += 7.6;
-    if (this.checklist.MachineCompliant) this.checklistMetadata.PercentComplete += 7.6;
-    if (this.checklist.Comments) this.checklistMetadata.PercentComplete += 7.6;
+    this.checklistMetadata.PercentComplete = 35;
+    if (this.checklist.InspectionReason) this.checklistMetadata.PercentComplete += 5;
+    if (this.checklist.MachineCompliant) this.checklistMetadata.PercentComplete += 5
+    if (this.checklist.ProgramMatch) this.checklistMetadata.PercentComplete += 5;
+    if (this.checklist.SignaturesVerified) this.checklistMetadata.PercentComplete += 5;
+    if (this.checklist.SettingsVerified) this.checklistMetadata.PercentComplete += 5;
+    if (this.checklist.MachineYield) this.checklistMetadata.PercentComplete += 5;
+    if (this.checklist.LimitsAccurate) this.checklistMetadata.PercentComplete += 5;
+    if (this.checklist.Progressive) this.checklistMetadata.PercentComplete += 5;
+    if (this.checklist.CurrencyMeters) this.checklistMetadata.PercentComplete += 5;
+    if (this.checklist.DoorMeters) this.checklistMetadata.PercentComplete += 5;
+    if (this.checklist.TicketInformation) this.checklistMetadata.PercentComplete += 5;
+    if (this.checklist.MachineCompliant) this.checklistMetadata.PercentComplete += 5;
+    if (this.checklist.Comments) this.checklistMetadata.PercentComplete += 5;
     this.checklistMetadata.Status = (this.checklistMetadata.PercentComplete == 100) ? 4 : 1;
     this.checklistMetadata.ComplianceStatus = (this.checklist.InspectionReason )
      ? 1 : (this.checklistMetadata.PercentComplete == 100) ? 0 : 2;
