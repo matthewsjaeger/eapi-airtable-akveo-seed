@@ -22,7 +22,7 @@
                 <p><b>Inspector Completing Log:</b> {{user?.Name}} </p>
             </nb-list-item>
             <nb-list-item [style.backgroundColor]="checklist.AccessReason ? '': '#ff3d71'">
-                <p><b>Reason for Access:</b></p>
+                <label><b>Reason for Access:</b></label>
                 <nb-select placeholder="Reason For Access" fullWidth [(selected)]="checklist.AccessReason">
                     <nb-option ></nb-option>
                     <nb-option value="Enable Game">Enable Game/ Change Priviledged Option</nb-option>
