@@ -18,7 +18,7 @@ export class StateInspectionComponent extends EffortlessComponentBase implements
   }
 
   sid: any;
-  checklistMetadata: any;
+  checklistMetadata: any = {};
   state: any;
   personState: any;
   gaming: any;
