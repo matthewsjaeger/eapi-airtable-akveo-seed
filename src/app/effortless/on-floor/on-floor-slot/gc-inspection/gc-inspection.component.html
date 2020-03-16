@@ -1,1 +1,100 @@
-<p>gc-inspection works!</p>
+<nb-card [size]="'large'">
+    <nb-card-header>
+        <button nbButton ghost size="medium" status="danger" class="float-left" (click)="cancel()"><nb-icon icon="slash-outline"></nb-icon>Cancel</button>
+        <h4 style="width: fit-content; margin: auto;">GC Inspection</h4>
+    </nb-card-header>
+    <nb-card-body>
+        <nb-list>
+            <nb-list-item [style.backgroundColor]="checklist.InspectionReason ? '': 'rgba(255, 0, 0, 0.705)'">
+                <label>Inspection Reason</label> <br>
+        <nb-select placeholder="Inspection Reason" fullWidth [(selected)]="checklist.InspectionReason">
+            <nb-option></nb-option>
+            <nb-option value="Program Change">Program Change</nb-option>
+            <nb-option value="Move Only">Move Only</nb-option>
+            <nb-option value="RAM Clear">RAM Clear</nb-option>
+            <nb-option value="JP Verification">JP Verification</nb-option>
+            <nb-option value="New Slot">New Slot</nb-option>
+            <nb-option value="Verify Edit Seal">Verify Edit Seal/ Logic Access</nb-option>
+            <nb-option value="Routine">Routine</nb-option>
+            <nb-option value="Pre-Conversion Check">Pre-Conversion Check</nb-option>
+            <nb-option value="Maint">Maint.</nb-option>
+            <nb-option value="Forensic">Forensic</nb-option>
+          </nb-select>
+            </nb-list-item>
+            
+            <nb-list-item [style.backgroundColor]="tempChecklist. MachineIdentification.No ? 'rgba(255, 0, 0, 0.705)': ''" >
+                <label>Machine / Cabinet Identification Match?</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MachineIdentification.NA" (change)="applyToChecklist('MachineIdentification', 'NA')">N/A</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MachineIdentification.No" (change)="applyToChecklist('MachineIdentification', 'No')">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MachineIdentification.Yes" (change)="applyToChecklist('MachineIdentification', 'Yes')">Yes</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.ProgramMatch.No ? 'rgba(255, 0, 0, 0.705)': ''"> 
+                <label> Program #s Match? </label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ProgramMatch.NA" (change)="applyToChecklist('ProgramMatch', 'NA')">N/A</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ProgramMatch.No" (change)="applyToChecklist('ProgramMatch', 'No')">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ProgramMatch.Yes" (change)="applyToChecklist('ProgramMatch', 'Yes')">Yes</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.SignaturesVerified.No ? 'rgba(255, 0, 0, 0.705)': ''">
+                <label> Signatures Verified?</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SignaturesVerified.NA" (change)="applyToChecklist('SignaturesVerified', 'NA')">N/A</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SignaturesVerified.No" (change)="applyToChecklist('SignaturesVerified', 'No')">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SignaturesVerified.Yes" (change)="applyToChecklist('SignaturesVerified', 'Yes')">Yes</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.SettingsVerified.No ? 'rgba(255, 0, 0, 0.705)': ''">
+                <label> Settings / Options Verified?</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SettingsVerified.NA" (change)="applyToChecklist('SettingsVerified', 'NA')">N/A</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SettingsVerified.No" (change)="applyToChecklist('SettingsVerified', 'No')">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SettingsVerified.Yes" (change)="applyToChecklist('SettingsVerified', 'Yes')">Yes</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item>
+                <label> Actual Machine Yield %</label>
+                <input type="text" nbInput class="float-right" placeholder="Yield Percentage" [(ngModel)]="checklist.MachineYield">
+                
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.LimitsAccurate.No ? 'rgba(255, 0, 0, 0.705)': ''">
+                <label> Limits Accurate? </label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.LimitsAccurate.NA" (change)="applyToChecklist('LimitsAccurate', 'NA')">N/A</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.LimitsAccurate.No" (change)="applyToChecklist('LimitsAccurate', 'No')">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.LimitsAccurate.Yes" (change)="applyToChecklist('LimitsAccurate', 'Yes')">Yes</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.Progressive.No ? 'rgba(255, 0, 0, 0.705)': ''">
+                <label> Progressive: Set up correctly and increments accurately?</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Progressive.NA" (change)="applyToChecklist('Progressive', 'NA')">N/A</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Progressive.No" (change)="applyToChecklist('Progressive', 'No')">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Progressive.Yes" (change)="applyToChecklist('Progressive', 'Yes')">Yes</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.CurrencyMeters.No ? 'rgba(255, 0, 0, 0.705)': ''">
+                <label> Coin-In / Coin-Out / Currency meters increment accurately? </label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.CurrencyMeters.NA" (change)="applyToChecklist('CurrencyMeters', 'NA')">N/A</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.CurrencyMeters.No" (change)="applyToChecklist('CurrencyMeters', 'No')">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.CurrencyMeters.Yes" (change)="applyToChecklist('CurrencyMeters', 'Yes')">Yes</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.DoorMeters.No ? 'rgba(255, 0, 0, 0.705)': ''">
+                <label> DoorMeters Meters increment accurately? </label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.DoorMeters.NA" (change)="applyToChecklist('DoorMeters', 'NA')">N/A</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.DoorMeters.No" (change)="applyToChecklist('DoorMeters', 'No')">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.DoorMeters.Yes" (change)="applyToChecklist('DoorMeters', 'Yes')">Yes</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.TicketInformation.No ? 'rgba(255, 0, 0, 0.705)': ''">
+                <label> Ticket information and History accurate?</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TicketInformation.NA" (change)="applyToChecklist('TicketInformation', 'NA')">N/A</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TicketInformation.No" (change)="applyToChecklist('TicketInformation', 'No')">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TicketInformation.Yes" (change)="applyToChecklist('TicketInformation', 'Yes')">Yes</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.MachineCompliant.Fail ? 'rgba(255, 0, 0, 0.705)': ''">
+                <label> Is the Machine compliant? </label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MachineCompliant.Fail" (change)="applyToChecklist('MachineCompliant', 'Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MachineCompliant.Pass" (change)="applyToChecklist('MachineCompliant', 'Pass')">Pass</nb-checkbox>
+            </nb-list-item>
+
+
+            <nb-list-item>
+                <label>Comments:</label>
+                <textarea nbInput fullWidth placeholder="Comments" [(ngModel)]="checklist.Comments"></textarea>
+            </nb-list-item>
+        </nb-list>
+        <button nbButton class="float-right" ghost size="medium" (click)="finish()">Finish</button>
+        <button nbButton ghost size="medium" status="danger" (click)="cancel()"><nb-icon icon="slash-outline"></nb-icon>Cancel</button>
+    </nb-card-body>
+</nb-card>
+

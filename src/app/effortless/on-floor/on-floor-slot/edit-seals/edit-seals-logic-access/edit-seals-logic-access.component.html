@@ -1,6 +1,6 @@
 <nb-card>
     <nb-card-header>
-        <button nbButton outline size="medium" status="danger" class="float-left">
+        <button nbButton outline size="medium" status="danger" class="float-left" (click)="cancel()">
             <nb-icon icon="slash-outline"></nb-icon>Cancel
         </button>
         <h4 style="width: fit-content; margin: auto;">Edit Seals Logic Access</h4>
@@ -25,16 +25,16 @@
                 <p><b>Reason for Access:</b></p>
                 <nb-select placeholder="Reason For Access" fullWidth [(selected)]="checklist.AccessReason">
                     <nb-option ></nb-option>
-                    <nb-option value="0">Enable Game/ Change Priviledged Option</nb-option>
-                    <nb-option value="1">PM</nb-option>
-                    <nb-option value="2">Replace Battery</nb-option>
-                    <nb-option value="3">Replace Fan</nb-option>
-                    <nb-option value="4">Replace Logic</nb-option>
-                    <nb-option value="4">Replace Video Card</nb-option>
-                    <nb-option value="4">Reset Logic</nb-option>
-                    <nb-option value="4">Software Failure</nb-option>
-                    <nb-option value="4">Toggle/ Replace Logic Door Switch</nb-option>
-                    <nb-option value="4">Troubleshoot/ Swap Logic Board or Media </nb-option>
+                    <nb-option value="Enable Game">Enable Game/ Change Priviledged Option</nb-option>
+                    <nb-option value="PM">PM</nb-option>
+                    <nb-option value="Replace Battery">Replace Battery</nb-option>
+                    <nb-option value="replace Fan">Replace Fan</nb-option>
+                    <nb-option value="Replace Logic">Replace Logic</nb-option>
+                    <nb-option value="Replace Video Card">Replace Video Card</nb-option>
+                    <nb-option value="Reset Logic">Reset Logic</nb-option>
+                    <nb-option value="Software Failure">Software Failure</nb-option>
+                    <nb-option value="Toggle">Toggle/ Replace Logic Door Switch</nb-option>
+                    <nb-option value="Troubleshoot">Troubleshoot/ Swap Logic Board or Media </nb-option>
                 </nb-select>
             </nb-list-item>
 
@@ -68,11 +68,11 @@
                         </button>
                     </nb-list-item>
                 </nb-list>
-
+ 
             </nb-list-item>
         </nb-list>
         <button nbButton class="float-right" ghost size="medium" (click)="finish()">Finish</button>
-        <button nbButton ghost size="medium" status="danger">
+        <button nbButton ghost size="medium" status="danger" (click)="cancel()">
             <nb-icon icon="slash-outline"></nb-icon>Cancel
         </button>
     </nb-card-body>

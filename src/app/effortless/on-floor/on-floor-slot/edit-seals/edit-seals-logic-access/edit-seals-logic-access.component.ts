@@ -86,4 +86,8 @@ export class EditSealsLogicAccessComponent extends EffortlessComponentBase imple
     });
   }
 
+  cancel(){
+    this.router.navigateByUrl('effortless/edit-seals/' + this.sid)
+  }
+
 }
