@@ -21,7 +21,6 @@ import { VerifyTwentyFiftyComponent } from './on-floor/on-floor-slot/verify-twen
 import { VerifyFiftyOnehundredComponent } from './on-floor/on-floor-slot/verify-fifty-onehundred/verify-fifty-onehundred.component';
 import { VerifyOnehundredAboveComponent } from './on-floor/on-floor-slot/verify-onehundred-above/verify-onehundred-above.component';
 import { StateInspectionComponent } from './on-floor/on-floor-slot/state-inspection/state-inspection.component';
-import { InspectionRecordComponent } from './on-floor/on-floor-slot/state-inspection/inspection-record/inspection-record.component';
 import { GcInspectionComponent } from './on-floor/on-floor-slot/gc-inspection/gc-inspection.component';
 import { LscConversionComponent } from './on-floor/on-floor-slot/lsc-conversion/lsc-conversion.component';
 import { MlcConversionComponent } from './on-floor/on-floor-slot/mlc-conversion/mlc-conversion.component';
@@ -106,10 +105,6 @@ let effortlessChildren = [
   {
     path: 'state-inspection/:sid',
     component: StateInspectionComponent,
-  },
-  {
-    path: 'inspection-record/:sid',
-    component: InspectionRecordComponent,
   },
   {
     path: 'gc-inspection/:sid',

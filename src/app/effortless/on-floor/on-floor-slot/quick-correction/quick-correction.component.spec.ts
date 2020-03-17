@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InspectionRecordComponent } from './inspection-record.component';
+import { QuickCorrectionComponent } from './quick-correction.component';
 
-describe('InspectionRecordComponent', () => {
-  let component: InspectionRecordComponent;
-  let fixture: ComponentFixture<InspectionRecordComponent>;
+describe('QuickCorrectionComponent', () => {
+  let component: QuickCorrectionComponent;
+  let fixture: ComponentFixture<QuickCorrectionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InspectionRecordComponent ]
+      declarations: [ QuickCorrectionComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InspectionRecordComponent);
+    fixture = TestBed.createComponent(QuickCorrectionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

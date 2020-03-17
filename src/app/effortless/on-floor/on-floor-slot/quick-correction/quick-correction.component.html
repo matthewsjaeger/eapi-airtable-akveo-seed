@@ -1,0 +1,24 @@
+<nb-card style=" height: 300px; width: 600px ;">
+    <nb-card-header>
+        <h4 style="text-align: center;">Quick Correction</h4>
+    </nb-card-header>
+    <nb-card-body>
+        <div class="float-right">
+            <label>Scheduled:</label> 
+            <br>
+            <input nbInput placeholder="Pick Date" [nbDatepicker]="formpicker" [(ngModel)]="timeAccessed">
+            <nb-datepicker #formpicker></nb-datepicker>
+        </div>
+        <label> Create Project for Selected Slots:</label> 
+        <br>
+        <input nbInput type="text" placeholder="Create Project"  [(ngModel)]="SelectedSlots">
+        
+    </nb-card-body>
+    <nb-card-footer>
+        <div style="display: grid; grid-template-columns: auto auto auto; grid-gap: 5px">
+        <button nbButton outline status="success" class="float-left" (click)="create()" [disabled]=" !SelectedSlots"> Create</button>
+        <button class="center" nbButton outline status="warning"   (click)="noProject()">Use No Project</button>
+        <button nbButton outline status="danger" class="float-right" (click)="cancel()">Cancel</button>
+    </div>
+    </nb-card-footer>
+</nb-card>

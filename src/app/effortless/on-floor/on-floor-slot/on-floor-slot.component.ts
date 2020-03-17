@@ -3,7 +3,8 @@ import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 import { GDS } from '../../services/gds.service';
 import { EffortlessComponentBase } from '../../efforless-base-component';
 import { DataEndpoint } from '../../services/eapi-data-services/data-endpoint/data-endpoint';
-import { NbMenuService, NbListComponent } from '@nebular/theme';
+import { NbMenuService, NbListComponent, NbDialogService } from '@nebular/theme';
+import { QuickCorrectionComponent } from './quick-correction/quick-correction.component';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
   avaliableActions: any = '';
   Active: any;
 
-  constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, public route: ActivatedRoute) {
+  constructor(public gds: GDS, public router: Router, public data: DataEndpoint, 
+    protected menuService: NbMenuService, public route: ActivatedRoute, private dialogService: NbDialogService) {
     super(gds, data, menuService)
 
     this.safeSubscribe(this.route.params.subscribe((params) => {
@@ -41,6 +43,10 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
         self.slot = reply.SlotView;
       });
     }));
+  }
+
+  openQuickCorrection(){
+    this.dialogService.open(QuickCorrectionComponent)
   }
 
   // configureActions = function(){

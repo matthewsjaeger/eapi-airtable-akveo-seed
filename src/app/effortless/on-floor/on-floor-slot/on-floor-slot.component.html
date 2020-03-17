@@ -67,8 +67,8 @@
              >Media Verification</button>
              <button nbButton fullWidth status="primary" style="margin-bottom: 5px;"(click)=preventativeMaintenance()
               >Preventative Maintenance</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=quickCorrection() 
-            disabled>Quick Correction</button>
+            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=openQuickCorrection()  
+            >Quick Correction</button>
             <button *ngIf="gds.smqSlotRepairAdmin" nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=ramClearPerform() 
             disabled>Ram Clear: Perform with Meters</button>
             <button *ngIf="gds.smqSlotRepairAdmin" nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=scheduleConversions() 
