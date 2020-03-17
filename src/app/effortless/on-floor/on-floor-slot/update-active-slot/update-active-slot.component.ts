@@ -12,6 +12,7 @@ import { NbMenuService } from '@nebular/theme';
 })
 export class UpdateActiveSlotComponent extends EffortlessComponentBase implements OnInit {
   sid: any;
+  slot: any;
 
   
 
@@ -27,6 +28,15 @@ export class UpdateActiveSlotComponent extends EffortlessComponentBase implement
   
 
   ngOnInit() {
+    let self = this
+      let payload = self.gds.createPayload();
+      payload.Slot = {};
+      payload.Slot.SlotId = self.sid;
+      console.error(self.gds);
+      self.gds.smqUser.GetSlotViewDetails(payload).then(function (reply) {
+        self.slot = reply.SlotView;
+        console.error(self.slot)
+      });
   }
 
 }
