@@ -170,7 +170,7 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
     this.router.navigateByUrl('effortless/state-inspection/' + this.sid)
   }
   updateActiveSlot() {
-
+    this.router.navigateByUrl('effortless/update-active-slot/' + this.sid)
   }
 
   completeConversionFloor() { }
