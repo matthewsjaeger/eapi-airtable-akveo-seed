@@ -1,9 +1,10 @@
 <nb-card>
     <nb-card-header>
+        <button nbButton outline status="danger" (click)="cancel()">Cancel</button>
         <h5 style="text-align: center;">Update Active Slot</h5>
     </nb-card-header>
     <nb-card-body *ngIf="slot && sid">
-        <h6>Game, Cabnit, Custom Fields</h6>
+        <h6>Game, Cabinet, Custom Fields</h6>
 
         <nb-list>
             <nb-list-item>
@@ -15,70 +16,70 @@
         </nb-list>
 
         <nb-list style="display: grid; grid-template-columns: auto auto ; grid-gap: 5px">
-            <nb-list-item>
+            <nb-list-item class="py-2">
                 <label> <b> Game Chip:</b> {{slot.GameChip}} </label>
             </nb-list-item>
-            <nb-list-item>
+            <nb-list-item class="py-2">
                 <label> <b>Game Type:</b> {{slot.GameType}} </label>
             </nb-list-item>
-            <nb-list-item>
-                <label> <b> TITO:</b> <nb-checkbox [(ngModel)]=slot.TITO>Toggle me</nb-checkbox> {{slot.TITO}} </label>
+            <nb-list-item class="py-2">
+                <b> TITO:</b> <nb-checkbox  [(ngModel)]=slot.TITO></nb-checkbox>  
             </nb-list-item>
-            <nb-list-item>
-                <label> <b> Bill: </b> <nb-checkbox [(ngModel)]=slot.Bill>Toggle me</nb-checkbox> {{slot.Bill}} </label>
+            <nb-list-item class="py-2">
+                <label> <b> Bill: </b> <nb-checkbox   [(ngModel)]=slot.Bill></nb-checkbox></label>
             </nb-list-item>
-            <nb-list-item>
-                <label> <b> Coin:</b> <nb-checkbox [(ngModel)]=slot.Coin>Toggle me</nb-checkbox> {{slot.Coin}} </label>
+            <nb-list-item class="py-2">
+                <label> <b> Coin:</b> <nb-checkbox   [(ngModel)]=slot.Coin></nb-checkbox></label>
             </nb-list-item>
-            <nb-list-item>
-                <label> <b> Tokenized:</b> <nb-checkbox [(ngModel)]=slot.Tokenized>Toggle me</nb-checkbox> {{slot.Tokenized}} </label>
+            <nb-list-item class="py-2">
+                <label> <b> Tokenized:</b> <nb-checkbox   [(ngModel)]=slot.Tokenized></nb-checkbox>  </label>
             </nb-list-item>
-            <nb-list-item>
+            <nb-list-item class="py-2">
                 <label> <b> EFT Enabled:</b> {{slot.EFTEnabled}} </label>
             </nb-list-item>
         </nb-list>
         <p>Cabinet</p>
         <nb-list style="display: grid; grid-template-columns: auto auto ; grid-gap: 5px">
-            <nb-list-item>
+            <nb-list-item class="py-2" >
                 <label> <b> DOM:</b> {{slot.DOM}} </label>
             </nb-list-item>
-            <nb-list-item>
+            <nb-list-item class="py-2">
                 <label> <b> Last Audited:</b> {{slot.LastAudited}} </label>
             </nb-list-item>
-            <nb-list-item>
+            <nb-list-item class="py-2">
                 <label> <b> Version:</b> {{slot.Version}} </label>
             </nb-list-item>
-            <nb-list-item>
+            <nb-list-item class="py-2">
                 <label> <b> Cabinet Model:</b> {{slot.CabinetModel}} </label>
             </nb-list-item>
-            <nb-list-item>
+            <nb-list-item class="py-2">
                 <label> <b> Cabinet Style:</b> {{slot.CabinetStyle}} </label>
             </nb-list-item>
-            <nb-list-item>
+            <nb-list-item class="py-2">
                 <label> <b> Cabinet Color:</b> {{slot.CabinetColor}} </label>
             </nb-list-item>
         </nb-list>
         <p>Custom Fields</p>
         <nb-list style="display: grid; grid-template-columns: auto auto ; grid-gap: 5px">
-            <nb-list-item>
+            <nb-list-item class="py-2">
                 <label> <b> DBA Type:</b> {{slot.DBAType}} </label>
             </nb-list-item>
-            <nb-list-item>
+            <nb-list-item class="py-2">
                 <label> <b> Printer Type:</b> {{slot.PrinterType}} </label>
             </nb-list-item>
-            <nb-list-item>
+            <nb-list-item class="py-2">
                 <label> <b> Coin Comparator:</b> {{slot.CoinComparator}} </label>
             </nb-list-item>
-            <nb-list-item>
+            <nb-list-item class="py-2">
                 <label> <b> Date of Delivery:</b> {{slot.DateOfDelivery}} </label>
             </nb-list-item>
-            <nb-list-item>
+            <nb-list-item class="py-2">
                 <label> <b> Notes:</b> {{slot.Notes}} </label>
             </nb-list-item>
-            <nb-list-item>
+            <nb-list-item class="py-2">
                 <label> <b> HSN Enabled:</b> {{slot.HSNEnabled}} </label>
             </nb-list-item>
-            <nb-list-item>
+            <nb-list-item class="py-2">
                 <label> <b> ATR Serial ID:</b> {{slot.ATRSerialId}} </label>
             </nb-list-item>
         </nb-list>

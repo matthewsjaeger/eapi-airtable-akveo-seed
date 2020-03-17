@@ -39,4 +39,19 @@ export class UpdateActiveSlotComponent extends EffortlessComponentBase implement
       });
   }
 
+  finish(){
+    let self = this;
+    let payload = this.gds.createPayload();
+    payload.SlotView = { SlotId: this.sid, Slot: this.slot};
+    this.gds.smqSlotRepairAdmin.UpdateActiveSlot(payload).then(resp => {
+      if (!resp.ErrorMessage) {
+        this.router.navigateByUrl('effortless/on-floor-slot/' + self.sid);
+      }
+    });
+  }
+
+  cancel(){
+    this.router.navigateByUrl('effortless/on-floor-slot/' + this.sid)
+  }
+
 }
