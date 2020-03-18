@@ -1,20 +1,20 @@
 <nb-card>
     <nb-card-header>
-        <button nbButton outline status="danger" (click)="cancel()">Cancel</button>
-        <h5 style="text-align: center;">Update Active Slot</h5>
+        <button nbButton outline class="float-left
+        " status="danger" (click)="cancel()">Cancel</button>
+        <h4 style="width: fit-content; margin: auto;">Update Active Slot</h4>
     </nb-card-header>
     <nb-card-body *ngIf="slot && sid">
-        <h6>Game, Cabinet, Custom Fields</h6>
+        <label> <b>Serial Number:</b> {{slot?.SerialNumber}} </label>
+        <hr>
+        
+        <div style="background-color: rgba(128, 128, 128, 0.5);">
+        <br>
+            <h6 style="text-align: center;">Game:</h6>
+            <br>
+        </div>
 
-        <nb-list>
-            <nb-list-item>
-                <label> <b>Serial Number:</b> {{slot?.SerialNumber}} </label>
-            </nb-list-item>
-            <nb-list-item>
-                Game:
-            </nb-list-item>
-        </nb-list>
-
+        
         <nb-list style="display: grid; grid-template-columns: auto auto ; grid-gap: 5px">
             <nb-list-item class="py-2">
                 <label> <b> Game Chip:</b> {{slot.GameChip}} </label>
@@ -23,24 +23,35 @@
                 <label> <b>Game Type:</b> {{slot.GameType}} </label>
             </nb-list-item>
             <nb-list-item class="py-2">
-                <b> TITO:</b> <nb-checkbox  [(ngModel)]=slot.TITO></nb-checkbox>  
+                <label> <b> TITO:</b> </label>
+                <nb-checkbox [(ngModel)]=slot.TITO></nb-checkbox>
             </nb-list-item>
             <nb-list-item class="py-2">
-                <label> <b> Bill: </b> <nb-checkbox   [(ngModel)]=slot.Bill></nb-checkbox></label>
+                <label> <b> Bill: </b> </label>
+                <nb-checkbox [(ngModel)]=slot.Bill></nb-checkbox>
+
             </nb-list-item>
             <nb-list-item class="py-2">
-                <label> <b> Coin:</b> <nb-checkbox   [(ngModel)]=slot.Coin></nb-checkbox></label>
+                <label> <b> Coin:</b> </label>
+                <nb-checkbox [(ngModel)]=slot.Coin></nb-checkbox>
+
             </nb-list-item>
             <nb-list-item class="py-2">
-                <label> <b> Tokenized:</b> <nb-checkbox   [(ngModel)]=slot.Tokenized></nb-checkbox>  </label>
+                <label> <b> Tokenized:</b> </label>
+                <nb-checkbox [(ngModel)]=slot.Tokenized></nb-checkbox>
+
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b> EFT Enabled:</b> {{slot.EFTEnabled}} </label>
             </nb-list-item>
         </nb-list>
-        <p>Cabinet</p>
+        <div style="background-color: rgba(128, 128, 128, 0.5);">
+            <br>
+            <h6 style="text-align: center;">Cabinet:</h6>
+            <br>
+        </div>
         <nb-list style="display: grid; grid-template-columns: auto auto ; grid-gap: 5px">
-            <nb-list-item class="py-2" >
+            <nb-list-item class="py-2">
                 <label> <b> DOM:</b> {{slot.DOM}} </label>
             </nb-list-item>
             <nb-list-item class="py-2">
@@ -59,7 +70,11 @@
                 <label> <b> Cabinet Color:</b> {{slot.CabinetColor}} </label>
             </nb-list-item>
         </nb-list>
-        <p>Custom Fields</p>
+        <div style="background-color: rgba(128, 128, 128, 0.5);">
+            <br>
+            <h6 style="text-align: center;">Custom Fields:</h6>
+            <br>
+        </div>
         <nb-list style="display: grid; grid-template-columns: auto auto ; grid-gap: 5px">
             <nb-list-item class="py-2">
                 <label> <b> DBA Type:</b> {{slot.DBAType}} </label>
