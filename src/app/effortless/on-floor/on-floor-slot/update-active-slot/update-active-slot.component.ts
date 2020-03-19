@@ -16,6 +16,10 @@ export class UpdateActiveSlotComponent extends EffortlessComponentBase implement
   new: any = {
     DOM: '', LastAudited: ''
   }
+  gameName: any;
+  progressiveDef: any;
+  def: any;
+  game: any;
 
   
 
@@ -39,6 +43,29 @@ export class UpdateActiveSlotComponent extends EffortlessComponentBase implement
         self.slot = reply.SlotView;
         console.error(self.slot)
       });
+  }
+
+  addGame(){
+    
+    let payload = this.gds.createPayload();
+    payload.SearchTerm = this.gameName;
+    this.gds.smqUser.SearchGameName(payload).then(reply=>{
+
+      this.game = reply.SlotGameDefs;
+      console.error(this.game)
+      
+  
+    })
+  }
+
+  addDef(){
+    
+    let payload = this.gds.createPayload();
+    payload.SearchTerm = this.progressiveDef;
+    this.gds.smqUser.SearchProgressiveDef(payload).then(reply=>{
+      this.def = reply.ProgressiveDefs;
+      console.error(this.def)
+    })
   }
 
   finish(){

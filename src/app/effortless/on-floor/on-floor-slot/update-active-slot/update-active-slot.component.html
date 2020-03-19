@@ -4,7 +4,7 @@
         " status="danger" (click)="cancel()">Cancel</button>
         <h4 style="width: fit-content; margin: auto;">Update Active Slot</h4>
     </nb-card-header>
-    <nb-card-body *ngIf="slot && sid">
+    <nb-card-body *ngIf="slot">
         <label> <b>Serial Number:</b> {{slot?.SerialNumber}} </label>
         <hr>
         <div style="background-color: rgba(128, 128, 128, 0.5);">
@@ -52,9 +52,34 @@
         <nb-list>
             <nb-list-item class="py-2">
                 <label> <b>Game Name :</b> {{slot.GameName}} </label>
+                <button nbButton class="float-right" size="small" outline (click)="addGame()">Add</button>
+
+                <input nbInput type="text" class="float-right" [(ngModel)]="gameName">
+                 
+                <nb-list  >
+                    <nb-list-item  *ngIf="game">
+                       
+                        {{game.Description}} {{game.Par}}
+                        
+
+                    </nb-list-item>
+                </nb-list>
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b>Progressive Def:</b> {{slot.ProgressiveDef}} </label>
+                <button nbButton class="float-right" size="small" outline (click)="addDef()">Add</button>
+
+                <input nbInput type="text" class="float-right" [(ngModel)]="progressiveDef">
+                <nb-list  >
+                    <nb-list-item *ngIf="def">
+                        
+                            <label> {{def.Description}} </label>
+                        
+
+                    </nb-list-item>
+                </nb-list>
+               
+
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b>Machine #:</b> {{slot.SlotNumber}} </label>
