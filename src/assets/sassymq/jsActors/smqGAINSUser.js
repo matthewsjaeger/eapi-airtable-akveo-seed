@@ -681,6 +681,38 @@ function generateGAINSUserActor() {
             return deferred.promise;
         }
         
+        smqGAINSUser.SearchGameName = function() {
+            smqGAINSUser.SearchGameName('{}');
+        }
+
+        smqGAINSUser.SearchGameName = function(payload) {
+            payload = smqGAINSUser.stringifyValue(payload);
+            var id = smqGAINSUser.createUUID();
+            var deferred = smqGAINSUser.waitingReply[id] = smqGAINSUser.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Search Game Name - ');
+            smqGAINSUser.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.searchgamename', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGAINSUser.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGAINSUser.SearchProgressiveDef = function() {
+            smqGAINSUser.SearchProgressiveDef('{}');
+        }
+
+        smqGAINSUser.SearchProgressiveDef = function(payload) {
+            payload = smqGAINSUser.stringifyValue(payload);
+            var id = smqGAINSUser.createUUID();
+            var deferred = smqGAINSUser.waitingReply[id] = smqGAINSUser.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Search Progressive Def - ');
+            smqGAINSUser.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.searchprogressivedef', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGAINSUser.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
             // Can also say what 'Guest' can say.
             
         
