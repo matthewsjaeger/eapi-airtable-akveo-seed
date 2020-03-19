@@ -1,1 +1,176 @@
-<p>update-active-slot works!</p>
+<nb-card>
+    <nb-card-header>
+        <button nbButton outline class="float-left
+        " status="danger" (click)="cancel()">Cancel</button>
+        <h4 style="width: fit-content; margin: auto;">Update Active Slot</h4>
+    </nb-card-header>
+    <nb-card-body *ngIf="slot && sid">
+        <label> <b>Serial Number:</b> {{slot?.SerialNumber}} </label>
+        <hr>
+        <div style="background-color: rgba(128, 128, 128, 0.5);">
+            <br>
+            <h6 style="text-align: center;">Location:</h6>
+            <br>
+        </div>
+        <nb-list>
+            <nb-list-item class="py-2">
+                <label> <b>Zone:</b> {{slot.Zone}} </label>
+                <input nbInput class="float-right" type="text" [(ngModel)]="slot.Zone">
+
+            </nb-list-item>
+            <nb-list-item class="py-2">
+                <label> <b>Floor Address:</b> {{slot.Address}} </label>
+                <input nbInput class="float-right" type="text" [(ngModel)]="slot.Address">
+
+            </nb-list-item>
+            <nb-list-item class="py-2">
+                <label> <b>System Address:</b> {{slot.SystemAddress}} </label>
+                <input nbInput class="float-right" type="text" [(ngModel)]="slot.SystemAddress">
+
+            </nb-list-item>
+            <nb-list-item class="py-2">
+                <label> <b>Location:</b> {{slot.DisplayLocation}} </label>
+                <nb-select placeholder="New Location" class="float-right" [(selected)]="slot.DisplayLocation">
+                    <nb-option value=""></nb-option>
+                    <nb-option value="ATR">ATR</nb-option>
+                    <nb-option value="Blackjack">Blackjack</nb-option>
+                    <nb-option value="Little Six">Little Six Casino</nb-option>
+                    <nb-option value="Mystic Lake">Mystic Lake Casino</nb-option>
+                    <nb-option value="SMSCGE/ LSC">SMSCGE/ LSC/ LSC</nb-option>
+                    <nb-option value="SMSCGE/ Mystic">SMSCGE/ Mystic/ Mystic</nb-option>
+                </nb-select>
+            </nb-list-item>
+        </nb-list>
+
+        <div style="background-color: rgba(128, 128, 128, 0.5);">
+            <br>
+            <h6 style="text-align: center;">Game:</h6>
+            <br>
+        </div>
+
+
+        <nb-list>
+            <nb-list-item class="py-2">
+                <label> <b>Game Name :</b> {{slot.GameName}} </label>
+            </nb-list-item>
+            <nb-list-item class="py-2">
+                <label> <b>Progressive Def:</b> {{slot.ProgressiveDef}} </label>
+            </nb-list-item>
+            <nb-list-item class="py-2">
+                <label> <b>Machine #:</b> {{slot.SlotNumber}} </label>
+                <input nbInput class="float-right" type="text" [(ngModel)]="slot.SlotNumber">
+
+            </nb-list-item>
+            <nb-list-item class="py-2">
+                <label> <b> Game Chip:</b> {{slot.GameChip}} </label>
+                <input nbInput class="float-right" type="text" [(ngModel)]="slot.GameChip">
+
+            </nb-list-item>
+            <nb-list-item class="py-2">
+                <label> <b>Game Type:</b> {{slot.GameType}} </label>
+                <input nbInput class="float-right" type="text" [(ngModel)]="slot.GameType">
+
+            </nb-list-item>
+            <nb-list-item class="py-2">
+                <label> <b> TITO:</b> </label>
+                <nb-checkbox [(ngModel)]=slot.TITO></nb-checkbox>
+            </nb-list-item>
+            <nb-list-item class="py-2">
+                <label> <b> Bill: </b> </label>
+                <nb-checkbox [(ngModel)]=slot.Bill></nb-checkbox>
+
+            </nb-list-item>
+            <nb-list-item class="py-2">
+                <label> <b> Coin:</b> </label>
+                <nb-checkbox [(ngModel)]=slot.Coin></nb-checkbox>
+
+            </nb-list-item>
+            <nb-list-item class="py-2">
+                <label> <b> Tokenized:</b> </label>
+                <nb-checkbox [(ngModel)]=slot.Tokenized></nb-checkbox>
+
+            </nb-list-item>
+            <nb-list-item class="py-2">
+                <label> <b> EFT Enabled:</b></label>
+                <nb-checkbox [(ngModel)]=slot.EFTEnabled></nb-checkbox>
+            </nb-list-item>
+        </nb-list>
+        <div style="background-color: rgba(128, 128, 128, 0.5);">
+            <br>
+            <h6 style="text-align: center;">Cabinet:</h6>
+            <br>
+        </div>
+        <nb-list>
+            <nb-list-item class="py-2">
+                <label> <b> DOM:</b> {{slot.DOM}} </label>
+                <!-- <input  nbInput placeholder="Pick Date" [nbDatepicker]="formpicker"
+                    [(ngModel)]="DOM">
+                <nb-datepicker #formpicker></nb-datepicker> -->
+            </nb-list-item>
+            <nb-list-item class="py-2">
+                <label> <b> Last Audited:</b> {{slot.LastAudited}} </label>
+                <!-- <input  nbInput placeholder="Pick Date" [nbDatepicker]="formpicker"
+                    [(ngModel)]="LastAudited">
+                <nb-datepicker #formpicker></nb-datepicker> -->
+            </nb-list-item>
+            <nb-list-item class="py-2">
+                <label> <b> Version:</b> {{slot.Version}} </label>
+                <input nbInput class="float-right" placeholder="New Version" type="text" [(ngModel)]="slot.Version">
+            </nb-list-item>
+            <nb-list-item class="py-2">
+                <label> <b> Cabinet Model:</b> {{slot.CabinetModel}} </label>
+                <input nbInput class="float-right" type="text" [(ngModel)]="slot.CabinetModel">
+
+            </nb-list-item>
+            <nb-list-item class="py-2">
+                <label> <b> Cabinet Style:</b> {{slot.CabinetStyle}} </label>
+                <input nbInput class="float-right" type="text" [(ngModel)]="slot.CabinetStyle">
+
+            </nb-list-item>
+            <nb-list-item class="py-2">
+                <label> <b> Cabinet Color:</b> {{slot.CabinetColor}} </label>
+                <input nbInput class="float-right" type="text" [(ngModel)]="slot.CabinetColor">
+
+            </nb-list-item>
+        </nb-list>
+        <div style="background-color: rgba(128, 128, 128, 0.5);">
+            <br>
+            <h6 style="text-align: center;">Custom Fields:</h6>
+            <br>
+        </div>
+        <nb-list style="display: grid; grid-template-columns: auto auto ; grid-gap: 5px">
+            <nb-list-item class="py-2">
+                <label> <b> DBA Type:</b> {{slot.DBAType}} </label>
+            </nb-list-item>
+            <nb-list-item class="py-2">
+                <label> <b> Printer Type:</b> {{slot.PrinterType}} </label>
+            </nb-list-item>
+            <nb-list-item class="py-2">
+                <label> <b> Coin Comparator:</b> {{slot.CoinComparator}} </label>
+            </nb-list-item>
+            <nb-list-item class="py-2">
+                <label> <b> Date of Delivery:</b> {{slot.DateOfDelivery}} </label>
+            </nb-list-item>
+            <nb-list-item class="py-2">
+                <label> <b> Notes:</b> {{slot.Notes}} </label>
+            </nb-list-item>
+            <nb-list-item class="py-2">
+                <label> <b> HSN Enabled:</b> {{slot.HSNEnabled}} </label>
+            </nb-list-item>
+            <nb-list-item class="py-2">
+                <label> <b> Link Number:</b> {{slot.LinkNumber}} </label>
+            </nb-list-item>
+            <nb-list-item class="py-2">
+                <label> <b> Disposition Approval Date:</b> {{slot.DispositionApprovalDate}} </label>
+            </nb-list-item>
+            <nb-list-item class="py-2">
+                <label> <b> Disposition Approval Number:</b> {{slot.DispositionApprovalNumber}} </label>
+            </nb-list-item>
+            
+        </nb-list>
+    </nb-card-body>
+    <nb-card-footer>
+        <button nbButton outline status="danger" (click)="cancel()">Cancel</button>
+        <button nbButton class="float-right" outline status="success" (click)="finish()">Finish</button>
+    </nb-card-footer>
+</nb-card>
