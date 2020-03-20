@@ -55,9 +55,9 @@
                 <button nbButton class="float-right" size="small" outline (click)="addGame()">Add</button>
 
                 <input nbInput type="text" class="float-right"  [(ngModel)]="gameName">
-                <nb-select placeholder="Select Showcase" multiple [(ngModel)]="game">
+                <nb-select placeholder="Select Showcase" [(ngModel)]="selectedGame">
                     <nb-option >None</nb-option>
-                    <nb-option *ngFor="let game of games" value="game.Description">{{game.Description}}</nb-option>
+                    <nb-option *ngFor="let game of games" value="game">{{game.Description}}</nb-option>
                 
                   </nb-select>
                  

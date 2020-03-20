@@ -17,8 +17,8 @@ export class UpdateActiveSlotComponent extends EffortlessComponentBase implement
   
   gameName: any;
   progressiveDef: any;
-  def: any ;
-  game: any = {};
+  defs: any = [{}];
+  games: any = [{}];
 
   
 
@@ -51,8 +51,8 @@ export class UpdateActiveSlotComponent extends EffortlessComponentBase implement
     payload.SearchTerm = this.gameName;
     this.gds.smqUser.SearchGameName(payload).then(reply=>{
 
-      this.game = reply.SlotGameDefs;
-      console.error(this.game)
+      this.games = reply.SlotGameDefs;
+      console.error(this.games)
       
   
     })
@@ -63,8 +63,8 @@ export class UpdateActiveSlotComponent extends EffortlessComponentBase implement
     let payload = this.gds.createPayload();
     payload.SearchTerm = this.progressiveDef;
     this.gds.smqUser.SearchProgressiveDef(payload).then(reply=>{
-      this.def = reply.ProgressiveDefs;
-      console.error(this.def)
+      this.defs = reply.ProgressiveDefs;
+      console.error(this.defs)
     })
   }
 
