@@ -56,10 +56,10 @@
 
                 <input nbInput type="text" class="float-right" [(ngModel)]="gameName">
                  
-                <nb-list  >
+                <nb-list>
                     <nb-list-item  *ngIf="game">
                        
-                        {{game.Description}} {{game.Par}}
+                        {{game.Description}}
                         
 
                     </nb-list-item>
@@ -70,7 +70,7 @@
                 <button nbButton class="float-right" size="small" outline (click)="addDef()">Add</button>
 
                 <input nbInput type="text" class="float-right" [(ngModel)]="progressiveDef">
-                <nb-list  >
+                <nb-list>
                     <nb-list-item *ngIf="def">
                         
                             <label> {{def.Description}} </label>
@@ -163,33 +163,51 @@
             <h6 style="text-align: center;">Custom Fields:</h6>
             <br>
         </div>
-        <nb-list style="display: grid; grid-template-columns: auto auto ; grid-gap: 5px">
+        <nb-list >
             <nb-list-item class="py-2">
                 <label> <b> DBA Type:</b> {{slot.DBAType}} </label>
+                <input nbInput class="float-right" type="text" [(ngModel)]="slot.DBAType">
+
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b> Printer Type:</b> {{slot.PrinterType}} </label>
+                <input nbInput class="float-right" type="text" [(ngModel)]="slot.PrinterType">
+
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b> Coin Comparator:</b> {{slot.CoinComparator}} </label>
+                <input nbInput class="float-right" type="text" [(ngModel)]="slot.CoinComparator">
+
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b> Date of Delivery:</b> {{slot.DateOfDelivery}} </label>
+                <input nbInput class="float-right" type="text" [(ngModel)]="slot.DateOfDelivery">
+
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b> Notes:</b> {{slot.Notes}} </label>
+                <textarea nbInput class="float-right" type="text" [(ngModel)]="slot.Notes"></textarea>
+
             </nb-list-item>
             <nb-list-item class="py-2">
-                <label> <b> HSN Enabled:</b> {{slot.HSNEnabled}} </label>
+                <label> <b> HSN Enabled:</b></label>
+                <nb-checkbox [(ngModel)]=slot.HSNEnabled></nb-checkbox>
+
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b> Link Number:</b> {{slot.LinkNumber}} </label>
+                <input nbInput class="float-right" type="text" [(ngModel)]="slot.LinkNumber">
+
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b> Disposition Approval Date:</b> {{slot.DispositionApprovalDate}} </label>
+                <input nbInput class="float-right" type="text" [(ngModel)]="slot.DispositionApprovalDate">
+
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b> Disposition Approval Number:</b> {{slot.DispositionApprovalNumber}} </label>
+                <input nbInput class="float-right" type="text" [(ngModel)]="slot.DispositionApprovalNumber">
+
             </nb-list-item>
             
         </nb-list>

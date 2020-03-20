@@ -13,12 +13,11 @@ import { NbMenuService, NbDatepicker } from '@nebular/theme';
 export class UpdateActiveSlotComponent extends EffortlessComponentBase implements OnInit {
   sid: any;
   slot: any;
-  new: any = {
-    DOM: '', LastAudited: ''
-  }
+ 
+  
   gameName: any;
   progressiveDef: any;
-  def: any;
+  def: any ;
   game: any;
 
   
