@@ -54,22 +54,32 @@
                 <label> <b>Game Name :</b> {{slot.GameName}} </label>
                 <button nbButton class="float-right" size="small" outline (click)="addGame()">Add</button>
 
-                <input nbInput type="text" class="float-right" [(ngModel)]="gameName">
+                <input nbInput type="text" class="float-right"  [(ngModel)]="gameName">
+                <nb-select placeholder="Select Showcase" multiple [(ngModel)]="game">
+                    <nb-option >None</nb-option>
+                    <nb-option *ngFor="let game of games" value="game.Description">{{game.Description}}</nb-option>
+                
+                  </nb-select>
                  
-                <nb-list>
+                <!-- <nb-list>
                     <nb-list-item  *ngIf="game">
                        
                         {{game.Description}}
                         
 
                     </nb-list-item>
-                </nb-list>
+                </nb-list> -->
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b>Progressive Def:</b> {{slot.ProgressiveDef}} </label>
                 <button nbButton class="float-right" size="small" outline (click)="addDef()">Add</button>
 
                 <input nbInput type="text" class="float-right" [(ngModel)]="progressiveDef">
+                <!-- <nb-select placeholder="Select Showcase" [(ngModel)]="progressiveDef">
+                    <nb-option >None</nb-option>
+                    <nb-option *ngFor="let def of defs" value="def.Description">{{def.Description}}</nb-option>
+                
+                  </nb-select> -->
                 <nb-list>
                     <nb-list-item *ngIf="def">
                         

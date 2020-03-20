@@ -18,7 +18,7 @@ export class UpdateActiveSlotComponent extends EffortlessComponentBase implement
   gameName: any;
   progressiveDef: any;
   def: any ;
-  game: any;
+  game: any = {};
 
   
 
@@ -42,6 +42,7 @@ export class UpdateActiveSlotComponent extends EffortlessComponentBase implement
         self.slot = reply.SlotView;
         console.error(self.slot)
       });
+      
   }
 
   addGame(){
