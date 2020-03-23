@@ -12,9 +12,21 @@ import { NbMenuService, NbDatepicker } from '@nebular/theme';
 })
 export class UpdateActiveSlotComponent extends EffortlessComponentBase implements OnInit {
   sid: any;
-  slot: any;
- 
-  
+  slot: any = 
+  {
+    DOM: '', LastAudited: '', SelectedGame: '', SelectedDef: '', Formpicker: '', Datepicker: ''
+  }
+
+  // formpicker = this.slot.DOM;
+  // datepicker = this.slot.lastAudited;
+  // selectedGame = this.slot.GameName;
+  // selectedDef = this.slot.ProgressiveDef
+
+   
+
+  showGame = false;
+  showDef = false;
+
   gameName: any;
   progressiveDef: any;
   defs: any = [{}];
@@ -29,6 +41,8 @@ export class UpdateActiveSlotComponent extends EffortlessComponentBase implement
       this.sid = params['sid'];
     }));
 
+    this.slot.GameName = this.slot.selectedGame;
+    this.slot.ProgressiveDef = this.slot.selectedDef;
     
   }
   
@@ -53,9 +67,9 @@ export class UpdateActiveSlotComponent extends EffortlessComponentBase implement
 
       this.games = reply.SlotGameDefs;
       console.error(this.games)
-      
-  
+      this.gameName = ''
     })
+    this.showGame = !this.showGame
   }
 
   addDef(){
@@ -65,7 +79,9 @@ export class UpdateActiveSlotComponent extends EffortlessComponentBase implement
     this.gds.smqUser.SearchProgressiveDef(payload).then(reply=>{
       this.defs = reply.ProgressiveDefs;
       console.error(this.defs)
+      this.progressiveDef = ''
     })
+    this.showDef = !this.showDef
   }
 
   finish(){

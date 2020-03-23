@@ -54,42 +54,27 @@
                 <label> <b>Game Name :</b> {{slot.GameName}} </label>
                 <button nbButton class="float-right" size="small" outline (click)="addGame()">Add</button>
 
-                <input nbInput type="text" class="float-right"  [(ngModel)]="gameName">
-                <nb-select placeholder="Select Showcase" [(ngModel)]="selectedGame">
-                    <nb-option >None</nb-option>
+                <input nbInput type="text" class="float-right"  [(ngModel)]="gameName" style="margin-right: 5px;">
+                <div *ngIf="showGame" style="margin: 20px 90px 0 0;">
+                <nb-select placeholder="Select Game Name" class="float-right" [(ngModel)]="selectedGame">
+                   
                     <nb-option *ngFor="let game of games" value="game">{{game.Description}}</nb-option>
-                
                   </nb-select>
-                 
-                <!-- <nb-list>
-                    <nb-list-item  *ngIf="game">
-                       
-                        {{game.Description}}
-                        
+                </div>
 
-                    </nb-list-item>
-                </nb-list> -->
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b>Progressive Def:</b> {{slot.ProgressiveDef}} </label>
                 <button nbButton class="float-right" size="small" outline (click)="addDef()">Add</button>
 
-                <input nbInput type="text" class="float-right" [(ngModel)]="progressiveDef">
-                <!-- <nb-select placeholder="Select Showcase" [(ngModel)]="progressiveDef">
-                    <nb-option >None</nb-option>
+                <input nbInput type="text" class="float-right" [(ngModel)]="progressiveDef" style="margin-right: 5px;">
+                <div *ngIf="showDef"   style="margin: 20px 75px 0 0;">
+                <nb-select placeholder="Select Progressive Def"  class="float-right" [(ngModel)]="selectedDef">
+                    
                     <nb-option *ngFor="let def of defs" value="def.Description">{{def.Description}}</nb-option>
-                
-                  </nb-select> -->
-                <nb-list>
-                    <nb-list-item *ngIf="def">
-                        
-                            <label> {{def.Description}} </label>
-                        
-
-                    </nb-list-item>
-                </nb-list>
+                  </nb-select>
+                </div>
                
-
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b>Machine #:</b> {{slot.SlotNumber}} </label>
@@ -138,15 +123,13 @@
         <nb-list>
             <nb-list-item class="py-2">
                 <label> <b> DOM:</b> {{slot.DOM}} </label>
-                <!-- <input  nbInput placeholder="Pick Date" [nbDatepicker]="formpicker"
-                    [(ngModel)]="DOM">
-                <nb-datepicker #formpicker></nb-datepicker> -->
+                <input  nbInput class="float-right" placeholder="Pick Date" [nbDatepicker]="formpicker" >
+                <nb-datepicker #formpicker></nb-datepicker>
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b> Last Audited:</b> {{slot.LastAudited}} </label>
-                <!-- <input  nbInput placeholder="Pick Date" [nbDatepicker]="formpicker"
-                    [(ngModel)]="LastAudited">
-                <nb-datepicker #formpicker></nb-datepicker> -->
+                <input  nbInput class="float-right" placeholder="Pick Date" [nbDatepicker]="datepicker" [(ngModel)]="lastAudited">
+                <nb-datepicker #datepicker></nb-datepicker>
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b> Version:</b> {{slot.Version}} </label>
@@ -191,7 +174,8 @@
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b> Date of Delivery:</b> {{slot.DateOfDelivery}} </label>
-                <input nbInput class="float-right" type="text" [(ngModel)]="slot.DateOfDelivery">
+                <input  nbInput class="float-right" placeholder="Pick Date" [nbDatepicker]="deliverydate" >
+                <nb-datepicker #deliverydate></nb-datepicker>
 
             </nb-list-item>
             <nb-list-item class="py-2">
