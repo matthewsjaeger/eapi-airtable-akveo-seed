@@ -14,14 +14,11 @@ export class UpdateActiveSlotComponent extends EffortlessComponentBase implement
   sid: any;
   slot: any = 
   {
-    DOM: '', LastAudited: '', SelectedGame: '', SelectedDef: '', Formpicker: '', Datepicker: ''
+    DOM: '', LastAudited: '', SelectedGame: '', selectedDef: '', Formpicker: '', Datepicker: ''
   }
 
-  // formpicker = this.slot.DOM;
-  // datepicker = this.slot.lastAudited;
-  // selectedGame = this.slot.GameName;
-  // selectedDef = this.slot.ProgressiveDef
-
+ selectedDef: any;
+  
    
 
   showGame = false;
@@ -41,8 +38,7 @@ export class UpdateActiveSlotComponent extends EffortlessComponentBase implement
       this.sid = params['sid'];
     }));
 
-    this.slot.GameName = this.slot.selectedGame;
-    this.slot.ProgressiveDef = this.slot.selectedDef;
+    this.slot.ProgressiveDef = this.selectedDef
     
   }
   
@@ -87,7 +83,7 @@ export class UpdateActiveSlotComponent extends EffortlessComponentBase implement
   finish(){
     let self = this;
     let payload = this.gds.createPayload();
-    payload.SlotView = { SlotId: this.sid, Slot: this.slot};
+    payload.SlotView = { SlotId: this.sid, Slot:  this.slot };
     this.gds.smqSlotRepairAdmin.UpdateActiveSlot(payload).then(resp => {
       if (!resp.ErrorMessage) {
         this.router.navigateByUrl('effortless/on-floor-slot/' + this.sid);

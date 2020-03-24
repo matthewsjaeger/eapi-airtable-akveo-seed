@@ -56,9 +56,9 @@
 
                 <input nbInput type="text" class="float-right"  [(ngModel)]="gameName" style="margin-right: 5px;">
                 <div *ngIf="showGame" style="margin: 20px 90px 0 0;">
-                <nb-select placeholder="Select Game Name" class="float-right" [(ngModel)]="selectedGame">
+                <nb-select placeholder="Select Game Name" class="float-right" [(ngModel)]="slot.GameName">
                    
-                    <nb-option *ngFor="let game of games" value="game">{{game.Description}}</nb-option>
+                    <nb-option *ngFor="let game of games" value="{{game.Description}}">{{game.Description}}</nb-option>
                   </nb-select>
                 </div>
 
@@ -69,9 +69,9 @@
 
                 <input nbInput type="text" class="float-right" [(ngModel)]="progressiveDef" style="margin-right: 5px;">
                 <div *ngIf="showDef"   style="margin: 20px 75px 0 0;">
-                <nb-select placeholder="Select Progressive Def"  class="float-right" [(ngModel)]="selectedDef">
+                <nb-select placeholder="Select Progressive Def"  class="float-right" [(selected)]="slot.ProgressiveDef">
                     
-                    <nb-option *ngFor="let def of defs" value="def.Description">{{def.Description}}</nb-option>
+                    <nb-option *ngFor="let def of defs" value="{{def.Description}}"  >{{def.Description}}</nb-option>
                   </nb-select>
                 </div>
                
@@ -83,12 +83,12 @@
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b> Game Chip:</b> {{slot.GameChip}} </label>
-                <input nbInput class="float-right" type="text" [(ngModel)]="slot.GameChip">
+                <input nbInput class="float-right" type="text" [ngModel]="slot.GameChip">
 
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b>Game Type:</b> {{slot.GameType}} </label>
-                <input nbInput class="float-right" type="text" [(ngModel)]="slot.GameType">
+                <input nbInput class="float-right" type="text" [ngModel]="slot.GameType">
 
             </nb-list-item>
             <nb-list-item class="py-2">
@@ -123,12 +123,12 @@
         <nb-list>
             <nb-list-item class="py-2">
                 <label> <b> DOM:</b> {{slot.DOM}} </label>
-                <input  nbInput class="float-right" placeholder="Pick Date" [nbDatepicker]="formpicker" >
+                <input  nbInput class="float-right" placeholder="Pick Date" [nbDatepicker]="formpicker" [(ngModel)]="slot.DOM" >
                 <nb-datepicker #formpicker></nb-datepicker>
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b> Last Audited:</b> {{slot.LastAudited}} </label>
-                <input  nbInput class="float-right" placeholder="Pick Date" [nbDatepicker]="datepicker" [(ngModel)]="lastAudited">
+                <input  nbInput class="float-right" placeholder="Pick Date" [nbDatepicker]="datepicker" [(ngModel)]="slot.LastAudited">
                 <nb-datepicker #datepicker></nb-datepicker>
             </nb-list-item>
             <nb-list-item class="py-2">
@@ -174,7 +174,7 @@
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b> Date of Delivery:</b> {{slot.DateOfDelivery}} </label>
-                <input  nbInput class="float-right" placeholder="Pick Date" [nbDatepicker]="deliverydate" >
+                <input  nbInput class="float-right" placeholder="Pick Date" [nbDatepicker]="deliverydate" [(ngModel)]="slot.DateOfDelivery" >
                 <nb-datepicker #deliverydate></nb-datepicker>
 
             </nb-list-item>
@@ -195,7 +195,8 @@
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b> Disposition Approval Date:</b> {{slot.DispositionApprovalDate}} </label>
-                <input nbInput class="float-right" type="text" [(ngModel)]="slot.DispositionApprovalDate">
+                <input  nbInput class="float-right" placeholder="Pick Date" [nbDatepicker]="approvaldate" [(ngModel)]="slot.DispositionApprovalDate" >
+                <nb-datepicker #approvaldate></nb-datepicker>
 
             </nb-list-item>
             <nb-list-item class="py-2">
