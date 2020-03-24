@@ -15,22 +15,22 @@
         <nb-list>
             <nb-list-item class="py-2">
                 <label> <b>Zone:</b> {{slot.Zone}} </label>
-                <input nbInput class="float-right" type="text" [(ngModel)]="slot.Zone">
+                <input nbInput class="float-right" type="text" placeholder="New Zone" [(ngModel)]="slot.Conversion.Zone">
 
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b>Floor Address:</b> {{slot.Address}} </label>
-                <input nbInput class="float-right" type="text" [(ngModel)]="slot.Address">
+                <input nbInput class="float-right" type="text" placeholder="New Floor Address" [(ngModel)]="slot.Conversion.Address">
 
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b>System Address:</b> {{slot.SystemAddress}} </label>
-                <input nbInput class="float-right" type="text" [(ngModel)]="slot.SystemAddress">
+                <input nbInput class="float-right" type="text" placeholder="New System Address" [(ngModel)]="slot.Conversion.SystemAddress">
 
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b>Location:</b> {{slot.DisplayLocation}} </label>
-                <nb-select placeholder="New Location" class="float-right" [(selected)]="slot.DisplayLocation">
+                <nb-select placeholder="New Location" class="float-right" [(selected)]="slot.Conversion.DisplayLocation">
                     <nb-option value=""></nb-option>
                     <nb-option value="ATR">ATR</nb-option>
                     <nb-option value="Blackjack">Blackjack</nb-option>
@@ -54,9 +54,9 @@
                 <label> <b>Game Name :</b> {{slot.GameName}} </label>
                 <button nbButton class="float-right" size="small" outline (click)="addGame()">Add</button>
 
-                <input nbInput type="text" class="float-right"  [(ngModel)]="gameName" style="margin-right: 5px;">
+                <input nbInput type="text" class="float-right"  [(ngModel)]="gameName" placeholder="New Game Name" style="margin-right: 5px;">
                 <div *ngIf="showGame" style="margin: 20px 90px 0 0;">
-                <nb-select placeholder="Select Game Name" class="float-right" [(ngModel)]="slot.GameName">
+                <nb-select placeholder="Select Game Name" class="float-right" [(ngModel)]="slot.Conversion.GameName">
                    
                     <nb-option *ngFor="let game of games" value="{{game.Description}}">{{game.Description}}</nb-option>
                   </nb-select>
@@ -67,9 +67,9 @@
                 <label> <b>Progressive Def:</b> {{slot.ProgressiveDef}} </label>
                 <button nbButton class="float-right" size="small" outline (click)="addDef()">Add</button>
 
-                <input nbInput type="text" class="float-right" [(ngModel)]="progressiveDef" style="margin-right: 5px;">
+                <input nbInput type="text" class="float-right" [(ngModel)]="progressiveDef" placeholder="New Progressive Def" style="margin-right: 5px;">
                 <div *ngIf="showDef"   style="margin: 20px 75px 0 0;">
-                <nb-select placeholder="Select Progressive Def"  class="float-right" [(selected)]="slot.ProgressiveDef">
+                <nb-select placeholder="Select Progressive Def"  class="float-right" [(selected)]="slot.Conversion.ProgressiveDef">
                     
                     <nb-option *ngFor="let def of defs" value="{{def.Description}}"  >{{def.Description}}</nb-option>
                   </nb-select>
@@ -78,41 +78,51 @@
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b>Machine #:</b> {{slot.SlotNumber}} </label>
-                <input nbInput class="float-right" type="text" [(ngModel)]="slot.SlotNumber">
+                <input nbInput class="float-right" type="text" placeholder="New Machine #" [(ngModel)]="slot.Conversion.SlotNumber">
 
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b> Game Chip:</b> {{slot.GameChip}} </label>
-                <input nbInput class="float-right" type="text" [ngModel]="slot.GameChip">
+                <input nbInput class="float-right" type="text" placeholder="New Game Chip" [(ngModel)]="slot.Conversion.GameChip">
 
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b>Game Type:</b> {{slot.GameType}} </label>
-                <input nbInput class="float-right" type="text" [ngModel]="slot.GameType">
+                <input nbInput class="float-right" type="text" placeholder="New Game Type" [(ngModel)]="slot.Conversion.GameType">
 
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b> TITO:</b> </label>
                 <nb-checkbox [(ngModel)]=slot.TITO></nb-checkbox>
+                <nb-checkbox class="float-right" [(ngModel)]=slot.Conversion.TITO></nb-checkbox>
+
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b> Bill: </b> </label>
                 <nb-checkbox [(ngModel)]=slot.Bill></nb-checkbox>
+                <nb-checkbox class="float-right" [(ngModel)]=slot.Conversion.Bill></nb-checkbox>
+
 
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b> Coin:</b> </label>
                 <nb-checkbox [(ngModel)]=slot.Coin></nb-checkbox>
+                <nb-checkbox class="float-right" [(ngModel)]=slot.Conversion.Coin></nb-checkbox>
+
 
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b> Tokenized:</b> </label>
                 <nb-checkbox [(ngModel)]=slot.Tokenized></nb-checkbox>
+                <nb-checkbox class="float-right" [(ngModel)]=slot.Conversion.Tokenized></nb-checkbox>
+
 
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b> EFT Enabled:</b></label>
                 <nb-checkbox [(ngModel)]=slot.EFTEnabled></nb-checkbox>
+                <nb-checkbox class="float-right" [(ngModel)]=slot.Conversion.EFTEnabled></nb-checkbox>
+
             </nb-list-item>
         </nb-list>
         <div style="background-color: rgba(128, 128, 128, 0.5);">
@@ -123,31 +133,31 @@
         <nb-list>
             <nb-list-item class="py-2">
                 <label> <b> DOM:</b> {{slot.DOM}} </label>
-                <input  nbInput class="float-right" placeholder="Pick Date" [nbDatepicker]="formpicker" [(ngModel)]="slot.DOM" >
+                <input  nbInput class="float-right" placeholder="Pick Date" [nbDatepicker]="formpicker" [(ngModel)]="slot.Conversion.DOM" >
                 <nb-datepicker #formpicker></nb-datepicker>
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b> Last Audited:</b> {{slot.LastAudited}} </label>
-                <input  nbInput class="float-right" placeholder="Pick Date" [nbDatepicker]="datepicker" [(ngModel)]="slot.LastAudited">
+                <input  nbInput class="float-right" placeholder="Pick Date" [nbDatepicker]="datepicker" [(ngModel)]="slot.Conversion.LastAudited">
                 <nb-datepicker #datepicker></nb-datepicker>
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b> Version:</b> {{slot.Version}} </label>
-                <input nbInput class="float-right" placeholder="New Version" type="text" [(ngModel)]="slot.Version">
+                <input nbInput class="float-right" placeholder="New Version" type="text" [(ngModel)]="slot.Conversion.Version">
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b> Cabinet Model:</b> {{slot.CabinetModel}} </label>
-                <input nbInput class="float-right" type="text" [(ngModel)]="slot.CabinetModel">
+                <input nbInput class="float-right" type="text" placeholder="New Cabinet Model" [(ngModel)]="slot.Conversion.CabinetModel">
 
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b> Cabinet Style:</b> {{slot.CabinetStyle}} </label>
-                <input nbInput class="float-right" type="text" [(ngModel)]="slot.CabinetStyle">
+                <input nbInput class="float-right" type="text" placeholder="New Cabinet Style" [(ngModel)]="slot.Conversion.CabinetStyle">
 
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b> Cabinet Color:</b> {{slot.CabinetColor}} </label>
-                <input nbInput class="float-right" type="text" [(ngModel)]="slot.CabinetColor">
+                <input nbInput class="float-right" type="text" placeholder="New Cabinet Color" [(ngModel)]="slot.Conversion.CabinetColor">
 
             </nb-list-item>
         </nb-list>
@@ -159,49 +169,51 @@
         <nb-list >
             <nb-list-item class="py-2">
                 <label> <b> DBA Type:</b> {{slot.DBAType}} </label>
-                <input nbInput class="float-right" type="text" [(ngModel)]="slot.DBAType">
+                <input nbInput class="float-right" type="text" placeholder="New DBA Type" [(ngModel)]="slot.Conversion.DBAType">
 
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b> Printer Type:</b> {{slot.PrinterType}} </label>
-                <input nbInput class="float-right" type="text" [(ngModel)]="slot.PrinterType">
+                <input nbInput class="float-right" type="text" placeholder="New Printer Type" [(ngModel)]="slot.Conversion.PrinterType">
 
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b> Coin Comparator:</b> {{slot.CoinComparator}} </label>
-                <input nbInput class="float-right" type="text" [(ngModel)]="slot.CoinComparator">
+                <input nbInput class="float-right" type="text" placeholder="New Coin Comparator" [(ngModel)]="slot.Conversion.CoinComparator">
 
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b> Date of Delivery:</b> {{slot.DateOfDelivery}} </label>
-                <input  nbInput class="float-right" placeholder="Pick Date" [nbDatepicker]="deliverydate" [(ngModel)]="slot.DateOfDelivery" >
+                <input  nbInput class="float-right" placeholder="Pick Date" [nbDatepicker]="deliverydate" [(ngModel)]="slot.Conversion.DateOfDelivery" >
                 <nb-datepicker #deliverydate></nb-datepicker>
 
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b> Notes:</b> {{slot.Notes}} </label>
-                <textarea nbInput class="float-right" type="text" [(ngModel)]="slot.Notes"></textarea>
+                <textarea nbInput class="float-right" type="text" placeholder="New Notes" [(ngModel)]="slot.Conversion.Notes"></textarea>
 
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b> HSN Enabled:</b></label>
                 <nb-checkbox [(ngModel)]=slot.HSNEnabled></nb-checkbox>
+                <nb-checkbox class="float-right" [(ngModel)]=slot.Conversion.HSNEnabled></nb-checkbox>
+
 
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b> Link Number:</b> {{slot.LinkNumber}} </label>
-                <input nbInput class="float-right" type="text" [(ngModel)]="slot.LinkNumber">
+                <input nbInput class="float-right" type="text" placeholder="New Link Number" [(ngModel)]="slot.Conversion.LinkNumber">
 
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b> Disposition Approval Date:</b> {{slot.DispositionApprovalDate}} </label>
-                <input  nbInput class="float-right" placeholder="Pick Date" [nbDatepicker]="approvaldate" [(ngModel)]="slot.DispositionApprovalDate" >
+                <input  nbInput class="float-right" placeholder="Pick Date" [nbDatepicker]="approvaldate" [(ngModel)]="slot.Conversion.DispositionApprovalDate" >
                 <nb-datepicker #approvaldate></nb-datepicker>
 
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b> Disposition Approval Number:</b> {{slot.DispositionApprovalNumber}} </label>
-                <input nbInput class="float-right" type="text" [(ngModel)]="slot.DispositionApprovalNumber">
+                <input nbInput class="float-right" type="text" placeholder="New Disposition Approval #" [(ngModel)]="slot.Conversion.DispositionApprovalNumber">
 
             </nb-list-item>
             

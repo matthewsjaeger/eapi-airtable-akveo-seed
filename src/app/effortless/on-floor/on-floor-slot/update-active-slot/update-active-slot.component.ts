@@ -4,6 +4,7 @@ import { GDS } from '../../../services/gds.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DataEndpoint } from '../../../services/eapi-data-services/data-endpoint/data-endpoint';
 import { NbMenuService, NbDatepicker } from '@nebular/theme';
+import { SlotProjectComponent } from '../../../slot-projects/slot-project/slot-project.component';
 
 @Component({
   selector: 'ngx-update-active-slot',
@@ -12,12 +13,10 @@ import { NbMenuService, NbDatepicker } from '@nebular/theme';
 })
 export class UpdateActiveSlotComponent extends EffortlessComponentBase implements OnInit {
   sid: any;
-  slot: any = 
-  {
-    DOM: '', LastAudited: '', SelectedGame: '', selectedDef: '', Formpicker: '', Datepicker: ''
-  }
+  slot: any;
+  
 
- selectedDef: any;
+ 
   
    
 
@@ -38,7 +37,7 @@ export class UpdateActiveSlotComponent extends EffortlessComponentBase implement
       this.sid = params['sid'];
     }));
 
-    this.slot.ProgressiveDef = this.selectedDef
+ 
     
   }
   
@@ -50,6 +49,8 @@ export class UpdateActiveSlotComponent extends EffortlessComponentBase implement
       payload.Slot.SlotId = self.sid;
       self.gds.smqUser.GetSlotViewDetails(payload).then(function (reply) {
         self.slot = reply.SlotView;
+        self.slot.Conversion = []
+        
         console.error(self.slot)
       });
       
@@ -62,7 +63,6 @@ export class UpdateActiveSlotComponent extends EffortlessComponentBase implement
     this.gds.smqUser.SearchGameName(payload).then(reply=>{
 
       this.games = reply.SlotGameDefs;
-      console.error(this.games)
       this.gameName = ''
     })
     this.showGame = !this.showGame
@@ -74,19 +74,19 @@ export class UpdateActiveSlotComponent extends EffortlessComponentBase implement
     payload.SearchTerm = this.progressiveDef;
     this.gds.smqUser.SearchProgressiveDef(payload).then(reply=>{
       this.defs = reply.ProgressiveDefs;
-      console.error(this.defs)
       this.progressiveDef = ''
     })
     this.showDef = !this.showDef
   }
 
+  
   finish(){
     let self = this;
     let payload = this.gds.createPayload();
-    payload.SlotView = { SlotId: this.sid, Slot:  this.slot };
+    payload.SlotView = { SlotId: this.sid, Conversion: self.slot.Conversion };
     this.gds.smqSlotRepairAdmin.UpdateActiveSlot(payload).then(resp => {
       if (!resp.ErrorMessage) {
-        this.router.navigateByUrl('effortless/on-floor-slot/' + this.sid);
+        this.router.navigateByUrl('effortless/on-floor-slot/' + self.sid);
       }
     });
   }
