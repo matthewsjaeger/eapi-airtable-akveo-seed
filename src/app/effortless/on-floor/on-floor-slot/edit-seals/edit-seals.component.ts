@@ -22,11 +22,12 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
   componentList: any;
   componentDefList: any;
   logicCage: any;
-  seal: any;
-  originalSeals: any;
+  seals: any = [];
+  originalSeals: any = [];
   disabled: boolean;
   modifyDisabled: boolean = true;
   selected: string = null;
+  unsealedComponents: any = [{}];
 
   @Output() newSealNumber = new EventEmitter();
   @Output() replacement: any;
@@ -58,8 +59,10 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
         self.componentDefList = reply.SlotComponentDefs
         self.componentList = reply.SlotComponents;
         self.logicCage = reply.SlotComponent
-        self.seal = reply.SlotSeals
-        self.originalSeals = reply.SlotSeals;
+        self.seals = reply.SlotSeals
+        self.originalSeals = Object.assign([], reply.SlotSeals);
+        self.filterSealedComponents();
+        self.populateDescriptions();
       });
     }))
     this.createGDSPayload();
@@ -93,7 +96,7 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
   openReplaceSeal() {
     
     let replacedSeal: any = {};
-    this.seal.forEach(specificSeal => {
+    this.seals.forEach(specificSeal => {
       if (specificSeal.SlotSealId == this.selected) {
         replacedSeal = specificSeal;
         console.error("replaced seal");
@@ -116,7 +119,7 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
   openBreakSeal() {
 
     let brokenSeal: any={};
-    this.seal.forEach(specificSeal =>{
+    this.seals.forEach(specificSeal =>{
       if (specificSeal.SlotSealId == this.selected){
         brokenSeal = specificSeal;
       }
@@ -155,23 +158,69 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
 
   generateNewSealsList() {
     if (this.gds.editSealPayload) {
-      let newList = this.originalSeals;
+      console.error(this.originalSeals);
+      console.error(this.gds.editSealPayload.AddedSeals);
+      let newList = Object.assign([], this.originalSeals);
       this.gds.editSealPayload.AddedSeals.forEach(addedSeal => {
-        console.error("adding seal");
-        console.error(addedSeal);
         newList.push(addedSeal);
       });
       this.gds.editSealPayload.BrokenSeals.forEach(brokenSeal => {
-        console.error("removing seal");
-        console.error(brokenSeal);
         newList = newList.filter(seal => seal.SealNumber != brokenSeal.SealNumber);
       });
-      console.error("new list");
-      console.error(newList);
-      this.seal = newList;
+      this.seals = newList;
       this.selected = null;
       this.modifyDisabled = true;
+      this.filterSealedComponents();
+      this.populateDescriptions();
     }
+  }
+
+  filterSealedComponents() {
+    let self = this;
+    this.unsealedComponents = Object.assign([], this.componentDefList);
+    this.unsealedComponents.push({ ToStringText: 'Logic Cage', SlotComponentDefId: this.logicCage.OtherComponentType });
+    this.seals.forEach(seal => {
+      seal.ComponentLinks.forEach(link => {
+        this.unsealedComponents.forEach(unsealedComponent => {
+          if (this.getComponentId(unsealedComponent.SlotComponentDefId) == link.SealedComponents) {
+            this.unsealedComponents = this.unsealedComponents.filter(comp => comp.SlotComponentDefId != unsealedComponent.SlotComponentDefId);
+          }
+        });
+      });
+    });
+  }
+
+  getComponentId(componentDefId) {
+    let ret = '';
+    if (componentDefId == this.logicCage.OtherComponentType) {
+      ret = this.logicCage.SlotComponentId;
+    }
+    this.componentList.forEach(comp => {
+      if (componentDefId == comp.Component) {
+        ret =  comp.SlotComponentId;
+      }
+    });
+    return ret;
+  }
+
+  getDescription(link) {
+    if (link.SealedComponents == this.logicCage.SlotComponentId) {
+      link.Description = "Logic Cage";
+    } else {
+      this.componentDefList.forEach(def => {
+        if (link.SealedComponents == this.getComponentId(def.SlotComponentDefId)) {
+          link.Description = def.ToStringText;
+        }
+      });
+    }
+  }
+
+  populateDescriptions() {
+    this.seals.forEach(seal => {
+      seal.ComponentLinks.forEach(link => {
+        this.getDescription(link);
+      })
+    });
   }
 
 

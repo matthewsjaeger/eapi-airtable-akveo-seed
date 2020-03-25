@@ -1,50 +1,43 @@
 <nb-card size="large">
-    <nb-card-header>
-        <button nbButton outline size="medium" status="danger" class="float-left" (click)="cancel()">
-            <nb-icon icon="slash-outline"></nb-icon>Cancel
-        </button>
-        <h4 style="width: fit-content; margin: auto;">Edit Seals</h4>
-    </nb-card-header>
-    <nb-card-header style="display: grid; grid-template-columns: auto auto auto; grid-gap: 5px;">
-        <button nbButton outline status="success" (click)="openAddSeal()">
-            <nb-icon icon="plus-outline"></nb-icon>Add Seal
-        </button>
-        <button nbButton outline (click)="openReplaceSeal()" [disabled]="modifyDisabled">
-            <nb-icon icon="sync-outline"></nb-icon>Replace Seal
-        </button>
-        <button nbButton outline status="warning" (click)="openBreakSeal()" [disabled]="modifyDisabled">
-            <nb-icon icon="close-outline"></nb-icon>Break Seal
-        </button>
-    </nb-card-header>
-    <nb-card-body>
-        <nb-list *ngFor=" let def of componentDefList" (click)="enable(seal.SlotSealId)">
-            <nb-list-item class="py-2">
-                <p style="font-size: .75rem;" class="m-0"> {{def.ToStringText}} </p>
-            </nb-list-item>
-        </nb-list>
-        <nb-list [style.backgroundColor]="seal.SlotSealId  == selected ? '#D3D3D3': ''"
-            (click)="enable(seal.SlotSealId)" *ngFor=" let seal of seal ">
-            <nb-list-item>
-                <p class="m-0"> <b>Seal Number:</b> {{seal.SealNumber}} </p>
-            </nb-list-item>
-        </nb-list>
-        <nb-list *ngIf=" logicCage && logicCage.SlotComponentId " (click)="enable(seal.SlotSealId)">
-            <nb-list-item>
-               
-                <p class="m-0">  <b>Logic Cage</b> {{logicCage.SlotComponentId}} </p>
-            </nb-list-item>
-        </nb-list>
-
-      
-
-
-    </nb-card-body>
-    <nb-card-footer>
-        <button nbButton outline status="danger" size="medium" class="float-left" (click)="cancel()">
-            <nb-icon icon="slash-outline"></nb-icon> Cancel
-        </button>
-        <button nbButton outline size="medium" class="float-right" (click)="next()">
-            <nb-icon icon="arrowhead-right-outline"></nb-icon> Next
-        </button>
-    </nb-card-footer>
+  <nb-card-header>
+    <button nbButton outline size="medium" status="danger" class="float-left" (click)="cancel()">
+      <nb-icon icon="slash-outline"></nb-icon>Cancel
+    </button>
+    <h4 style="width: fit-content; margin: auto;">Edit Seals</h4>
+  </nb-card-header>
+  <nb-card-header style="display: grid; grid-template-columns: auto auto auto; grid-gap: 5px;">
+    <button nbButton outline status="success" (click)="openAddSeal()">
+      <nb-icon icon="plus-outline"></nb-icon>Add Seal
+    </button>
+    <button nbButton outline (click)="openReplaceSeal()" [disabled]="modifyDisabled">
+      <nb-icon icon="sync-outline"></nb-icon>Replace Seal
+    </button>
+    <button nbButton outline status="warning" (click)="openBreakSeal()" [disabled]="modifyDisabled">
+      <nb-icon icon="close-outline"></nb-icon>Break Seal
+    </button>
+  </nb-card-header>
+  <nb-card-body>
+    <nb-list *ngFor=" let def of unsealedComponents">
+      <nb-list-item class="py-2">
+        <p style="font-size: .75rem;" class="m-0"> {{def.ToStringText}} </p>
+      </nb-list-item>
+    </nb-list>
+    <nb-list [style.backgroundColor]="seal.SlotSealId  == selected ? '#D3D3D3': ''"
+             (click)="enable(seal.SlotSealId)" *ngFor=" let seal of seals ">
+      <nb-list-item>
+        <p class="m-0"> <b>Seal Number:</b> {{seal.SealNumber}} </p>
+      </nb-list-item>
+      <nb-list-item *ngFor="let link of seal.ComponentLinks">
+        <p style="font-size: .75rem; padding-left: 2rem;" class="m-0"> {{link.Description}} </p>
+      </nb-list-item>
+    </nb-list>
+  </nb-card-body>
+  <nb-card-footer>
+    <button nbButton outline status="danger" size="medium" class="float-left" (click)="cancel()">
+      <nb-icon icon="slash-outline"></nb-icon> Cancel
+    </button>
+    <button nbButton outline size="medium" class="float-right" (click)="next()">
+      <nb-icon icon="arrowhead-right-outline"></nb-icon> Next
+    </button>
+  </nb-card-footer>
 </nb-card>
