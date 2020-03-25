@@ -8,6 +8,8 @@ import { GDS } from '../../../services/gds.service';
   styleUrls: ['./quick-correction.component.scss']
 })
 export class QuickCorrectionComponent implements OnInit {
+  timeAccessed: any;
+  SelectedSlots: any = [];
 
   constructor( protected dialogRef: NbDialogRef<QuickCorrectionComponent>, public gds: GDS) { }
 
