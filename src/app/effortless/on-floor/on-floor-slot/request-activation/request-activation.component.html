@@ -1,0 +1,482 @@
+<nb-card [size]="'large'">
+    <nb-card-header>
+        <button nbButton ghost size="medium" status="danger" class="float-left" (click)="cancel()">
+            <nb-icon icon="slash-outline"></nb-icon>Cancel
+        </button>
+        <h4 style="width: fit-content; margin: auto;">Request Activation</h4>
+    </nb-card-header>
+    <nb-card-body>
+        <nb-list>
+            <nb-list-item [style.backgroundColor]="tempChecklist.MachineNumber.Fail ? '#ff3d71': ''" class="py-2">
+                <label>New Machine Number:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MachineNumber.Fail"
+                    (change)="applyToChecklist('MachineNumber','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MachineNumber.Issue"
+                    (change)="applyToChecklist('MachineNumber','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MachineNumber.Pass"
+                    (change)="applyToChecklist('MachineNumber','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MachineNumber.NA"
+                    (change)="applyToChecklist('MachineNumber','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.LicenseNumber.Fail ? '#ff3d71': ''" class="py-2">
+                <label>License Number:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.LicenseNumber.Fail"
+                    (change)="applyToChecklist('LicenseNumber','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.LicenseNumber.Issue"
+                    (change)="applyToChecklist('LicenseNumber','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.LicenseNumber.Pass"
+                    (change)="applyToChecklist('LicenseNumber','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.LicenseNumber.NA"
+                    (change)="applyToChecklist('LicenseNumber','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.SerialNumber.Fail ? '#ff3d71': ''" class="py-2">
+                <label>Serial Number:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SerialNumber.Fail"
+                    (change)="applyToChecklist('SerialNumber','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SerialNumber.Issue"
+                    (change)="applyToChecklist('SerialNumber','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SerialNumber.Pass"
+                    (change)="applyToChecklist('SerialNumber','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SerialNumber.NA"
+                    (change)="applyToChecklist('SerialNumber','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.MetersRecorded.Fail ? '#ff3d71': ''" class="py-2">
+                <label> Soft Meters Recorded:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MetersRecorded.Fail"
+                    (change)="applyToChecklist('MetersRecorded','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MetersRecorded.Issue"
+                    (change)="applyToChecklist('MetersRecorded','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MetersRecorded.Pass"
+                    (change)="applyToChecklist('MetersRecorded','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MetersRecorded.NA"
+                    (change)="applyToChecklist('MetersRecorded','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.ZeroMeters.Fail ? '#ff3d71': ''" class="py-2">
+                <label>Zero SDS Meters:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ZeroMeters.Fail"
+                    (change)="applyToChecklist('ZeroMeters','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ZeroMeters.Issue"
+                    (change)="applyToChecklist('ZeroMeters','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ZeroMeters.Pass"
+                    (change)="applyToChecklist('ZeroMeters','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ZeroMeters.NA"
+                    (change)="applyToChecklist('ZeroMeters','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.SlotLine.Fail ? '#ff3d71': ''" class="py-2">
+                <label>Unplug Slot line:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SlotLine.Fail"
+                    (change)="applyToChecklist('SlotLine','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SlotLine.Issue"
+                    (change)="applyToChecklist('SlotLine','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SlotLine.Pass"
+                    (change)="applyToChecklist('SlotLine','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SlotLine.NA"
+                    (change)="applyToChecklist('SlotLine','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.MasterChip.Fail ? '#ff3d71': ''" class="py-2">
+                <label>Mastercom Chip:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MasterChip.Fail"
+                    (change)="applyToChecklist('MasterChip','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MasterChip.Issue"
+                    (change)="applyToChecklist('MasterChip','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MasterChip.Pass"
+                    (change)="applyToChecklist('MasterChip','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MasterChip.NA"
+                    (change)="applyToChecklist('MasterChip','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.NewAddress.Fail ? '#ff3d71': ''" class="py-2">
+                <label>New SDS Address:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.NewAddress.Fail"
+                    (change)="applyToChecklist('NewAddress','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.NewAddress.Issue"
+                    (change)="applyToChecklist('NewAddress','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.NewAddress.Pass"
+                    (change)="applyToChecklist('NewAddress','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.NewAddress.NA"
+                    (change)="applyToChecklist('NewAddress','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.GameName.Fail ? '#ff3d71': ''" class="py-2">
+                <label>Program #/ Game Name:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.GameName.Fail"
+                    (change)="applyToChecklist('GameName','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.GameName.Issue"
+                    (change)="applyToChecklist('GameName','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.GameName.Pass"
+                    (change)="applyToChecklist('GameName','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.GameName.NA"
+                    (change)="applyToChecklist('GameName','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.ChipOptions.Fail ? '#ff3d71': ''" class="py-2">
+                <label>Set Chip Options:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ChipOptions.Fail"
+                    (change)="applyToChecklist('ChipOptions','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ChipOptions.Issue"
+                    (change)="applyToChecklist('ChipOptions','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ChipOptions.Pass"
+                    (change)="applyToChecklist('ChipOptions','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ChipOptions.NA"
+                    (change)="applyToChecklist('ChipOptions','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.MachineOptions.Fail ? '#ff3d71': ''" class="py-2">
+                <label>Machine Options:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MachineOptions.Fail"
+                    (change)="applyToChecklist('MachineOptions','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MachineOptions.Issue"
+                    (change)="applyToChecklist('MachineOptions','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MachineOptions.Pass"
+                    (change)="applyToChecklist('MachineOptions','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MachineOptions.NA"
+                    (change)="applyToChecklist('MachineOptions','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.RealTime.Fail ? '#ff3d71': ''" class="py-2">
+                <label>Real Time:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.RealTime.Fail"
+                    (change)="applyToChecklist('RealTime','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.RealTime.Issue"
+                    (change)="applyToChecklist('RealTime','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.RealTime.Pass"
+                    (change)="applyToChecklist('RealTime','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.RealTime.NA"
+                    (change)="applyToChecklist('RealTime','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.SiteId.Fail ? '#ff3d71': ''" class="py-2">
+                <label>Site ID:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SiteId.Fail"
+                    (change)="applyToChecklist('SiteId','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SiteId.Issue"
+                    (change)="applyToChecklist('SiteId','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SiteId.Pass"
+                    (change)="applyToChecklist('SiteId','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SiteId.NA"
+                    (change)="applyToChecklist('SiteId','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.Cl.Fail ? '#ff3d71': ''" class="py-2">
+                <label>C/L:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Cl.Fail"
+                    (change)="applyToChecklist('Cl','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Cl.Issue"
+                    (change)="applyToChecklist('Cl','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Cl.Pass"
+                    (change)="applyToChecklist('Cl','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Cl.NA"
+                    (change)="applyToChecklist('Cl','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.Glass.Fail ? '#ff3d71': ''" class="py-2">
+                <label>Glass:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Glass.Fail"
+                    (change)="applyToChecklist('Glass','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Glass.Issue"
+                    (change)="applyToChecklist('Glass','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Glass.Pass"
+                    (change)="applyToChecklist('Glass','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Glass.NA"
+                    (change)="applyToChecklist('Glass','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.MachinePlaques.Fail ? '#ff3d71': ''" class="py-2">
+                <label>Machine Plaques/ Kroy Labels:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MachinePlaques.Fail"
+                    (change)="applyToChecklist('MachinePlaques','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MachinePlaques.Issue"
+                    (change)="applyToChecklist('MachinePlaques','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MachinePlaques.Pass"
+                    (change)="applyToChecklist('MachinePlaques','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MachinePlaques.NA"
+                    (change)="applyToChecklist('MachinePlaques','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.ButtonLegends.Fail ? '#ff3d71': ''" class="py-2">
+                <label>Button Legends:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ButtonLegends.Fail"
+                    (change)="applyToChecklist('ButtonLegends','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ButtonLegends.Issue"
+                    (change)="applyToChecklist('ButtonLegends','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ButtonLegends.Pass"
+                    (change)="applyToChecklist('ButtonLegends','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ButtonLegends.NA"
+                    (change)="applyToChecklist('ButtonLegends','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.Awards.Fail ? '#ff3d71': ''" class="py-2">
+                <label>Awards:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Awards.Fail"
+                    (change)="applyToChecklist('Awards','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Awards.Issue"
+                    (change)="applyToChecklist('Awards','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Awards.Pass"
+                    (change)="applyToChecklist('Awards','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Awards.NA"
+                    (change)="applyToChecklist('Awards','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.CommunicationType.Fail ? '#ff3d71': ''" class="py-2">
+                <label>Communication type:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.CommunicationType.Fail"
+                    (change)="applyToChecklist('CommunicationType','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.CommunicationType.Issue"
+                    (change)="applyToChecklist('CommunicationType','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.CommunicationType.Pass"
+                    (change)="applyToChecklist('CommunicationType','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.CommunicationType.NA"
+                    (change)="applyToChecklist('CommunicationType','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.Inserts.Fail ? '#ff3d71': ''" class="py-2">
+                <label>Inserts:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Inserts.Fail"
+                    (change)="applyToChecklist('Inserts','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Inserts.Issue"
+                    (change)="applyToChecklist('Inserts','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Inserts.Pass"
+                    (change)="applyToChecklist('Inserts','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Inserts.NA"
+                    (change)="applyToChecklist('Inserts','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.HandPay.Fail ? '#ff3d71': ''" class="py-2">
+                <label>Cashout for Hand Pay:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.HandPay.Fail"
+                    (change)="applyToChecklist('HandPay','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.HandPay.Issue"
+                    (change)="applyToChecklist('HandPay','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.HandPay.Pass"
+                    (change)="applyToChecklist('HandPay','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.HandPay.NA"
+                    (change)="applyToChecklist('HandPay','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.Candle.Fail ? '#ff3d71': ''" class="py-2">
+                <label>Candle:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Candle.Fail"
+                    (change)="applyToChecklist('Candle','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Candle.Issue"
+                    (change)="applyToChecklist('Candle','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Candle.Pass"
+                    (change)="applyToChecklist('Candle','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Candle.NA"
+                    (change)="applyToChecklist('Candle','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.TopAward.Fail ? '#ff3d71': ''" class="py-2">
+                <label> Top Award:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TopAward.Fail"
+                    (change)="applyToChecklist('TopAward','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TopAward.Issue"
+                    (change)="applyToChecklist('TopAward','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TopAward.Pass"
+                    (change)="applyToChecklist('TopAward','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TopAward.NA"
+                    (change)="applyToChecklist('TopAward','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.DemoTicket.Fail ? '#ff3d71': ''" class="py-2">
+                <label>Demo Ticket:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.DemoTicket.Fail"
+                    (change)="applyToChecklist('DemoTicket','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.DemoTicket.Issue"
+                    (change)="applyToChecklist('DemoTicket','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.DemoTicket.Pass"
+                    (change)="applyToChecklist('DemoTicket','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.DemoTicket.NA"
+                    (change)="applyToChecklist('DemoTicket','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.CoinCredit.Fail ? '#ff3d71': ''" class="py-2">
+                <label>Coin / Credit/ Dollar:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.CoinCredit.Fail"
+                    (change)="applyToChecklist('CoinCredit','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.CoinCredit.Issue"
+                    (change)="applyToChecklist('CoinCredit','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.CoinCredit.Pass"
+                    (change)="applyToChecklist('CoinCredit','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.CoinCredit.NA"
+                    (change)="applyToChecklist('CoinCredit','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.ConnectSlot.Fail ? '#ff3d71': ''" class="py-2">
+                <label>Connect Slot Line:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ConnectSlot.Fail"
+                    (change)="applyToChecklist('ConnectSlot','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ConnectSlot.Issue"
+                    (change)="applyToChecklist('ConnectSlot','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ConnectSlot.Pass"
+                    (change)="applyToChecklist('ConnectSlot','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ConnectSlot.NA"
+                    (change)="applyToChecklist('ConnectSlot','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.CoinTest.Fail ? '#ff3d71': ''" class="py-2">
+                <label>Coin Test:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.CoinTest.Fail"
+                    (change)="applyToChecklist('CoinTest','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.CoinTest.Issue"
+                    (change)="applyToChecklist('CoinTest','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.CoinTest.Pass"
+                    (change)="applyToChecklist('CoinTest','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.CoinTest.NA"
+                    (change)="applyToChecklist('CoinTest','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.BillTest.Fail ? '#ff3d71': ''" class="py-2">
+                <label>Bill Test:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.BillTest.Fail"
+                    (change)="applyToChecklist('BillTest','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.BillTest.Issue"
+                    (change)="applyToChecklist('BillTest','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.BillTest.Pass"
+                    (change)="applyToChecklist('BillTest','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.BillTest.NA"
+                    (change)="applyToChecklist('BillTest','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.BillDoor.Fail ? '#ff3d71': ''" class="py-2">
+                <label>Bill Door:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.BillDoor.Fail"
+                    (change)="applyToChecklist('BillDoor','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.BillDoor.Issue"
+                    (change)="applyToChecklist('BillDoor','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.BillDoor.Pass"
+                    (change)="applyToChecklist('BillDoor','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.BillDoor.NA"
+                    (change)="applyToChecklist('BillDoor','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.DoorDrop.Fail ? '#ff3d71': ''" class="py-2">
+                <label>Door Drop:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.DoorDrop.Fail"
+                    (change)="applyToChecklist('DoorDrop','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.DoorDrop.Issue"
+                    (change)="applyToChecklist('DoorDrop','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.DoorDrop.Pass"
+                    (change)="applyToChecklist('DoorDrop','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.DoorDrop.NA"
+                    (change)="applyToChecklist('DoorDrop','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.MainDoor.Fail ? '#ff3d71': ''" class="py-2">
+                <label>Main Door:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MainDoor.Fail"
+                    (change)="applyToChecklist('MainDoor','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MainDoor.Issue"
+                    (change)="applyToChecklist('MainDoor','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MainDoor.Pass"
+                    (change)="applyToChecklist('MainDoor','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MainDoor.NA"
+                    (change)="applyToChecklist('MainDoor','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.AuxDoor.Fail ? '#ff3d71': ''" class="py-2">
+                <label>Aux Door:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.AuxDoor.Fail"
+                    (change)="applyToChecklist('AuxDoor','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.AuxDoor.Issue"
+                    (change)="applyToChecklist('AuxDoor','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.AuxDoor.Pass"
+                    (change)="applyToChecklist('AuxDoor','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.AuxDoor.NA"
+                    (change)="applyToChecklist('AuxDoor','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.GlassMatch.Fail ? '#ff3d71': ''" class="py-2">
+                <label>Program/ Glass Match:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.GlassMatch.Fail"
+                    (change)="applyToChecklist('GlassMatch','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.GlassMatch.Issue"
+                    (change)="applyToChecklist('GlassMatch','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.GlassMatch.Pass"
+                    (change)="applyToChecklist('GlassMatch','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.GlassMatch.NA"
+                    (change)="applyToChecklist('GlassMatch','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.Reboot.Fail ? '#ff3d71': ''" class="py-2">
+                <label>(57) Reboot:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Reboot.Fail"
+                    (change)="applyToChecklist('Reboot','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Reboot.Issue"
+                    (change)="applyToChecklist('Reboot','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Reboot.Pass"
+                    (change)="applyToChecklist('Reboot','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Reboot.NA"
+                    (change)="applyToChecklist('Reboot','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.TITOTest.Fail ? '#ff3d71': ''" class="py-2">
+                <label>TITO Test:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TITOTest.Fail"
+                    (change)="applyToChecklist('TITOTest','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TITOTest.Issue"
+                    (change)="applyToChecklist('TITOTest','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TITOTest.Pass"
+                    (change)="applyToChecklist('TITOTest','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TITOTest.NA"
+                    (change)="applyToChecklist('TITOTest','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.TouchScreen.Fail ? '#ff3d71': ''" class="py-2">
+                <label>Calibrate Touch Screen:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TouchScreen.Fail"
+                    (change)="applyToChecklist('TouchScreen','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TouchScreen.Issue"
+                    (change)="applyToChecklist('TouchScreen','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TouchScreen.Pass"
+                    (change)="applyToChecklist('TouchScreen','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TouchScreen.NA"
+                    (change)="applyToChecklist('TouchScreen','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.CardReader.Fail ? '#ff3d71': ''" class="py-2">
+                <label>EPI Card Reader Grounded:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.CardReader.Fail"
+                    (change)="applyToChecklist('CardReader','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.CardReader.Issue"
+                    (change)="applyToChecklist('CardReader','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.CardReader.Pass"
+                    (change)="applyToChecklist('CardReader','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.CardReader.NA"
+                    (change)="applyToChecklist('CardReader','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.ProgressiveIncrement.Fail ? '#ff3d71': ''" class="py-2">
+                <label>Progressive Increment:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ProgressiveIncrement.Fail"
+                    (change)="applyToChecklist('ProgressiveIncrement','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ProgressiveIncrement.Issue"
+                    (change)="applyToChecklist('ProgressiveIncrement','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ProgressiveIncrement.Pass"
+                    (change)="applyToChecklist('ProgressiveIncrement','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ProgressiveIncrement.NA"
+                    (change)="applyToChecklist('ProgressiveIncrement','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.IncrementValue.Fail ? '#ff3d71': ''" class="py-2">
+                <label>Increment Value:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.IncrementValue.Fail"
+                    (change)="applyToChecklist('IncrementValue','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.IncrementValue.Issue"
+                    (change)="applyToChecklist('IncrementValue','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.IncrementValue.Pass"
+                    (change)="applyToChecklist('IncrementValue','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.IncrementValue.NA"
+                    (change)="applyToChecklist('IncrementValue','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.BaseValue.Fail ? '#ff3d71': ''" class="py-2">
+                <label>Base Value:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.BaseValue.Fail"
+                    (change)="applyToChecklist('BaseValue','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.BaseValue.Issue"
+                    (change)="applyToChecklist('BaseValue','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.BaseValue.Pass"
+                    (change)="applyToChecklist('BaseValue','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.BaseValue.NA"
+                    (change)="applyToChecklist('BaseValue','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.LogicCage.Fail ? '#ff3d71': ''" class="py-2">
+                <label>Logic Cage Taped:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.LogicCage.Fail"
+                    (change)="applyToChecklist('LogicCage','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.LogicCage.Issue"
+                    (change)="applyToChecklist('LogicCage','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.LogicCage.Pass"
+                    (change)="applyToChecklist('LogicCage','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.LogicCage.NA"
+                    (change)="applyToChecklist('LogicCage','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.SignedOff.Fail ? '#ff3d71': ''" class="py-2">
+                <label>All Items Signed Off:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SignedOff.Fail"
+                    (change)="applyToChecklist('SignedOff','Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SignedOff.Issue"
+                    (change)="applyToChecklist('SignedOff','Issue')">Issue</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SignedOff.Pass"
+                    (change)="applyToChecklist('SignedOff','Pass')">Pass</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SignedOff.NA"
+                    (change)="applyToChecklist('SignedOff','NA')">N/A</nb-checkbox>
+            </nb-list-item>
+        </nb-list>
+    </nb-card-body>
+    <nb-card-footer>
+        <button nbButton ghost size="medium" status="danger" class="float-left" (click)="cancel()">
+            <nb-icon icon="slash-outline"></nb-icon>Cancel
+        </button>
+        <button nbButton ghost size="medium" status="success" class="float-right" (click)="finish()">
+           Finish
+        </button>
+    </nb-card-footer>
+</nb-card>

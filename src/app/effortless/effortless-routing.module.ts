@@ -29,6 +29,7 @@ import { ReplaceSealComponent } from './on-floor/on-floor-slot/edit-seals/replac
 import { PlaceSlotSealsComponent } from './on-floor/on-floor-slot/edit-seals/replace-seal/place-slot-seals/place-slot-seals.component';
 import { EditSealsLogicAccessComponent } from './on-floor/on-floor-slot/edit-seals/edit-seals-logic-access/edit-seals-logic-access.component';
 import { UpdateActiveSlotComponent } from './on-floor/on-floor-slot/update-active-slot/update-active-slot.component';
+import { RequestActivationComponent } from './on-floor/on-floor-slot/request-activation/request-activation.component';
 
 let effortlessChildren = [
   {
@@ -130,6 +131,10 @@ let effortlessChildren = [
   {
     path: 'update-active-slot/:sid',
     component: UpdateActiveSlotComponent
+  },
+  {
+    path: 'request-activation/:sid',
+    component: RequestActivationComponent,
   }
 ];
 
