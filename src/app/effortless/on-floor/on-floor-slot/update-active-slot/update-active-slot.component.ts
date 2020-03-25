@@ -49,7 +49,37 @@ export class UpdateActiveSlotComponent extends EffortlessComponentBase implement
       payload.Slot.SlotId = self.sid;
       self.gds.smqUser.GetSlotViewDetails(payload).then(function (reply) {
         self.slot = reply.SlotView;
-        self.slot.Conversion = []
+        self.slot.Conversion = {
+          Zone: self.slot.Zone,
+          Address: self.slot.Address,
+          SystemAddress: self.slot.SystemAddress,
+          DisplayLocation: self.slot.DisplayLocation,
+          GameName: self.slot.GameName,
+          ProgressiveDef: self.slot.ProgressiveDef,
+          SlotNumber: self.slot.SlotNumber,
+          GameChip: self.slot.GameChip,
+          GameType: self.slot.GameType,
+          TITO: self.slot.TITO,
+          Bill: self.slot.Bill,
+          Coin: self.slot.Coin,
+          Tokenized: self.slot.Tokenized,
+          EFTEnabled: self.slot.EFTEnabled,
+          DOM: self.slot.DOM,
+          LastAudited: self.slot.LastAudited,
+          Version: self.slot.Version,
+          CabinetModel: self.slot.CabinetModel,
+          CabinetStyle: self.slot.CabinetStyle,
+          CabinetColor: self.slot.CabinetColor,
+          DBAType: self.slot.DBAType,
+          PrinterType: self.slot.PrinterType,
+          CoinComparator: self.slot.CoinComparator,
+          DateOfDelivery: self.slot.DateOfDelivery,
+          Notes: self.slot.Notes,
+          HSNEnabled: self.slot.HSNEnabled,
+          LinkNumber: self.slot.LinkNumber,
+          DispositionApprovalDate: self.slot.DispositionApprovalDate,
+          DispositionApprovalNumber: self.slot.DispositionApprovalNumber
+        }
         
         console.error(self.slot)
       });
@@ -83,7 +113,7 @@ export class UpdateActiveSlotComponent extends EffortlessComponentBase implement
   finish(){
     let self = this;
     let payload = this.gds.createPayload();
-    payload.SlotView = { SlotId: this.sid, Conversion: self.slot.Conversion };
+    payload.SlotView = this.slot;
     this.gds.smqSlotRepairAdmin.UpdateActiveSlot(payload).then(resp => {
       if (!resp.ErrorMessage) {
         this.router.navigateByUrl('effortless/on-floor-slot/' + self.sid);

@@ -52,7 +52,7 @@
         <nb-list>
             <nb-list-item class="py-2">
                 <label> <b>Game Name :</b> {{slot.GameName}} </label>
-                <button nbButton class="float-right" size="small" outline (click)="addGame()">Add</button>
+                <button nbButton class="float-right" size="small" outline (click)="addGame()">Search</button>
 
                 <input nbInput type="text" class="float-right"  [(ngModel)]="gameName" placeholder="New Game Name" style="margin-right: 5px;">
                 <div *ngIf="showGame" style="margin: 20px 90px 0 0;">
@@ -65,7 +65,7 @@
             </nb-list-item>
             <nb-list-item class="py-2">
                 <label> <b>Progressive Def:</b> {{slot.ProgressiveDef}} </label>
-                <button nbButton class="float-right" size="small" outline (click)="addDef()">Add</button>
+                <button nbButton class="float-right" size="small" outline (click)="addDef()">Search</button>
 
                 <input nbInput type="text" class="float-right" [(ngModel)]="progressiveDef" placeholder="New Progressive Def" style="margin-right: 5px;">
                 <div *ngIf="showDef"   style="margin: 20px 75px 0 0;">
