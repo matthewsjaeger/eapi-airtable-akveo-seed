@@ -12,6 +12,8 @@ import { EffortlessComponentBase } from '../../../../efforless-base-component';
 })
 export class EditSealsLogicAccessComponent extends EffortlessComponentBase implements OnInit {
 
+  today= new Date();
+
   checklist: any = {
     WorkPerformed: '', SecurityRepresentative: ''
   };

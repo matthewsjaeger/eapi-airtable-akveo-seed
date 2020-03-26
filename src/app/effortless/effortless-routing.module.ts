@@ -30,6 +30,7 @@ import { PlaceSlotSealsComponent } from './on-floor/on-floor-slot/edit-seals/rep
 import { EditSealsLogicAccessComponent } from './on-floor/on-floor-slot/edit-seals/edit-seals-logic-access/edit-seals-logic-access.component';
 import { UpdateActiveSlotComponent } from './on-floor/on-floor-slot/update-active-slot/update-active-slot.component';
 import { RequestActivationComponent } from './on-floor/on-floor-slot/request-activation/request-activation.component';
+import { MlcPlaceSlotComponent } from './on-floor/on-floor-slot/mlc-conversion/mlc-place-slot/mlc-place-slot.component';
 
 let effortlessChildren = [
   {
@@ -113,11 +114,11 @@ let effortlessChildren = [
     component: GcInspectionComponent,
   },
   {
-    path: 'lsc-conversion',
+    path: 'lsc-conversion/:sid',
     component: LscConversionComponent,
   },
   {
-    path: 'mlc-conversion',
+    path: 'mlc-conversion/:sid',
     component: MlcConversionComponent,
   },
   {
@@ -135,7 +136,11 @@ let effortlessChildren = [
   {
     path: 'request-activation/:sid',
     component: RequestActivationComponent,
-  }
+  },
+  {
+    path: 'mlc-place-slot/:sid',
+    component: MlcPlaceSlotComponent,
+  },
 ];
 
 const routes: Routes = [{

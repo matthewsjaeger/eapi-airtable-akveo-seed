@@ -97,10 +97,10 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
 
   }
   completeConversionLSC(){
-
+    this.router.navigateByUrl('effortless/lsc-conversion/' +this.sid)
   }
   completeConversionMLC(){
-
+    this.router.navigateByUrl('effortless/mlc-conversion/' + this.sid)
   }
   completeMoveToStorage(){
 

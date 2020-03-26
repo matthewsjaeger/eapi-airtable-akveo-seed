@@ -9,8 +9,9 @@
         <nb-list>
             <nb-list-item>
                 <p><b>Date & Time Accessed:</b></p>
-                <input nbInput placeholder="Pick Date" fullWidth [nbDatepicker]="formpicker" [(ngModel)]="timeAccessed">
-                <nb-datepicker #formpicker></nb-datepicker>
+                <p> {{today | date:'dd-MM-yyyy hh:mm:ss a' }}</p>
+                <!-- <input nbInput placeholder="Pick Date" fullWidth [nbDatepicker]="formpicker" [(ngModel)]="timeAccessed">
+                <nb-datepicker #formpicker></nb-datepicker> -->
             </nb-list-item>
             <nb-list-item
                 *ngIf="slot?.DisplayManufacturer && slot?.SerialNumber && slot?.SlotNumber && slot?.LicenseNumber">

@@ -1,0 +1,25 @@
+<nb-card style="height: 300px; width: 400px ;">
+    <nb-card-header style="text-align: center;">
+        <h4>Break Seal # {{seal.SealNumber}} </h4>
+    </nb-card-header>
+    <nb-card-body style="text-align: center;" >
+        <label>Reason for Replacement</label> <br>
+        <nb-select placeholder="Replacement Reason" fullWidth [(selected)]="replacementReason">
+            <nb-option ></nb-option>
+            <nb-option value="Conversion">Conversion</nb-option>
+            <nb-option value="RAM Cleared">RAM Cleared</nb-option>
+            <nb-option value="Missing Seal">Missing Seal</nb-option>
+            <nb-option value="Broken Seal">Broken Seal</nb-option>
+            <nb-option value="Seal Defective">Seal Defective</nb-option>
+            <nb-option value="Jackpot Verification">Jackpot Verification</nb-option>
+            <nb-option value="Machine or Option Set-up">Machine or Option Set-up</nb-option>
+            <nb-option value="GC Slot Inspection">GC Slot Inspection</nb-option>
+            <nb-option value="IA Slot Inspection">IA Slot Inspection</nb-option>
+            <nb-option value="MFG Never Shipped">MFG Never Shipped</nb-option>
+          </nb-select>
+    </nb-card-body>
+    <nb-card-footer>
+        <button nbButton class="float-left" outline status="danger" (click)="cancelBreakSeal()">Cancel</button>
+        <button nbButton class="float-right" outline (click)="break()">Ok</button>
+    </nb-card-footer>
+</nb-card>

@@ -40,6 +40,10 @@ import { EditSealsLogicAccessComponent } from './on-floor/on-floor-slot/edit-sea
 import { QuickCorrectionComponent } from './on-floor/on-floor-slot/quick-correction/quick-correction.component';
 import { UpdateActiveSlotComponent } from './on-floor/on-floor-slot/update-active-slot/update-active-slot.component';
 import { RequestActivationComponent } from './on-floor/on-floor-slot/request-activation/request-activation.component';
+import { MlcPlaceSlotComponent } from './on-floor/on-floor-slot/mlc-conversion/mlc-place-slot/mlc-place-slot.component';
+import { MlcAddComponent } from './on-floor/on-floor-slot/mlc-conversion/mlc-place-slot/mlc-add/mlc-add.component';
+import { MlcBreakComponent } from './on-floor/on-floor-slot/mlc-conversion/mlc-place-slot/mlc-break/mlc-break.component';
+import { MlcReplaceComponent } from './on-floor/on-floor-slot/mlc-conversion/mlc-place-slot/mlc-replace/mlc-replace.component';
 
 let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComponent, Page3Component,
   StorageSlotsComponent, SlotProjectsComponent, SearchStorageSlotsComponent, SlotProjectComponent, NewProjectComponent,
@@ -47,7 +51,8 @@ let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComp
   VerifyTenTwentyComponent, StackerFullRecordComponent, MediaVerificationComponent, PreventativeMaintenanceComponent, VerifyTwentyFiftyComponent,
 VerifyFiftyOnehundredComponent, VerifyOnehundredAboveComponent, StateInspectionComponent, GcInspectionComponent,
 LscConversionComponent, MlcConversionComponent, EditSealsComponent, AddSealComponent, ReplaceSealComponent, BreakSealComponent,
-PlaceSlotSealsComponent, ReplaceWitnessesComponent, EditSealsLogicAccessComponent, QuickCorrectionComponent, UpdateActiveSlotComponent, RequestActivationComponent];
+PlaceSlotSealsComponent, ReplaceWitnessesComponent, EditSealsLogicAccessComponent, QuickCorrectionComponent, UpdateActiveSlotComponent, 
+RequestActivationComponent, MlcPlaceSlotComponent, MlcAddComponent, MlcBreakComponent, MlcReplaceComponent];
 
 @NgModule({
   declarations: declarations,
@@ -74,7 +79,8 @@ PlaceSlotSealsComponent, ReplaceWitnessesComponent, EditSealsLogicAccessComponen
     NbDialogModule.forChild(),
     NbDatepickerModule.forRoot()
   ],
-  entryComponents: [ AddSealComponent, ReplaceSealComponent, BreakSealComponent, PlaceSlotSealsComponent, ReplaceWitnessesComponent, QuickCorrectionComponent]
+  entryComponents: [ AddSealComponent, ReplaceSealComponent, BreakSealComponent, PlaceSlotSealsComponent, 
+    ReplaceWitnessesComponent, QuickCorrectionComponent, MlcAddComponent, MlcBreakComponent, MlcReplaceComponent]
 })
 export class EffortlessModule {
 
