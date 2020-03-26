@@ -55,7 +55,7 @@ export class GcInspectionComponent extends EffortlessComponentBase implements On
     if (this.checklist.MachineCompliant) this.checklistMetadata.PercentComplete += 5;
     if (this.checklist.Comments) this.checklistMetadata.PercentComplete += 5;
     this.checklistMetadata.Status = (this.checklistMetadata.PercentComplete == 100) ? 4 : 1;
-    this.checklistMetadata.ComplianceStatus = (this.checklist.InspectionReason )
+    this.checklistMetadata.ComplianceStatus = (!this.checklist.InspectionReason || this.checklist.MachineCompliant == "Fail")
      ? 1 : (this.checklistMetadata.PercentComplete == 100) ? 0 : 2;
   };
 
