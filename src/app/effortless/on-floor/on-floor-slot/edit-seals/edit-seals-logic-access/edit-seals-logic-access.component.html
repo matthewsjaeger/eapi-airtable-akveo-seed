@@ -9,7 +9,7 @@
         <nb-list>
             <nb-list-item>
                 <p><b>Date & Time Accessed:</b></p>
-                <p> {{today | date:'dd-MM-yyyy hh:mm:ss a' }}</p>
+                <p [(ngModel)]="timeAccessed" ngDefaultControl > {{today | date:'dd-MM-yyyy hh:mm a' }}</p>
                 <!-- <input nbInput placeholder="Pick Date" fullWidth [nbDatepicker]="formpicker" [(ngModel)]="timeAccessed">
                 <nb-datepicker #formpicker></nb-datepicker> -->
             </nb-list-item>
