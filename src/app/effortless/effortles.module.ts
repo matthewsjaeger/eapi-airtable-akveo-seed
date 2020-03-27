@@ -44,6 +44,7 @@ import { MlcPlaceSlotComponent } from './on-floor/on-floor-slot/mlc-conversion/m
 import { MlcAddComponent } from './on-floor/on-floor-slot/mlc-conversion/mlc-place-slot/mlc-add/mlc-add.component';
 import { MlcBreakComponent } from './on-floor/on-floor-slot/mlc-conversion/mlc-place-slot/mlc-break/mlc-break.component';
 import { MlcReplaceComponent } from './on-floor/on-floor-slot/mlc-conversion/mlc-place-slot/mlc-replace/mlc-replace.component';
+import { PlaceConversionComponent } from './on-floor/on-floor-slot/mlc-conversion/mlc-place-slot/place-conversion/place-conversion.component';
 
 let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComponent, Page3Component,
   StorageSlotsComponent, SlotProjectsComponent, SearchStorageSlotsComponent, SlotProjectComponent, NewProjectComponent,
@@ -52,7 +53,7 @@ let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComp
 VerifyFiftyOnehundredComponent, VerifyOnehundredAboveComponent, StateInspectionComponent, GcInspectionComponent,
 LscConversionComponent, MlcConversionComponent, EditSealsComponent, AddSealComponent, ReplaceSealComponent, BreakSealComponent,
 PlaceSlotSealsComponent, ReplaceWitnessesComponent, EditSealsLogicAccessComponent, QuickCorrectionComponent, UpdateActiveSlotComponent, 
-RequestActivationComponent, MlcPlaceSlotComponent, MlcAddComponent, MlcBreakComponent, MlcReplaceComponent];
+RequestActivationComponent, MlcPlaceSlotComponent, MlcAddComponent, MlcBreakComponent, MlcReplaceComponent, PlaceConversionComponent];
 
 @NgModule({
   declarations: declarations,
@@ -80,7 +81,8 @@ RequestActivationComponent, MlcPlaceSlotComponent, MlcAddComponent, MlcBreakComp
     NbDatepickerModule.forRoot()
   ],
   entryComponents: [ AddSealComponent, ReplaceSealComponent, BreakSealComponent, PlaceSlotSealsComponent, 
-    ReplaceWitnessesComponent, QuickCorrectionComponent, MlcAddComponent, MlcBreakComponent, MlcReplaceComponent]
+    ReplaceWitnessesComponent, QuickCorrectionComponent, MlcAddComponent, MlcBreakComponent, MlcReplaceComponent,
+  PlaceConversionComponent]
 })
 export class EffortlessModule {
 

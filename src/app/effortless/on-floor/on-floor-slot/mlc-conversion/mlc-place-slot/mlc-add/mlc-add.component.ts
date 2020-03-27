@@ -4,6 +4,7 @@ import { GDS } from '../../../../../services/gds.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DataEndpoint } from '../../../../../services/eapi-data-services/data-endpoint/data-endpoint';
 import { EffortlessComponentBase } from '../../../../../efforless-base-component';
+import { PlaceConversionComponent } from '../place-conversion/place-conversion.component';
 
 @Component({
   selector: 'ngx-mlc-add',
@@ -47,28 +48,28 @@ export class MlcAddComponent extends EffortlessComponentBase implements OnInit {
     this.dialogRef.close()
   }
 
-  // next() {
-  //   let payload = this.gds.createPayload();
-  //   payload.SearchTerm = this.newSealNumber
-  //   this.gds.smqUser.ValidateNewSealNumber(payload).then(reply => {
-  //     this.sealNumber = reply.SealNumber
-  //     if (reply.ErrorMessage) {
-  //       this.toastr.warning(reply.ErrorMessage)
+  next() {
+    let payload = this.gds.createPayload();
+    payload.SearchTerm = this.newSealNumber
+    this.gds.smqUser.ValidateNewSealNumber(payload).then(reply => {
+      this.sealNumber = reply.SealNumber
+      if (reply.ErrorMessage) {
+        this.toastr.warning(reply.ErrorMessage)
         
-  //     } 
-  //     else {
-  //       this.dialogService.open(PlaceSlotSealsComponent, {
-  //         context: {
-  //           'newSealNumber': this.newSealNumber,
-  //           'componentDefList': this.componentDefList,
-  //           'componentList': this.componentList,
-  //           'logicCage': this.logicCage
-  //         }
-  //       })
-  //       this.dialogRef.close()
-  //     }
-  //   })
+      } 
+      else {
+        this.dialogService.open(PlaceConversionComponent, {
+          context: {
+            'newSealNumber': this.newSealNumber,
+            'componentDefList': this.componentDefList,
+            'componentList': this.componentList,
+            'logicCage': this.logicCage
+          }
+        })
+        this.dialogRef.close()
+      }
+    })
 
-  // }
+  }
 
 }
