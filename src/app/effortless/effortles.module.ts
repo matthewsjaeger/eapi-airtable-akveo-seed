@@ -45,6 +45,7 @@ import { MlcAddComponent } from './on-floor/on-floor-slot/mlc-conversion/mlc-pla
 import { MlcBreakComponent } from './on-floor/on-floor-slot/mlc-conversion/mlc-place-slot/mlc-break/mlc-break.component';
 import { MlcReplaceComponent } from './on-floor/on-floor-slot/mlc-conversion/mlc-place-slot/mlc-replace/mlc-replace.component';
 import { PlaceConversionComponent } from './on-floor/on-floor-slot/mlc-conversion/mlc-place-slot/place-conversion/place-conversion.component';
+import { MlcChecklistComponent } from './on-floor/on-floor-slot/mlc-conversion/mlc-place-slot/mlc-checklist/mlc-checklist.component';
 
 let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComponent, Page3Component,
   StorageSlotsComponent, SlotProjectsComponent, SearchStorageSlotsComponent, SlotProjectComponent, NewProjectComponent,
@@ -53,7 +54,7 @@ let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComp
 VerifyFiftyOnehundredComponent, VerifyOnehundredAboveComponent, StateInspectionComponent, GcInspectionComponent,
 LscConversionComponent, MlcConversionComponent, EditSealsComponent, AddSealComponent, ReplaceSealComponent, BreakSealComponent,
 PlaceSlotSealsComponent, ReplaceWitnessesComponent, EditSealsLogicAccessComponent, QuickCorrectionComponent, UpdateActiveSlotComponent, 
-RequestActivationComponent, MlcPlaceSlotComponent, MlcAddComponent, MlcBreakComponent, MlcReplaceComponent, PlaceConversionComponent];
+RequestActivationComponent, MlcPlaceSlotComponent, MlcAddComponent, MlcBreakComponent, MlcReplaceComponent, PlaceConversionComponent, MlcChecklistComponent];
 
 @NgModule({
   declarations: declarations,

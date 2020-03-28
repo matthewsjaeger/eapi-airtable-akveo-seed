@@ -40,49 +40,67 @@ export class PlaceConversionComponent extends EffortlessComponentBase implements
 
   }
 
-  
 
-  checkChange(event){
-    
-    }
-    
+
+  checkChange(event) {
+
+  }
+
 
 
   // protected open(closeOnBackdropClick: boolean) {
-    //this.dialogService.open(ReplaceWitnessesComponent, { closeOnBackdropClick });
+  //this.dialogService.open(ReplaceWitnessesComponent, { closeOnBackdropClick });
   // }
 
-  // next(closeOnBackdropClick: boolean) {
-  //   let self = this;
-  //   let addedSeal = { SealNumber: this.newSealNumber, ComponentLinks: [] };
-  //   this.componentDefList.forEach(def => {
-  //     if (def.Checked) {
-  //       let checkedComponent: any = {};
-  //       self.componentList.forEach(comp => {
-  //         if (comp.Component == def.SlotComponentDefId) {
-  //           checkedComponent = comp;
-  //         }
-  //       })
-  //       addedSeal.ComponentLinks.push({ SealedComponents: checkedComponent.SlotComponentId });
-  //     }
-  //   });
-  //   if (this.newLogicCage) {
-  //     addedSeal.ComponentLinks.push({SealedComponents: this.logicCage.SlotComponentId})
-  //   }
-  //   this.gds.editSealPayload.AddedSeals.push(addedSeal);//{SealNumber, ComponentLinks }
-  //   this.dialogService.open(ReplaceWitnessesComponent, {
-  //     context: {
-  //       'newComponentDefList': this.newComponentDefList,
-  //       'newLogicCage': this.newLogicCage,
-  //       'newSeal': this.newSeal,
-  //       'newSealNumber': this.newSealNumber,
-  //     }
-  //   })
-  //   this.dialogRef.close()
-  // }
 
-  cancelReplaceSeal() {
-    this.dialogRef.close()
+//   finish() {
+//     this.people.forEach(person => {
+//       this.gds.editSealPayload.Witnesses.push(person);
+//     });
+//     this.gds.editSealsUpdated$.next(true);
+//     this.dialogRef.close({
+//       context: {
+//         'newSealNumber': this.newSealNumber,
+//         'replacement': this.replacement,
+  
+//       }
+//     })
+
+//   }
+// }
+
+finish() {
+  let self = this;
+  let addedSeal = { SealNumber: this.newSealNumber, ComponentLinks: [] };
+  this.componentDefList.forEach(def => {
+    if (def.Checked) {
+      let checkedComponent: any = {};
+      self.componentList.forEach(comp => {
+        if (comp.Component == def.SlotComponentDefId) {
+          checkedComponent = comp;
+        }
+      })
+      addedSeal.ComponentLinks.push({ SealedComponents: checkedComponent.SlotComponentId });
+    }
+  });
+  if (this.newLogicCage) {
+    addedSeal.ComponentLinks.push({ SealedComponents: this.logicCage.SlotComponentId })
   }
+  this.gds.editSealPayload.AddedSeals.push(addedSeal);//{SealNumber, ComponentLinks }
+  this.gds.editSealsUpdated$.next(true);
+  this.dialogRef.close({
+    context: {
+      'newComponentDefList': this.newComponentDefList,
+      'newLogicCage': this.newLogicCage,
+      'newSeal': this.newSeal,
+      'newSealNumber': this.newSealNumber,
+    }
+  })
+  this.dialogRef.close()
+}
+
+cancel() {
+  this.dialogRef.close()
+}
 
 }

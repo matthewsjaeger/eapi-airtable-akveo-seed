@@ -31,6 +31,7 @@ import { EditSealsLogicAccessComponent } from './on-floor/on-floor-slot/edit-sea
 import { UpdateActiveSlotComponent } from './on-floor/on-floor-slot/update-active-slot/update-active-slot.component';
 import { RequestActivationComponent } from './on-floor/on-floor-slot/request-activation/request-activation.component';
 import { MlcPlaceSlotComponent } from './on-floor/on-floor-slot/mlc-conversion/mlc-place-slot/mlc-place-slot.component';
+import { MlcChecklistComponent } from './on-floor/on-floor-slot/mlc-conversion/mlc-place-slot/mlc-checklist/mlc-checklist.component';
 
 let effortlessChildren = [
   {
@@ -140,6 +141,10 @@ let effortlessChildren = [
   {
     path: 'mlc-place-slot/:sid',
     component: MlcPlaceSlotComponent,
+  },
+  {
+    path: 'mlc-checklist/:sid',
+    component: MlcChecklistComponent,
   },
 ];
 

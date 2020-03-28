@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { DataEndpoint } from '../../../../../services/eapi-data-services/data-endpoint/data-endpoint';
 import { NbMenuService, NbDialogRef, NbDialogService, NbToastrService } from '@nebular/theme';
 import { EffortlessComponentBase } from '../../../../../efforless-base-component';
+import { PlaceConversionComponent } from '../place-conversion/place-conversion.component';
 
 @Component({
   selector: 'ngx-mlc-replace',
@@ -42,31 +43,31 @@ export class MlcReplaceComponent extends EffortlessComponentBase implements OnIn
 
 
 
-  // next() {
-  //   let payload = this.gds.createPayload();
-  //   payload.SearchTerm = this.newSealNumber
-  //   this.gds.smqUser.ValidateNewSealNumber(payload).then(reply => {
-  //     this.sealNumber = reply.SealNumber
-  //     if (reply.ErrorMessage) {
-  //       this.toastr.warning(reply.ErrorMessage)
+  next() {
+    let payload = this.gds.createPayload();
+    payload.SearchTerm = this.newSealNumber
+    this.gds.smqUser.ValidateNewSealNumber(payload).then(reply => {
+      this.sealNumber = reply.SealNumber
+      if (reply.ErrorMessage) {
+        this.toastr.warning(reply.ErrorMessage)
        
-  //     } else {
+      } else {
         
-  //       this.gds.editSealPayload.BrokenSeals.push({ SealNumber: this.seal.SealNumber, BrokenReason: this.replacementReason })
-  //       console.error(this.seal.SealNumber)
-  //       this.dialogService.open(PlaceSlotSealsComponent, {
-  //         context: {
-  //           'componentDefList': this.componentDefList,
-  //           'componentList': this.componentList,
-  //           'logicCage': this.logicCage,
-  //           'seal': this.seal,
-  //           'newSealNumber': this.newSealNumber,
-  //           'replacement': this.replacementReason
-  //         }
-  //       })
-  //       this.dialogRef.close()
-  //     }
-  //   })
-  // }
+        this.gds.editSealPayload.BrokenSeals.push({ SealNumber: this.seal.SealNumber, BrokenReason: this.replacementReason })
+        console.error(this.seal.SealNumber)
+        this.dialogService.open(PlaceConversionComponent, {
+          context: {
+            'componentDefList': this.componentDefList,
+            'componentList': this.componentList,
+            'logicCage': this.logicCage,
+            'seal': this.seal,
+            'newSealNumber': this.newSealNumber,
+            'replacement': this.replacementReason
+          }
+        })
+        this.dialogRef.close()
+      }
+    })
+  }
 
 }

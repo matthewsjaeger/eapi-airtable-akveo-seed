@@ -76,7 +76,23 @@ export class MlcPlaceSlotComponent extends EffortlessComponentBase implements On
   }
 
   next() {
-    this.router.navigateByUrl('effortless/edit-seals-logic-access/' + this.sid)
+    let self = this;
+   
+    let payload = this.gds.createPayload();
+    payload.SlotView = { SlotId: this.sid}
+    payload.BrokenSeals = this.gds.editSealPayload.BrokenSeals;
+    payload.AddedSeals = this.gds.editSealPayload.AddedSeals;
+    this.gds.smqSlotRepairAdmin.EditSeals(payload).then(resp => {
+      if (!resp.ErrorMessage) {
+        this.gds.editSealPayload = {
+          SlotView: {},
+          BrokenSeals: [],
+          AddedSeals: []
+        }
+        this.router.navigateByUrl('effortless/mlc-checklist/' + self.sid);
+      }
+    });
+    
   }
 
 
@@ -150,8 +166,8 @@ export class MlcPlaceSlotComponent extends EffortlessComponentBase implements On
   createGDSPayload() {
     this.gds.editSealPayload = {
       SlotView: {},
-      Witnesses: [],
-      LogicAccess: {},
+      
+      
       BrokenSeals: [],
       AddedSeals: []
     }
