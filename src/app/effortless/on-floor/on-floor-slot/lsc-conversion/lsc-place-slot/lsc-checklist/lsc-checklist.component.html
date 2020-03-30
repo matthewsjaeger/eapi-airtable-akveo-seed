@@ -1,0 +1,73 @@
+<nb-card [size]="'large'">
+    <nb-card-header>
+        <button nbButton ghost size="medium" status="danger" class="float-left" (click)="cancel()">
+            <nb-icon icon="slash-outline"></nb-icon>Cancel
+        </button>
+        <h4 style="width: fit-content; margin: auto;">LSC Conversion Checklist</h4>
+    </nb-card-header>
+    <nb-card-body>
+        <nb-list>
+<!--             
+                <label> <b>Security Officer Present:</b> </label>
+                <input nbInput class="float-right" placeholder="How Much?" [(ngModel)]="checklist.JackpotAmount"> -->
+                <nb-list-item [style.backgroundColor]="securityPerson ? '': '#ff3d71'">
+                    <label> <b>Security Officer Present:</b> </label>
+                    <button nbButton class="float-right" size="small" outline (click)="addSecurity()">Add</button>
+                    <input nbInput [(ngModel)]="security" type="text" placeholder="BadgeNumber" class="float-right"
+                        style="margin-right: 1rem;">
+                    <nb-list>
+                        <nb-list-item *ngIf="securityPerson" id="security">
+                            <label [(ngModel)]="checklist.RepairRepresentative" ngDefaultControl> {{securityPerson.FirstName}}
+                                {{securityPerson.LastName}}, {{securityPerson.BadgeNumber}} </label>
+                            <button nbButton ghost status="danger" size="small" (click)="deleteSecurity()">
+                                <nb-icon icon="close-outline"></nb-icon>
+                            </button>
+                        </nb-list-item>
+                    </nb-list>
+                </nb-list-item>
+            
+            <nb-list-item [style.backgroundColor]="tempChecklist.ScheduledChanges.Fail ? 'rgba(255, 0, 0, 0.705)': ''">
+                <label> Scheduled changes were physically applied to slot successfully:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ScheduledChanges.Fail" (change)="applyToChecklist('ScheduledChanges', 'Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ScheduledChanges.Pass" (change)="applyToChecklist('ScheduledChanges', 'Pass')">Pass</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.BillTest.Fail ? 'rgba(255, 0, 0, 0.705)': ''">
+                <label> Bill Test:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.BillTest.Fail" (change)="applyToChecklist('BillTest', 'Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.BillTest.Pass" (change)="applyToChecklist('BillTest', 'Pass')">Pass</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.TicketTest.Fail ? 'rgba(255, 0, 0, 0.705)': ''">
+                <label> Ticket Test:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TicketTest.Fail" (change)="applyToChecklist('TicketTest', 'Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.TicketTest.Pass" (change)="applyToChecklist('TicketTest', 'Pass')">Pass</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.VerifyAmount.Fail ? 'rgba(255, 0, 0, 0.705)': ''">
+                <label> Cash-out and Verify Amount:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.VerifyAmount.Fail" (change)="applyToChecklist('VerifyAmount', 'Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.VerifyAmount.Pass" (change)="applyToChecklist('VerifyAmount', 'Pass')">Pass</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.MeterTest.Fail ? 'rgba(255, 0, 0, 0.705)': ''">
+                <label> Meter Test:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MeterTest.Fail" (change)="applyToChecklist('MeterTest', 'Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MeterTest.Pass" (change)="applyToChecklist('MeterTest', 'Pass')">Pass</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.CorrectDeficiencies.No ? 'rgba(255, 0, 0, 0.705)': ''">
+                <label> Correct any Deficiencies:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.CorrectDeficiencies.NA" (change)="applyToChecklist('CorrectDeficiencies', 'NA')">N/A</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.CorrectDeficiencies.No" (change)="applyToChecklist('CorrectDeficiencies', 'No')">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.CorrectDeficiencies.Yes" (change)="applyToChecklist('CorrectDeficiencies', 'Yes')">Yes</nb-checkbox>
+            </nb-list-item>
+            <nb-list-item [style.backgroundColor]="tempChecklist.MealBook.Fail ? 'rgba(255, 0, 0, 0.705)': ''">
+                <label> Meal Book Entry:</label>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MealBook.Fail" (change)="applyToChecklist('MealBook', 'Fail')">Fail</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MealBook.Pass" (change)="applyToChecklist('MealBook', 'Pass')">Pass</nb-checkbox>
+            </nb-list-item>
+        </nb-list>
+    </nb-card-body>
+    <nb-card-footer>
+        <button nbButton class="float-right" ghost size="medium" (click)="finish()">Finish</button>
+        <button nbButton ghost size="medium" status="danger" (click)="cancel()">
+            <nb-icon icon="slash-outline"></nb-icon>Cancel
+        </button>
+    </nb-card-footer>
+</nb-card>

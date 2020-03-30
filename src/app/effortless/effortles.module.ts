@@ -46,6 +46,12 @@ import { MlcBreakComponent } from './on-floor/on-floor-slot/mlc-conversion/mlc-p
 import { MlcReplaceComponent } from './on-floor/on-floor-slot/mlc-conversion/mlc-place-slot/mlc-replace/mlc-replace.component';
 import { PlaceConversionComponent } from './on-floor/on-floor-slot/mlc-conversion/mlc-place-slot/place-conversion/place-conversion.component';
 import { MlcChecklistComponent } from './on-floor/on-floor-slot/mlc-conversion/mlc-place-slot/mlc-checklist/mlc-checklist.component';
+import { LscPlaceSlotComponent } from './on-floor/on-floor-slot/lsc-conversion/lsc-place-slot/lsc-place-slot.component';
+import { LscAddComponent } from './on-floor/on-floor-slot/lsc-conversion/lsc-place-slot/lsc-add/lsc-add.component';
+import { LscReplaceComponent } from './on-floor/on-floor-slot/lsc-conversion/lsc-place-slot/lsc-replace/lsc-replace.component';
+import { LscBreakComponent } from './on-floor/on-floor-slot/lsc-conversion/lsc-place-slot/lsc-break/lsc-break.component';
+import { LscPlaceConversionComponent } from './on-floor/on-floor-slot/lsc-conversion/lsc-place-slot/lsc-place-conversion/lsc-place-conversion.component';
+import { LscChecklistComponent } from './on-floor/on-floor-slot/lsc-conversion/lsc-place-slot/lsc-checklist/lsc-checklist.component';
 
 let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComponent, Page3Component,
   StorageSlotsComponent, SlotProjectsComponent, SearchStorageSlotsComponent, SlotProjectComponent, NewProjectComponent,
@@ -54,7 +60,9 @@ let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComp
 VerifyFiftyOnehundredComponent, VerifyOnehundredAboveComponent, StateInspectionComponent, GcInspectionComponent,
 LscConversionComponent, MlcConversionComponent, EditSealsComponent, AddSealComponent, ReplaceSealComponent, BreakSealComponent,
 PlaceSlotSealsComponent, ReplaceWitnessesComponent, EditSealsLogicAccessComponent, QuickCorrectionComponent, UpdateActiveSlotComponent, 
-RequestActivationComponent, MlcPlaceSlotComponent, MlcAddComponent, MlcBreakComponent, MlcReplaceComponent, PlaceConversionComponent, MlcChecklistComponent];
+RequestActivationComponent, MlcPlaceSlotComponent, MlcAddComponent, MlcBreakComponent, MlcReplaceComponent, PlaceConversionComponent,
+ MlcChecklistComponent, LscPlaceSlotComponent, LscAddComponent, LscReplaceComponent, LscBreakComponent, LscPlaceConversionComponent,
+LscChecklistComponent];
 
 @NgModule({
   declarations: declarations,
@@ -83,7 +91,7 @@ RequestActivationComponent, MlcPlaceSlotComponent, MlcAddComponent, MlcBreakComp
   ],
   entryComponents: [ AddSealComponent, ReplaceSealComponent, BreakSealComponent, PlaceSlotSealsComponent, 
     ReplaceWitnessesComponent, QuickCorrectionComponent, MlcAddComponent, MlcBreakComponent, MlcReplaceComponent,
-  PlaceConversionComponent]
+  PlaceConversionComponent, LscAddComponent, LscReplaceComponent, LscBreakComponent, LscPlaceConversionComponent]
 })
 export class EffortlessModule {
 

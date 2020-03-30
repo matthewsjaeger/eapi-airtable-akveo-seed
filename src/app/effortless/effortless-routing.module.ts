@@ -32,6 +32,8 @@ import { UpdateActiveSlotComponent } from './on-floor/on-floor-slot/update-activ
 import { RequestActivationComponent } from './on-floor/on-floor-slot/request-activation/request-activation.component';
 import { MlcPlaceSlotComponent } from './on-floor/on-floor-slot/mlc-conversion/mlc-place-slot/mlc-place-slot.component';
 import { MlcChecklistComponent } from './on-floor/on-floor-slot/mlc-conversion/mlc-place-slot/mlc-checklist/mlc-checklist.component';
+import { LscPlaceSlotComponent } from './on-floor/on-floor-slot/lsc-conversion/lsc-place-slot/lsc-place-slot.component';
+import { LscChecklistComponent } from './on-floor/on-floor-slot/lsc-conversion/lsc-place-slot/lsc-checklist/lsc-checklist.component';
 
 let effortlessChildren = [
   {
@@ -146,6 +148,14 @@ let effortlessChildren = [
     path: 'mlc-checklist/:sid',
     component: MlcChecklistComponent,
   },
+  {
+    path: 'lsc-place-slot/:sid',
+    component: LscPlaceSlotComponent
+  },
+  {
+    path: 'lsc-checklist/:sid',
+    component: LscChecklistComponent
+  }
 ];
 
 const routes: Routes = [{

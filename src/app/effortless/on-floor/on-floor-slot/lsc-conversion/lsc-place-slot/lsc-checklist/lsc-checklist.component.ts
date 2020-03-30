@@ -6,18 +6,20 @@ import { DataEndpoint } from '../../../../../services/eapi-data-services/data-en
 import { NbMenuService, NbListComponent } from '@nebular/theme';
 
 @Component({
-  selector: 'ngx-mlc-checklist',
-  templateUrl: './mlc-checklist.component.html',
-  styleUrls: ['./mlc-checklist.component.scss']
+  selector: 'ngx-lsc-checklist',
+  templateUrl: './lsc-checklist.component.html',
+  styleUrls: ['./lsc-checklist.component.scss']
 })
-export class MlcChecklistComponent extends EffortlessComponentBase implements OnInit {
+export class LscChecklistComponent extends EffortlessComponentBase implements OnInit {
 
   checklist: any = {
-    SecurityOfficer: '', ScheduledChanges: '', 
+    SecurityOfficer: '', ScheduledChanges: '', BillTest: '', TicketTest: '', VerifyAmount: '', MeterTest: '', 
+    CorrectDeficiencies: '', MealBook: ''
   }
 
   tempChecklist: any = {
-    SecurityOfficer: {}, ScheduledChanges: {}, 
+    SecurityOfficer: {}, ScheduledChanges: {}, BillTest: {}, TicketTest: {}, VerifyAmount: {}, MeterTest: {}, 
+    CorrectDeficiencies: {}, MealBook: {}
   }
 
   checked = false;
@@ -58,8 +60,14 @@ export class MlcChecklistComponent extends EffortlessComponentBase implements On
 
   updatePercentComplete = function () {
     this.checklistMetadata.PercentComplete = 0;
-    if (this.checklist.SecurityOfficer) this.checklistMetadata.PercentComplete += 20;
-    if (this.checklist.ScheduledChanges) this.checklistMetadata.PercentComplete += 20;
+    if (this.checklist.SecurityOfficer) this.checklistMetadata.PercentComplete += 30;
+    if (this.checklist.ScheduledChanges) this.checklistMetadataPercentComplete += 10;
+    if (this.checklist.BillTest) this.checklistMetadata.PercentComplete += 10;
+    if (this.checklist.TicketTest) this.checklistMetadata.PercentComplete += 10;
+    if (this.checklist.VerifyAmount) this.checklistMetadata.PercentComplete += 10;
+    if (this.checklist.MeterTest) this.checklistMetadata.PercentComplete += 10;
+    if (this.checklist.CorrectDeficiencies) this.checklistMetadata.PercentComplete += 10;
+    if (this.checklist.MealBook) this.checklistMetadata.PercentComplete += 10;
   
     this.checklistMetadata.Status = (this.checklistMetadata.PercentComplete == 100) ? 4 : 1;
     this.checklistMetadata.ComplianceStatus = (!this.checklist.SecurityOfficer)
