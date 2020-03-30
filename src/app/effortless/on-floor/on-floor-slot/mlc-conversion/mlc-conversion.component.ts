@@ -46,4 +46,8 @@ export class MlcConversionComponent extends EffortlessComponentBase implements O
     this.router.navigateByUrl('effortless/mlc-place-slot/' + this.sid)
   }
 
+  cancel() {
+
+  }
+
 }
