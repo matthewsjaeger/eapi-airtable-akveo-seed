@@ -7,6 +7,9 @@ import { NbMenuService, NbDialogRef } from '@nebular/theme';
 import { NbDialogService } from '@nebular/theme';
 
 import { EventEmitter } from 'events';
+import { MlcAddComponent } from '../../mlc-conversion/mlc-place-slot/mlc-add/mlc-add.component';
+import { MlcReplaceComponent } from '../../mlc-conversion/mlc-place-slot/mlc-replace/mlc-replace.component';
+import { MlcBreakComponent } from '../../mlc-conversion/mlc-place-slot/mlc-break/mlc-break.component';
 
 
 @Component({

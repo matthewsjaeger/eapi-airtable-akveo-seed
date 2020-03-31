@@ -54,6 +54,7 @@ export class UpdateActiveSlotComponent extends EffortlessComponentBase implement
           Address: self.slot.Address,
           SystemAddress: self.slot.SystemAddress,
           DisplayLocation: self.slot.DisplayLocation,
+          SlotLocation: self.slot.SlotLocation,
           GameName: self.slot.GameName,
           ProgressiveDef: self.slot.ProgressiveDef,
           SlotNumber: self.slot.SlotNumber,
