@@ -12,7 +12,6 @@ import { EditProjectComponent } from './slot-projects/slot-project/edit-project/
 import { StorageSlotComponent } from './storage-slots/search-storage-slots/storage-slot/storage-slot.component';
 import { OnFloorComponent } from './on-floor/on-floor.component';
 import { OnFloorSlotComponent } from './on-floor/on-floor-slot/on-floor-slot.component';
-import { EmergencyDropInspectionComponent } from './on-floor/on-floor-slot/emergency-drop-inspection/emergency-drop-inspection.component';
 import { MediaVerificationComponent } from './on-floor/on-floor-slot/media-verification/media-verification.component';
 import { StackerFullRecordComponent } from './on-floor/on-floor-slot/stacker-full-record/stacker-full-record.component';
 import { VerifyTenTwentyComponent } from './on-floor/on-floor-slot/verify-ten-twenty/verify-ten-twenty.component';
@@ -76,10 +75,7 @@ let effortlessChildren = [
     path: 'on-floor-slot/:sid',
     component: OnFloorSlotComponent,
   },
-  {
-    path: 'emergency-drop-inspection/:sid',
-    component: EmergencyDropInspectionComponent,
-  },
+
   {
     path: 'media-verification/:sid',
     component: MediaVerificationComponent,

@@ -18,7 +18,6 @@ import { EditProjectComponent } from './slot-projects/slot-project/edit-project/
 import { StorageSlotComponent } from './storage-slots/search-storage-slots/storage-slot/storage-slot.component';
 import { OnFloorComponent } from './on-floor/on-floor.component';
 import { OnFloorSlotComponent } from './on-floor/on-floor-slot/on-floor-slot.component';
-import { EmergencyDropInspectionComponent } from './on-floor/on-floor-slot/emergency-drop-inspection/emergency-drop-inspection.component';
 import { VerifyTenTwentyComponent } from './on-floor/on-floor-slot/verify-ten-twenty/verify-ten-twenty.component';
 import { StackerFullRecordComponent } from './on-floor/on-floor-slot/stacker-full-record/stacker-full-record.component';
 import { MediaVerificationComponent } from './on-floor/on-floor-slot/media-verification/media-verification.component';
@@ -37,7 +36,6 @@ import { BreakSealComponent } from './on-floor/on-floor-slot/edit-seals/break-se
 import { PlaceSlotSealsComponent } from './on-floor/on-floor-slot/edit-seals/replace-seal/place-slot-seals/place-slot-seals.component';
 import { ReplaceWitnessesComponent } from './on-floor/on-floor-slot/edit-seals/replace-seal/place-slot-seals/replace-witnesses/replace-witnesses.component';
 import { EditSealsLogicAccessComponent } from './on-floor/on-floor-slot/edit-seals/edit-seals-logic-access/edit-seals-logic-access.component';
-import { QuickCorrectionComponent } from './on-floor/on-floor-slot/quick-correction/quick-correction.component';
 import { UpdateActiveSlotComponent } from './on-floor/on-floor-slot/update-active-slot/update-active-slot.component';
 import { RequestActivationComponent } from './on-floor/on-floor-slot/request-activation/request-activation.component';
 import { MlcPlaceSlotComponent } from './on-floor/on-floor-slot/mlc-conversion/mlc-place-slot/mlc-place-slot.component';
@@ -55,11 +53,11 @@ import { LscChecklistComponent } from './on-floor/on-floor-slot/lsc-conversion/l
 
 let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComponent, Page3Component,
   StorageSlotsComponent, SlotProjectsComponent, SearchStorageSlotsComponent, SlotProjectComponent, NewProjectComponent,
-   EditProjectComponent, StorageSlotComponent, OnFloorComponent, OnFloorSlotComponent, EmergencyDropInspectionComponent,
+   EditProjectComponent, StorageSlotComponent, OnFloorComponent, OnFloorSlotComponent,
   VerifyTenTwentyComponent, StackerFullRecordComponent, MediaVerificationComponent, PreventativeMaintenanceComponent, VerifyTwentyFiftyComponent,
 VerifyFiftyOnehundredComponent, VerifyOnehundredAboveComponent, StateInspectionComponent, GcInspectionComponent,
 LscConversionComponent, MlcConversionComponent, EditSealsComponent, AddSealComponent, ReplaceSealComponent, BreakSealComponent,
-PlaceSlotSealsComponent, ReplaceWitnessesComponent, EditSealsLogicAccessComponent, QuickCorrectionComponent, UpdateActiveSlotComponent, 
+PlaceSlotSealsComponent, ReplaceWitnessesComponent, EditSealsLogicAccessComponent,  UpdateActiveSlotComponent, 
 RequestActivationComponent, MlcPlaceSlotComponent, MlcAddComponent, MlcBreakComponent, MlcReplaceComponent, PlaceConversionComponent,
  MlcChecklistComponent, LscPlaceSlotComponent, LscAddComponent, LscReplaceComponent, LscBreakComponent, LscPlaceConversionComponent,
 LscChecklistComponent];
@@ -90,7 +88,7 @@ LscChecklistComponent];
     NbDatepickerModule.forRoot()
   ],
   entryComponents: [ AddSealComponent, ReplaceSealComponent, BreakSealComponent, PlaceSlotSealsComponent, 
-    ReplaceWitnessesComponent, QuickCorrectionComponent, MlcAddComponent, MlcBreakComponent, MlcReplaceComponent,
+    ReplaceWitnessesComponent, MlcAddComponent, MlcBreakComponent, MlcReplaceComponent,
   PlaceConversionComponent, LscAddComponent, LscReplaceComponent, LscBreakComponent, LscPlaceConversionComponent]
 })
 export class EffortlessModule {

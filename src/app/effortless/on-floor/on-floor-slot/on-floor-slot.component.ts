@@ -4,7 +4,6 @@ import { GDS } from '../../services/gds.service';
 import { EffortlessComponentBase } from '../../efforless-base-component';
 import { DataEndpoint } from '../../services/eapi-data-services/data-endpoint/data-endpoint';
 import { NbMenuService, NbListComponent, NbDialogService } from '@nebular/theme';
-import { QuickCorrectionComponent } from './quick-correction/quick-correction.component';
 
 
 @Component({
@@ -45,9 +44,7 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
     }));
   }
 
-  openQuickCorrection(){
-    this.dialogService.open(QuickCorrectionComponent)
-  }
+ 
 
   // configureActions = function(){
   //   let self = this
@@ -141,9 +138,7 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
   preventativeMaintenance() {
     this.router.navigateByUrl('effortless/preventative-maintenance/' +this.sid)
   }
-  quickCorrection() {
 
-  }
   ramClearToInspect() {
 
   }

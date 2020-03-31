@@ -52,8 +52,7 @@
                 Seal GC</button>
             <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=editSeals()>Edit
                 Seals</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;"
-                (click)=emergencyDropInspection()>Emergency Drop Inspection</button>
+           
             <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=forensicFieldChecklist()
                 disabled>Forensic Field Checklist</button>
             <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=gcInspection()>GC
@@ -70,8 +69,7 @@
                 Verification</button>
             <button nbButton fullWidth status="primary" style="margin-bottom: 5px;"
                 (click)=preventativeMaintenance()>Preventative Maintenance</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=openQuickCorrection()>Quick
-                Correction</button>
+            
             <button *ngIf="gds.smqSlotRepairAdmin" nbButton fullWidth status="primary" style="margin-bottom: 5px;"
                 (click)=ramClearPerform() disabled>Ram Clear: Perform with Meters</button>
             <button *ngIf="gds.smqSlotRepairAdmin" nbButton fullWidth status="primary" style="margin-bottom: 5px;"
@@ -87,13 +85,87 @@
             <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=updateActiveSlot()>Update
                 Active Slot</button>
         </div>
+        <div *ngIf="slot.WorkflowState =='Jackpot Suspension'">
+            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=editSealGC() disabled>Edit
+                Seal (GC)</button>
+            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=editSeals() >Edit
+                Seals</button>
+            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=forensicFieldChecklist()
+                disabled> Forensic Field Checklist</button>
+            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=jpVerify100K() >JP
+                Verify $100K & Above</button>
+            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=jpVerify10K()>JP Verify $10K
+                - $19,999.99</button>
+            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=jpVerify20K() >JP
+                Verify $20K-$49,999.99</button>
+            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=jpVerify50K() >JP
+                Verify $50K- $99,999.99</button>
+                <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=gcInspection()>GC
+                    Inspection</button>
+            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=stateOfMinnesotaInspection()
+                >State Of Minnesota Inspection</button>
+
+        </div>
+        <div *ngIf="slot.WorkflowState =='GC Review'">
+            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=editSealGC() disabled>Edit
+                Seal (GC)</button>
+            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=editSeals() >Edit
+                Seals</button>
+           
+            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=forensicFieldChecklist()
+                disabled> Forensic Field Checklist</button>
+            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=jpVerify100K()>JP Verify
+                $100K & Above</button>
+            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=jpVerify10K()>JP Verify $10K
+                - $19,999.99</button>
+            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=jpVerify20K()>JP Verify
+                $20K-$49,999.99</button>
+            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=jpVerify50K()>JP Verify
+                $50K- $99,999.99</button>
+                <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=gcInspection()>GC
+                    Inspection</button>
+            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=mediaVerification()>Media
+                Verification</button>
+            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;"
+                (click)=preventativeMaintenance()>Preventative Maintenance</button>
+            
+            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=ramClearPerform()
+                disabled>Ram Clear: Perform with Meters</button>
+            <button  nbButton fullWidth status="primary" style="margin-bottom: 5px;"
+                (click)=scheduleConversions() disabled>Schedule Conversions (Adv)</button>
+            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=scheduleMoveToStorage()
+                disabled>Schedule Move To Storage (Adv)</button>
+            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=scheduleTournament()
+                disabled> Schedule Tournament</button>
+            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=stackerFullRecord()>Stacker
+                Full Record</button>
+            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=stateOfMinnesotaInspection()
+                >State Of Minnesota Inspection</button>
+        </div>
+        <div *ngIf="slot.WorkflowState =='Suspended'">
+            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=editSealGC() disabled>Edit
+                Seal (GC)</button>
+            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=editSeals()>Edit
+                Seals</button>
+            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=mediaVerification()>Media
+                Verification</button>
+           
+            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=ramClearInspect()
+                disabled>RAM Clear: Inspect (GE)</button>
+            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=requestActivation()
+                >Request Activation</button>
+            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=stateOfMinnesotaInspection()
+                >State Of Minnesota Inspection</button>
+            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=updateActiveSlot()
+                >Update Active Slot</button>
+
+        </div>
         <div *ngIf="slot.WorkflowState == 'Ram Cleared' ">
             <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=editSealGC() disabled>Edit
                 Seal (GC)</button>
             <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=editSeals() disabled>Edit
                 Seals</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=emergencyDropInspection()
-                disabled>Emergency Drop Inspection</button>
+            
             <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=forensicFieldChecklist()
                 disabled> Forensic Field Checklist</button>
             <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=mediaVerification()
@@ -112,8 +184,7 @@
                 Seal (GC)</button>
             <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=editSeals() disabled>Edit
                 Seals</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=emergencyDropInspection()
-                disabled>Emergency Drop Inspection</button>
+           
             <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=forensicFieldChecklist()
                 disabled> Forensic Field Checklist</button>
             <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=gcInspection() disabled>GC
@@ -126,30 +197,11 @@
                 disabled>Ram Clear: Perform with Meters</button>
 
         </div>
-        <div *ngIf="slot.WorkflowState =='Suspended'">
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=editSealGC() disabled>Edit
-                Seal (GC)</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=editSeals() disabled>Edit
-                Seals</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=mediaVerification()>Media
-                Verification</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=quickCorrection()
-                disabled>Quick Correction</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=ramClearInspect()
-                disabled>RAM Clear: Inspect (GE)</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=requestActivation()
-                >Request Activation</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=stateOfMinnesotaInspection()
-                disabled>State Of Minnesota Inspection</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=updateActiveSlot()
-                disabled>Update Active Slot</button>
-
-        </div>
+        
         <div *ngIf="slot.WorkflowState =='GC Jackpot Verification'">
             <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=editSealGC() disabled>Edit
                 Seal (GC)</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=emergencyDropInspection()
-                disabled>Emergency Drop Inspection</button>
+            
             <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=forensicFieldChecklist()
                 disabled> Forensic Field Checklist</button>
             <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=gcInspection() disabled>GC
@@ -160,25 +212,7 @@
                 disabled>State Of Minnesota Inspection</button>
 
         </div>
-        <div *ngIf="slot.WorkflowState =='Jackpot Suspension'">
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=editSealGC() disabled>Edit
-                Seal (GC)</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=editSeals() disabled>Edit
-                Seals</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=forensicFieldChecklist()
-                disabled> Forensic Field Checklist</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=jpVerify100K() disabled>JP
-                Verify $100K & Above</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=jpVerify10K()>JP Verify $10K
-                - $19,999.99</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=jpVerify20K() disabled>JP
-                Verify $20K-$49,999.99</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=jpVerify50K() disabled>JP
-                Verify $50K- $99,999.99</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=stateOfMinnesotaInspection()
-                disabled>State Of Minnesota Inspection</button>
-
-        </div>
+        
         <div *ngIf="slot.WorkflowState =='Tournament Mode'">
             <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=deactivateTournamentMode()
                 disabled>De-Activate Tournament Mode</button>
@@ -186,16 +220,14 @@
                 Seal (GC)</button>
             <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=editSeals() disabled>Edit
                 Seals</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=emergencyDropInspection()
-                disabled>Emergency Drop Inspection</button>
+           
             <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=forensicFieldChecklist()
                 disabled> Forensic Field Checklist</button>
             <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=gcInspection() disabled>GC
                 Inspection</button>
             <button nbButton fullWidth status="primary" style="margin-bottom: 5px;"
                 (click)=preventativeMaintenance()>Preventative Maintenance</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=quickCorrection()
-                disabled>Quick Correction</button>
+           
             <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=stateOfMinnesotaInspection()
                 disabled>State Of Minnesota Inspection</button>
 
@@ -209,8 +241,7 @@
                 Seal (GC)</button>
             <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=editSeals() disabled>Edit
                 Seals</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=emergencyDropInspection()
-                disabled>Emergency Drop Inspection</button>
+          
             <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=forensicFieldChecklist()
                 disabled> Forensic Field Checklist</button>
             <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=jpVerify100K() disabled>JP
@@ -235,45 +266,6 @@
                 disabled>State Of Minnesota Inspection</button>
 
         </div>
-        <div *ngIf="slot.WorkflowState =='GC Review'">
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=editSealGC() disabled>Edit
-                Seal (GC)</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=editSeals() disabled>Edit
-                Seals</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=emergencyDropInspection()
-                disabled>Emergency Drop Inspection</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=forensicFieldChecklist()
-                disabled> Forensic Field Checklist</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=jpVerify100K()>JP Verify
-                $100K & Above</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=jpVerify10K()>JP Verify $10K
-                - $19,999.99</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=jpVerify20K()>JP Verify
-                $20K-$49,999.99</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=jpVerify50K()>JP Verify
-                $50K- $99,999.99</button>
-                <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=gcInspection()>GC
-                    Inspection</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=mediaVerification()>Media
-                Verification</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;"
-                (click)=preventativeMaintenance()>Preventative Maintenance</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=quickCorrection()
-                disabled>Quick Correction</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=ramClearPerform()
-                disabled>Ram Clear: Perform with Meters</button>
-            <button *ngIf="gds.smqSlotRepairAdmin" nbButton fullWidth status="primary" style="margin-bottom: 5px;"
-                (click)=scheduleConversions() disabled>Schedule Conversions (Adv)</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=scheduleMoveToStorage()
-                disabled>Schedule Move To Storage (Adv)</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=scheduleTournament()
-                disabled> Schedule Tournament</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=stackerFullRecord()>Stacker
-                Full Record</button>
-            <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=stateOfMinnesotaInspection()
-                disabled>State Of Minnesota Inspection</button>
-
-
-        </div>
+       
     </nb-card-body>
 </nb-card>
