@@ -14,6 +14,7 @@ import { SlotProjectComponent } from '../../../slot-projects/slot-project/slot-p
 export class MlcConversionComponent extends EffortlessComponentBase implements OnInit {
   sid: any;
   slot: any;
+  conversion: any;
   
 
   
@@ -35,9 +36,11 @@ export class MlcConversionComponent extends EffortlessComponentBase implements O
       payload.Slot.SlotId = self.sid;
       self.gds.smqUser.GetSlotViewDetails(payload).then(function (reply) {
         self.slot = reply.SlotView;
+        self.conversion = reply.Conversion
         
         
         console.error(self.slot)
+        console.error(self.conversion)
       });
       
   }
