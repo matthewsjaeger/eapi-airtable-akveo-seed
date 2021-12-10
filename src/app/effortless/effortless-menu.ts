@@ -3,7 +3,7 @@ import { NbMenuItem } from '@nebular/theme';
 export const MENU_ITEMS: NbMenuItem[] = [
   
   {
-    title: 'Ionic',
+    title: 'BJ/ATR',
     icon: 'home-outline',
     link: '/effortless/ionic',
     home: true,

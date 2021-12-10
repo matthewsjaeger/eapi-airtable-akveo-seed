@@ -11,7 +11,7 @@ import { getDeepFromObject } from '../../helpers';
 import { NbAuthService } from '../../services/auth.service';
 import { NbAuthResult } from '../../services/auth-result';
 
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { GDS } from '../../../../effortless/services/gds.service';
 
@@ -21,7 +21,7 @@ import { GDS } from '../../../../effortless/services/gds.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 @Injectable()
-export class NbLoginComponent {
+export class NbLoginComponent implements OnInit {
 
   redirectDelay: number = 0;
   showMessages: any = {};
@@ -35,15 +35,23 @@ export class NbLoginComponent {
   rememberMe = false;
 
   constructor(protected service: NbAuthService,
-              @Inject(NB_AUTH_OPTIONS) protected options = {},
-              protected cd: ChangeDetectorRef,
-              protected router: Router, private http: HttpClient, public gds: GDS) {
+    @Inject(NB_AUTH_OPTIONS) protected options = {},
+    protected cd: ChangeDetectorRef,
+    protected router: Router, private http: HttpClient, public gds: GDS) {
 
     this.redirectDelay = this.getConfigValue('forms.login.redirectDelay');
     this.showMessages = this.getConfigValue('forms.login.showMessages');
     this.strategy = this.getConfigValue('forms.login.strategy');
     this.socialLinks = this.getConfigValue('forms.login.socialLinks');
     this.rememberMe = this.getConfigValue('forms.login.rememberMe');
+  }
+
+  ngOnInit() {
+    //this.http.get(window['tokenPage']).subscribe(resp => {
+    //  if (resp && resp.data) {
+    //    let bla = resp.data
+    //  }
+    //});
   }
 
   login(): void {
@@ -57,7 +65,7 @@ export class NbLoginComponent {
     //  console.error(resp);
     //});;
 
-  
+
     this.service.authenticate(this.strategy, this.user).subscribe((result: NbAuthResult) => {
       this.submitted = false;
 
@@ -82,6 +90,6 @@ export class NbLoginComponent {
   }
 
   getAuthToken() {
-    window.open("http://gains.smscgc.org/api/auth/token");
+    window.open(window['tokenPage']);
   }
 }

@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ionic.component.scss']
 })
 export class IonicComponent implements OnInit {
+  iframeSrc: any = window['iframeSrc'];
 
   constructor() { }
 
   ngOnInit() {
+    console.error(this.iframeSrc);
   }
 
 }

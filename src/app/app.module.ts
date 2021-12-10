@@ -63,7 +63,7 @@ export class AppModule {
     gds.firstLoad = true;
     gds.menu = nbMenuService;
     gds.smqUser = window['generateGAINSUserActor']();
-    gds.rabbitEndpoint = "ws://gains.smscgc.org:15674/ws";
+    gds.rabbitEndpoint = window['rabbitEndpoint'];
     gds.smqUser.rabbitEndpoint = gds.rabbitEndpoint;
     gds.accessToken = "";
     gds.createPayload = function () {
