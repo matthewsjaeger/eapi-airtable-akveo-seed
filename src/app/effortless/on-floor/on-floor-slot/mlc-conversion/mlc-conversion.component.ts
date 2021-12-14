@@ -15,9 +15,7 @@ export class MlcConversionComponent extends EffortlessComponentBase implements O
   sid: any;
   slot: any;
   conversion: any;
-  
-
-  
+  stage: any;
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, public route: ActivatedRoute) {
     super(gds, data, menuService)
@@ -30,27 +28,39 @@ export class MlcConversionComponent extends EffortlessComponentBase implements O
     
   }
   ngOnInit() {
-    let self = this
+    let self = this;
+    this.getStage();
+    if (this.stage == 'seals') {
+      this.router.navigateByUrl('effortless/edit-seals/' + this.sid + '/mlc-conversion');
+    } else if (this.stage == 'checklist') {
+      this.router.navigateByUrl('effortless/mlc-checklist/' + this.sid);
+    } else if (this.stage == 'summary') {
       let payload = self.gds.createPayload();
       payload.Slot = {};
       payload.Slot.SlotId = self.sid;
       self.gds.smqUser.GetSlotViewDetails(payload).then(function (reply) {
         self.slot = reply.SlotView;
         self.conversion = reply.Conversion
-        
-        
+
         console.error(self.slot)
         console.error(self.conversion)
       });
-      
+    }
+  }
+
+  getStage() {
+    if (this.gds.stageMngr.slot != this.sid || this.gds.stageMngr.operation != 'mlc-conversion' || this.gds.stageMngr.stage == 'seals') {
+      this.gds.stageMngr = { slot: this.sid, operation: 'mlc-conversion', stage: 'seals' };
+    }
+    this.stage = this.gds.stageMngr.stage;
   }
 
   next(){
-    this.router.navigateByUrl('effortless/mlc-place-slot/' + this.sid)
   }
 
   cancel() {
-
+    this.gds.stageMngr = { slot: '', operation: '', stage: '' };
+    this.router.navigateByUrl('effortless/on-floor-slot/' + this.sid); 
   }
 
 }

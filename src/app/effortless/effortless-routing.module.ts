@@ -125,7 +125,15 @@ let effortlessChildren = [
     component: EditSealsComponent,
   },
   {
+    path: 'edit-seals/:sid/:context',
+    component: EditSealsComponent,
+  },
+  {
     path: 'edit-seals-logic-access/:sid',
+    component: EditSealsLogicAccessComponent
+  },
+  {
+    path: 'edit-seals-logic-access/:sid/:context',
     component: EditSealsLogicAccessComponent
   },
   {

@@ -1,4 +1,4 @@
-<nb-card [size]="'large'">
+<nb-card [size]="'large'" *ngIf="stage == 'summary'">
     <nb-card-header>
         <button nbButton ghost size="medium" status="danger" class="float-left" (click)="cancel()">
             <nb-icon icon="slash-outline"></nb-icon>Cancel
@@ -16,4 +16,4 @@
     <nb-card-footer>
         <button nbButton outline class="float-right" (click)="next()">Next</button>
     </nb-card-footer>
-    </nb-card>
+</nb-card>

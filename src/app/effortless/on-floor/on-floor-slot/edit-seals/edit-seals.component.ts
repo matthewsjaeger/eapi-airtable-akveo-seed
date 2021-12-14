@@ -17,6 +17,7 @@ import { EventEmitter } from 'events';
 })
 export class EditSealsComponent extends EffortlessComponentBase implements OnInit {
   sid: any;
+  context: any;
   slot: any;
 
   componentList: any;
@@ -41,6 +42,7 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
 
     this.safeSubscribe(this.route.params.subscribe((params) => {
       this.sid = params['sid'];
+      this.context = params['context'];
     }));
 
     this.safeSubscribe(this.gds.editSealsUpdated$.subscribe(updated => {
@@ -69,13 +71,27 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
 
   }
 
+  checkStageMngr() {
+    if (this.context = 'mlc-conversion') {
+      this.gds.stageMngr = { slot: this.sid, operation: 'mlc-conversion', stage: 'seals' };
+    } else if (this.context = 'lsc-conversion') {
+      this.gds.stageMngr = { slot: this.sid, operation: 'lsc-conversion', stage: 'seals' };
+    }
+  }
 
   cancel() {
-    this.router.navigateByUrl('effortless/on-floor-slot/' + this.sid)
+    this.gds.stageMngr = { slot: '', operation: '', stage: '' };
+    this.router.navigateByUrl('effortless/on-floor-slot/' + this.sid);
   }
 
   next() {
-    this.router.navigateByUrl('effortless/edit-seals-logic-access/' + this.sid)
+    if (this.context == 'mlc-conversion') {
+      this.router.navigateByUrl('effortless/mlc-checklist/' + this.sid);
+    } else if (this.context = 'lsc-conversion') {
+      this.router.navigateByUrl('effortless/lsc-checklist/' + this.sid);
+    } else { 
+      this.router.navigateByUrl('effortless/edit-seals-logic-access/' + this.sid);
+    }
   }
 
 

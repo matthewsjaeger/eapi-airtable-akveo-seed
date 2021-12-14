@@ -115,6 +115,7 @@ export class LscChecklistComponent extends EffortlessComponentBase implements On
 
   cancel(){
     let self = this;
+    this.gds.stageMngr = { slot: '', operation: '', stage: '' };
     this.router.navigateByUrl('effortless/on-floor-slot/' + self.sid); 
   }
 

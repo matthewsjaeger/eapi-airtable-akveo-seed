@@ -21,6 +21,7 @@ export class EditSealsLogicAccessComponent extends EffortlessComponentBase imple
   accessReason: any = "";
   timeAccessed: any = "";
   sid: any;
+  context: any;
   slot: any;
   security: any;
   personSecurity: any;
@@ -32,6 +33,7 @@ export class EditSealsLogicAccessComponent extends EffortlessComponentBase imple
 
     this.safeSubscribe(this.route.params.subscribe((params) => {
       this.sid = params['sid'];
+      this.context = params['context'];
     }));
 
   }
@@ -77,27 +79,42 @@ export class EditSealsLogicAccessComponent extends EffortlessComponentBase imple
   finish() {
     let self = this;
     this.updatePercentComplete();
-    let payload = this.gds.createPayload();
-    payload.SlotView = { SlotId: this.sid, Checklist: this.checklist, ChecklistMetadata: this.checklistMetadata };
-    payload.Witnesses = this.gds.editSealPayload.Witnesses;
-    payload.LogicAccess = { AccessDate: this.timeAccessed, Reason: this.accessReason };
-    payload.BrokenSeals = this.gds.editSealPayload.BrokenSeals;
-    payload.AddedSeals = this.gds.editSealPayload.AddedSeals;
-    this.gds.smqSlotRepairAdmin.EditSeals(payload).then(resp => {
-      if (!resp.ErrorMessage) {
-        this.gds.editSealPayload = {
-          SlotView: {},
-          Witnesses: [],
-          LogicAccess: {},
-          BrokenSeals: [],
-          AddedSeals: []
+    if (this.context = 'mlc-conversion') {
+      this.gds.stageMngr = { slot: this.sid, operation: 'mlc-conversion', stage: 'checklist' };
+      this.gds.editSealPayload.LogicAccess = { AccessDate: this.timeAccessed, Reason: this.accessReason };
+      this.gds.editSealPayload.LogicAccessChecklist = this.checklist;
+      this.gds.editSealPayload.LogicAccessMetaData = this.checklistMetadata;
+      this.router.navigateByUrl('effortless/mlc-conversion/' + self.sid);
+    } else if (this.context = 'lsc-conversion') {
+      this.gds.stageMngr = { slot: this.sid, operation: 'lsc-conversion', stage: 'checklist' };
+      this.gds.editSealPayload.LogicAccess = { AccessDate: this.timeAccessed, Reason: this.accessReason };
+      this.gds.editSealPayload.LogicAccessChecklist = this.checklist;
+      this.gds.editSealPayload.LogicAccessMetaData = this.checklistMetadata;
+      this.router.navigateByUrl('effortless/lsc-conversion/' + self.sid);
+    } else {
+      let payload = this.gds.createPayload();
+      payload.SlotView = { SlotId: this.sid, Checklist: this.checklist, ChecklistMetadata: this.checklistMetadata };
+      payload.Witnesses = this.gds.editSealPayload.Witnesses;
+      payload.LogicAccess = { AccessDate: this.timeAccessed, Reason: this.accessReason };
+      payload.BrokenSeals = this.gds.editSealPayload.BrokenSeals;
+      payload.AddedSeals = this.gds.editSealPayload.AddedSeals;
+      this.gds.smqSlotRepairAdmin.EditSeals(payload).then(resp => {
+        if (!resp.ErrorMessage) {
+          this.gds.editSealPayload = {
+            SlotView: {},
+            Witnesses: [],
+            LogicAccess: {},
+            BrokenSeals: [],
+            AddedSeals: []
+          }
+          this.router.navigateByUrl('effortless/on-floor-slot/' + self.sid);
         }
-        this.router.navigateByUrl('effortless/on-floor-slot/' + self.sid);
-      }
-    });
+      });
+    }
   }
 
   cancel() {
+    this.gds.stageMngr = { slot: '', operation: '', stage: '' };
     this.gds.editSealPayload = {
       SlotView: {},
       Witnesses: [],

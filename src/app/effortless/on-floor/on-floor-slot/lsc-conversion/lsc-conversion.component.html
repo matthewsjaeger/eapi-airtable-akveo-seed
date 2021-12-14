@@ -1,4 +1,4 @@
-<nb-card [size]="'large'">
+<nb-card [size]="'large'" *ngIf="stage == 'summary'">
     <nb-card-header>
         <button nbButton ghost size="medium" status="danger" class="float-left" (click)="cancel()">
             <nb-icon icon="slash-outline"></nb-icon>Cancel
