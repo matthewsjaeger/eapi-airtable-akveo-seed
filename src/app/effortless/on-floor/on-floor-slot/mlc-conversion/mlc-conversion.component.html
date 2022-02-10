@@ -1,11 +1,10 @@
 <nb-card [size]="'large'" *ngIf="stage == 'summary'">
-    <nb-card-header>
-        <button nbButton ghost size="medium" status="danger" class="float-left" (click)="cancel()">
-            <nb-icon icon="slash-outline"></nb-icon>Cancel
-        </button>
-        <h4 style="width: fit-content; margin: auto;">Conversion Summary </h4>
-        <h6>Conversion Details</h6>
-    </nb-card-header>
+  <nb-card-header>
+    <button nbButton outline size="medium" status="danger" class="float-left" (click)="cancel()">
+      <nb-icon icon="slash-outline"></nb-icon>Cancel
+    </button>
+    <h4 style="width: fit-content; margin: auto;">Conversion Summary </h4>
+  </nb-card-header>
     <nb-card-body>
         Floor Moves/ Changes 
 
@@ -14,6 +13,9 @@
         <b>Location Details:</b>
     </nb-card-body>
     <nb-card-footer>
-        <button nbButton outline class="float-right" (click)="next()">Next</button>
+      <button nbButton outline size="medium" status="danger" class="float-left" (click)="cancel()">
+        <nb-icon icon="slash-outline"></nb-icon>Cancel
+      </button>
+      <button nbButton outline class="float-right" (click)="finish()">finish</button>
     </nb-card-footer>
 </nb-card>

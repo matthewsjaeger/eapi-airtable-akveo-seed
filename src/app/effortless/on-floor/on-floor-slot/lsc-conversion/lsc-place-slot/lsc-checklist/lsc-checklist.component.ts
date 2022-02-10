@@ -42,6 +42,9 @@ export class LscChecklistComponent extends EffortlessComponentBase implements On
   }
 
   ngOnInit() {
+    if (this.gds.stageMngr.stage != 'checklist') {
+      this.cancel();
+    }
   }
 
   addSecurity(){
@@ -102,13 +105,12 @@ export class LscChecklistComponent extends EffortlessComponentBase implements On
   finish() {
     let self = this;
     this.updatePercentComplete();
-    let payload = this.gds.createPayload();
+    let payload = this.gds.editSealPayload;
     payload.SlotView = { SlotId: this.sid, Checklist: this.checklist, ChecklistMetadata: this.checklistMetadata };
-    this.gds.smqGamingAgent.CompleteConversionFloorAdv(payload).then(resp => {
-      if (!resp.ErrorMessage) {
-        this.router.navigateByUrl('effortless/on-floor-slot/' + self.sid);
-      }
-    });
+    this.gds.completeSlotConversionPayload = payload;
+    this.gds.editSealPayload = {};
+    this.gds.stageMngr.stage = 'summary';
+    this.router.navigateByUrl('effortless/lsc-conversion/' + this.sid);
   }
 
 

@@ -60,6 +60,7 @@ export class GDS {
   public employee: any;
   public timers: Subscription[] = [];
   public stageMngr: any = { operation: '', slot: '', stage: '' };
+  public completeSlotConversionPayload: any = {};
   private readiness$: BehaviorSubject<{}> = new BehaviorSubject(null);
 
   public onReady(): Observable<any> {

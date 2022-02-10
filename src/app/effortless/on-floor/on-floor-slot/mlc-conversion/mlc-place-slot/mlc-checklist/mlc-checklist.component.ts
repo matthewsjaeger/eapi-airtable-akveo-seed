@@ -40,6 +40,9 @@ export class MlcChecklistComponent extends EffortlessComponentBase implements On
   }
 
   ngOnInit() {
+    if (this.gds.stageMngr.stage != 'checklist') {
+      this.cancel();
+    }
   }
 
   addSecurity(){
@@ -58,8 +61,8 @@ export class MlcChecklistComponent extends EffortlessComponentBase implements On
 
   updatePercentComplete = function () {
     this.checklistMetadata.PercentComplete = 0;
-    if (this.checklist.SecurityOfficer) this.checklistMetadata.PercentComplete += 20;
-    if (this.checklist.ScheduledChanges) this.checklistMetadata.PercentComplete += 20;
+    if (this.checklist.SecurityOfficer) this.checklistMetadata.PercentComplete += 50;
+    if (this.checklist.ScheduledChanges) this.checklistMetadata.PercentComplete += 50;
   
     this.checklistMetadata.Status = (this.checklistMetadata.PercentComplete == 100) ? 4 : 1;
     this.checklistMetadata.ComplianceStatus = (!this.checklist.SecurityOfficer)
@@ -94,13 +97,17 @@ export class MlcChecklistComponent extends EffortlessComponentBase implements On
   finish() {
     let self = this;
     this.updatePercentComplete();
-    let payload = this.gds.createPayload();
+    let payload = this.gds.editSealPayload;
     payload.SlotView = { SlotId: this.sid, Checklist: this.checklist, ChecklistMetadata: this.checklistMetadata };
-    this.gds.smqGamingAgent.CompleteConversionFloorAdv(payload).then(resp => {
-      if (!resp.ErrorMessage) {
-        this.router.navigateByUrl('effortless/on-floor-slot/' + self.sid);
-      }
-    });
+    this.gds.completeSlotConversionPayload = payload;
+    this.gds.editSealPayload = {};
+    this.gds.stageMngr.stage = 'summary';
+    this.router.navigateByUrl('effortless/mlc-conversion/' + this.sid);
+    //this.gds.smqGamingAgent.CompleteConversionFloorAdv(payload).then(resp => {
+    //  if (!resp.ErrorMessage) {
+    //    this.router.navigateByUrl('effortless/on-floor-slot/' + self.sid);
+    //  }
+    //});
   }
 
 
@@ -108,6 +115,7 @@ export class MlcChecklistComponent extends EffortlessComponentBase implements On
   cancel(){
     let self = this;
     this.gds.stageMngr = { slot: '', operation: '', stage: '' };
+    this.gds.editSealPayload = {};
     this.router.navigateByUrl('effortless/on-floor-slot/' + self.sid); 
   }
 

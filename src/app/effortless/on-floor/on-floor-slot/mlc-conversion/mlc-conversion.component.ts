@@ -55,7 +55,10 @@ export class MlcConversionComponent extends EffortlessComponentBase implements O
     this.stage = this.gds.stageMngr.stage;
   }
 
-  next(){
+  finish() {
+    let self = this;
+    this.gds.smqSlotRepairAdmin.CompleteConversionMLC(this.gds.completeSlotConversionPayload).then(function (reply) {
+    });
   }
 
   cancel() {

@@ -86,8 +86,10 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
 
   next() {
     if (this.context == 'mlc-conversion') {
+      this.gds.stageMngr.stage = 'checklist';
       this.router.navigateByUrl('effortless/mlc-checklist/' + this.sid);
     } else if (this.context = 'lsc-conversion') {
+      this.gds.stageMngr.stage = 'checklist';
       this.router.navigateByUrl('effortless/lsc-checklist/' + this.sid);
     } else { 
       this.router.navigateByUrl('effortless/edit-seals-logic-access/' + this.sid);
