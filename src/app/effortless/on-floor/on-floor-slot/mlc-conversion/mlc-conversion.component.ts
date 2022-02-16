@@ -57,6 +57,8 @@ export class MlcConversionComponent extends EffortlessComponentBase implements O
 
   finish() {
     let self = this;
+    let payload = self.gds.createPayload();
+    this.gds.completeSlotConversionPayload = Object.assign(payload, this.gds.completeSlotConversionPayload);
     this.gds.smqSlotRepairAdmin.CompleteConversionMLC(this.gds.completeSlotConversionPayload).then(function (reply) {
     });
   }
