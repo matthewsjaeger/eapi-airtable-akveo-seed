@@ -14,12 +14,12 @@ export class LscChecklistComponent extends EffortlessComponentBase implements On
 
   checklist: any = {
     SecurityOfficer: '', ScheduledChanges: '', BillTest: '', TicketTest: '', VerifyAmount: '', MeterTest: '', 
-    CorrectDeficiencies: '', MealBook: ''
+    CorrectAny: '', MealBook: ''
   }
 
   tempChecklist: any = {
     SecurityOfficer: {}, ScheduledChanges: {}, BillTest: {}, TicketTest: {}, VerifyAmount: {}, MeterTest: {}, 
-    CorrectDeficiencies: {}, MealBook: {}
+    CorrectAny: {}, MealBook: {}
   }
 
   checked = false;
@@ -69,7 +69,7 @@ export class LscChecklistComponent extends EffortlessComponentBase implements On
     if (this.checklist.TicketTest) this.checklistMetadata.PercentComplete += 10;
     if (this.checklist.VerifyAmount) this.checklistMetadata.PercentComplete += 10;
     if (this.checklist.MeterTest) this.checklistMetadata.PercentComplete += 10;
-    if (this.checklist.CorrectDeficiencies) this.checklistMetadata.PercentComplete += 10;
+    if (this.checklist.CorrectAny) this.checklistMetadata.PercentComplete += 10;
     if (this.checklist.MealBook) this.checklistMetadata.PercentComplete += 10;
   
     this.checklistMetadata.Status = (this.checklistMetadata.PercentComplete == 100) ? 4 : 1;

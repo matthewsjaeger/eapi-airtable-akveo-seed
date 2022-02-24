@@ -51,11 +51,11 @@
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MeterTest.Fail" (change)="applyToChecklist('MeterTest', 'Fail')">Fail</nb-checkbox>
                 <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.MeterTest.Pass" (change)="applyToChecklist('MeterTest', 'Pass')">Pass</nb-checkbox>
             </nb-list-item>
-            <nb-list-item [style.backgroundColor]="tempChecklist.CorrectDeficiencies.No ? 'rgba(255, 0, 0, 0.705)': ''">
+            <nb-list-item [style.backgroundColor]="tempChecklist.CorrectAny.No ? 'rgba(255, 0, 0, 0.705)': ''">
                 <label> Correct any Deficiencies:</label>
-                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.CorrectDeficiencies.NA" (change)="applyToChecklist('CorrectDeficiencies', 'NA')">N/A</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.CorrectDeficiencies.No" (change)="applyToChecklist('CorrectDeficiencies', 'No')">No</nb-checkbox>
-                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.CorrectDeficiencies.Yes" (change)="applyToChecklist('CorrectDeficiencies', 'Yes')">Yes</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.CorrectAny.NA" (change)="applyToChecklist('CorrectAny', 'NA')">N/A</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.CorrectAny.No" (change)="applyToChecklist('CorrectAny', 'No')">No</nb-checkbox>
+                <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.CorrectAny.Yes" (change)="applyToChecklist('CorrectAny', 'Yes')">Yes</nb-checkbox>
             </nb-list-item>
             <nb-list-item [style.backgroundColor]="tempChecklist.MealBook.Fail ? 'rgba(255, 0, 0, 0.705)': ''">
                 <label> Meal Book Entry:</label>

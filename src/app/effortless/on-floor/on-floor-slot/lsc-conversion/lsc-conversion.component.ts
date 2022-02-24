@@ -60,6 +60,7 @@ export class LscConversionComponent extends EffortlessComponentBase implements O
     let payload = self.gds.createPayload();
     this.gds.completeSlotConversionPayload = Object.assign(payload, this.gds.completeSlotConversionPayload);
     this.gds.smqSlotRepairAdmin.CompleteConversionLSC(this.gds.completeSlotConversionPayload).then(function (reply) {
+      console.error('EEEEE', reply);
     });
   }
 
