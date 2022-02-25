@@ -63,18 +63,18 @@ export class LscChecklistComponent extends EffortlessComponentBase implements On
 
   updatePercentComplete = function () {
     this.checklistMetadata.PercentComplete = 0;
-    if (this.checklist.SecurityOfficer) this.checklistMetadata.PercentComplete += 30;
-    if (this.checklist.ScheduledChanges) this.checklistMetadataPercentComplete += 10;
-    if (this.checklist.BillTest) this.checklistMetadata.PercentComplete += 10;
-    if (this.checklist.TicketTest) this.checklistMetadata.PercentComplete += 10;
-    if (this.checklist.VerifyAmount) this.checklistMetadata.PercentComplete += 10;
-    if (this.checklist.MeterTest) this.checklistMetadata.PercentComplete += 10;
-    if (this.checklist.CorrectAny) this.checklistMetadata.PercentComplete += 10;
-    if (this.checklist.MealBook) this.checklistMetadata.PercentComplete += 10;
+    if (this.checklist.SecurityOfficer) (this.checklistMetadata.PercentComplete += 30);
+    if (this.checklist.ScheduledChanges) (this.checklistMetadata.PercentComplete += 10);
+    if (this.checklist.BillTest) (this.checklistMetadata.PercentComplete += 10);
+    if (this.checklist.TicketTest) (this.checklistMetadata.PercentComplete += 10);
+    if (this.checklist.VerifyAmount) (this.checklistMetadata.PercentComplete += 10);
+    if (this.checklist.MeterTest) (this.checklistMetadata.PercentComplete += 10);
+    if (this.checklist.CorrectAny) (this.checklistMetadata.PercentComplete += 10);
+    if (this.checklist.MealBook) (this.checklistMetadata.PercentComplete += 10);
   
     this.checklistMetadata.Status = (this.checklistMetadata.PercentComplete == 100) ? 4 : 1;
     this.checklistMetadata.ComplianceStatus = (!this.checklist.SecurityOfficer)
-     ? 1 : (this.checklistMetadata.PercentComplete == 100) ? 0 : 2;
+      ? 1 : (this.checklistMetadata.PercentComplete == 100) ? 0 : 2;
   };
 
   applyToChecklist = function (question, answer) {
