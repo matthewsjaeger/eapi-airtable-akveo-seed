@@ -8,7 +8,7 @@
     <nb-card-body>
         <nb-list>
             <nb-list-item [style.backgroundColor]="tempChecklist.ScheduledChanges.Fail ? '#ff3d71' : ''">
-                <label>All scheduled changes for this slot have been completed successfully. All physical machine parametersmatch IRIS/GAINS. </label>
+                <label>All scheduled changes for this slot have been completed successfully. All physical machine parameters match IRIS/GAINS. </label>
                     <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ScheduledChanges.Fail"
                     (change)="applyToChecklist('ScheduledChanges','Fail')">Fail</nb-checkbox>
                     <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ScheduledChanges.Pass"
