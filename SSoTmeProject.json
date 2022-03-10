@@ -7,17 +7,12 @@
   "SaveDisabled": false,
   "SSoTmeProjectId": "aeef2e28-64c4-4305-b6eb-25b51422f07a",
   "Name": "akveo-gains",
-  "RootPath": "C:\\Development\\akveo-gains",
+  "RootPath": "C:\\Users\\jaegerm\\Documents\\akveo-gains",
   "ProjectSettings": [
     {
       "ProjectSettingId": "9ac2ced5-53e1-48ca-8ac9-b3c4aacb3bf5",
       "Name": "project-name",
       "Value": "akveo-gains"
-    },
-    {
-      "ProjectSettingId": "8a11da33-fa75-4988-a0b1-a99b6689cc0b",
-      "Name": "amqps",
-      "Value": "amqps://smqPublic:smqPublic@effortlessapi-rmq.ssot.me/derek-united-senior-placement-usp"
     },
     {
       "ProjectSettingId": "095a6d92-66ca-4e4e-8755-5420705abb45",
@@ -35,7 +30,7 @@
         "Description": "SSoT",
         "CreatedOn": "2019-07-14T22:53:06.39",
         "IsActive": true,
-        "CurrentRoutingKey": "amq.gen-X7WPJPrCNvnykdOzqen0xw",
+        "CurrentRoutingKey": "amq.gen-_Jud8UGtoHV_lyvf6pK-mg",
         "LowerName": "ssot",
         "UpperName": "SSOT",
         "LowerHyphenName": "s-so-t",
@@ -68,10 +63,11 @@
         "Description": "Creates a Javascript client library for Rabbit MQ, given an Smtl file.",
         "CreatedOn": "2017-09-15T22:13:31.157",
         "IsActive": true,
-        "CurrentRoutingKey": "amq.gen-GZt_WPA6iq6kpkhR-QMoHw",
+        "CurrentRoutingKey": "amq.gen-wZvsHdxvkJRMgm4AIKQ4Ig",
         "LowerName": "smqltojavascriptrabbitmq",
         "UpperName": "SMQLTOJAVASCRIPTRABBITMQ",
         "LowerHyphenName": "smql-to-javascript-rabbit-m-q",
+        "InputDescriptionMD": "-p angular=true  (will format smq.js files for angular projects)\r\n-p react=true (will format smq.js files for react projects)",
         "InputFileTypeId": "87c1c579-ea4f-47db-a064-f26f9ca1d91e",
         "OutputFileTypeId": "17eb1618-4281-4f8e-9ed7-773ae1c81245",
         "Category": "rabbitmq",
@@ -106,7 +102,7 @@
         "Description": "ODXML To Effortless Api Typescript Endpoint",
         "CreatedOn": "2019-11-21T19:39:08.587",
         "IsActive": true,
-        "CurrentRoutingKey": "amq.gen-X7WPJPrCNvnykdOzqen0xw",
+        "CurrentRoutingKey": "amq.gen-Nh4h5xHf1T_ucnEIV5YjqQ",
         "LowerName": "odxmltoeffortlessapitypescriptendpoint",
         "UpperName": "ODXMLTOEFFORTLESSAPITYPESCRIPTENDPOINT",
         "LowerHyphenName": "o-d-x-m-l-to-effortless-api-typescript-endpoint",
@@ -145,7 +141,7 @@
         "Description": "Given an Xml and Xslt file, will process and \"split\" a resulting fileset.",
         "CreatedOn": "2017-08-30T15:45:09.907",
         "IsActive": true,
-        "CurrentRoutingKey": "amq.gen-pwRUdyqwEq8fPN8gkK7ADg",
+        "CurrentRoutingKey": "amq.gen-9UUAbm6e0ORY0iYDCJTtLA",
         "LowerName": "xmlxslttransform",
         "UpperName": "XMLXSLTTRANSFORM",
         "LowerHyphenName": "xml-xslt-transform",

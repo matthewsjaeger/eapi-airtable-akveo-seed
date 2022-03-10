@@ -1,4 +1,4 @@
-<nb-card [size]="'large'" *ngIf="stage == 'summary'">
+<nb-card [size]="'large'" *ngIf="stage == 'summary' && slot">
   <nb-card-header>
     <button nbButton outline size="medium" status="danger" class="float-left" (click)="cancel()">
       <nb-icon icon="slash-outline"></nb-icon>Cancel
@@ -6,11 +6,42 @@
     <h4 style="width: fit-content; margin: auto;">Conversion Summary </h4>
   </nb-card-header>
   <nb-card-body>
-    Floor Moves/ Changes
-
-
-    <hr>
-    <b>Location Details:</b>
+    <h6 style="color: blue;">Floor Moves / Changes:</h6>
+    <nb-list>
+      <nb-list-item *ngIf="slot.SlotNumber != conversion.SlotNumber"><p class="m-0"> <b>SlotNumber:</b> {{slot.SlotNumber}} <nb-icon icon="arrow-forward-outline"></nb-icon> {{conversion.SlotNumber}}</p></nb-list-item>
+      <nb-list-item *ngIf="slot.DetailedGameName != conversion.DetailedGameName"><p class="m-0"> <b>Game Name:</b> {{slot.DetailedGameName}} <nb-icon icon="arrow-forward-outline"></nb-icon> <br />{{conversion.DetailedGameName}}</p></nb-list-item>
+      <nb-list-item *ngIf="slot.ProgressiveDef != conversion.ProgressiveDef"><p class="m-0"> <b>Progressive Def:</b> {{slot.ProgressiveDef}} [{{slot.ProgressiveHId}}] <nb-icon icon="arrow-forward-outline"></nb-icon> {{conversion.ProgressiveDef}} [{{conversion.ProgressiveHId}}]</p></nb-list-item>
+      <nb-list-item *ngIf="slot.Zone != conversion.Zone"><p class="m-0"> <b>Zone:</b> {{slot.Zone}} <nb-icon icon="arrow-forward-outline"></nb-icon> {{conversion.Zone}}</p></nb-list-item>
+      <nb-list-item *ngIf="slot.Address != conversion.Address"><p class="m-0"> <b>Address:</b> {{slot.Address}} <nb-icon icon="arrow-forward-outline"></nb-icon> {{conversion.Address}}</p></nb-list-item>
+      <nb-list-item *ngIf="slot.SystemAddress != conversion.SystemAddress"><p class="m-0"> <b>SystemAddress:</b> {{slot.SystemAddress}} <nb-icon icon="arrow-forward-outline"></nb-icon> {{conversion.SystemAddress}}</p></nb-list-item>
+      <nb-list-item *ngIf="slot.SlotLocation != conversion.SlotLocation"><p class="m-0"> <b>SlotLocation:</b> {{slot.SlotLocation}} <nb-icon icon="arrow-forward-outline"></nb-icon> {{conversion.SlotLocation}}</p></nb-list-item>
+      <nb-list-item *ngIf="slot.GameType != conversion.GameType"><p class="m-0"> <b>GameType:</b> {{slot.GameType}} <nb-icon icon="arrow-forward-outline"></nb-icon> {{conversion.GameType}}</p></nb-list-item>
+      <nb-list-item *ngIf="slot.TITO != conversion.TITO"><p class="m-0"> <b>TITO:</b> {{slot.TITO}} <nb-icon icon="arrow-forward-outline"></nb-icon> {{conversion.TITO}}</p></nb-list-item>
+      <nb-list-item *ngIf="slot.Bill != conversion.Bill"><p class="m-0"> <b>Bill:</b> {{slot.Bill}} <nb-icon icon="arrow-forward-outline"></nb-icon> {{conversion.Bill}}</p></nb-list-item>
+      <nb-list-item *ngIf="slot.Coin != conversion.Coin"><p class="m-0"> <b>Coin:</b> {{slot.Coin}} <nb-icon icon="arrow-forward-outline"></nb-icon> {{conversion.Coin}}</p></nb-list-item>
+      <nb-list-item *ngIf="slot.Tokenized != conversion.Tokenized"><p class="m-0"> <b>Tokenized:</b> {{slot.Tokenized}} <nb-icon icon="arrow-forward-outline"></nb-icon> {{conversion.Tokenized}}</p></nb-list-item>
+      <nb-list-item *ngIf="slot.EFTEnabled != conversion.EFTEnabled"><p class="m-0"> <b>EFTEnabled:</b> {{slot.EFTEnabled}} <nb-icon icon="arrow-forward-outline"></nb-icon> {{conversion.EFTEnabled}}</p></nb-list-item>
+      <nb-list-item *ngIf="slot.DOM != conversion.DOM"><p class="m-0"> <b>DOM:</b> {{slot.DOM}} <nb-icon icon="arrow-forward-outline"></nb-icon> {{conversion.DOM}}</p></nb-list-item>
+      <nb-list-item *ngIf="slot.LastAudited != conversion.LastAudited"><p class="m-0"> <b>LastAudited:</b> {{slot.LastAudited}} <nb-icon icon="arrow-forward-outline"></nb-icon> {{conversion.LastAudited}}</p></nb-list-item>
+      <nb-list-item *ngIf="slot.Version != conversion.Version"><p class="m-0"> <b>Version:</b> {{slot.Version}} <nb-icon icon="arrow-forward-outline"></nb-icon> {{conversion.Version}}</p></nb-list-item>
+      <nb-list-item *ngIf="slot.CabinetModel != conversion.CabinetModel"><p class="m-0"> <b>CabinetModel:</b> {{slot.CabinetModel}} <nb-icon icon="arrow-forward-outline"></nb-icon> {{conversion.CabinetModel}}</p></nb-list-item>
+      <nb-list-item *ngIf="slot.CabinetColor != conversion.CabinetColor"><p class="m-0"> <b>CabinetColor:</b> {{slot.CabinetColor}} <nb-icon icon="arrow-forward-outline"></nb-icon> {{conversion.CabinetColor}}</p></nb-list-item>
+      <nb-list-item *ngIf="slot.DBAType != conversion.DBAType"><p class="m-0"> <b>DBAType:</b> {{slot.DBAType}} <nb-icon icon="arrow-forward-outline"></nb-icon> {{conversion.DBAType}}</p></nb-list-item>
+      <nb-list-item *ngIf="slot.PrinterType != conversion.PrinterType"><p class="m-0"> <b>PrinterType:</b> {{slot.PrinterType}} <nb-icon icon="arrow-forward-outline"></nb-icon> {{conversion.PrinterType}}</p></nb-list-item>
+      <nb-list-item *ngIf="slot.CoinComparator != conversion.CoinComparator"><p class="m-0"> <b>CoinComparator:</b> {{slot.CoinComparator}} <nb-icon icon="arrow-forward-outline"></nb-icon> {{conversion.CoinComparator}}</p></nb-list-item>
+      <nb-list-item *ngIf="slot.TypeCode != conversion.TypeCode"><p class="m-0"> <b>TypeCode:</b> {{slot.TypeCode}} <nb-icon icon="arrow-forward-outline"></nb-icon> {{conversion.TypeCode}}</p></nb-list-item>
+      <nb-list-item *ngIf="slot.DateOfDelivery != conversion.DateOfDelivery"><p class="m-0"> <b>DateOfDelivery:</b> {{slot.DateOfDelivery}} <nb-icon icon="arrow-forward-outline"></nb-icon> {{conversion.DateOfDelivery}}</p></nb-list-item>
+      <nb-list-item *ngIf="slot.HSNEnabled != conversion.HSNEnabled"><p class="m-0"> <b>HSNEnabled:</b> {{slot.HSNEnabled}} <nb-icon icon="arrow-forward-outline"></nb-icon> {{conversion.HSNEnabled}}</p></nb-list-item>
+      <nb-list-item *ngIf="slot.Notes != conversion.Notes"><p class="m-0"> <b>Notes:</b> {{slot.Notes}} <nb-icon icon="arrow-forward-outline"></nb-icon> {{conversion.Notes}}</p></nb-list-item>
+      <nb-list-item *ngIf="slot.LinkNumber != conversion.LinkNumber"><p class="m-0"> <b>LinkNumber:</b> {{slot.LinkNumber}} <nb-icon icon="arrow-forward-outline"></nb-icon> {{conversion.LinkNumber}}</p></nb-list-item>
+      <nb-list-item *ngIf="slot.DispositionApprovalDate != conversion.DispositionApprovalDate"><p class="m-0"> <b>DispositionApprovalDate:</b> {{slot.DispositionApprovalDate}} <nb-icon icon="arrow-forward-outline"></nb-icon> {{conversion.DispositionApprovalDate}}</p></nb-list-item>
+      <nb-list-item *ngIf="slot.DispositionResolutionNumber != conversion.DispositionResolutionNumber"><p class="m-0"> <b>DispositionResolutionNumber:</b> {{slot.DispositionResolutionNumber}} <nb-icon icon="arrow-forward-outline"></nb-icon> {{conversion.DispositionResolutionNumber}}</p></nb-list-item>
+    </nb-list>
+    <h6 style="color: blue;">Component Changes:</h6>
+    <nb-list>
+      <nb-list-item *ngFor="let def of added"><b>Added:</b> {{def.ToStringText}}</nb-list-item>
+      <nb-list-item *ngFor="let def of removed"><b>Removed:</b> {{def.ToStringText}}</nb-list-item>
+    </nb-list>
   </nb-card-body>
   <nb-card-footer>
     <button nbButton outline size="medium" status="danger" class="float-left" (click)="cancel()">
@@ -19,3 +50,28 @@
     <button nbButton outline class="float-right" (click)="finish()">finish</button>
   </nb-card-footer>
 </nb-card>
+
+<!--********************************************************************************
+Floor Moves/Changes  ARISTOCRAT (HXS8029134) Slot #: 18714 Lic #:11047 exp. 10-2021
+- Floor Moves/Changes Scheduled
+- GAME, LOCATION, CABINET, CUSTOM FIELDS, COMPONENT
+- Scheduled 12/21/2020
+********************************************************************************
+Game Changes:      -FROM-                      -TO-
+Machine#:         18714...................... 16166
+Master Game Def:  Sweet Daybreak $0.01 (90.10 %) 30L/450C Prog (Paytable: V1,i-            ndex 30)ARISTOCRAT [GID621525]                         ==> Cash Bull $1.00 (93.00 %) 10L/100C Prog (Paytable: V2-            )ARISTOCRAT [GID795240]    Master Progressive Def:AR 3L V4 [PID8522]......... No progressive [PID1333]
+Location Details:   -FROM-                      -TO-
+Zone:             D21........................ F10
+Floor Address:    1D2105..................... 1F1006
+Cabinet Details:   -FROM-                      -TO-
+Version:          R 1L SA.................... (none)
+Custom Fields:     -FROM-                      -TO-
+Type Code:        APSGRA..................... (none)
+Link Number:      537........................ (none)
+Component Changes:
+REMOVE: 1.01-63251; GEN7/GEN8; J12/J17 (PERSONALITY PGM - ARISTOCRAT; Sweet Da-            ybreak; CF)  Approved
+REMOVE: Linux OS; X.54.3; J12 OR J17 OR J8/J9 OR J638/J639 OR J12/J13 (OTHER --            ARISTOCRAT; 05/17/2018; CFAST) [GAT\NO SEED=831BE531196E3816B7FC9D8A19-            E045749821E6...] (Approved)
+REMOVE: 5.10.0-1.00.4; GEN7/GEN7X/GEN8; J12 OR J17 OR J8/J9 OR J638/J639 OR J1-            2/J13 (MAIN PGM - ARISTOCRAT; 05/17/18; CFAST) [GAT\NO SEED=D50F910E08-            E24A860D2BD3CC3A795FDA5334DA...] (Approved)
+ADD:    1.02-63738; NA;  (Game - ARISTOCRAT) [SHA1=46A907A10B849D30D00D9C2CCE7-            21FF9B3FCF71B] Approved
+ADD:    5.08.1-1.00.0; GEN7/GEN7X/GEN8; J12 OR J17 OR J8/J9 OR J638/J639 OR J1-            2/J13 (MAIN PGM - ARISTOCRAT; PLATFORM/MARKET; CFAST) [GAT\NO SEED=511-            FE1E4F9045D83C89420DF21EF4E5673A66C...] (Approved)
+ADD:    Linux OS; X.51.3; J12 OR J17 OR J8/J9 OR J638/J639 OR J12/J13 (OTHER --            ARISTOCRAT; LINUX OPERATING SYSTEM; CF) [GAT\NO SEED=B10AC9D10387CF16D-            EB3565B430854DB5A46A0...] (Approved)-->

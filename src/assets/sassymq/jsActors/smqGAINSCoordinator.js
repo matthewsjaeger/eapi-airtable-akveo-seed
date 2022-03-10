@@ -1,5 +1,3 @@
-
-
 function generateGAINSCoordinatorActor() {
     var smqGAINSCoordinator = {
     };
@@ -29,12 +27,12 @@ function generateGAINSCoordinatorActor() {
         smqGAINSCoordinator.messages = [];
         smqGAINSCoordinator.waitingReply = [];
         
-        smqGAINSCoordinator.client = Stomp.client(smqGAINSCoordinator.rabbitEndpoint);
+        smqGAINSCoordinator.client = window.Stomp.client(smqGAINSCoordinator.rabbitEndpoint);
 
         smqGAINSCoordinator.client.debug = function (m, p) {
             if (((m == ">>> PING") || (m == "<<< PONG")) && !smqGAINSCoordinator.showPingPongs) return;
             else {
-                if (m == "<<< ") delete m;
+                if (m == "<<< ") m = "";
                 let data = p || m || "STRING"; 
                 let indexOfContentLength = data.indexOf("content-length:");
                 let dataStart = data.indexOf("\n\n");
@@ -52,7 +50,7 @@ function generateGAINSCoordinatorActor() {
                     }
                     m = m.substring(0, m.indexOf('\n\n'));
                 }
-                console.log("DEBUG: ", m, data || p); 
+                console.log('CREATED: ' + this.createdAt + ' - ', m, data || p); 
             }
         }
 
@@ -1052,6 +1050,83 @@ function generateGAINSCoordinatorActor() {
                     }
                 }
             
+                if (smqGAINSCoordinator.onGamingAgentPreventativeMaintenanceRecord) {
+                    if (msg.headers && (msg.headers.destination.includes('gainscoordinator.onfloor.gamingagent.preventativemaintenancerecord'))) {
+                        var rpayload = smqGAINSCoordinator.onGamingAgentPreventativeMaintenanceRecord(msg.body, msg);
+                        if (rpayload) smqGAINSCoordinator.sendReply(rpayload, msg);
+                    }
+                }
+            
+                if (smqGAINSCoordinator.onGAINSUserGetPersonByBadgeNumber) {
+                    if (msg.headers && (msg.headers.destination.includes('gainscoordinator.assets.gainsuser.getpersonbybadgenumber'))) {
+                        var rpayload = smqGAINSCoordinator.onGAINSUserGetPersonByBadgeNumber(msg.body, msg);
+                        if (rpayload) smqGAINSCoordinator.sendReply(rpayload, msg);
+                    }
+                }
+            
+                if (smqGAINSCoordinator.onGAINSUserValidateNewSealNumber) {
+                    if (msg.headers && (msg.headers.destination.includes('gainscoordinator.assets.gainsuser.validatenewsealnumber'))) {
+                        var rpayload = smqGAINSCoordinator.onGAINSUserValidateNewSealNumber(msg.body, msg);
+                        if (rpayload) smqGAINSCoordinator.sendReply(rpayload, msg);
+                    }
+                }
+            
+                if (smqGAINSCoordinator.onGAINSUserSearchGameName) {
+                    if (msg.headers && (msg.headers.destination.includes('gainscoordinator.assets.gainsuser.searchgamename'))) {
+                        var rpayload = smqGAINSCoordinator.onGAINSUserSearchGameName(msg.body, msg);
+                        if (rpayload) smqGAINSCoordinator.sendReply(rpayload, msg);
+                    }
+                }
+            
+                if (smqGAINSCoordinator.onGAINSUserSearchProgressiveDef) {
+                    if (msg.headers && (msg.headers.destination.includes('gainscoordinator.assets.gainsuser.searchprogressivedef'))) {
+                        var rpayload = smqGAINSCoordinator.onGAINSUserSearchProgressiveDef(msg.body, msg);
+                        if (rpayload) smqGAINSCoordinator.sendReply(rpayload, msg);
+                    }
+                }
+            
+                if (smqGAINSCoordinator.onSlotRepairAdminCompleteConversionMLC) {
+                    if (msg.headers && (msg.headers.destination.includes('gainscoordinator.onfloor.slotrepairadmin.completeconversionmlc'))) {
+                        var rpayload = smqGAINSCoordinator.onSlotRepairAdminCompleteConversionMLC(msg.body, msg);
+                        if (rpayload) smqGAINSCoordinator.sendReply(rpayload, msg);
+                    }
+                }
+            
+                if (smqGAINSCoordinator.onSlotRepairAdminCompleteConversionLSC) {
+                    if (msg.headers && (msg.headers.destination.includes('gainscoordinator.onfloor.slotrepairadmin.completeconversionlsc'))) {
+                        var rpayload = smqGAINSCoordinator.onSlotRepairAdminCompleteConversionLSC(msg.body, msg);
+                        if (rpayload) smqGAINSCoordinator.sendReply(rpayload, msg);
+                    }
+                }
+            
+                if (smqGAINSCoordinator.onSlotRepairAdminCompleteMoveToStorage) {
+                    if (msg.headers && (msg.headers.destination.includes('gainscoordinator.onfloor.slotrepairadmin.completemovetostorage'))) {
+                        var rpayload = smqGAINSCoordinator.onSlotRepairAdminCompleteMoveToStorage(msg.body, msg);
+                        if (rpayload) smqGAINSCoordinator.sendReply(rpayload, msg);
+                    }
+                }
+            
+                if (smqGAINSCoordinator.onSlotRepairAdminGetInstalledComponents) {
+                    if (msg.headers && (msg.headers.destination.includes('gainscoordinator.onfloor.slotrepairadmin.getinstalledcomponents'))) {
+                        var rpayload = smqGAINSCoordinator.onSlotRepairAdminGetInstalledComponents(msg.body, msg);
+                        if (rpayload) smqGAINSCoordinator.sendReply(rpayload, msg);
+                    }
+                }
+            
+                if (smqGAINSCoordinator.onSlotRepairAdminGetComponentById) {
+                    if (msg.headers && (msg.headers.destination.includes('gainscoordinator.onfloor.slotrepairadmin.getcomponentbyid'))) {
+                        var rpayload = smqGAINSCoordinator.onSlotRepairAdminGetComponentById(msg.body, msg);
+                        if (rpayload) smqGAINSCoordinator.sendReply(rpayload, msg);
+                    }
+                }
+            
+                if (smqGAINSCoordinator.onGAINSUserGetConversionDetails) {
+                    if (msg.headers && (msg.headers.destination.includes('gainscoordinator.onfloor.gainsuser.getconversiondetails'))) {
+                        var rpayload = smqGAINSCoordinator.onGAINSUserGetConversionDetails(msg.body, msg);
+                        if (rpayload) smqGAINSCoordinator.sendReply(rpayload, msg);
+                    }
+                }
+            
                 // Can also hear what 'GamingAgent' can hear.
                 
                 // Can also hear what 'BJFeltLog' can hear.
@@ -1858,6 +1933,22 @@ function generateGAINSCoordinatorActor() {
             var deferred = smqGAINSCoordinator.waitingReply[id] = smqGAINSCoordinator.defer();
             if (smqGamingAgent.showPingPongs) console.log('Suspended J P Reverify50 K - ');
             smqGAINSCoordinator.client.send('/exchange/gamingagentmic/gainscoordinator.onfloor.gamingagent.suspendedjpreverify50k', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGAINSCoordinator.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGAINSCoordinator.GamingAgentPreventativeMaintenanceRecord = function() {
+            smqGAINSCoordinator.GamingAgentPreventativeMaintenanceRecord('{}');
+        }
+
+        smqGAINSCoordinator.GamingAgentPreventativeMaintenanceRecord = function(payload) {
+            payload = smqGAINSCoordinator.stringifyValue(payload);
+            var id = smqGAINSCoordinator.createUUID();
+            var deferred = smqGAINSCoordinator.waitingReply[id] = smqGAINSCoordinator.defer();
+            if (smqGamingAgent.showPingPongs) console.log('Preventative Maintenance Record - ');
+            smqGAINSCoordinator.client.send('/exchange/gamingagentmic/gainscoordinator.onfloor.gamingagent.preventativemaintenancerecord', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
             
             smqGAINSCoordinator.waitFor(id);
             
@@ -2678,6 +2769,86 @@ function generateGAINSCoordinatorActor() {
             return deferred.promise;
         }
         
+        smqGAINSCoordinator.GAINSUserGetPersonByBadgeNumber = function() {
+            smqGAINSCoordinator.GAINSUserGetPersonByBadgeNumber('{}');
+        }
+
+        smqGAINSCoordinator.GAINSUserGetPersonByBadgeNumber = function(payload) {
+            payload = smqGAINSCoordinator.stringifyValue(payload);
+            var id = smqGAINSCoordinator.createUUID();
+            var deferred = smqGAINSCoordinator.waitingReply[id] = smqGAINSCoordinator.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Get Person By Badge Number - ');
+            smqGAINSCoordinator.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.getpersonbybadgenumber', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGAINSCoordinator.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGAINSCoordinator.GAINSUserValidateNewSealNumber = function() {
+            smqGAINSCoordinator.GAINSUserValidateNewSealNumber('{}');
+        }
+
+        smqGAINSCoordinator.GAINSUserValidateNewSealNumber = function(payload) {
+            payload = smqGAINSCoordinator.stringifyValue(payload);
+            var id = smqGAINSCoordinator.createUUID();
+            var deferred = smqGAINSCoordinator.waitingReply[id] = smqGAINSCoordinator.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Validate New Seal Number - ');
+            smqGAINSCoordinator.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.validatenewsealnumber', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGAINSCoordinator.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGAINSCoordinator.GAINSUserSearchGameName = function() {
+            smqGAINSCoordinator.GAINSUserSearchGameName('{}');
+        }
+
+        smqGAINSCoordinator.GAINSUserSearchGameName = function(payload) {
+            payload = smqGAINSCoordinator.stringifyValue(payload);
+            var id = smqGAINSCoordinator.createUUID();
+            var deferred = smqGAINSCoordinator.waitingReply[id] = smqGAINSCoordinator.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Search Game Name - ');
+            smqGAINSCoordinator.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.searchgamename', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGAINSCoordinator.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGAINSCoordinator.GAINSUserSearchProgressiveDef = function() {
+            smqGAINSCoordinator.GAINSUserSearchProgressiveDef('{}');
+        }
+
+        smqGAINSCoordinator.GAINSUserSearchProgressiveDef = function(payload) {
+            payload = smqGAINSCoordinator.stringifyValue(payload);
+            var id = smqGAINSCoordinator.createUUID();
+            var deferred = smqGAINSCoordinator.waitingReply[id] = smqGAINSCoordinator.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Search Progressive Def - ');
+            smqGAINSCoordinator.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.searchprogressivedef', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGAINSCoordinator.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGAINSCoordinator.GAINSUserGetConversionDetails = function() {
+            smqGAINSCoordinator.GAINSUserGetConversionDetails('{}');
+        }
+
+        smqGAINSCoordinator.GAINSUserGetConversionDetails = function(payload) {
+            payload = smqGAINSCoordinator.stringifyValue(payload);
+            var id = smqGAINSCoordinator.createUUID();
+            var deferred = smqGAINSCoordinator.waitingReply[id] = smqGAINSCoordinator.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Get Conversion Details - ');
+            smqGAINSCoordinator.client.send('/exchange/gainsusermic/gainscoordinator.onfloor.gainsuser.getconversiondetails', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGAINSCoordinator.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
             // Can also say what 'Guest' can say.
             
         
@@ -2709,6 +2880,7 @@ function generateGAINSCoordinatorActor() {
             payload = smqGAINSCoordinator.stringifyValue(payload);
             var id = smqGAINSCoordinator.createUUID();
             var deferred = smqGAINSCoordinator.waitingReply[id] = smqGAINSCoordinator.defer();
+            if (smqGuest.showPingPongs) console.log('Ping - Guest establishes a connection with the coordinator');
             smqGAINSCoordinator.client.send('/exchange/guestmic/gainscoordinator.account.guest.ping', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
             
             smqGAINSCoordinator.waitFor(id);
@@ -2724,6 +2896,7 @@ function generateGAINSCoordinatorActor() {
             payload = smqGAINSCoordinator.stringifyValue(payload);
             var id = smqGAINSCoordinator.createUUID();
             var deferred = smqGAINSCoordinator.waitingReply[id] = smqGAINSCoordinator.defer();
+            if (smqGuest.showPingPongs) console.log('Login - A Previously Unauthenticated Guest Logs in. If approved, their GAINSUser object is returned.');
             smqGAINSCoordinator.client.send('/exchange/guestmic/gainscoordinator.account.guest.login', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
             
             smqGAINSCoordinator.waitFor(id);
@@ -2735,3 +2908,4 @@ function generateGAINSCoordinatorActor() {
     return smqGAINSCoordinator;
 }
 
+                    

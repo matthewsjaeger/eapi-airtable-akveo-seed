@@ -157,7 +157,8 @@
                 ws.binaryType = "arraybuffer";
                 return ws;
             };
-            this.reconnect_delay = 500;
+            this.reconnect_delay = 5000;
+            this.createdAt = new Date();
             this.counter = 0;
             this.connected = false;
             this.heartbeat = {
@@ -422,7 +423,7 @@
             this.ws.onclose = (function (_this) {
                 return function (closeEvent) {
                     var msg;
-                    msg = "Whoops! Lost connection to " + _this.ws.url;
+                    msg = "Whoops! Lost connection to " + _this.ws.url + ' reconnect delay: ' + _this.reconnect_delay;
                     if (typeof _this.debug === "function") {
                         _this.debug(msg);
                     }
@@ -650,7 +651,7 @@
     if (typeof window !== "undefined" && window !== null) {
         window.Stomp = Stomp;
     } else if (!exports) {
-        self.Stomp = Stomp;
+        this.Stomp = Stomp;
     }
 
 }).call(this);

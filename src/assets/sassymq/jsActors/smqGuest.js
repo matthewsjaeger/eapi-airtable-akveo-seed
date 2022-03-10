@@ -1,5 +1,3 @@
-
-
 function generateGuestActor() {
     var smqGuest = {
     };
@@ -29,12 +27,12 @@ function generateGuestActor() {
         smqGuest.messages = [];
         smqGuest.waitingReply = [];
         
-        smqGuest.client = Stomp.client(smqGuest.rabbitEndpoint);
+        smqGuest.client = window.Stomp.client(smqGuest.rabbitEndpoint);
 
         smqGuest.client.debug = function (m, p) {
             if (((m == ">>> PING") || (m == "<<< PONG")) && !smqGuest.showPingPongs) return;
             else {
-                if (m == "<<< ") delete m;
+                if (m == "<<< ") m = "";
                 let data = p || m || "STRING"; 
                 let indexOfContentLength = data.indexOf("content-length:");
                 let dataStart = data.indexOf("\n\n");
@@ -52,7 +50,7 @@ function generateGuestActor() {
                     }
                     m = m.substring(0, m.indexOf('\n\n'));
                 }
-                console.log("DEBUG: ", m, data || p); 
+                console.log('CREATED: ' + this.createdAt + ' - ', m, data || p); 
             }
         }
 

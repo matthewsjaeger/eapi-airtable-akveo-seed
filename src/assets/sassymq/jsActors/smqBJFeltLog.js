@@ -1,5 +1,3 @@
-
-
 function generateBJFeltLogActor() {
     var smqBJFeltLog = {
     };
@@ -29,12 +27,12 @@ function generateBJFeltLogActor() {
         smqBJFeltLog.messages = [];
         smqBJFeltLog.waitingReply = [];
         
-        smqBJFeltLog.client = Stomp.client(smqBJFeltLog.rabbitEndpoint);
+        smqBJFeltLog.client = window.Stomp.client(smqBJFeltLog.rabbitEndpoint);
 
         smqBJFeltLog.client.debug = function (m, p) {
             if (((m == ">>> PING") || (m == "<<< PONG")) && !smqBJFeltLog.showPingPongs) return;
             else {
-                if (m == "<<< ") delete m;
+                if (m == "<<< ") m = "";
                 let data = p || m || "STRING"; 
                 let indexOfContentLength = data.indexOf("content-length:");
                 let dataStart = data.indexOf("\n\n");
@@ -52,7 +50,7 @@ function generateBJFeltLogActor() {
                     }
                     m = m.substring(0, m.indexOf('\n\n'));
                 }
-                console.log("DEBUG: ", m, data || p); 
+                console.log('CREATED: ' + this.createdAt + ' - ', m, data || p); 
             }
         }
 
@@ -946,6 +944,86 @@ function generateBJFeltLogActor() {
             return deferred.promise;
         }
         
+        smqBJFeltLog.GAINSUserGetPersonByBadgeNumber = function() {
+            smqBJFeltLog.GAINSUserGetPersonByBadgeNumber('{}');
+        }
+
+        smqBJFeltLog.GAINSUserGetPersonByBadgeNumber = function(payload) {
+            payload = smqBJFeltLog.stringifyValue(payload);
+            var id = smqBJFeltLog.createUUID();
+            var deferred = smqBJFeltLog.waitingReply[id] = smqBJFeltLog.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Get Person By Badge Number - ');
+            smqBJFeltLog.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.getpersonbybadgenumber', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqBJFeltLog.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqBJFeltLog.GAINSUserValidateNewSealNumber = function() {
+            smqBJFeltLog.GAINSUserValidateNewSealNumber('{}');
+        }
+
+        smqBJFeltLog.GAINSUserValidateNewSealNumber = function(payload) {
+            payload = smqBJFeltLog.stringifyValue(payload);
+            var id = smqBJFeltLog.createUUID();
+            var deferred = smqBJFeltLog.waitingReply[id] = smqBJFeltLog.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Validate New Seal Number - ');
+            smqBJFeltLog.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.validatenewsealnumber', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqBJFeltLog.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqBJFeltLog.GAINSUserSearchGameName = function() {
+            smqBJFeltLog.GAINSUserSearchGameName('{}');
+        }
+
+        smqBJFeltLog.GAINSUserSearchGameName = function(payload) {
+            payload = smqBJFeltLog.stringifyValue(payload);
+            var id = smqBJFeltLog.createUUID();
+            var deferred = smqBJFeltLog.waitingReply[id] = smqBJFeltLog.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Search Game Name - ');
+            smqBJFeltLog.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.searchgamename', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqBJFeltLog.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqBJFeltLog.GAINSUserSearchProgressiveDef = function() {
+            smqBJFeltLog.GAINSUserSearchProgressiveDef('{}');
+        }
+
+        smqBJFeltLog.GAINSUserSearchProgressiveDef = function(payload) {
+            payload = smqBJFeltLog.stringifyValue(payload);
+            var id = smqBJFeltLog.createUUID();
+            var deferred = smqBJFeltLog.waitingReply[id] = smqBJFeltLog.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Search Progressive Def - ');
+            smqBJFeltLog.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.searchprogressivedef', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqBJFeltLog.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqBJFeltLog.GAINSUserGetConversionDetails = function() {
+            smqBJFeltLog.GAINSUserGetConversionDetails('{}');
+        }
+
+        smqBJFeltLog.GAINSUserGetConversionDetails = function(payload) {
+            payload = smqBJFeltLog.stringifyValue(payload);
+            var id = smqBJFeltLog.createUUID();
+            var deferred = smqBJFeltLog.waitingReply[id] = smqBJFeltLog.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Get Conversion Details - ');
+            smqBJFeltLog.client.send('/exchange/gainsusermic/gainscoordinator.onfloor.gainsuser.getconversiondetails', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqBJFeltLog.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
             // Can also say what 'Guest' can say.
             
         
@@ -977,6 +1055,7 @@ function generateBJFeltLogActor() {
             payload = smqBJFeltLog.stringifyValue(payload);
             var id = smqBJFeltLog.createUUID();
             var deferred = smqBJFeltLog.waitingReply[id] = smqBJFeltLog.defer();
+            if (smqGuest.showPingPongs) console.log('Ping - Guest establishes a connection with the coordinator');
             smqBJFeltLog.client.send('/exchange/guestmic/gainscoordinator.account.guest.ping', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
             
             smqBJFeltLog.waitFor(id);
@@ -992,6 +1071,7 @@ function generateBJFeltLogActor() {
             payload = smqBJFeltLog.stringifyValue(payload);
             var id = smqBJFeltLog.createUUID();
             var deferred = smqBJFeltLog.waitingReply[id] = smqBJFeltLog.defer();
+            if (smqGuest.showPingPongs) console.log('Login - A Previously Unauthenticated Guest Logs in. If approved, their GAINSUser object is returned.');
             smqBJFeltLog.client.send('/exchange/guestmic/gainscoordinator.account.guest.login', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
             
             smqBJFeltLog.waitFor(id);
@@ -1003,3 +1083,4 @@ function generateBJFeltLogActor() {
     return smqBJFeltLog;
 }
 
+                    

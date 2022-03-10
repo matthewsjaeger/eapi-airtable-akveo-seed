@@ -1,5 +1,3 @@
-
-
 function generateGamingAgentActor() {
     var smqGamingAgent = {
     };
@@ -29,12 +27,12 @@ function generateGamingAgentActor() {
         smqGamingAgent.messages = [];
         smqGamingAgent.waitingReply = [];
         
-        smqGamingAgent.client = Stomp.client(smqGamingAgent.rabbitEndpoint);
+        smqGamingAgent.client = window.Stomp.client(smqGamingAgent.rabbitEndpoint);
 
         smqGamingAgent.client.debug = function (m, p) {
             if (((m == ">>> PING") || (m == "<<< PONG")) && !smqGamingAgent.showPingPongs) return;
             else {
-                if (m == "<<< ") delete m;
+                if (m == "<<< ") m = "";
                 let data = p || m || "STRING"; 
                 let indexOfContentLength = data.indexOf("content-length:");
                 let dataStart = data.indexOf("\n\n");
@@ -52,7 +50,7 @@ function generateGamingAgentActor() {
                     }
                     m = m.substring(0, m.indexOf('\n\n'));
                 }
-                console.log("DEBUG: ", m, data || p); 
+                console.log('CREATED: ' + this.createdAt + ' - ', m, data || p); 
             }
         }
 
@@ -1659,6 +1657,86 @@ function generateGamingAgentActor() {
             return deferred.promise;
         }
         
+        smqGamingAgent.GAINSUserGetPersonByBadgeNumber = function() {
+            smqGamingAgent.GAINSUserGetPersonByBadgeNumber('{}');
+        }
+
+        smqGamingAgent.GAINSUserGetPersonByBadgeNumber = function(payload) {
+            payload = smqGamingAgent.stringifyValue(payload);
+            var id = smqGamingAgent.createUUID();
+            var deferred = smqGamingAgent.waitingReply[id] = smqGamingAgent.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Get Person By Badge Number - ');
+            smqGamingAgent.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.getpersonbybadgenumber', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGamingAgent.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGamingAgent.GAINSUserValidateNewSealNumber = function() {
+            smqGamingAgent.GAINSUserValidateNewSealNumber('{}');
+        }
+
+        smqGamingAgent.GAINSUserValidateNewSealNumber = function(payload) {
+            payload = smqGamingAgent.stringifyValue(payload);
+            var id = smqGamingAgent.createUUID();
+            var deferred = smqGamingAgent.waitingReply[id] = smqGamingAgent.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Validate New Seal Number - ');
+            smqGamingAgent.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.validatenewsealnumber', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGamingAgent.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGamingAgent.GAINSUserSearchGameName = function() {
+            smqGamingAgent.GAINSUserSearchGameName('{}');
+        }
+
+        smqGamingAgent.GAINSUserSearchGameName = function(payload) {
+            payload = smqGamingAgent.stringifyValue(payload);
+            var id = smqGamingAgent.createUUID();
+            var deferred = smqGamingAgent.waitingReply[id] = smqGamingAgent.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Search Game Name - ');
+            smqGamingAgent.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.searchgamename', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGamingAgent.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGamingAgent.GAINSUserSearchProgressiveDef = function() {
+            smqGamingAgent.GAINSUserSearchProgressiveDef('{}');
+        }
+
+        smqGamingAgent.GAINSUserSearchProgressiveDef = function(payload) {
+            payload = smqGamingAgent.stringifyValue(payload);
+            var id = smqGamingAgent.createUUID();
+            var deferred = smqGamingAgent.waitingReply[id] = smqGamingAgent.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Search Progressive Def - ');
+            smqGamingAgent.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.searchprogressivedef', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGamingAgent.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGamingAgent.GAINSUserGetConversionDetails = function() {
+            smqGamingAgent.GAINSUserGetConversionDetails('{}');
+        }
+
+        smqGamingAgent.GAINSUserGetConversionDetails = function(payload) {
+            payload = smqGamingAgent.stringifyValue(payload);
+            var id = smqGamingAgent.createUUID();
+            var deferred = smqGamingAgent.waitingReply[id] = smqGamingAgent.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Get Conversion Details - ');
+            smqGamingAgent.client.send('/exchange/gainsusermic/gainscoordinator.onfloor.gainsuser.getconversiondetails', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGamingAgent.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
             // Can also say what 'Guest' can say.
             
         
@@ -1690,6 +1768,7 @@ function generateGamingAgentActor() {
             payload = smqGamingAgent.stringifyValue(payload);
             var id = smqGamingAgent.createUUID();
             var deferred = smqGamingAgent.waitingReply[id] = smqGamingAgent.defer();
+            if (smqGuest.showPingPongs) console.log('Ping - Guest establishes a connection with the coordinator');
             smqGamingAgent.client.send('/exchange/guestmic/gainscoordinator.account.guest.ping', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
             
             smqGamingAgent.waitFor(id);
@@ -1705,6 +1784,7 @@ function generateGamingAgentActor() {
             payload = smqGamingAgent.stringifyValue(payload);
             var id = smqGamingAgent.createUUID();
             var deferred = smqGamingAgent.waitingReply[id] = smqGamingAgent.defer();
+            if (smqGuest.showPingPongs) console.log('Login - A Previously Unauthenticated Guest Logs in. If approved, their GAINSUser object is returned.');
             smqGamingAgent.client.send('/exchange/guestmic/gainscoordinator.account.guest.login', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
             
             smqGamingAgent.waitFor(id);
@@ -1716,3 +1796,4 @@ function generateGamingAgentActor() {
     return smqGamingAgent;
 }
 
+                    

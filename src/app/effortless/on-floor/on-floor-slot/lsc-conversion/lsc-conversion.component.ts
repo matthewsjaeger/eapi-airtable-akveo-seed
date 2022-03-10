@@ -16,6 +16,9 @@ export class LscConversionComponent extends EffortlessComponentBase implements O
   slot: any;
   stage: any;
   conversion: any;
+  asc: any;
+  added: any = [];
+  removed: any = [];
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, public route: ActivatedRoute) {
     super(gds, data, menuService)
@@ -36,14 +39,24 @@ export class LscConversionComponent extends EffortlessComponentBase implements O
       this.router.navigateByUrl('effortless/lsc-checklist/' + this.sid);
     } else if (this.stage == 'summary') {
       let payload = self.gds.createPayload();
-      payload.Slot = {};
-      payload.Slot.SlotId = self.sid;
-      self.gds.smqUser.GetSlotViewDetails(payload).then(function (reply) {
+      payload.SlotView = {};
+      payload.SlotView.SlotId = self.sid;
+      self.gds.smqUser.GetConversionDetails(payload).then(function (reply) {
         self.slot = reply.SlotView;
-        self.conversion = reply.Conversion
+        self.conversion = reply.SlotView.Conversion
+        self.asc = reply.ASC;
+        reply.SlotComponentDefs.forEach(def => {
+          if (def.BeingAdded == 1) {
+            self.added.push(def);
+          } else {
+            self.removed.push(def);
+          }
+        });
 
-        console.error(self.slot)
-        console.error(self.conversion)
+        console.error('aaa', self.slot)
+        console.error('aaa', self.conversion)
+        console.error('bbb', self.added)
+        console.error('ccc', self.removed)
       });
     }
   }

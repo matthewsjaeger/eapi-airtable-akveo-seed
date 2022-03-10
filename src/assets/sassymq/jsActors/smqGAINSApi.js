@@ -1,5 +1,3 @@
-
-
 function generateGAINSApiActor() {
     var smqGAINSApi = {
     };
@@ -29,12 +27,12 @@ function generateGAINSApiActor() {
         smqGAINSApi.messages = [];
         smqGAINSApi.waitingReply = [];
         
-        smqGAINSApi.client = Stomp.client(smqGAINSApi.rabbitEndpoint);
+        smqGAINSApi.client = window.Stomp.client(smqGAINSApi.rabbitEndpoint);
 
         smqGAINSApi.client.debug = function (m, p) {
             if (((m == ">>> PING") || (m == "<<< PONG")) && !smqGAINSApi.showPingPongs) return;
             else {
-                if (m == "<<< ") delete m;
+                if (m == "<<< ") m = "";
                 let data = p || m || "STRING"; 
                 let indexOfContentLength = data.indexOf("content-length:");
                 let dataStart = data.indexOf("\n\n");
@@ -52,7 +50,7 @@ function generateGAINSApiActor() {
                     }
                     m = m.substring(0, m.indexOf('\n\n'));
                 }
-                console.log("DEBUG: ", m, data || p); 
+                console.log('CREATED: ' + this.createdAt + ' - ', m, data || p); 
             }
         }
 
@@ -1054,6 +1052,83 @@ function generateGAINSApiActor() {
                     }
                 }
             
+                if (smqGAINSApi.onGamingAgentPreventativeMaintenanceRecord) {
+                    if (msg.headers && (msg.headers.destination.includes('gainscoordinator.onfloor.gamingagent.preventativemaintenancerecord'))) {
+                        var rpayload = smqGAINSApi.onGamingAgentPreventativeMaintenanceRecord(msg.body, msg);
+                        if (rpayload) smqGAINSApi.sendReply(rpayload, msg);
+                    }
+                }
+            
+                if (smqGAINSApi.onGAINSUserGetPersonByBadgeNumber) {
+                    if (msg.headers && (msg.headers.destination.includes('gainscoordinator.assets.gainsuser.getpersonbybadgenumber'))) {
+                        var rpayload = smqGAINSApi.onGAINSUserGetPersonByBadgeNumber(msg.body, msg);
+                        if (rpayload) smqGAINSApi.sendReply(rpayload, msg);
+                    }
+                }
+            
+                if (smqGAINSApi.onGAINSUserValidateNewSealNumber) {
+                    if (msg.headers && (msg.headers.destination.includes('gainscoordinator.assets.gainsuser.validatenewsealnumber'))) {
+                        var rpayload = smqGAINSApi.onGAINSUserValidateNewSealNumber(msg.body, msg);
+                        if (rpayload) smqGAINSApi.sendReply(rpayload, msg);
+                    }
+                }
+            
+                if (smqGAINSApi.onGAINSUserSearchGameName) {
+                    if (msg.headers && (msg.headers.destination.includes('gainscoordinator.assets.gainsuser.searchgamename'))) {
+                        var rpayload = smqGAINSApi.onGAINSUserSearchGameName(msg.body, msg);
+                        if (rpayload) smqGAINSApi.sendReply(rpayload, msg);
+                    }
+                }
+            
+                if (smqGAINSApi.onGAINSUserSearchProgressiveDef) {
+                    if (msg.headers && (msg.headers.destination.includes('gainscoordinator.assets.gainsuser.searchprogressivedef'))) {
+                        var rpayload = smqGAINSApi.onGAINSUserSearchProgressiveDef(msg.body, msg);
+                        if (rpayload) smqGAINSApi.sendReply(rpayload, msg);
+                    }
+                }
+            
+                if (smqGAINSApi.onSlotRepairAdminCompleteConversionMLC) {
+                    if (msg.headers && (msg.headers.destination.includes('gainscoordinator.onfloor.slotrepairadmin.completeconversionmlc'))) {
+                        var rpayload = smqGAINSApi.onSlotRepairAdminCompleteConversionMLC(msg.body, msg);
+                        if (rpayload) smqGAINSApi.sendReply(rpayload, msg);
+                    }
+                }
+            
+                if (smqGAINSApi.onSlotRepairAdminCompleteConversionLSC) {
+                    if (msg.headers && (msg.headers.destination.includes('gainscoordinator.onfloor.slotrepairadmin.completeconversionlsc'))) {
+                        var rpayload = smqGAINSApi.onSlotRepairAdminCompleteConversionLSC(msg.body, msg);
+                        if (rpayload) smqGAINSApi.sendReply(rpayload, msg);
+                    }
+                }
+            
+                if (smqGAINSApi.onSlotRepairAdminCompleteMoveToStorage) {
+                    if (msg.headers && (msg.headers.destination.includes('gainscoordinator.onfloor.slotrepairadmin.completemovetostorage'))) {
+                        var rpayload = smqGAINSApi.onSlotRepairAdminCompleteMoveToStorage(msg.body, msg);
+                        if (rpayload) smqGAINSApi.sendReply(rpayload, msg);
+                    }
+                }
+            
+                if (smqGAINSApi.onSlotRepairAdminGetInstalledComponents) {
+                    if (msg.headers && (msg.headers.destination.includes('gainscoordinator.onfloor.slotrepairadmin.getinstalledcomponents'))) {
+                        var rpayload = smqGAINSApi.onSlotRepairAdminGetInstalledComponents(msg.body, msg);
+                        if (rpayload) smqGAINSApi.sendReply(rpayload, msg);
+                    }
+                }
+            
+                if (smqGAINSApi.onSlotRepairAdminGetComponentById) {
+                    if (msg.headers && (msg.headers.destination.includes('gainscoordinator.onfloor.slotrepairadmin.getcomponentbyid'))) {
+                        var rpayload = smqGAINSApi.onSlotRepairAdminGetComponentById(msg.body, msg);
+                        if (rpayload) smqGAINSApi.sendReply(rpayload, msg);
+                    }
+                }
+            
+                if (smqGAINSApi.onGAINSUserGetConversionDetails) {
+                    if (msg.headers && (msg.headers.destination.includes('gainscoordinator.onfloor.gainsuser.getconversiondetails'))) {
+                        var rpayload = smqGAINSApi.onGAINSUserGetConversionDetails(msg.body, msg);
+                        if (rpayload) smqGAINSApi.sendReply(rpayload, msg);
+                    }
+                }
+            
                 // Can also hear what 'GamingAgent' can hear.
                 
                 // Can also hear what 'BJFeltLog' can hear.
@@ -1905,6 +1980,22 @@ function generateGAINSApiActor() {
             return deferred.promise;
         }
         
+        smqGAINSApi.GamingAgentPreventativeMaintenanceRecord = function() {
+            smqGAINSApi.GamingAgentPreventativeMaintenanceRecord('{}');
+        }
+
+        smqGAINSApi.GamingAgentPreventativeMaintenanceRecord = function(payload) {
+            payload = smqGAINSApi.stringifyValue(payload);
+            var id = smqGAINSApi.createUUID();
+            var deferred = smqGAINSApi.waitingReply[id] = smqGAINSApi.defer();
+            if (smqGamingAgent.showPingPongs) console.log('Preventative Maintenance Record - ');
+            smqGAINSApi.client.send('/exchange/gamingagentmic/gainscoordinator.onfloor.gamingagent.preventativemaintenancerecord', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGAINSApi.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
             // Can also say what 'BJFeltLog' can say.
             
         
@@ -2719,6 +2810,86 @@ function generateGAINSApiActor() {
             return deferred.promise;
         }
         
+        smqGAINSApi.GAINSUserGetPersonByBadgeNumber = function() {
+            smqGAINSApi.GAINSUserGetPersonByBadgeNumber('{}');
+        }
+
+        smqGAINSApi.GAINSUserGetPersonByBadgeNumber = function(payload) {
+            payload = smqGAINSApi.stringifyValue(payload);
+            var id = smqGAINSApi.createUUID();
+            var deferred = smqGAINSApi.waitingReply[id] = smqGAINSApi.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Get Person By Badge Number - ');
+            smqGAINSApi.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.getpersonbybadgenumber', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGAINSApi.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGAINSApi.GAINSUserValidateNewSealNumber = function() {
+            smqGAINSApi.GAINSUserValidateNewSealNumber('{}');
+        }
+
+        smqGAINSApi.GAINSUserValidateNewSealNumber = function(payload) {
+            payload = smqGAINSApi.stringifyValue(payload);
+            var id = smqGAINSApi.createUUID();
+            var deferred = smqGAINSApi.waitingReply[id] = smqGAINSApi.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Validate New Seal Number - ');
+            smqGAINSApi.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.validatenewsealnumber', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGAINSApi.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGAINSApi.GAINSUserSearchGameName = function() {
+            smqGAINSApi.GAINSUserSearchGameName('{}');
+        }
+
+        smqGAINSApi.GAINSUserSearchGameName = function(payload) {
+            payload = smqGAINSApi.stringifyValue(payload);
+            var id = smqGAINSApi.createUUID();
+            var deferred = smqGAINSApi.waitingReply[id] = smqGAINSApi.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Search Game Name - ');
+            smqGAINSApi.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.searchgamename', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGAINSApi.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGAINSApi.GAINSUserSearchProgressiveDef = function() {
+            smqGAINSApi.GAINSUserSearchProgressiveDef('{}');
+        }
+
+        smqGAINSApi.GAINSUserSearchProgressiveDef = function(payload) {
+            payload = smqGAINSApi.stringifyValue(payload);
+            var id = smqGAINSApi.createUUID();
+            var deferred = smqGAINSApi.waitingReply[id] = smqGAINSApi.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Search Progressive Def - ');
+            smqGAINSApi.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.searchprogressivedef', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGAINSApi.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqGAINSApi.GAINSUserGetConversionDetails = function() {
+            smqGAINSApi.GAINSUserGetConversionDetails('{}');
+        }
+
+        smqGAINSApi.GAINSUserGetConversionDetails = function(payload) {
+            payload = smqGAINSApi.stringifyValue(payload);
+            var id = smqGAINSApi.createUUID();
+            var deferred = smqGAINSApi.waitingReply[id] = smqGAINSApi.defer();
+            if (smqGAINSUser.showPingPongs) console.log('Get Conversion Details - ');
+            smqGAINSApi.client.send('/exchange/gainsusermic/gainscoordinator.onfloor.gainsuser.getconversiondetails', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqGAINSApi.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
             // Can also say what 'Guest' can say.
             
         
@@ -2750,6 +2921,7 @@ function generateGAINSApiActor() {
             payload = smqGAINSApi.stringifyValue(payload);
             var id = smqGAINSApi.createUUID();
             var deferred = smqGAINSApi.waitingReply[id] = smqGAINSApi.defer();
+            if (smqGuest.showPingPongs) console.log('Ping - Guest establishes a connection with the coordinator');
             smqGAINSApi.client.send('/exchange/guestmic/gainscoordinator.account.guest.ping', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
             
             smqGAINSApi.waitFor(id);
@@ -2765,6 +2937,7 @@ function generateGAINSApiActor() {
             payload = smqGAINSApi.stringifyValue(payload);
             var id = smqGAINSApi.createUUID();
             var deferred = smqGAINSApi.waitingReply[id] = smqGAINSApi.defer();
+            if (smqGuest.showPingPongs) console.log('Login - A Previously Unauthenticated Guest Logs in. If approved, their GAINSUser object is returned.');
             smqGAINSApi.client.send('/exchange/guestmic/gainscoordinator.account.guest.login', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
             
             smqGAINSApi.waitFor(id);
@@ -2776,3 +2949,4 @@ function generateGAINSApiActor() {
     return smqGAINSApi;
 }
 
+                    
