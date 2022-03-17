@@ -50,6 +50,12 @@
     <button nbButton outline class="float-right" (click)="finish()">finish</button>
   </nb-card-footer>
 </nb-card>
+<nb-card [size]="'large'" *ngIf="stage == 'summary' && error">
+  <nb-card-body>
+    <h6 style="color: red;">Error: {{error}}</h6>
+    <button nbButton outline (click)="cancel()">Ok</button>
+  </nb-card-body>
+</nb-card>
 
 <!--********************************************************************************
 Floor Moves/Changes  ARISTOCRAT (HXS8029134) Slot #: 18714 Lic #:11047 exp. 10-2021

@@ -19,6 +19,7 @@ export class MlcConversionComponent extends EffortlessComponentBase implements O
   asc: any;
   added: any = [];
   removed: any = [];
+  error: string;
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService,
     public route: ActivatedRoute, public toastr: NbToastrService) {
@@ -45,6 +46,10 @@ export class MlcConversionComponent extends EffortlessComponentBase implements O
       payload.SlotView = {};
       payload.SlotView.SlotId = self.sid;
       self.gds.smqUser.GetConversionDetails(payload).then(function (reply) {
+        if (reply.ErrorMessage) {
+          self.error = reply.ErrorMessage;
+          return;
+        }
         self.slot = reply.SlotView;
         self.conversion = reply.SlotView.Conversion
         self.asc = reply.ASC;
@@ -80,6 +85,7 @@ export class MlcConversionComponent extends EffortlessComponentBase implements O
 
   cancel() {
     this.gds.stageMngr = { slot: '', operation: '', stage: '' };
+    this.error = null;
     this.router.navigateByUrl('effortless/on-floor-slot/' + this.sid); 
   }
 
