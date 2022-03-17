@@ -3,7 +3,7 @@ import { EffortlessComponentBase } from '../../../efforless-base-component';
 import { GDS } from '../../../services/gds.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DataEndpoint } from '../../../services/eapi-data-services/data-endpoint/data-endpoint';
-import { NbMenuService, NbDatepicker } from '@nebular/theme';
+import { NbMenuService, NbDatepicker, NbToastrService } from '@nebular/theme';
 import { SlotProjectComponent } from '../../../slot-projects/slot-project/slot-project.component';
 
 @Component({
@@ -20,7 +20,8 @@ export class LscConversionComponent extends EffortlessComponentBase implements O
   added: any = [];
   removed: any = [];
 
-  constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, public route: ActivatedRoute) {
+  constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService,
+    public route: ActivatedRoute, public toastr: NbToastrService) {
     super(gds, data, menuService)
 
     this.safeSubscribe(this.route.params.subscribe((params) => {
@@ -33,7 +34,9 @@ export class LscConversionComponent extends EffortlessComponentBase implements O
   ngOnInit() {
     let self = this;
     this.getStage();
-    if (this.stage == 'seals') {
+    if (this.stage == 'cancel') {
+      this.cancel();
+    } else if (this.stage == 'seals') {
       this.router.navigateByUrl('effortless/edit-seals/' + this.sid + '/lsc-conversion');
     } else if (this.stage == 'checklist') {
       this.router.navigateByUrl('effortless/lsc-checklist/' + this.sid);
@@ -52,18 +55,13 @@ export class LscConversionComponent extends EffortlessComponentBase implements O
             self.removed.push(def);
           }
         });
-
-        console.error('aaa', self.slot)
-        console.error('aaa', self.conversion)
-        console.error('bbb', self.added)
-        console.error('ccc', self.removed)
       });
     }
   }
 
   getStage() {
-    if (this.gds.stageMngr.slot != this.sid || this.gds.stageMngr.operation != 'lsc-conversion' || this.gds.stageMngr.stage == 'seals') {
-      this.gds.stageMngr = { slot: this.sid, operation: 'lsc-conversion', stage: 'seals' };
+    if (this.gds.stageMngr.slot != this.sid || this.gds.stageMngr.operation != 'lsc-conversion') {
+      this.gds.stageMngr = { stage: 'cancel' };
     }
     this.stage = this.gds.stageMngr.stage;
   }
@@ -73,7 +71,11 @@ export class LscConversionComponent extends EffortlessComponentBase implements O
     let payload = self.gds.createPayload();
     this.gds.completeSlotConversionPayload = Object.assign(payload, this.gds.completeSlotConversionPayload);
     this.gds.smqSlotRepairAdmin.CompleteConversionLSC(this.gds.completeSlotConversionPayload).then(function (reply) {
-      console.error('EEEEE', reply);
+      if (reply.ErrorMessage) {
+        self.toastr.warning(reply.ErrorMessage);
+      } else {
+        self.cancel();
+      }
     });
   }
 

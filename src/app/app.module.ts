@@ -75,13 +75,10 @@ export class AppModule {
     gds.smqPassword = "4GrZkr46obls";
 
     gds.smqUser.connect(gds.vhost, gds.smqUsername, gds.smqPassword, function () { }, function () {
-      console.error("got here");
       gds.isUserConnected = true;
       self.authService.onTokenChange()
         .subscribe((token: NbAuthJWTToken) => {
-          console.error('CCC');
           if (token.isValid()) {
-            console.error('DDD');
             gds.accessToken = token.getValue()
             gds.createPayload = function () {
               return { "JWT": gds.accessToken };

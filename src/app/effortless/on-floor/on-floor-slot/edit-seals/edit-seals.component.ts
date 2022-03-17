@@ -53,6 +53,7 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
 
   ngOnInit() {
     this.safeSubscribe(this.gds.onReady().subscribe(ready => {
+      this.checkStageMngr();
       let self = this
       let payload = self.gds.createPayload()
       payload.SearchTerm = self.sid
@@ -72,10 +73,10 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
   }
 
   checkStageMngr() {
-    if (this.context = 'mlc-conversion') {
-      this.gds.stageMngr = { slot: this.sid, operation: 'mlc-conversion', stage: 'seals' };
-    } else if (this.context = 'lsc-conversion') {
-      this.gds.stageMngr = { slot: this.sid, operation: 'lsc-conversion', stage: 'seals' };
+    if (this.context == 'mlc-conversion' && (this.gds.stageMngr.slot != this.sid || this.gds.stageMngr.operation != 'mlc-conversion' || this.gds.stageMngr.stage != 'seals')) {
+      this.cancel();
+    } else if (this.context == 'lsc-conversion' && (this.gds.stageMngr.slot != this.sid || this.gds.stageMngr.operation != 'lsc-conversion' || this.gds.stageMngr.stage != 'seals')) {
+      this.cancel();
     }
   }
 
@@ -179,12 +180,16 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
       console.error(this.originalSeals);
       console.error(this.gds.editSealPayload.AddedSeals);
       let newList = Object.assign([], this.originalSeals);
-      this.gds.editSealPayload.AddedSeals.forEach(addedSeal => {
-        newList.push(addedSeal);
-      });
-      this.gds.editSealPayload.BrokenSeals.forEach(brokenSeal => {
-        newList = newList.filter(seal => seal.SealNumber != brokenSeal.SealNumber);
-      });
+      if (this.gds.editSealPayload.AddedSeals) {
+        this.gds.editSealPayload.AddedSeals.forEach(addedSeal => {
+          newList.push(addedSeal);
+        });
+      }
+      if (this.gds.editSealPayload.BrokenSeals) {
+        this.gds.editSealPayload.BrokenSeals.forEach(brokenSeal => {
+          newList = newList.filter(seal => seal.SealNumber != brokenSeal.SealNumber);
+        });
+      }
       this.seals = newList;
       this.selected = null;
       this.modifyDisabled = true;
@@ -196,7 +201,9 @@ export class EditSealsComponent extends EffortlessComponentBase implements OnIni
   filterSealedComponents() {
     let self = this;
     this.unsealedComponents = Object.assign([], this.componentDefList);
-    this.unsealedComponents.push({ ToStringText: 'Logic Cage', SlotComponentDefId: this.logicCage.OtherComponentType });
+    if (this.logicCage) {
+      this.unsealedComponents.push({ ToStringText: 'Logic Cage', SlotComponentDefId: this.logicCage.OtherComponentType });
+    }
     this.seals.forEach(seal => {
       seal.ComponentLinks.forEach(link => {
         this.unsealedComponents.forEach(unsealedComponent => {

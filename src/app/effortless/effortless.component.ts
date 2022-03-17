@@ -30,7 +30,6 @@ export class EffortlessComponent extends EffortlessComponentBase implements OnIn
     setTimeout(() => {
       this.cd.detectChanges();
     }, 1000);
-    console.error("we are actually hitting this page.");
   }
   
   menu = MENU_ITEMS;  

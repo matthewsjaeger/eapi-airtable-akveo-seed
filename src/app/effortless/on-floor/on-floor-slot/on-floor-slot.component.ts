@@ -93,10 +93,12 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
   cancelScheduledEvent() {
 
   }
-  completeConversionLSC(){
+  completeConversionLSC() {
+    this.gds.stageMngr = { slot: this.sid, operation: 'lsc-conversion', stage: 'seals' };
     this.router.navigateByUrl('effortless/lsc-conversion/' +this.sid)
   }
-  completeConversionMLC(){
+  completeConversionMLC() {
+    this.gds.stageMngr = { slot: this.sid, operation: 'mlc-conversion', stage: 'seals' };
     this.router.navigateByUrl('effortless/mlc-conversion/' + this.sid)
   }
   completeMoveToStorage(){
