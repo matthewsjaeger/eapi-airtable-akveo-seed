@@ -3,7 +3,7 @@ import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 import { GDS } from '../../../services/gds.service';
 import { EffortlessComponentBase } from '../../../efforless-base-component';
 import { DataEndpoint } from '../../../services/eapi-data-services/data-endpoint/data-endpoint';
-import { NbMenuService, NbListComponent } from '@nebular/theme';
+import { NbMenuService, NbListComponent, NbToastrService } from '@nebular/theme';
 
 @Component({
   selector: 'ngx-request-activation',
@@ -24,7 +24,7 @@ export class RequestActivationComponent extends EffortlessComponentBase implemen
   sid: any;
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService,
-     public route: ActivatedRoute ) { 
+    public route: ActivatedRoute, public toastr: NbToastrService ) { 
     super (gds, data, menuService)
 
     this.safeSubscribe(this.route.params.subscribe((params) => {
@@ -70,8 +70,10 @@ export class RequestActivationComponent extends EffortlessComponentBase implemen
     this.updatePercentComplete();
     let payload = this.gds.createPayload();
     payload.SlotView = { SlotId: this.sid, Checklist: this.checklist, ChecklistMetadata: this.checklistMetadata };
-    this.gds.smqGamingAgent.RequestActivation(payload).then(resp => {
-      if (!resp.ErrorMessage) {
+    this.gds.smqGamingAgent.RequestActivation(payload).then(reply => {
+      if (reply.ErrorMessage) {
+        self.toastr.warning(reply.ErrorMessage);
+      } else {
         this.router.navigateByUrl('effortless/on-floor-slot/' + self.sid);
       }
     });
