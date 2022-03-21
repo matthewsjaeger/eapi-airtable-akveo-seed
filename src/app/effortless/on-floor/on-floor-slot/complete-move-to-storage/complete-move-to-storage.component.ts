@@ -52,4 +52,22 @@ export class CompleteMoveToStorageComponent extends EffortlessComponentBase impl
       });
     });
   }
+
+  finish() {
+    let self = this;
+    let payload = self.gds.createPayload();
+    payload.SlotViews = [this.slot];
+    this.gds.smqSlotRepairAdmin.CompleteMoveToStorage(payload).then(function (reply) {
+      if (reply.ErrorMessage) {
+        self.toastr.warning(reply.ErrorMessage);
+      } else {
+        self.cancel();
+      }
+    });
+  }
+
+  cancel() {
+    this.error = null;
+    this.router.navigateByUrl('effortless/on-floor-slot/' + this.sid);
+  }
 }
