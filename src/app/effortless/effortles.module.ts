@@ -50,6 +50,7 @@ import { LscReplaceComponent } from './on-floor/on-floor-slot/lsc-conversion/lsc
 import { LscBreakComponent } from './on-floor/on-floor-slot/lsc-conversion/lsc-place-slot/lsc-break/lsc-break.component';
 import { LscPlaceConversionComponent } from './on-floor/on-floor-slot/lsc-conversion/lsc-place-slot/lsc-place-conversion/lsc-place-conversion.component';
 import { LscChecklistComponent } from './on-floor/on-floor-slot/lsc-conversion/lsc-place-slot/lsc-checklist/lsc-checklist.component';
+import { CompleteMoveToStorageComponent } from './on-floor/on-floor-slot/complete-move-to-storage/complete-move-to-storage.component';
 
 let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComponent, Page3Component,
   StorageSlotsComponent, SlotProjectsComponent, SearchStorageSlotsComponent, SlotProjectComponent, NewProjectComponent,
@@ -60,7 +61,7 @@ LscConversionComponent, MlcConversionComponent, EditSealsComponent, AddSealCompo
 PlaceSlotSealsComponent, ReplaceWitnessesComponent, EditSealsLogicAccessComponent,  UpdateActiveSlotComponent, 
 RequestActivationComponent, MlcPlaceSlotComponent, MlcAddComponent, MlcBreakComponent, MlcReplaceComponent, PlaceConversionComponent,
  MlcChecklistComponent, LscPlaceSlotComponent, LscAddComponent, LscReplaceComponent, LscBreakComponent, LscPlaceConversionComponent,
-LscChecklistComponent];
+LscChecklistComponent, CompleteMoveToStorageComponent];
 
 @NgModule({
   declarations: declarations,

@@ -102,7 +102,7 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
     this.router.navigateByUrl('effortless/mlc-conversion/' + this.sid)
   }
   completeMoveToStorage(){
-
+    this.router.navigateByUrl('effortless/complete-storage/' + this.sid);
   }
   deactivateTournamentMode() {
 

@@ -33,6 +33,7 @@ import { MlcPlaceSlotComponent } from './on-floor/on-floor-slot/mlc-conversion/m
 import { MlcChecklistComponent } from './on-floor/on-floor-slot/mlc-conversion/mlc-place-slot/mlc-checklist/mlc-checklist.component';
 import { LscPlaceSlotComponent } from './on-floor/on-floor-slot/lsc-conversion/lsc-place-slot/lsc-place-slot.component';
 import { LscChecklistComponent } from './on-floor/on-floor-slot/lsc-conversion/lsc-place-slot/lsc-checklist/lsc-checklist.component';
+import { CompleteMoveToStorageComponent } from './on-floor/on-floor-slot/complete-move-to-storage/complete-move-to-storage.component';
 
 let effortlessChildren = [
   {
@@ -159,6 +160,10 @@ let effortlessChildren = [
   {
     path: 'lsc-checklist/:sid',
     component: LscChecklistComponent
+  },
+  {
+    path: 'complete-storage/:sid',
+    component: CompleteMoveToStorageComponent
   }
 ];
 
