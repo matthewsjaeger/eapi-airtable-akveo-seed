@@ -50,7 +50,7 @@
     <button nbButton outline class="float-right" (click)="finish()">finish</button>
   </nb-card-footer>
 </nb-card>
-<nb-card [size]="'large'" *ngIf="stage == 'summary' && error">
+<nb-card [size]="'large'" *ngIf="error">
   <nb-card-body>
     <h6 style="color: red;">Error: {{error}}</h6>
     <button nbButton outline (click)="cancel()">Ok</button>
