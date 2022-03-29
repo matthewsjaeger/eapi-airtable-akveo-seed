@@ -34,6 +34,8 @@ import { MlcChecklistComponent } from './on-floor/on-floor-slot/mlc-conversion/m
 import { LscPlaceSlotComponent } from './on-floor/on-floor-slot/lsc-conversion/lsc-place-slot/lsc-place-slot.component';
 import { LscChecklistComponent } from './on-floor/on-floor-slot/lsc-conversion/lsc-place-slot/lsc-checklist/lsc-checklist.component';
 import { CompleteMoveToStorageComponent } from './on-floor/on-floor-slot/complete-move-to-storage/complete-move-to-storage.component';
+import { ScheduleMoveToStorageComponent } from './on-floor/on-floor-slot/schedule-move-to-storage/schedule-move-to-storage.component';
+import { EditComponentsComponent } from './on-floor/on-floor-slot/edit-components/edit-components.component';
 
 let effortlessChildren = [
   {
@@ -164,6 +166,14 @@ let effortlessChildren = [
   {
     path: 'complete-storage/:sid',
     component: CompleteMoveToStorageComponent
+  },
+  {
+    path: 'schedule-storage/:sid',
+    component: ScheduleMoveToStorageComponent
+  },
+  {
+    path: 'edit-components/:sid/:context',
+    component: EditComponentsComponent
   }
 ];
 
