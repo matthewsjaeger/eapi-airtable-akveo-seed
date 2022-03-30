@@ -1,0 +1,80 @@
+<div class="grid-container">
+  <div>
+    <nb-card *ngIf="context == 'search'">
+      <nb-card-header>
+        <button nbButton ghost size="medium" class="float-left" (click)="actionContext()">
+          Actions
+        </button>
+        <h4 style="width: fit-content; margin: auto;">On Floor Slots</h4>
+        <input class="searchBar" [(ngModel)]="searchTerm" autocomplete="off" (change)="searchSlots()" type="text"
+               nbInput fullWidth placeholder="Search for on floor slots">
+      </nb-card-header>
+      <nb-card-footer>
+        <nb-list>
+          <nb-list-item *ngIf="searchTerm.trim().length < 1" style="color: red;">
+            No search term entered
+          </nb-list-item>
+          <nb-list-item *ngIf="noResults" style="color: red;">
+            No stored slots serial number contain: {{searchTerm}}
+          </nb-list-item>
+        </nb-list>
+      </nb-card-footer>
+    </nb-card>
+
+    <nb-card *ngFor="let slot of slotViews">
+      <nb-card-body class="slots" (click)=addSlot(slot)>
+        <b>Serial Number: </b>{{slot.SerialNumber}} <b>|</b>
+        <b>Machine #:</b>{{slot.SlotNumber}} <b>|</b>
+        <b>License #:</b>{{slot.LicenseNumber}}
+        <br>
+        <b>Location:</b>{{slot.DisplayLocation}} <b>|</b>
+        <b>Zone:</b>{{slot.Zone}}  <b>|</b>
+        <b>Floor Address:</b>{{slot.Address}}
+        <br />
+        <b>Manufacturer:</b> {{slot.DisplayManufacturer}} <b>|</b>
+        <b>Updated By:</b> {{slot.DisplayUpdatedBy }}
+        <i class="float-right">{{slot.WorkflowState}} </i>
+
+      </nb-card-body>
+    </nb-card>
+    <nb-card *ngIf="context == 'actions'">
+      <nb-card-header>
+        <button nbButton ghost size="medium" class="float-left" (click)="searchContext()">
+          Search
+        </button>
+        <h4 style="width: fit-content; margin: auto;">Available Actions</h4>
+      </nb-card-header>
+      <nb-card-body>
+        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=scheduleMoveToStorage()>
+          Schedule Move to Storage
+        </button>
+      </nb-card-body>
+    </nb-card>  
+  </div>
+  <div>
+    <nb-card>
+      <nb-card-header>
+        <h4 style="width: fit-content; margin: auto;">Selected Slots ({{selectedSlots.length}})</h4>
+      </nb-card-header>
+    </nb-card>
+    <nb-card *ngFor="let slot of selectedSlots">
+      <nb-card-body class="slots" (click)=removeSlot(slot)>
+        <b>Serial Number: </b>{{slot.SerialNumber}} <b>|</b>
+        <b>Machine #:</b>{{slot.SlotNumber}} <b>|</b>
+        <b>License #:</b>{{slot.LicenseNumber}}
+        <br>
+        <b>Location:</b>{{slot.DisplayLocation}} <b>|</b>
+        <b>Zone:</b>{{slot.Zone}}  <b>|</b>
+        <b>Floor Address:</b>{{slot.Address}}
+        <br/>
+        <b>Manufacturer:</b> {{slot.DisplayManufacturer}} <b>|</b>
+        <b>Updated By:</b> {{slot.DisplayUpdatedBy }}
+        <i class="float-right">{{slot.WorkflowState}} </i>
+
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+
+
+

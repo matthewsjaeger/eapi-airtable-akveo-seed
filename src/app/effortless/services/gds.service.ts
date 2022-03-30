@@ -62,6 +62,7 @@ export class GDS {
   public stageMngr: any = { operation: '', slot: '', stage: '' };
   public completeSlotConversionPayload: any = {};
   private readiness$: BehaviorSubject<{}> = new BehaviorSubject(null);
+  public slotList: any = [];
 
   public onReady(): Observable<any> {
     return this.readiness$

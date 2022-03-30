@@ -1,3 +1,37 @@
-
-<p>dynamic schedule-move-to-storage works!</p>
-          
+<nb-card [size]="'large'">
+  <nb-card-header>
+    <button nbButton outline size="medium" status="danger" class="float-left" (click)="cancel()">
+      <nb-icon icon="slash-outline"></nb-icon>Cancel
+    </button>
+    <h4 style="width: fit-content; margin: auto;">Schedule Move to Storage</h4>
+  </nb-card-header>
+  <nb-card-body>
+    <h6 style="color: blue;">Selected Slots:</h6>
+    <nb-list>
+      <nb-list-item *ngFor="let slot of gds.slotList">
+        <b>Serial Number: </b>{{slot.SerialNumber}} <b>|</b>
+        <b>Machine #:</b>{{slot.SlotNumber}} <b>|</b>
+        <b>License #:</b>{{slot.LicenseNumber}}
+        <b>Location:</b>{{slot.DisplayLocation}} <b>|</b>
+        <b>Zone:</b>{{slot.Zone}}  <b>|</b>
+        <b>Floor Address:</b>{{slot.Address}}
+        <br />
+        <b>Manufacturer:</b> {{slot.DisplayManufacturer}} <b>|</b>
+        <b>Updated By:</b> {{slot.DisplayUpdatedBy }}
+        <i class="float-right">{{slot.WorkflowState}} </i>
+      </nb-list-item>
+    </nb-list>
+  </nb-card-body>
+  <nb-card-footer>
+    <button nbButton outline size="medium" status="danger" class="float-left" (click)="cancel()">
+      <nb-icon icon="slash-outline"></nb-icon>Cancel
+    </button>
+    <button nbButton outline class="float-right" (click)="confirm()">Confirm</button>
+  </nb-card-footer>
+</nb-card>
+<nb-card [size]="'large'" *ngIf="error">
+  <nb-card-body>
+    <h6 style="color: red;">Error: {{error}}</h6>
+    <button nbButton outline (click)="cancel()">Ok</button>
+  </nb-card-body>
+</nb-card>

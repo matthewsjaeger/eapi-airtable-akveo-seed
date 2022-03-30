@@ -24,6 +24,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/effortless/on-floor/:sid',
   },
   {
+    title: 'Multi-Slot Actions',
+    icon: 'folder-add',
+    link: '/effortless/multi-select',
+  },
+  {
     title: 'Login',
     icon: 'shield-outline',
     link: '/auth/login',

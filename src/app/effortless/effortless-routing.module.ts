@@ -36,6 +36,7 @@ import { LscChecklistComponent } from './on-floor/on-floor-slot/lsc-conversion/l
 import { CompleteMoveToStorageComponent } from './on-floor/on-floor-slot/complete-move-to-storage/complete-move-to-storage.component';
 import { ScheduleMoveToStorageComponent } from './on-floor/on-floor-slot/schedule-move-to-storage/schedule-move-to-storage.component';
 import { EditComponentsComponent } from './on-floor/on-floor-slot/edit-components/edit-components.component';
+import { MultiOnFloorComponent } from './on-floor/multi-on-floor/multi-on-floor.component';
 
 let effortlessChildren = [
   {
@@ -168,12 +169,16 @@ let effortlessChildren = [
     component: CompleteMoveToStorageComponent
   },
   {
-    path: 'schedule-storage/:sid',
+    path: 'schedule-storage',
     component: ScheduleMoveToStorageComponent
   },
   {
     path: 'edit-components/:sid/:context',
     component: EditComponentsComponent
+  },
+  {
+    path: 'multi-select',
+    component: MultiOnFloorComponent
   }
 ];
 
