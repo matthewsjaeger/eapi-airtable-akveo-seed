@@ -6,6 +6,11 @@
     <h4 style="width: fit-content; margin: auto;">Schedule Move to Storage</h4>
   </nb-card-header>
   <nb-card-body>
+    <h6 style="color: blue;">
+      Scheduled Date:<input nbInput placeholder="Select Date" [nbDatepicker]="ngmodel" [(ngModel)]="scheduledDate" style="margin-left:1em">
+      <nb-datepicker #ngmodel></nb-datepicker>
+    </h6>
+
     <h6 style="color: blue;">Selected Slots:</h6>
     <nb-list>
       <nb-list-item *ngFor="let slot of gds.slotList">

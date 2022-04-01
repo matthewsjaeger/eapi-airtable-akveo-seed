@@ -12,6 +12,7 @@ import { NbMenuService, NbDialogService, NbToastrService } from '@nebular/theme'
 })
 export class ScheduleMoveToStorageComponent extends EffortlessComponentBase implements OnInit {
   error: any = "";
+  scheduledDate;
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint,
     protected menuService: NbMenuService, public route: ActivatedRoute, private dialogService: NbDialogService,
@@ -34,6 +35,7 @@ export class ScheduleMoveToStorageComponent extends EffortlessComponentBase impl
     let self = this;
     let payload = self.gds.createPayload();
     payload.SlotViews = this.gds.slotList;
+    payload.Scheduled = this.scheduledDate;
     this.gds.smqSlotRepairAdmin.ScheduleMoveToStorage(payload).then(function (reply) {
       if (reply.ErrorMessage) {
         self.toastr.warning(reply.ErrorMessage);
