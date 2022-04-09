@@ -54,6 +54,7 @@ import { CompleteMoveToStorageComponent } from './on-floor/on-floor-slot/complet
 import { ScheduleMoveToStorageComponent } from './on-floor/on-floor-slot/schedule-move-to-storage/schedule-move-to-storage.component';
 import { EditComponentsComponent } from './on-floor/on-floor-slot/edit-components/edit-components.component';
 import { MultiOnFloorComponent } from './on-floor/multi-on-floor/multi-on-floor.component';
+import { CdiComponent } from './cdi/cdi.component';
 
 let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComponent, Page3Component,
   StorageSlotsComponent, SlotProjectsComponent, SearchStorageSlotsComponent, SlotProjectComponent, NewProjectComponent,
@@ -64,7 +65,8 @@ LscConversionComponent, MlcConversionComponent, EditSealsComponent, AddSealCompo
 PlaceSlotSealsComponent, ReplaceWitnessesComponent, EditSealsLogicAccessComponent,  UpdateActiveSlotComponent, 
 RequestActivationComponent, MlcPlaceSlotComponent, MlcAddComponent, MlcBreakComponent, MlcReplaceComponent, PlaceConversionComponent,
  MlcChecklistComponent, LscPlaceSlotComponent, LscAddComponent, LscReplaceComponent, LscBreakComponent, LscPlaceConversionComponent,
-LscChecklistComponent, CompleteMoveToStorageComponent, ScheduleMoveToStorageComponent, EditComponentsComponent, MultiOnFloorComponent];
+  LscChecklistComponent, CompleteMoveToStorageComponent, ScheduleMoveToStorageComponent, EditComponentsComponent, MultiOnFloorComponent,
+CdiComponent];
 
 @NgModule({
   declarations: declarations,

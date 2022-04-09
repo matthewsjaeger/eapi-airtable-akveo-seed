@@ -29,6 +29,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/effortless/multi-select',
   },
   {
+    title: 'CDI',
+    icon: 'cloud-download',
+    link: '/effortless/cdi',
+  },
+  {
     title: 'Login',
     icon: 'shield-outline',
     link: '/auth/login',

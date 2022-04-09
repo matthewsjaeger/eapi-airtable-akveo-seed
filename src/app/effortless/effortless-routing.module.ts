@@ -37,6 +37,7 @@ import { CompleteMoveToStorageComponent } from './on-floor/on-floor-slot/complet
 import { ScheduleMoveToStorageComponent } from './on-floor/on-floor-slot/schedule-move-to-storage/schedule-move-to-storage.component';
 import { EditComponentsComponent } from './on-floor/on-floor-slot/edit-components/edit-components.component';
 import { MultiOnFloorComponent } from './on-floor/multi-on-floor/multi-on-floor.component';
+import { CdiComponent } from './cdi/cdi.component';
 
 let effortlessChildren = [
   {
@@ -179,6 +180,10 @@ let effortlessChildren = [
   {
     path: 'multi-select',
     component: MultiOnFloorComponent
+  },
+  {
+    path: 'cdi',
+    component: CdiComponent
   }
 ];
 
