@@ -3,7 +3,7 @@ import { EffortlessComponentBase } from '../efforless-base-component';
 import { GDS } from '../services/gds.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DataEndpoint } from '../services/eapi-data-services/data-endpoint/data-endpoint';
-import { NbMenuService } from '@nebular/theme';
+import { NbMenuService, NbToastrService } from '@nebular/theme';
 
 @Component({
   selector: 'ngx-cdi',
@@ -13,7 +13,8 @@ import { NbMenuService } from '@nebular/theme';
 export class CdiComponent extends EffortlessComponentBase implements OnInit {
   jurs: any = [{}];
 
-  constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, public route: ActivatedRoute) {
+  constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService,
+    public route: ActivatedRoute, public toastr: NbToastrService) {
     super(gds, data, menuService)
 
   }
@@ -31,11 +32,26 @@ export class CdiComponent extends EffortlessComponentBase implements OnInit {
     let self = this;
     var payload = this.gds.createPayload();
     payload.Num = 7;
-    console.error(this.gds.smqATR);
     this.gds.smqATR.GetNewCDIs(payload).then(function (reply) {
+      if (reply.ErrorMessage) {
+        self.toastr.warning(reply.ErrorMessage);
+      }
       console.error("GetNewCDIs", reply);
       self.jurs = reply.CDIHistory;
     });
+  }
+
+  generateComponent(jur) {
+    let self = this;
+    var payload = this.gds.createPayload();
+    payload.CDIEntry = jur;
+    this.gds.smqATR.GenerateNewSlotCompDef(payload).then(function (reply) {
+      if (reply.ErrorMessage) {
+        self.toastr.warning(reply.ErrorMessage);
+      } else {
+        console.error("Gen", reply);
+      }
+    }); 
   }
 
   reload() {

@@ -1535,7 +1535,23 @@ function generateATRActor() {
             
             return deferred.promise;
         }
-        
+
+        smqATR.GenerateNewSlotCompDef = function () {
+          smqATR.GenerateNewSlotCompDef('{}');
+        }
+
+        smqATR.GenerateNewSlotCompDef = function (payload) {
+          payload = smqATR.stringifyValue(payload);
+          var id = smqATR.createUUID();
+          var deferred = smqATR.waitingReply[id] = smqATR.defer();
+          if (smqATR.showPingPongs) console.log('Generate New Slot Comp Def - ');
+          smqATR.client.send('/exchange/atrmic/gainscoordinator.atr.atr.generatenewslotcompdef', { "content-type": "text/plain", "reply-to": "/temp-queue/response-queue", "correlation-id": id }, payload);
+
+          smqATR.waitFor(id);
+
+          return deferred.promise;
+        }
+
         smqATR.GenerateSlotCompDef = function() {
             smqATR.GenerateSlotCompDef('{}');
         }
@@ -3390,4 +3406,3 @@ function generateATRActor() {
     return smqATR;
 }
 
-                    
