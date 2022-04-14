@@ -3,7 +3,8 @@ import { EffortlessComponentBase } from '../efforless-base-component';
 import { GDS } from '../services/gds.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DataEndpoint } from '../services/eapi-data-services/data-endpoint/data-endpoint';
-import { NbMenuService, NbToastrService } from '@nebular/theme';
+import { NbMenuService, NbToastrService, NbDialogService } from '@nebular/theme';
+import { ComponentGeneratedComponent } from './component-generated/component-generated.component';
 
 @Component({
   selector: 'ngx-cdi',
@@ -12,9 +13,10 @@ import { NbMenuService, NbToastrService } from '@nebular/theme';
 })
 export class CdiComponent extends EffortlessComponentBase implements OnInit {
   jurs: any = [{}];
+  days: any = 7;
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService,
-    public route: ActivatedRoute, public toastr: NbToastrService) {
+    public route: ActivatedRoute, public toastr: NbToastrService, private dialogService: NbDialogService) {
     super(gds, data, menuService)
 
   }
@@ -24,14 +26,14 @@ export class CdiComponent extends EffortlessComponentBase implements OnInit {
     console.error('aaa');
     this.safeSubscribe(this.gds.onReady().subscribe(ready => {
       console.error('bbb');
-      self.getStuff();
+      self.reload();
     }));
   }
 
-  getStuff() {
+  reload() {
     let self = this;
     var payload = this.gds.createPayload();
-    payload.Num = 7;
+    payload.Num = this.days;
     this.gds.smqATR.GetNewCDIs(payload).then(function (reply) {
       if (reply.ErrorMessage) {
         self.toastr.warning(reply.ErrorMessage);
@@ -50,12 +52,20 @@ export class CdiComponent extends EffortlessComponentBase implements OnInit {
         self.toastr.warning(reply.ErrorMessage);
       } else {
         console.error("Gen", reply);
+        self.dialogService.open(ComponentGeneratedComponent, {
+          context: {
+            'scd': reply.WriteableSCD
+          }
+        }).onClose.subscribe(resp => self.reload());
       }
     }); 
   }
 
-  reload() {
-    console.error(this.jurs);
+  openComponentGenerated() {
+    this.dialogService.open(ComponentGeneratedComponent, {
+      context: {
+      }
+    })
   }
 
 }

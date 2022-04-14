@@ -3,41 +3,46 @@
 </button>-->
 <nb-card>
   <nb-card-header>
-    <h5>Recent Certifications</h5>
+    <h5 class="float-left">Recent Certifications</h5>
+    <div class="float-right">
+      <b>Days:<input [(ngModel)]="days" autocomplete="off" (change)="reload()" type="number" nbInput></b>
+    </div>
   </nb-card-header>
   <nb-card-body>
-  <nb-list *ngIf="jurs.length > 1">
-    <nb-list-item *ngFor="let jur of jurs">
-      <div class="grid-container">
-        <div>
-          <!--<b>Number:</b> {{jur.ExpandedComponent.ComponentNumber}}<br />-->
-          <!--<b>Version:</b> {{jur.ExpandedComponent.Version}}<br />-->
-          <b>Name:</b> {{jur.ExpandedComponent.ComponentName}}<br />
-          <b>Code1:</b> {{jur.ExpandedComponent.ComponentCode1}}<br />
-          <b>Function:</b> {{jur.ExpandedComponent.Function}}<br />
-          <b>Media Type:</b> {{jur.ExpandedComponent.MediaType}}
-          <!--<b>Code2:</b> {{jur.ExpandedComponent.ComponentCode2}}-->
+    <nb-list *ngIf="jurs.length > 1">
+      <nb-list-item *ngFor="let jur of jurs">
+        <div class="grid-container">
+          <div>
+            <!--<b>Number:</b> {{jur.ExpandedComponent.ComponentNumber}}<br />-->
+            <!--<b>Version:</b> {{jur.ExpandedComponent.Version}}<br />-->
+            <b>Name:</b> {{jur.ExpandedComponent.ComponentName}}<br />
+            <b>Code1:</b> {{jur.ExpandedComponent.ComponentCode1}}<br />
+            <b>Function:</b> {{jur.ExpandedComponent.Function}}<br />
+            <b>Media Type:</b> {{jur.ExpandedComponent.MediaType}}
+            <!--<b>Code2:</b> {{jur.ExpandedComponent.ComponentCode2}}-->
+          </div>
+          <div>
+            <b>Vendor:</b> {{jur.ExpandedComponent.DisplayVendor}}<br />
+            <b>Certification Number:</b> {{jur.ExpandedComponent.ExpandedCertification.CertificationNumber}}<br />
+            <b>Certification Code1:</b> {{jur.ExpandedComponent.ExpandedCertification.CertificationCode1}}<br />
+            <b>Certification Code2:</b> {{jur.ExpandedComponent.ExpandedCertification.CertificationCode2}}
+          </div>
+          <div>
+            <b>Status:</b> {{jur.DisplayStatus}}<br />
+            <b>Test Lab:</b> {{jur.ExpandedComponent.ExpandedCertification.DisplayLab}}<br />
+            <b>Submitted:</b> {{jur.VendorSubmitted}}<br />
+            <b>Certified:</b> {{jur.TestLabCertified}}<br />
+          </div>
+          <div>
+            <button nbButton size="medium" class="float-left" (click)="generateComponent(jur)">
+              Generate Component
+            </button>
+            <!--<button nbButton size="medium" class="float-left" (click)="openComponentGenerated()">
+              Generate Component
+            </button>-->
+          </div>
         </div>
-        <div>
-          <b>Vendor:</b> {{jur.ExpandedComponent.DisplayVendor}}<br />
-          <b>Certification Number:</b> {{jur.ExpandedComponent.ExpandedCertification.CertificationNumber}}<br />
-          <b>Certification Code1:</b> {{jur.ExpandedComponent.ExpandedCertification.CertificationCode1}}<br />
-          <b>Certification Code2:</b> {{jur.ExpandedComponent.ExpandedCertification.CertificationCode2}}
-        </div>
-        <div>
-          <b>Status:</b> {{jur.DisplayStatus}}<br />
-          <b>Test Lab:</b> {{jur.ExpandedComponent.ExpandedCertification.DisplayLab}}<br />
-          <b>Submitted:</b> {{jur.VendorSubmitted}}<br />
-          <b>Certified:</b> {{jur.TestLabCertified}}<br />
-          <!--<b>Test Lab:</b> {{jur.ExpandedComponent.TestLabId}}-->
-        </div>
-        <div>
-          <button nbButton size="medium" class="float-left" (click)="generateComponent(jur)">
-            Generate Component
-          </button>
-        </div>
-      </div>
-    </nb-list-item>
-  </nb-list>
+      </nb-list-item>
+    </nb-list>
   </nb-card-body>
 </nb-card>
