@@ -13,7 +13,7 @@ import { ComponentGeneratedComponent } from './component-generated/component-gen
 })
 export class CdiComponent extends EffortlessComponentBase implements OnInit {
   jurs: any = [{}];
-  days: any = 7;
+  days: any = 3;
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService,
     public route: ActivatedRoute, public toastr: NbToastrService, private dialogService: NbDialogService) {
@@ -40,7 +40,25 @@ export class CdiComponent extends EffortlessComponentBase implements OnInit {
       }
       console.error("GetNewCDIs", reply);
       self.jurs = reply.CDIHistory;
+      self.formatDates(self.jurs);
     });
+  }
+
+  formatDates(jurs) {
+    let self = this;
+    jurs.forEach(jur => {
+      jur.formattedSubmitted = self.formatDate(jur.VendorSubmitted);
+      jur.formattedCertified = self.formatDate(jur.TestLabCertified);
+    });
+  }
+
+  formatDate(dateString) {
+    let date = new Date(dateString);
+    console.error(date);
+    const offset = date.getTimezoneOffset()
+    date = new Date(date.getTime() - (offset * 60 * 1000))
+    console.error(date.toISOString().split('T')[0]);
+    return date.toISOString().split('T')[0]
   }
 
   generateComponent(jur) {

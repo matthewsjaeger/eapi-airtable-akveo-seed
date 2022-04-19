@@ -13,13 +13,13 @@
       <nb-list-item *ngFor="let jur of jurs">
         <div class="grid-container">
           <div>
-            <!--<b>Number:</b> {{jur.ExpandedComponent.ComponentNumber}}<br />-->
-            <!--<b>Version:</b> {{jur.ExpandedComponent.Version}}<br />-->
+            <b>Number:</b> {{jur.ExpandedComponent.ComponentNumber}}<br />
             <b>Name:</b> {{jur.ExpandedComponent.ComponentName}}<br />
-            <b>Code1:</b> {{jur.ExpandedComponent.ComponentCode1}}<br />
+            <div *ngIf="jur.ExpandedComponent.Version"><b>Version:</b> {{jur.ExpandedComponent.Version}}<br /></div>
+            <div *ngIf="jur.ExpandedComponent.ComponentCode1"><b>Code1:</b> {{jur.ExpandedComponent.ComponentCode1}}<br /></div>
+            <div *ngIf="jur.ExpandedComponent.ComponentCode2"><b>Code2:</b> {{jur.ExpandedComponent.ComponentCode2}}<br /></div>
             <b>Function:</b> {{jur.ExpandedComponent.Function}}<br />
             <b>Media Type:</b> {{jur.ExpandedComponent.MediaType}}
-            <!--<b>Code2:</b> {{jur.ExpandedComponent.ComponentCode2}}-->
           </div>
           <div>
             <b>Vendor:</b> {{jur.ExpandedComponent.DisplayVendor}}<br />
@@ -30,8 +30,10 @@
           <div>
             <b>Status:</b> {{jur.DisplayStatus}}<br />
             <b>Test Lab:</b> {{jur.ExpandedComponent.ExpandedCertification.DisplayLab}}<br />
-            <b>Submitted:</b> {{jur.VendorSubmitted}}<br />
-            <b>Certified:</b> {{jur.TestLabCertified}}<br />
+            <b>Submitted:</b> {{jur.formattedSubmitted}}<br />
+            <b>Certified:</b> {{jur.formattedCertified}}<br />
+            <!--<b>Submitted:</b> {{jur.VendorSubmitted}}<br />
+            <b>Certified:</b> {{jur.TestLabCertified}}<br />-->
           </div>
           <div>
             <button nbButton size="medium" class="float-left" (click)="generateComponent(jur)">
