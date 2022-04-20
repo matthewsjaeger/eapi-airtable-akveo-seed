@@ -38,6 +38,7 @@ import { ScheduleMoveToStorageComponent } from './on-floor/on-floor-slot/schedul
 import { EditComponentsComponent } from './on-floor/on-floor-slot/edit-components/edit-components.component';
 import { MultiOnFloorComponent } from './on-floor/multi-on-floor/multi-on-floor.component';
 import { CdiComponent } from './cdi/cdi.component';
+import { CdiStatusComponent } from './cdi-status/cdi-status.component';
 
 let effortlessChildren = [
   {
@@ -184,6 +185,10 @@ let effortlessChildren = [
   {
     path: 'cdi',
     component: CdiComponent
+  },
+  {
+    path: 'cdi-status',
+    component: CdiStatusComponent
   }
 ];
 

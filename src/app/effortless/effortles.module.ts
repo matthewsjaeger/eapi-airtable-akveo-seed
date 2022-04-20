@@ -56,6 +56,7 @@ import { EditComponentsComponent } from './on-floor/on-floor-slot/edit-component
 import { MultiOnFloorComponent } from './on-floor/multi-on-floor/multi-on-floor.component';
 import { CdiComponent } from './cdi/cdi.component';
 import { ComponentGeneratedComponent } from './cdi/component-generated/component-generated.component';
+import { CdiStatusComponent } from './cdi-status/cdi-status.component';
 
 let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComponent, Page3Component,
   StorageSlotsComponent, SlotProjectsComponent, SearchStorageSlotsComponent, SlotProjectComponent, NewProjectComponent,
@@ -67,7 +68,7 @@ PlaceSlotSealsComponent, ReplaceWitnessesComponent, EditSealsLogicAccessComponen
 RequestActivationComponent, MlcPlaceSlotComponent, MlcAddComponent, MlcBreakComponent, MlcReplaceComponent, PlaceConversionComponent,
  MlcChecklistComponent, LscPlaceSlotComponent, LscAddComponent, LscReplaceComponent, LscBreakComponent, LscPlaceConversionComponent,
   LscChecklistComponent, CompleteMoveToStorageComponent, ScheduleMoveToStorageComponent, EditComponentsComponent, MultiOnFloorComponent,
-CdiComponent, ComponentGeneratedComponent];
+CdiComponent, ComponentGeneratedComponent, CdiStatusComponent];
 
 @NgModule({
   declarations: declarations,
@@ -97,7 +98,7 @@ CdiComponent, ComponentGeneratedComponent];
   entryComponents: [ AddSealComponent, ReplaceSealComponent, BreakSealComponent, PlaceSlotSealsComponent, 
     ReplaceWitnessesComponent, MlcAddComponent, MlcBreakComponent, MlcReplaceComponent,
     PlaceConversionComponent, LscAddComponent, LscReplaceComponent, LscBreakComponent, LscPlaceConversionComponent,
-    ComponentGeneratedComponent]
+    ComponentGeneratedComponent, CdiStatusComponent]
 })
 export class EffortlessModule {
 
