@@ -1,0 +1,44 @@
+<nb-card>
+  <nb-alert status=alertStatus>alertMessage</nb-alert>
+  <nb-card-header>
+    <div>
+      <h5 class="float-left">Unmatched Manually Added Components ({{scds.length}})</h5>
+      <button nbButton size="medium" class="float-right" (click)="matchAll()">
+        Match All
+      </button>
+    </div><br />
+  </nb-card-header>
+  <nb-card-body>
+    <nb-alert *ngIf="alertStatus != 'hide'" status="{{alertStatus}}" closable (close)="onAlertClose()">{{alertMessage}}</nb-alert>
+    <div *ngIf="loading"><nb-progress-bar [value]=loadingPercent>Matching...</nb-progress-bar></div>
+    <nb-list *ngIf="scds.length > 0">
+      <nb-list-item *ngFor="let scd of scds | slice:0:displayCount;">
+        <div class="grid-container">
+          <div>
+            <b>ObjectId:</b> {{scd.SlotComponentDefId}}<br />
+            <b>Signatures:</b> {{scd.Signatures}}<br />
+            <b>Description:</b> {{scd.Description}}<br />
+          </div>
+          <div>
+            <b>GameName:</b> {{scd.GameName}}<br />
+            <b>ComponentType:</b> {{scd.ComponentType}}<br />
+            <b>IrisComponentType:</b> {{scd.IrisComponentType}}<br />
+          </div>
+          <div>
+            <b>Version:</b> {{scd.Version}}<br />
+            <b>ApprovalDate:</b> {{scd.ApprovalDate}}<br />
+            <b>ComponentHId:</b> {{scd.ComponentHId}}<br />
+          </div>
+          <div>
+            <button nbButton size="medium" class="float-left" (click)="matchComponent(scd)">
+              Match Component
+            </button>
+          </div>
+        </div>
+      </nb-list-item>
+    </nb-list>
+    <button nbButton size="medium" (click)="more()">
+      More
+    </button>
+  </nb-card-body>
+</nb-card>

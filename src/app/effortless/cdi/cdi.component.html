@@ -9,9 +9,9 @@
     </div>
   </nb-card-header>
   <nb-card-body>
-    <nb-list *ngIf="jurs.length > 1">
+    <nb-list *ngIf="jurs.length > 0">
       <nb-list-item *ngFor="let jur of jurs">
-        <div class="grid-container">
+        <div class="grid-container" >
           <div>
             <b>Number:</b> {{jur.ExpandedComponent.ComponentNumber}}<br />
             <b>Name:</b> {{jur.ExpandedComponent.ComponentName}}<br />
@@ -32,8 +32,6 @@
             <b>Test Lab:</b> {{jur.ExpandedComponent.ExpandedCertification.DisplayLab}}<br />
             <b>Submitted:</b> {{jur.formattedSubmitted}}<br />
             <b>Certified:</b> {{jur.formattedCertified}}<br />
-            <!--<b>Submitted:</b> {{jur.VendorSubmitted}}<br />
-            <b>Certified:</b> {{jur.TestLabCertified}}<br />-->
           </div>
           <div>
             <button nbButton size="medium" class="float-left" (click)="getStatus(jur)">

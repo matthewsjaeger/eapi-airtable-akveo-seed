@@ -39,6 +39,8 @@ import { EditComponentsComponent } from './on-floor/on-floor-slot/edit-component
 import { MultiOnFloorComponent } from './on-floor/multi-on-floor/multi-on-floor.component';
 import { CdiComponent } from './cdi/cdi.component';
 import { CdiStatusComponent } from './cdi-status/cdi-status.component';
+import { CdiConflictedComponent } from './cdi/cdi-conflicted/cdi-conflicted.component';
+import { CdiManualComponent } from './cdi/cdi-manual/cdi-manual.component';
 
 let effortlessChildren = [
   {
@@ -189,6 +191,14 @@ let effortlessChildren = [
   {
     path: 'cdi-status',
     component: CdiStatusComponent
+  },
+  {
+    path: 'cdi-conflicted',
+    component: CdiConflictedComponent
+  },
+  {
+    path: 'cdi-manual',
+    component: CdiManualComponent
   }
 ];
 

@@ -438,6 +438,70 @@ function generateGAINSUserActor() {
             
             return deferred.promise;
         }
+
+        smqGAINSUser.GetUnmatchedManualComponents = function () {
+          smqGAINSUser.GetUnmatchedManualComponents('{}');
+        }
+
+        smqGAINSUser.GetUnmatchedManualComponents = function (payload) {
+          payload = smqGAINSUser.stringifyValue(payload);
+          var id = smqGAINSUser.createUUID();
+          var deferred = smqGAINSUser.waitingReply[id] = smqGAINSUser.defer();
+          if (smqGAINSUser.showPingPongs) console.log('Get Unmatched Manual Components - ');
+          smqGAINSUser.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.getunmatchedmanualcomponents', { "content-type": "text/plain", "reply-to": "/temp-queue/response-queue", "correlation-id": id }, payload);
+
+          smqGAINSUser.waitFor(id);
+
+          return deferred.promise;
+        }
+
+        smqGAINSUser.MatchManualComponent = function () {
+          smqGAINSUser.MatchManualComponent('{}');
+        }
+
+        smqGAINSUser.MatchManualComponent = function (payload) {
+          payload = smqGAINSUser.stringifyValue(payload);
+          var id = smqGAINSUser.createUUID();
+          var deferred = smqGAINSUser.waitingReply[id] = smqGAINSUser.defer();
+          if (smqGAINSUser.showPingPongs) console.log('Match Manual Component - ');
+          smqGAINSUser.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.matchmanualcomponent', { "content-type": "text/plain", "reply-to": "/temp-queue/response-queue", "correlation-id": id }, payload);
+
+          smqGAINSUser.waitFor(id);
+
+          return deferred.promise;
+        }
+
+        smqGAINSUser.MatchAllManualComponents = function () {
+          smqGAINSUser.MatchAllManualComponents('{}');
+        }
+
+        smqGAINSUser.MatchAllManualComponents = function (payload) {
+          payload = smqGAINSUser.stringifyValue(payload);
+          var id = smqGAINSUser.createUUID();
+          var deferred = smqGAINSUser.waitingReply[id] = smqGAINSUser.defer();
+          if (smqGAINSUser.showPingPongs) console.log('Match All Manual Components - ');
+          smqGAINSUser.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.matchallmanualcomponents', { "content-type": "text/plain", "reply-to": "/temp-queue/response-queue", "correlation-id": id }, payload);
+
+          smqGAINSUser.waitFor(id);
+
+          return deferred.promise;
+        }
+
+        smqGAINSUser.GetMatchAllResult = function () {
+          smqGAINSUser.GetMatchAllResults('{}');
+        }
+
+        smqGAINSUser.GetMatchAllResult = function (payload) {
+          payload = smqGAINSUser.stringifyValue(payload);
+          var id = smqGAINSUser.createUUID();
+          var deferred = smqGAINSUser.waitingReply[id] = smqGAINSUser.defer();
+          if (smqGAINSUser.showPingPongs) console.log('Get Match All Result - ');
+          smqGAINSUser.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.getmatchallresult', { "content-type": "text/plain", "reply-to": "/temp-queue/response-queue", "correlation-id": id }, payload);
+
+          smqGAINSUser.waitFor(id);
+
+          return deferred.promise;
+        }
         
         smqGAINSUser.SearchOnFloorSlots = function() {
             smqGAINSUser.SearchOnFloorSlots('{}');

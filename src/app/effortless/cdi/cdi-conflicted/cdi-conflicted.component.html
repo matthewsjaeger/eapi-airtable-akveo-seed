@@ -1,0 +1,41 @@
+<nb-card>
+  <nb-card-header>
+    <h5 class="float-left">Revoked/Conflicted Components</h5>
+  </nb-card-header>
+  <nb-card-body>
+    <nb-tabset (change)="reload()">
+      <nb-tab tabTitle="Conflicted" (click)="reload()">
+        <div *ngIf="!scdsc">Loading...</div>
+        <div *ngIf="scdsc">
+          <div *ngIf="scdsc.length < 1">None</div>
+          <nb-list *ngIf="scdsc.length > 0">
+            <nb-list-item *ngFor="let scdc of scdsc">
+              <ngx-conflicted-details [scd]="scdc" [revokeable]="true"></ngx-conflicted-details>
+            </nb-list-item>
+          </nb-list>
+        </div>
+      </nb-tab>
+      <nb-tab tabTitle="Revoked and Installed" (click)="reload()">
+        <div *ngIf="!scdsi">Loading...</div>
+        <div *ngIf="scdsi">
+          <div *ngIf="scdsi.length < 1">None</div>
+          <nb-list *ngIf="scdsi.length > 0">
+            <nb-list-item *ngFor="let scdi of scdsi">
+                <ngx-conflicted-details [scd]="scdi" [revokeable]="false"></ngx-conflicted-details>
+            </nb-list-item>
+          </nb-list>
+        </div>
+      </nb-tab>
+      <nb-tab tabTitle="Revoked and Uninstalled" (click)="reload()">
+        <div *ngIf="!scdsu">Loading...</div>
+        <div *ngIf="scdsu">
+          <div *ngIf="scdsu.length < 1">None</div>
+          <nb-list *ngIf="scdsu.length > 0">
+            <nb-list-item *ngFor="let scdu of scdsu">
+              <ngx-conflicted-details [scd]="scdu" [revokeable]="false"></ngx-conflicted-details>
+            </nb-list-item>
+          </nb-list>
+        </div>
+      </nb-tab>
+    </nb-tabset>
+  </nb-card-body>

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { EffortlessRoutingModule } from './effortless-routing.module';
-import { NbMenuModule, NbCardModule, NbButtonModule, NbActionsModule, NbSelectModule, NbInputModule, NbTabsetModule, NbIconModule, NbSpinnerModule, NbToggleModule, NbListModule, NbDialogModule, NbLayoutModule, NbCheckboxModule, NbDatepickerModule } from '@nebular/theme';
+import { NbMenuModule, NbCardModule, NbButtonModule, NbActionsModule, NbSelectModule, NbInputModule, NbTabsetModule, NbIconModule, NbSpinnerModule, NbToggleModule, NbListModule, NbDialogModule, NbLayoutModule, NbCheckboxModule, NbDatepickerModule, NbProgressBarModule, NbAlertModule } from '@nebular/theme';
 import { ThemeModule } from '../@theme/theme.module';
 import { EffortlessComponent } from './effortless.component';
 import { FormsModule } from '@angular/forms';
@@ -57,6 +57,11 @@ import { MultiOnFloorComponent } from './on-floor/multi-on-floor/multi-on-floor.
 import { CdiComponent } from './cdi/cdi.component';
 import { ComponentGeneratedComponent } from './cdi/component-generated/component-generated.component';
 import { CdiStatusComponent } from './cdi-status/cdi-status.component';
+import { CdiConflictedComponent } from './cdi/cdi-conflicted/cdi-conflicted.component';
+import { ConflictedDetailsComponent } from './cdi/cdi-conflicted/conflicted-details/conflicted-details.component';
+import { CdiManualComponent } from './cdi/cdi-manual/cdi-manual.component';
+import { ComponentMatchedComponent } from './cdi/component-matched/component-matched.component';
+import { InstalledDetailsComponent } from './cdi/cdi-conflicted/conflicted-details/installed-details/installed-details.component';
 
 let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComponent, Page3Component,
   StorageSlotsComponent, SlotProjectsComponent, SearchStorageSlotsComponent, SlotProjectComponent, NewProjectComponent,
@@ -68,7 +73,8 @@ PlaceSlotSealsComponent, ReplaceWitnessesComponent, EditSealsLogicAccessComponen
 RequestActivationComponent, MlcPlaceSlotComponent, MlcAddComponent, MlcBreakComponent, MlcReplaceComponent, PlaceConversionComponent,
  MlcChecklistComponent, LscPlaceSlotComponent, LscAddComponent, LscReplaceComponent, LscBreakComponent, LscPlaceConversionComponent,
   LscChecklistComponent, CompleteMoveToStorageComponent, ScheduleMoveToStorageComponent, EditComponentsComponent, MultiOnFloorComponent,
-CdiComponent, ComponentGeneratedComponent, CdiStatusComponent];
+  CdiComponent, ComponentGeneratedComponent, CdiStatusComponent, CdiConflictedComponent, ConflictedDetailsComponent, CdiManualComponent,
+  ComponentMatchedComponent, InstalledDetailsComponent];
 
 @NgModule({
   declarations: declarations,
@@ -92,13 +98,15 @@ CdiComponent, ComponentGeneratedComponent, CdiStatusComponent];
     NbLayoutModule,
     NbCheckboxModule,
     FormsModule,
+    NbProgressBarModule,
+    NbAlertModule,
     NbDialogModule.forChild(),
     NbDatepickerModule.forRoot()
   ],
   entryComponents: [ AddSealComponent, ReplaceSealComponent, BreakSealComponent, PlaceSlotSealsComponent, 
     ReplaceWitnessesComponent, MlcAddComponent, MlcBreakComponent, MlcReplaceComponent,
     PlaceConversionComponent, LscAddComponent, LscReplaceComponent, LscBreakComponent, LscPlaceConversionComponent,
-    ComponentGeneratedComponent, CdiStatusComponent]
+    ComponentGeneratedComponent, CdiStatusComponent, ComponentMatchedComponent]
 })
 export class EffortlessModule {
 

@@ -13,8 +13,8 @@ import { CdiStatusComponent } from '../cdi-status/cdi-status.component';
   styleUrls: ['./cdi.component.scss']
 })
 export class CdiComponent extends EffortlessComponentBase implements OnInit {
-  jurs: any = [{}];
-  days: any = 3;
+  jurs: any = [];
+  days: any = 7;
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService,
     public route: ActivatedRoute, public toastr: NbToastrService, private dialogService: NbDialogService) {
@@ -24,9 +24,7 @@ export class CdiComponent extends EffortlessComponentBase implements OnInit {
 
   ngOnInit() {
     let self = this;
-    console.error('aaa');
     this.safeSubscribe(this.gds.onReady().subscribe(ready => {
-      console.error('bbb');
       self.reload();
     }));
   }

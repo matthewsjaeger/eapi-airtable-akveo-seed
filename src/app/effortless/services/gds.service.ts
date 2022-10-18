@@ -62,10 +62,19 @@ export class GDS {
   public stageMngr: any = { operation: '', slot: '', stage: '' };
   public completeSlotConversionPayload: any = {};
   private readiness$: BehaviorSubject<{}> = new BehaviorSubject(null);
+  public reload$: BehaviorSubject<{}> = new BehaviorSubject(null);
   public slotList: any = [];
 
   public onReady(): Observable<any> {
     return this.readiness$
+      .pipe(
+      filter(value => !!value),
+      share()
+      )
+  }
+
+  public onReload(): Observable<any> {
+    return this.reload$
       .pipe(
       filter(value => !!value),
       share()

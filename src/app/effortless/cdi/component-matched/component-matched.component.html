@@ -1,0 +1,27 @@
+<nb-card>
+  <nb-card-header>
+    <h5>Matched Component</h5>
+  </nb-card-header>
+  <nb-card-body>
+    <b>Number:</b> {{jur.ExpandedComponent.ComponentNumber}}<br />
+    <b>Name:</b> {{jur.ExpandedComponent.ComponentName}}<br />
+    <div *ngIf="jur.ExpandedComponent.Version"><b>Version:</b> {{jur.ExpandedComponent.Version}}<br /></div>
+    <div *ngIf="jur.ExpandedComponent.ComponentCode1"><b>Code1:</b> {{jur.ExpandedComponent.ComponentCode1}}<br /></div>
+    <div *ngIf="jur.ExpandedComponent.ComponentCode2"><b>Code2:</b> {{jur.ExpandedComponent.ComponentCode2}}<br /></div>
+    <b>Function:</b> {{jur.ExpandedComponent.Function}}<br />
+    <b>Media Type:</b> {{jur.ExpandedComponent.MediaType}}<br />
+    <b>Vendor:</b> {{jur.ExpandedComponent.DisplayVendor}}<br />
+    <b>Certification Number:</b> {{jur.ExpandedComponent.ExpandedCertification.CertificationNumber}}<br />
+    <b>Certification Code1:</b> {{jur.ExpandedComponent.ExpandedCertification.CertificationCode1}}<br />
+    <b>Certification Code2:</b> {{jur.ExpandedComponent.ExpandedCertification.CertificationCode2}}<br />
+    <b>Status:</b> {{jur.DisplayStatus}}<br />
+    <b>Test Lab:</b> {{jur.ExpandedComponent.ExpandedCertification.DisplayLab}}<br />
+    <b>Submitted:</b> {{jur.formattedSubmitted}}<br />
+    <b>Certified:</b> {{jur.formattedCertified}}<br />
+  </nb-card-body>
+  <nb-card-footer>
+    <button nbButton size="medium" (click)="close()">
+      Ok
+    </button>
+  </nb-card-footer>
+</nb-card>

@@ -31,7 +31,20 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'CDI',
     icon: 'cloud-download',
-    link: '/effortless/cdi',
+    children: [
+      {
+        title: 'Recent',
+        link: '/effortless/cdi'
+      },
+      {
+        title: 'Conflicted',
+        link: '/effortless/cdi-conflicted'
+      },
+      {
+        title: 'Manually Added',
+        link: '/effortless/cdi-manual'
+      }
+    ]
   },
   {
     title: 'Login',

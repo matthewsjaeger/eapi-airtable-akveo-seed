@@ -1,0 +1,24 @@
+<div class="grid-container">
+  <div>
+    <b>Description:</b> {{scd.Description}}<br />
+    <b>GameName:</b> {{scd.GameName}}<br />
+    <b>Manufacturer:</b> {{scd.DisplayManufacturer}}<br/>
+    <b>Component Type:</b> {{scd.ComponentType}}<br />
+    <b>Version:</b> {{scd.Version}}<br />
+  </div>
+  <div>
+    <b>Approval Date:</b> {{scd.formattedApprovalDate}}<br />
+    <b>Revoked Date:</b> {{scd.DisplayRevokedDate}}<br />
+    <b>Replace By Date:</b> {{scd.DisplayReplaceBy}}<br />
+  </div>
+  <div>
+    <button nbButton size="medium" (click)="installedIn()">
+      Installed In
+    </button>
+  </div>
+  <div *ngIf="revokeable">
+    <button nbButton size="medium" (click)="revoke()">
+      Revoke
+    </button>
+  </div>
+</div>
