@@ -1,23 +1,16 @@
-<!--<button nbButton size="medium" class="float-left" (click)="reload()">
-  Reload {{filteredJurs.length}}
-</button>-->
 <nb-card>
   <nb-card-header>
-    <h5>Recent Certifications</h5>
-    <div class="header-grid-container">
-      <div>
-        <input class="searchBar" [(ngModel)]="filter" autocomplete="off" (change)="filterJurs()" type="text"
-               nbInput fullWidth placeholder="Search for recent certifications">
-      </div>
-      <div>
-        <b>Days:<input [(ngModel)]="days" autocomplete="off" (change)="reload()" type="number" nbInput></b>
-      </div>
+    <div class="float-left">
+      <h5>Search Certifications</h5>
+    </div>
+    <div class="float-right">
+      <b>Days:<input [(ngModel)]="days" autocomplete="off" (change)="reload()" type="number" nbInput></b>
     </div>
   </nb-card-header>
   <nb-card-body>
-    <nb-list *ngIf="filteredJurs.length > 0">
-      <nb-list-item *ngFor="let jur of filteredJurs">
-        <div class="grid-container" >
+    <nb-list *ngIf="jurs.length > 0">
+      <nb-list-item *ngFor="let jur of jurs">
+        <div class="grid-container">
           <div>
             <b>Number:</b> {{jur.ExpandedComponent.ComponentNumber}}<br />
             <b>Name:</b> {{jur.ExpandedComponent.ComponentName}}<br />
@@ -46,6 +39,5 @@
         </div>
       </nb-list-item>
     </nb-list>
-    <p *ngIf="jurs.length > 0 && filteredJurs.length == 0" style="color: red;">No recent certifications found matching that time period and search term.</p>
   </nb-card-body>
 </nb-card>

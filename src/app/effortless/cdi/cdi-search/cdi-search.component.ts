@@ -1,22 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { EffortlessComponentBase } from '../efforless-base-component';
-import { GDS } from '../services/gds.service';
+import { GDS } from '../../services/gds.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { DataEndpoint } from '../services/eapi-data-services/data-endpoint/data-endpoint';
+import { DataEndpoint } from '../../services/eapi-data-services/data-endpoint/data-endpoint';
 import { NbMenuService, NbToastrService, NbDialogService } from '@nebular/theme';
-import { ComponentGeneratedComponent } from './component-generated/component-generated.component';
-import { CdiStatusComponent } from '../cdi-status/cdi-status.component';
+import { EffortlessComponentBase } from '../../efforless-base-component';
+import { ComponentGeneratedComponent } from '../component-generated/component-generated.component';
+import { CdiStatusComponent } from '../../cdi-status/cdi-status.component';
 
 @Component({
-  selector: 'ngx-cdi',
-  templateUrl: './cdi.component.html',
-  styleUrls: ['./cdi.component.scss']
+  selector: 'ngx-cdi-search',
+  templateUrl: './cdi-search.component.html',
+  styleUrls: ['./cdi-search.component.scss']
 })
-export class CdiComponent extends EffortlessComponentBase implements OnInit {
+export class CdiSearchComponent extends EffortlessComponentBase implements OnInit {
+
   jurs: any = [];
-  filteredJurs: any = [];
   days: any = 7;
-  filter: string = "";
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService,
     public route: ActivatedRoute, public toastr: NbToastrService, private dialogService: NbDialogService) {
@@ -42,7 +41,6 @@ export class CdiComponent extends EffortlessComponentBase implements OnInit {
       console.error("GetNewCDIs", reply);
       self.jurs = reply.CDIHistory;
       self.formatDates(self.jurs);
-      self.filteredJurs = self.jurs;
     });
   }
 
@@ -76,7 +74,7 @@ export class CdiComponent extends EffortlessComponentBase implements OnInit {
           }
         }).onClose.subscribe(resp => self.reload());
       }
-    }); 
+    });
   }
 
   getStatus(jur) {
@@ -87,46 +85,5 @@ export class CdiComponent extends EffortlessComponentBase implements OnInit {
       }
     }).onClose.subscribe(resp => self.generateComponent(resp));
   }
-
-  matchesFilter(jur) {
-    let filter = this.filter;
-    if (jur.ExpandedComponent.ComponentNumber.toLowerCase().includes(filter.toLowerCase())) {
-      return true;
-    } else if (jur.ExpandedComponent.ComponentName.toLowerCase().includes(filter.toLowerCase())) {
-      return true;
-    } else if (jur.ExpandedComponent.Version && jur.ExpandedComponent.Version.toLowerCase().includes(filter.toLowerCase())) {
-      return true;
-    } else if (jur.ExpandedComponent.ExpandedCertification.CertificationNumber.toLowerCase().includes(filter.toLowerCase())) {
-      return true;
-    } else if (jur.ExpandedComponent.DisplayVendor.toLowerCase().includes(filter.toLowerCase())) {
-      return true;
-    } else if (jur.ExpandedComponent.DisplaySignatures && jur.ExpandedComponent.DisplaySignatures.toLowerCase().includes(filter.toLowerCase())) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  filterJurs() {
-    if (this.filter == "") {
-      this.filteredJurs = this.jurs;
-    } else {
-      let self = this;
-      this.filteredJurs = [];
-      this.jurs.forEach(jur => {
-        if (self.matchesFilter(jur)) {
-          this.filteredJurs.push(jur);
-        }
-      });
-    }
-  }
-
-  //openComponentGenerated(reply, self) {
-  //  this.dialogService.open(ComponentGeneratedComponent, {
-  //    context: {
-  //      'scd': reply.WriteableSCD
-  //    }
-  //  }).onClose.subscribe(resp => self.reload());
-  //}
 
 }
