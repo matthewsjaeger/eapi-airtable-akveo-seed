@@ -20,8 +20,11 @@
     <b>Certified:</b> {{jur.formattedCertified}}<br />
   </nb-card-body>
   <nb-card-footer>
-    <button nbButton size="medium" (click)="close()">
-      Ok
+    <button nbButton size="medium" class="float-left" status="danger" (click)="close()">
+      Cancel
+    </button>
+    <button nbButton size="medium" class="float-right" (click)="confirm()">
+      Confirm
     </button>
   </nb-card-footer>
 </nb-card>

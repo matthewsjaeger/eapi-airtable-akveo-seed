@@ -58,7 +58,8 @@ export class CdiManualComponent extends EffortlessComponentBase implements OnIni
       } else {
         self.dialogService.open(ComponentMatchedComponent, {
           context: {
-            'jur': reply.CDIHistory[0]
+            'jur': reply.CDIHistory[0],
+            'scd': scd
           }
         }).onClose.subscribe(resp => self.reload());
       }

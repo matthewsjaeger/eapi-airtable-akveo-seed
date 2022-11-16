@@ -12,6 +12,7 @@ import { NbMenuService, NbDialogService, NbToastrService, NbDialogRef } from '@n
 })
 export class ComponentMatchedComponent extends EffortlessComponentBase implements OnInit {
   @Input() jur: any;
+  @Input() scd: any;
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService,
     public route: ActivatedRoute, protected dialogRef: NbDialogRef<ComponentMatchedComponent>, private dialogService: NbDialogService, public toastr: NbToastrService) {
@@ -38,6 +39,20 @@ export class ComponentMatchedComponent extends EffortlessComponentBase implement
     const offset = date.getTimezoneOffset()
     date = new Date(date.getTime() - (offset * 60 * 1000))
     return date.toISOString().split('T')[0]
+  }
+
+  confirm() {
+    let self = this;
+    var payload = this.gds.createPayload();
+    payload.CDIComponent = this.jur.ExpandedComponent;
+    payload.SlotComponentDef = this.scd;
+    this.gds.smqATR.LinkComponent(payload).then(function (reply) {
+      if (reply.ErrorMessage) {
+        self.toastr.warning(reply.ErrorMessage);
+      } else {
+        self.close();
+      }
+    });
   }
 
 }
