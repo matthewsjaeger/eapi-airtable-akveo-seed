@@ -17,6 +17,9 @@ export class CdiComponent extends EffortlessComponentBase implements OnInit {
   filteredJurs: any = [];
   days: any = 7;
   filter: string = "";
+  searchAll: boolean = false;
+  loading: boolean = false;
+  timeout: boolean = false;
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService,
     public route: ActivatedRoute, public toastr: NbToastrService, private dialogService: NbDialogService) {
@@ -119,6 +122,39 @@ export class CdiComponent extends EffortlessComponentBase implements OnInit {
         }
       });
     }
+  }
+
+  toggleSearchAll() {
+    this.filter = "";
+    this.timeout = false;
+    this.searchAll = !this.searchAll;
+    if (this.searchAll) {
+      this.filteredJurs = [];
+    } else {
+      this.filterJurs();
+    }
+  }
+
+  searchAllComponents() {
+    let self = this;
+    var payload = this.gds.createPayload();
+    payload.SearchTerm = this.filter;
+    self.loading = true;
+    self.timeout = false;
+    this.gds.smqATR.SearchCDIComponents(payload).then(function (reply) {
+      self.loading = false;
+      if (reply.ErrorMessage) {
+        self.toastr.warning(reply.ErrorMessage);
+      } else {
+        if (reply.CDIHistory != null) {
+          self.formatDates(reply.CDIHistory);
+          self.filteredJurs = reply.CDIHistory;
+        }
+      }
+    }).catch(function (error) {
+      self.loading = false;
+      self.timeout = true;
+    }); 
   }
 
   //openComponentGenerated(reply, self) {

@@ -83,17 +83,19 @@ export class AppModule {
             gds.createPayload = function () {
               return { "JWT": gds.accessToken };
             };
-            gds.smqUser.MyRoles(gds.createPayload())
-              .then(function (waiReply) {
-                if (waiReply.ErrorMessage) {
-                  self.router.navigateByUrl('auth/login');
-                }
-                console.error(waiReply);
-                gds.myRoles = waiReply.Roles;
-                gds.GAINSUser = waiReply.GAINSUser;
-                if (gds.firstLoad) gds.connect();
-                gds.firstLoad = false;
-              });
+            if (gds.firstLoad) {
+              gds.smqUser.MyRoles(gds.createPayload())
+                .then(function (waiReply) {
+                  if (waiReply.ErrorMessage) {
+                    self.router.navigateByUrl('auth/login');
+                  }
+                  console.error(waiReply);
+                  gds.myRoles = waiReply.Roles;
+                  gds.GAINSUser = waiReply.GAINSUser;
+                  if (gds.firstLoad) gds.connect();
+                  gds.firstLoad = false;
+                });
+            }
           }
           else {
             gds.accessToken = "";

@@ -1,15 +1,29 @@
 <!--<button nbButton size="medium" class="float-left" (click)="reload()">
   Reload {{filteredJurs.length}}
 </button>-->
-<nb-card>
+<nb-card [nbSpinner]="loading"
+             nbSpinnerStatus="danger"
+             nbSpinnerSize="large"
+             nbSpinnerMessage="">
   <nb-card-header>
-    <h5>Recent Certifications</h5>
+    <h5 *ngIf="!searchAll">Recent Certifications</h5>
+    <h5 *ngIf="searchAll">All Certifications</h5>
     <div class="header-grid-container">
       <div>
-        <input class="searchBar" [(ngModel)]="filter" autocomplete="off" (change)="filterJurs()" type="text"
+        <input class="searchBar" [(ngModel)]="filter" autocomplete="off" (change)="filterJurs()" type="text" *ngIf="!searchAll"
                nbInput fullWidth placeholder="Search for recent certifications">
+        <input class="searchBar" [(ngModel)]="filter" autocomplete="off" (change)="searchAllComponents()" type="text" *ngIf="searchAll"
+               nbInput fullWidth placeholder="Search all certifications">
       </div>
       <div>
+        <button nbButton size="medium" class="float-left" (click)="toggleSearchAll()" *ngIf="!searchAll">
+          Search All
+        </button>
+        <button nbButton size="medium" class="float-left" (click)="toggleSearchAll()" *ngIf="searchAll">
+          Search Recent
+        </button>
+      </div>
+      <div *ngIf="!searchAll">
         <b>Days:<input [(ngModel)]="days" autocomplete="off" (change)="reload()" type="number" nbInput></b>
       </div>
     </div>
@@ -17,7 +31,7 @@
   <nb-card-body>
     <nb-list *ngIf="filteredJurs.length > 0">
       <nb-list-item *ngFor="let jur of filteredJurs">
-        <div class="grid-container" >
+        <div class="grid-container">
           <div>
             <b>Number:</b> {{jur.ExpandedComponent.ComponentNumber}}<br />
             <b>Name:</b> {{jur.ExpandedComponent.ComponentName}}<br />
@@ -46,6 +60,7 @@
         </div>
       </nb-list-item>
     </nb-list>
-    <p *ngIf="jurs.length > 0 && filteredJurs.length == 0" style="color: red;">No recent certifications found matching that time period and search term.</p>
+    <p *ngIf="jurs.length > 0 && filteredJurs.length == 0 && !loading && !timeout" style="color: red;">No recent certifications found matching that time period and search term.</p>
+    <p *ngIf="timeout" style="color: red;">Request timed out. Try a more specific search.</p>
   </nb-card-body>
 </nb-card>

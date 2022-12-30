@@ -56,6 +56,7 @@ export class GDS {
   public phases: any;
   public applicant: any;
   public firstLoad: boolean;
+  public firstTailLoad: boolean = true;
   public customer: any;
   public employee: any;
   public timers: Subscription[] = [];
@@ -166,7 +167,8 @@ export class GDS {
     gds.smqATR = generateATRActor();
     gds.smqATR.rabbitEndpoint = gds.rabbitEndpoint;
     gds.smqATR.connect(gds.vhost, gds.smqUsername, gds.smqPassword, function () { }, function () {
-      gds.readiness$.next({});
+      if (gds.firstTailLoad) gds.readiness$.next({});
+      gds.firstTailLoad = false;
     });
 
     gds.smqUser.createPayload = gds.smqUser.createPayload || function () {
