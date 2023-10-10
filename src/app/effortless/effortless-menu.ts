@@ -9,24 +9,24 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
-    title: 'Storage Slots',
-    icon: 'person',
-    link: '/effortless/storage-slots',
-  },
-  {
-    title: 'Slot Projects',
-    icon: 'person',
-    link: '/effortless/slot-projects',
-  },
-  {
     title: 'On Floor',
     icon: 'play-circle',
     link: '/effortless/on-floor/:sid',
   },
   {
+    title: 'Storage Slots',
+    icon: 'person',
+    link: '/effortless/search-storage-slots',
+  },
+  {
     title: 'Multi-Slot Actions',
     icon: 'folder-add',
     link: '/effortless/multi-select',
+  },
+  {
+    title: 'Slot Projects',
+    icon: 'person',
+    link: '/effortless/slot-projects',
   },
   {
     title: 'CDI',

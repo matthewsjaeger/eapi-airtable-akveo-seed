@@ -161,6 +161,7 @@ export class SmqAuthStrategy extends NbAuthStrategy {
     var payload: any;
     payload = this.gds.createPayload();
     payload.JWT = data.token;
+    payload.Resolution = screen.width + "x" + screen.height;
     console.error(data.token);
     return from(gds.smqUser.GuestLogin(payload))
       .pipe(
