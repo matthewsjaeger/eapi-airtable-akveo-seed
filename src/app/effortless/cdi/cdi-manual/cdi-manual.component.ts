@@ -18,6 +18,8 @@ export class CdiManualComponent extends EffortlessComponentBase implements OnIni
   loadingPercent: any = 0;
   alertStatus: any = 'hide';
   alertMessage: any = '';
+  filter: string = "";
+  filteredScds: any = [];
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService,
     public route: ActivatedRoute, public toastr: NbToastrService, private dialogService: NbDialogService) {
@@ -35,13 +37,44 @@ export class CdiManualComponent extends EffortlessComponentBase implements OnIni
     let self = this;
     var payload = this.gds.createPayload();
     this.gds.smqUser.GetUnmatchedManualComponents(payload).then(function (reply) {
-      console.error('AAAAA', reply);
       if (reply.ErrorMessage) {
         self.toastr.warning(reply.ErrorMessage);
       } else {
         self.scds = reply.WriteableSCDs;
+        self.filteredScds = self.scds;
       }
     });
+  }
+
+  matchesFilter(scd) {
+    let filter = this.filter;
+    if (scd.Signatures && scd.Signatures.toLowerCase().includes(filter.toLowerCase())) {
+      return true;
+    } else if (scd.Description && scd.Description.toLowerCase().includes(filter.toLowerCase())) {
+      return true;
+    } else if (scd.GameName && scd.GameName.toLowerCase().includes(filter.toLowerCase())) {
+      return true;
+    } else if (scd.Version && scd.Version.toLowerCase().includes(filter.toLowerCase())) {
+      return true;
+    } else if (scd.ComponentHId && scd.ComponentHId.toLowerCase().includes(filter.toLowerCase())) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  filterScds() {
+    if (this.filter == "") {
+      this.filteredScds = this.scds;
+    } else {
+      let self = this;
+      this.filteredScds = [];
+      this.scds.forEach(scd => {
+        if (self.matchesFilter(scd)) {
+          this.filteredScds.push(scd);
+        }
+      });
+    }
   }
 
   more() {

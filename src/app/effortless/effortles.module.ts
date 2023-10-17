@@ -63,6 +63,7 @@ import { CdiManualComponent } from './cdi/cdi-manual/cdi-manual.component';
 import { ComponentMatchedComponent } from './cdi/component-matched/component-matched.component';
 import { InstalledDetailsComponent } from './cdi/cdi-conflicted/conflicted-details/installed-details/installed-details.component';
 import { CdiSearchComponent } from './cdi/cdi-search/cdi-search.component';
+import { CdiLetterComponent } from './cdi/cdi-letter/cdi-letter.component';
 
 let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComponent, Page3Component,
   StorageSlotsComponent, SlotProjectsComponent, SearchStorageSlotsComponent, SlotProjectComponent, NewProjectComponent,
@@ -75,7 +76,7 @@ RequestActivationComponent, MlcPlaceSlotComponent, MlcAddComponent, MlcBreakComp
  MlcChecklistComponent, LscPlaceSlotComponent, LscAddComponent, LscReplaceComponent, LscBreakComponent, LscPlaceConversionComponent,
   LscChecklistComponent, CompleteMoveToStorageComponent, ScheduleMoveToStorageComponent, EditComponentsComponent, MultiOnFloorComponent,
   CdiComponent, ComponentGeneratedComponent, CdiStatusComponent, CdiConflictedComponent, ConflictedDetailsComponent, CdiManualComponent,
-  ComponentMatchedComponent, InstalledDetailsComponent, CdiSearchComponent];
+  ComponentMatchedComponent, InstalledDetailsComponent, CdiSearchComponent, CdiLetterComponent];
 
 @NgModule({
   declarations: declarations,

@@ -43,6 +43,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
       {
         title: 'Manually Added',
         link: '/effortless/cdi-manual'
+      },
+      {
+        title: 'Approval Letters',
+        link: '/effortless/cdi-letter'
       }
     ]
   },

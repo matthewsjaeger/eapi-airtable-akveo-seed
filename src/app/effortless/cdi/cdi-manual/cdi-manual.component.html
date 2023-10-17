@@ -1,17 +1,20 @@
 <nb-card>
   <nb-card-header>
     <div>
-      <h5 class="float-left">Unmatched Manually Added Components ({{scds.length}})</h5>
-      <button nbButton size="medium" class="float-right" (click)="matchAll()">
+      <h5 class="float-left" *ngIf="filteredScds.length == scds.length">Unmatched Manually Added Components ({{scds.length}})</h5>
+      <h5 class="float-left" *ngIf="filteredScds.length != scds.length">Unmatched Manually Added Components ({{filteredScds.length}} of {{scds.length}})</h5>
+      <button nbButton size="medium" class="float-right" (click)="matchAll()" style="margin-bottom: .5em;">
         Match All
       </button>
     </div><br />
+    <input class="searchBar" [(ngModel)]="filter" autocomplete="off" (change)="filterScds()" type="text"
+           nbInput fullWidth placeholder="Search unmatched manually added components">
   </nb-card-header>
   <nb-card-body>
     <nb-alert *ngIf="alertStatus != 'hide'" status="{{alertStatus}}" closable (close)="onAlertClose()">{{alertMessage}}</nb-alert>
     <div *ngIf="loading"><nb-progress-bar [value]=loadingPercent>Matching...</nb-progress-bar></div>
-    <nb-list *ngIf="scds.length > 0">
-      <nb-list-item *ngFor="let scd of scds | slice:0:displayCount;">
+    <nb-list *ngIf="filteredScds.length > 0">
+      <nb-list-item *ngFor="let scd of filteredScds | slice:0:displayCount;">
         <div class="grid-container">
           <div>
             <b>ObjectId:</b> {{scd.SlotComponentDefId}}<br />
@@ -36,7 +39,7 @@
         </div>
       </nb-list-item>
     </nb-list>
-    <button nbButton size="medium" (click)="more()">
+    <button nbButton size="medium" (click)="more()" *ngIf="displayCount < filteredScds.length">
       More
     </button>
   </nb-card-body>

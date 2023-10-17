@@ -521,6 +521,13 @@ function generateATRActor() {
                         if (rpayload) smqATR.sendReply(rpayload, msg);
                     }
                 }
+
+                if (smqATR.onATRSearchLinkedComponents) {
+                  if (msg.headers && (msg.headers.destination.includes('gainscoordinator.atr.atr.searchlinkedcomponents'))) {
+                    var rpayload = smqATR.onATRSearchLinkedComponents(msg.body, msg);
+                    if (rpayload) smqATR.sendReply(rpayload, msg);
+                  }
+                }
             
                 if (smqATR.onATRSearchCDIComponents) {
                     if (msg.headers && (msg.headers.destination.includes('gainscoordinator.atr.atr.searchcdicomponents'))) {
@@ -1454,6 +1461,22 @@ function generateATRActor() {
             smqATR.waitFor(id);
             
             return deferred.promise;
+        }
+
+        smqATR.SearchLinkedComponents = function () {
+          smqATR.SearchLinkedComponents('{}');
+        }
+
+        smqATR.SearchLinkedComponents = function (payload) {
+          payload = smqATR.stringifyValue(payload);
+          var id = smqATR.createUUID();
+          var deferred = smqATR.waitingReply[id] = smqATR.defer();
+          if (smqATR.showPingPongs) console.log('Search Linked Components - ');
+          smqATR.client.send('/exchange/atrmic/gainscoordinator.atr.atr.searchlinkedcomponents', { "content-type": "text/plain", "reply-to": "/temp-queue/response-queue", "correlation-id": id }, payload);
+
+          smqATR.waitFor(id);
+
+          return deferred.promise;
         }
         
         smqATR.SearchCDIComponents = function() {

@@ -42,6 +42,7 @@ import { CdiStatusComponent } from './cdi-status/cdi-status.component';
 import { CdiConflictedComponent } from './cdi/cdi-conflicted/cdi-conflicted.component';
 import { CdiManualComponent } from './cdi/cdi-manual/cdi-manual.component';
 import { CdiSearchComponent } from './cdi/cdi-search/cdi-search.component';
+import { CdiLetterComponent } from './cdi/cdi-letter/cdi-letter.component';
 
 let effortlessChildren = [
   {
@@ -204,6 +205,10 @@ let effortlessChildren = [
   {
     path: 'cdi-search',
     component: CdiSearchComponent
+  },
+  {
+    path: 'cdi-letter',
+    component: CdiLetterComponent
   }
 ];
 
