@@ -11,7 +11,7 @@ import { NbMenuService, NbToastrService, NbDialogService } from '@nebular/theme'
   styleUrls: ['./cdi-letter.component.scss']
 })
 export class CdiLetterComponent extends EffortlessComponentBase implements OnInit {
-  filteredJurs: any = [];
+  components: any = [];
   filter: string = "";
   loading: boolean = false;
   timeout: boolean = false;
@@ -39,17 +39,21 @@ export class CdiLetterComponent extends EffortlessComponentBase implements OnIni
     self.loading = true;
     self.timeout = false;
     this.gds.smqATR.SearchLinkedComponents(payload).then(function (reply) {
-      self.initialPrompt = false;
-      self.loading = false;
       if (reply.ErrorMessage) {
         self.toastr.warning(reply.ErrorMessage);
       } else {
-        if (reply.CDIHistory != null) {
-          self.formatDates(reply.CDIHistory);
-          self.filteredJurs = reply.CDIHistory;
+        if (reply.SlotComponentDefs != null) {
+          console.error(reply.SlotComponentDefs);
+          reply.SlotComponentDefs.forEach(comp => {
+            self.formatDates(comp.Jurisdictions);
+          });
+          self.components = reply.SlotComponentDefs;
+          self.initialPrompt = false;
         }
       }
+      self.loading = false;
     }).catch(function (error) {
+      console.error("Error: " + error)
       self.initialPrompt = false;
       self.loading = false;
       self.timeout = true;
@@ -57,6 +61,7 @@ export class CdiLetterComponent extends EffortlessComponentBase implements OnIni
   }
 
   formatDates(jurs) {
+    console.error('AAAAA', jurs);
     let self = this;
     jurs.forEach(jur => {
       jur.formattedSubmitted = self.formatDate(jur.VendorSubmitted);
@@ -69,6 +74,10 @@ export class CdiLetterComponent extends EffortlessComponentBase implements OnIni
     const offset = date.getTimezoneOffset()
     date = new Date(date.getTime() - (offset * 60 * 1000))
     return date.toISOString().split('T')[0]
+  }
+
+  download(doc) {
+
   }
 
 }
