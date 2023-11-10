@@ -1166,7 +1166,7 @@ function generateATRActor() {
                         if (smqATR.showPingPongs) console.log('      --------  MESSAGE FOR smqATR: ', d);
                     }, {
                       durable: false,
-                      requeue: false
+                      requeue: true
                     });
             smqATR.client.onreceive =  function (d) {
                         var body = JSON.parse(d.body);

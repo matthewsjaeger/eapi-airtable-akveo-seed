@@ -53,7 +53,7 @@ export class CdiLetterComponent extends EffortlessComponentBase implements OnIni
       }
       self.loading = false;
     }).catch(function (error) {
-      console.error("Error: " + error)
+      self.toastr.warning(error);
       self.initialPrompt = false;
       self.loading = false;
       self.timeout = true;
