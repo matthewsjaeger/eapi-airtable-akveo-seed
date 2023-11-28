@@ -1494,6 +1494,22 @@ function generateATRActor() {
             
             return deferred.promise;
         }
+
+        smqATR.DownloadLetter = function () {
+          smqATR.DownloadLetter('{}');
+        }
+
+        smqATR.DownloadLetter = function (payload) {
+          payload = smqATR.stringifyValue(payload);
+          var id = smqATR.createUUID();
+          var deferred = smqATR.waitingReply[id] = smqATR.defer();
+          if (smqATR.showPingPongs) console.log('Download Letter - ');
+          smqATR.client.send('/exchange/atrmic/gainscoordinator.atr.atr.downloadletter', { "content-type": "text/plain", "reply-to": "/temp-queue/response-queue", "correlation-id": id }, payload);
+
+          smqATR.waitFor(id);
+
+          return deferred.promise;
+        }
         
         smqATR.GetMatchingSignatures = function() {
             smqATR.GetMatchingSignatures('{}');

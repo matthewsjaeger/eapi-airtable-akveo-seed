@@ -77,7 +77,16 @@ export class CdiLetterComponent extends EffortlessComponentBase implements OnIni
   }
 
   download(doc) {
-
+    let self = this;
+    var payload = this.gds.createPayload();
+    payload.Document = doc;
+    this.gds.smqATR.DownloadLetter(payload).then(function (reply) {
+      if (reply.ErrorMessage) {
+        self.toastr.warning(reply.ErrorMessage);
+      } else {
+        self.toastr.success("Successfully downloaded pdf to C:/Letters/" + doc.DocumentName);
+      }
+    });
   }
 
 }
