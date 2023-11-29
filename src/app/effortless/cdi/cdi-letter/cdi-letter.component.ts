@@ -46,6 +46,7 @@ export class CdiLetterComponent extends EffortlessComponentBase implements OnIni
           console.error(reply.SlotComponentDefs);
           reply.SlotComponentDefs.forEach(comp => {
             self.formatDates(comp.Jurisdictions);
+            comp.ApprovalDate = self.formatDate(comp.ApprovalDate);
           });
           self.components = reply.SlotComponentDefs;
           self.initialPrompt = false;
