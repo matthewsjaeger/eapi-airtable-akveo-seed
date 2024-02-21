@@ -16,7 +16,8 @@ export class CdiLetterComponent extends EffortlessComponentBase implements OnIni
   loading: boolean = false;
   timeout: boolean = false;
   initialPrompt: boolean = true;
-
+  showProgress = false;
+  progress = 0;
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService,
     public route: ActivatedRoute, public toastr: NbToastrService, private dialogService: NbDialogService) {
@@ -88,6 +89,35 @@ export class CdiLetterComponent extends EffortlessComponentBase implements OnIni
         self.toastr.success("Successfully downloaded pdf to C:/Letters/" + doc.DocumentName);
       }
     });
+  }
+
+  checkExternal(jur) {
+    this.showProgress = true;
+    this.runProgress(this.updateProgress, this.resetProgress, 100000, 1000);
+  }
+
+  runProgress(fn, after, timeout, interval) {
+    let self = this;
+    var startTime = (new Date()).getTime();
+    interval = interval || 1000;
+
+    (function p() {
+      fn(self);
+      if (((new Date).getTime() - startTime) <= timeout) {
+        setTimeout(p, interval);
+      } else {
+        after(self);
+      }
+    })(); 
+  }
+
+  updateProgress(self) {
+    self.progress++;
+  }
+
+  resetProgress(self) {
+    self.progress = 0;
+    self.showProgress = false;
   }
 
 }

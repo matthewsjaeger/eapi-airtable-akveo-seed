@@ -15,7 +15,8 @@
     <nb-list *ngIf="components && components.length > 0">
       <nb-list-item *ngFor="let comp of components">
         <nb-accordion>
-          <nb-accordion-item style="background-color: #edf1f7; margin-bottom: .2em;"> <!--#e4e9f2-->
+          <nb-accordion-item style="background-color: #edf1f7; margin-bottom: .2em;">
+            <!--#e4e9f2-->
             <nb-accordion-item-header>
               <div class="grid-container">
                 <div>
@@ -52,6 +53,16 @@
                           Download
                         </button>
                       </nb-list-item>
+                      <nb-list-item *ngIf="!jur.DocumentArray || jur.DocumentArray.length < 1">
+                        No letters found in local database.
+                        <button nbButton size="medium" class="float-right" (click)="checkExternal(jur)" [disabled]="showProgress">
+                          Check external database
+                        </button>
+                      </nb-list-item>
+                      <nb-list-item *ngIf="(!jur.DocumentArray || jur.DocumentArray.length < 1) && showProgress">
+                        Doesn't work yet. Still working on implementing this.
+                        <nb-progress-bar [value]="progress" [displayValue]="true"></nb-progress-bar>
+                      </nb-list-item>
                     </nb-list>
                   </nb-accordion-item-body>
                 </nb-accordion-item>
@@ -60,32 +71,32 @@
           </nb-accordion-item>
         </nb-accordion>
         <!--<div class="grid-container">
-    <div>
-      <b>Number:</b> {{comp.ComponentNumber}}<br />
-      <b>Name:</b> {{comp.ComponentName}}<br />
-      <div *ngIf="comp.Version"><b>Version:</b> {{comp.Version}}<br /></div>
-      <div *ngIf="comp.ComponentCode1"><b>Code1:</b> {{comp.ComponentCode1}}<br /></div>
-      <div *ngIf="comp.ComponentCode2"><b>Code2:</b> {{comp.ComponentCode2}}<br /></div>
-      <b>Function:</b> {{comp.Function}}<br />
-      <b>Media Type:</b> {{comp.MediaType}}<br />
-      <b>Signatures:</b> {{comp.DisplaySignatures}}
-    </div>
-    <div>
-      <b>Status:</b> {{jur.DisplayStatus}}<br />
-      <b>Test Lab:</b> {{comp.ExpandedCertification.DisplayLab}}<br />
-      <b>Submitted:</b> {{jur.formattedSubmitted}}<br />
-      <b>Certified:</b> {{jur.formattedCertified}}<br />
-      <b>Vendor:</b> {{comp.DisplayVendor}}<br />
-      <b>Certification Number:</b> {{comp.ExpandedCertification.CertificationNumber}}<br />
-      <b>Certification Code1:</b> {{comp.ExpandedCertification.CertificationCode1}}<br />
-      <b>Certification Code2:</b> {{comp.ExpandedCertification.CertificationCode2}}<br />
-    </div>
-    <div>
-      <button nbButton size="medium" class="float-left" (click)="getStatus(jur)">
-        Generate Component
-      </button>
-    </div>
-  </div>-->
+          <div>
+            <b>Number:</b> {{comp.ComponentNumber}}<br />
+            <b>Name:</b> {{comp.ComponentName}}<br />
+            <div *ngIf="comp.Version"><b>Version:</b> {{comp.Version}}<br /></div>
+            <div *ngIf="comp.ComponentCode1"><b>Code1:</b> {{comp.ComponentCode1}}<br /></div>
+            <div *ngIf="comp.ComponentCode2"><b>Code2:</b> {{comp.ComponentCode2}}<br /></div>
+            <b>Function:</b> {{comp.Function}}<br />
+            <b>Media Type:</b> {{comp.MediaType}}<br />
+            <b>Signatures:</b> {{comp.DisplaySignatures}}
+          </div>
+          <div>
+            <b>Status:</b> {{jur.DisplayStatus}}<br />
+            <b>Test Lab:</b> {{comp.ExpandedCertification.DisplayLab}}<br />
+            <b>Submitted:</b> {{jur.formattedSubmitted}}<br />
+            <b>Certified:</b> {{jur.formattedCertified}}<br />
+            <b>Vendor:</b> {{comp.DisplayVendor}}<br />
+            <b>Certification Number:</b> {{comp.ExpandedCertification.CertificationNumber}}<br />
+            <b>Certification Code1:</b> {{comp.ExpandedCertification.CertificationCode1}}<br />
+            <b>Certification Code2:</b> {{comp.ExpandedCertification.CertificationCode2}}<br />
+          </div>
+          <div>
+            <button nbButton size="medium" class="float-left" (click)="getStatus(jur)">
+              Generate Component
+            </button>
+          </div>
+        </div>-->
       </nb-list-item>
     </nb-list>
     <!--<p *ngIf="!initialPrompt && filteredJurs.length == 0 && !loading && !timeout" style="color: red;">No recent certifications found matching that search term.</p>
