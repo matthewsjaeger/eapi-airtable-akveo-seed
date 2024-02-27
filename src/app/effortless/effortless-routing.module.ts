@@ -43,6 +43,7 @@ import { CdiConflictedComponent } from './cdi/cdi-conflicted/cdi-conflicted.comp
 import { CdiManualComponent } from './cdi/cdi-manual/cdi-manual.component';
 import { CdiSearchComponent } from './cdi/cdi-search/cdi-search.component';
 import { CdiLetterComponent } from './cdi/cdi-letter/cdi-letter.component';
+import { BjAtrComponent } from './bj-atr/bj-atr.component';
 
 let effortlessChildren = [
   {
@@ -209,6 +210,10 @@ let effortlessChildren = [
   {
     path: 'cdi-letter',
     component: CdiLetterComponent
+  },
+  {
+    path: 'bj-atr',
+    component: BjAtrComponent
   }
 ];
 
