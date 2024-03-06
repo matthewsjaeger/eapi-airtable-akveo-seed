@@ -93,5 +93,9 @@ export class SearchTablesComponent extends EffortlessComponentBase implements On
     return 0;
   }
 
+  selectTable(BJTable) {
+    this.gds.currentBJTables = [BJTable];
+    this.router.navigateByUrl('effortless/bj-table');
+  }
 
 }

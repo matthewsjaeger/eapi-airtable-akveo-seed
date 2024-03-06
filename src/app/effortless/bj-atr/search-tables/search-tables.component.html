@@ -26,7 +26,7 @@
   <nb-card-body class="slots">
     <div style="margin-bottom: .7em;"><b>{{list.title}}: </b>({{list.BJTables.length}})</div>
     <nb-list>
-      <nb-list-item *ngFor="let BJTable of list.BJTables" (click)=selectSlot(slot)>
+      <nb-list-item *ngFor="let BJTable of list.BJTables" (click)=selectTable(BJTable)>
         {{BJTable.PitTable}} - {{BJTable.SerialNumber}}
         <br>
         <b>Shuffle Type: </b>{{BJTable.ShufflerType}}

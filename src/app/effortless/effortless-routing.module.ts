@@ -45,6 +45,7 @@ import { CdiSearchComponent } from './cdi/cdi-search/cdi-search.component';
 import { CdiLetterComponent } from './cdi/cdi-letter/cdi-letter.component';
 import { BjAtrComponent } from './bj-atr/bj-atr.component';
 import { SearchTablesComponent } from './bj-atr/search-tables/search-tables.component';
+import { BjTableComponent } from './bj-atr/bj-table/bj-table.component';
 
 let effortlessChildren = [
   {
@@ -219,6 +220,10 @@ let effortlessChildren = [
   {
     path: 'search-tables',
     component: SearchTablesComponent
+  },
+  {
+    path: 'bj-table',
+    component: BjTableComponent
   }
 ];
 
