@@ -25,7 +25,7 @@ export class BjAtrComponent extends EffortlessComponentBase implements OnInit {
   }
 
   openBJTables() {
-
+    this.router.navigateByUrl('effortless/search-tables');
   }
 
   openShufflers() {

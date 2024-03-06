@@ -1,0 +1,46 @@
+<nb-card>
+  <nb-card-header>
+    <!-- <button nbButton ghost size="medium" class="float-left" (click)="goBack()">
+      <nb-icon icon="arrow-ios-back-outline"></nb-icon>Storage Slots
+    </button> -->
+    <h4 style="width: fit-content; margin: auto;">Search Tables</h4>
+    <input class="searchBar" [(ngModel)]="searchTerm" autocomplete="off" (change)="searchTables()" type="text"
+           nbInput fullWidth placeholder="Search for tables">
+  </nb-card-header>
+  <nb-card-footer>
+    <nb-list>
+      <nb-list-item *ngIf="searchTerm.trim().length < 1" style="color: red;">
+        No search term entered
+      </nb-list-item>
+      <nb-list-item *ngIf="noResults" style="color: red;">
+        No tables found containing search term: {{searchTerm}}
+      </nb-list-item>
+    </nb-list>
+  </nb-card-footer>
+</nb-card>
+
+<nb-card *ngFor="let list of FilteredBJTablesList">
+  <!--<nb-card-header>
+    <b>{{list.title}}: </b>({{list.BJTables.length}})
+  </nb-card-header>--> 
+  <nb-card-body class="slots">
+    <div style="margin-bottom: .7em;"><b>{{list.title}}: </b>({{list.BJTables.length}})</div>
+    <nb-list>
+      <nb-list-item *ngFor="let BJTable of list.BJTables" (click)=selectSlot(slot)>
+        {{BJTable.PitTable}} - {{BJTable.SerialNumber}}
+        <br>
+        <b>Shuffle Type: </b>{{BJTable.ShufflerType}}
+        <b>|</b>
+        <b>Deck Colors: </b> {{BJTable.DeckColors}}
+        <b>|</b>
+        <b>No. Spots: </b> {{BJTable.NumberofSpots}}
+        <b>|</b>
+        <b>No. Decks: </b> {{BJTable.NumberofDecks}}
+        <span class="item-note float-right">{{BJTable.WorkflowState}}</span>
+      </nb-list-item>
+    </nb-list>
+  </nb-card-body>
+</nb-card>
+
+
+
