@@ -1,9 +1,10 @@
 <nb-card *ngIf="BJTable && BJTable.Conversion">
   <nb-card-header>
-    <h6>{{BJTable.PitTable}}-{{BJTable.SerialNumber}}</h6>
+    <button nbButton size="large" class="float-left" (click)=back()>< Back</button><h4 style="width: fit-content; margin: auto; margin-top: .5em;">Schedule Table Modification</h4>
   </nb-card-header>
   <nb-card-body>
-    <nb-list>
+    <nb-list class="full-border">
+      <nb-list-item style="background-color: #f5f5f5;"><h6 style="margin-bottom: 0;">{{BJTable.PitTable}}-{{BJTable.SerialNumber}}</h6></nb-list-item>
       <nb-list-item>
         <div class="grid-container">
           <div style="display: flex;"><div class="vertical-center">Scheduled Date:</div></div>

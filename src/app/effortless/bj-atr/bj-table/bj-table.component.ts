@@ -85,4 +85,8 @@ export class BjTableComponent extends EffortlessComponentBase implements OnInit 
   scheduleTableModification(BJTable) {
     this.router.navigateByUrl('effortless/schedule-table-modification');
   }
+
+  scheduleTableRemove() {
+    this.router.navigateByUrl('effortless/schedule-table-remove')
+  }
 }
