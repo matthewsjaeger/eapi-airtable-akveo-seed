@@ -1,0 +1,69 @@
+<nb-card *ngIf="BJTable && BJTable.Conversion">
+  <nb-card-header>
+    <h6>{{BJTable.PitTable}}-{{BJTable.SerialNumber}}</h6>
+  </nb-card-header>
+  <nb-card-body>
+    <nb-list>
+      <nb-list-item>
+        <div class="grid-container">
+          <div style="display: flex;"><div class="vertical-center">Scheduled Date:</div></div>
+          <input nbInput placeholder="Select Date" [nbDatepicker]="datePicker" [(ngModel)]="scheduledDate">
+          <nb-datepicker #datePicker></nb-datepicker>
+        </div>
+      </nb-list-item>
+      <nb-list-item>
+        <div class="grid-container">
+          <div style="display: flex;"><div class="vertical-center">Pit/Table</div></div>
+          <div>
+            {{BJTable.PitTable}}
+          </div>
+        </div>
+      </nb-list-item>
+      <nb-list-item>
+        <div class="grid-container">
+          <div style="display: flex;"><div class="vertical-center"># of Decks</div></div>
+          <div>
+            <nb-select placeholder="# of Decks" fullWidth [(selected)]="BJTable.Conversion.NumberofDecks">
+              <nb-option></nb-option>
+              <nb-option value="2">2</nb-option>
+              <nb-option value="4">4</nb-option>
+              <nb-option value="6">6</nb-option>
+              <nb-option value="8">8</nb-option>
+            </nb-select>
+          </div>
+        </div>
+      </nb-list-item>
+      <nb-list-item>
+        <div class="grid-container">
+          <div style="display: flex;"><div class="vertical-center"># of Spots</div></div>
+          <div>
+            <nb-select placeholder="# of Spots" fullWidth [(selected)]="BJTable.Conversion.NumberofSpots">
+              <nb-option></nb-option>
+              <nb-option value="5">5</nb-option>
+              <nb-option value="6">6</nb-option>
+              <nb-option value="7">7</nb-option>
+            </nb-select>
+          </div>
+        </div>
+      </nb-list-item>
+      <nb-list-item>
+        <div class="grid-container">
+          <div style="display: flex;"><div class="vertical-center">Shuffler Type</div></div>
+          <div>
+            <nb-select placeholder="Shuffler Type" class="float-right" fullWidth [(selected)]="BJTable.Conversion.ShufflerType">
+              <nb-option></nb-option>
+              <nb-option value="Hand Shuffle">Hand Shuffle</nb-option>
+              <nb-option value="DD">DD</nb-option>
+              <nb-option value="MD2">MD2</nb-option>
+              <nb-option value="MD3">MD3</nb-option>
+            </nb-select>
+          </div>
+        </div>
+      </nb-list-item>
+      <nb-list-item><nb-checkbox status="basic" [(ngModel)]="BJTable.Conversion.Surrender">Surrender</nb-checkbox></nb-list-item>
+      <nb-list-item><nb-checkbox status="basic" [(ngModel)]="BJTable.Conversion.OverUnder">Over/Under</nb-checkbox></nb-list-item>
+      <nb-list-item><nb-checkbox status="basic" [(ngModel)]="BJTable.Conversion.FeeGame">Fee Game</nb-checkbox></nb-list-item>
+    </nb-list>
+    <button nbButton size="large" fullWidth (click)=confirmModification()>Confirm Modification</button>
+  </nb-card-body>
+</nb-card>

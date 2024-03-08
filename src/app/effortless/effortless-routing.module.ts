@@ -46,6 +46,7 @@ import { CdiLetterComponent } from './cdi/cdi-letter/cdi-letter.component';
 import { BjAtrComponent } from './bj-atr/bj-atr.component';
 import { SearchTablesComponent } from './bj-atr/search-tables/search-tables.component';
 import { BjTableComponent } from './bj-atr/bj-table/bj-table.component';
+import { ScheduleTableModificationComponent } from './bj-atr/bj-table/schedule-table-modification/schedule-table-modification.component';
 
 let effortlessChildren = [
   {
@@ -224,6 +225,10 @@ let effortlessChildren = [
   {
     path: 'bj-table',
     component: BjTableComponent
+  },
+  {
+    path: 'schedule-table-modification',
+    component: ScheduleTableModificationComponent
   }
 ];
 

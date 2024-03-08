@@ -1,0 +1,10 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-gap: 5px;
+}
+
+.vertical-center {
+  display: flex;
+  align-items: center;
+}

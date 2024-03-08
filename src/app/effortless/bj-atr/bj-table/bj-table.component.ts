@@ -81,4 +81,8 @@ export class BjTableComponent extends EffortlessComponentBase implements OnInit 
         break;
     }
   };
+
+  scheduleTableModification(BJTable) {
+    this.router.navigateByUrl('effortless/schedule-table-modification');
+  }
 }
