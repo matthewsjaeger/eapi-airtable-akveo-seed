@@ -89,4 +89,8 @@ export class BjTableComponent extends EffortlessComponentBase implements OnInit 
   scheduleTableRemove() {
     this.router.navigateByUrl('effortless/schedule-table-remove')
   }
+
+  scheduleBJTournament() {
+    this.router.navigateByUrl('effortless/schedule-tournament')
+  }
 }

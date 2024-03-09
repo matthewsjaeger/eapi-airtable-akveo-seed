@@ -48,6 +48,7 @@ import { SearchTablesComponent } from './bj-atr/search-tables/search-tables.comp
 import { BjTableComponent } from './bj-atr/bj-table/bj-table.component';
 import { ScheduleTableModificationComponent } from './bj-atr/bj-table/schedule-table-modification/schedule-table-modification.component';
 import { ScheduleTableRemoveComponent } from './bj-atr/bj-table/schedule-table-remove/schedule-table-remove.component';
+import { ScheduleTournamentComponent } from './bj-atr/bj-table/schedule-tournament/schedule-tournament.component';
 
 let effortlessChildren = [
   {
@@ -234,6 +235,10 @@ let effortlessChildren = [
   {
     path: 'schedule-table-remove',
     component: ScheduleTableRemoveComponent
+  },
+  {
+    path: 'schedule-tournament',
+    component: ScheduleTournamentComponent
   }
 ];
 
