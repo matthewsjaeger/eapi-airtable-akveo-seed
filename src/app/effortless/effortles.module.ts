@@ -70,6 +70,7 @@ import { BjTableComponent } from './bj-atr/bj-table/bj-table.component';
 import { ScheduleTableModificationComponent } from './bj-atr/bj-table/schedule-table-modification/schedule-table-modification.component';
 import { ScheduleTableRemoveComponent } from './bj-atr/bj-table/schedule-table-remove/schedule-table-remove.component';
 import { ScheduleTournamentComponent } from './bj-atr/bj-table/schedule-tournament/schedule-tournament.component';
+import { LogFeltChangeComponent } from './bj-atr/bj-table/log-felt-change/log-felt-change.component';
 
 let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComponent, Page3Component,
   StorageSlotsComponent, SlotProjectsComponent, SearchStorageSlotsComponent, SlotProjectComponent, NewProjectComponent,
@@ -83,7 +84,7 @@ RequestActivationComponent, MlcPlaceSlotComponent, MlcAddComponent, MlcBreakComp
   LscChecklistComponent, CompleteMoveToStorageComponent, ScheduleMoveToStorageComponent, EditComponentsComponent, MultiOnFloorComponent,
   CdiComponent, ComponentGeneratedComponent, CdiStatusComponent, CdiConflictedComponent, ConflictedDetailsComponent, CdiManualComponent,
   ComponentMatchedComponent, InstalledDetailsComponent, CdiSearchComponent, CdiLetterComponent, BjAtrComponent, SearchTablesComponent, BjTableComponent,
-ScheduleTableModificationComponent, ScheduleTableRemoveComponent, ScheduleTournamentComponent];
+ScheduleTableModificationComponent, ScheduleTableRemoveComponent, ScheduleTournamentComponent, LogFeltChangeComponent];
 
 @NgModule({
   declarations: declarations,

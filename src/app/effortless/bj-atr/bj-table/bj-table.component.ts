@@ -93,4 +93,8 @@ export class BjTableComponent extends EffortlessComponentBase implements OnInit 
   scheduleBJTournament() {
     this.router.navigateByUrl('effortless/schedule-tournament')
   }
+
+  logFeltChange() {
+    this.router.navigateByUrl('effortless/log-felt-change')
+  }
 }
