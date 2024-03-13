@@ -1,0 +1,84 @@
+<nb-card *ngIf="BJTable">
+  <nb-card-header>
+    <button nbButton size="large" class="float-left" (click)=back()>< Back</button><h4 style="width: fit-content; margin: auto; margin-top: .5em;">Felt Change Checklist</h4>
+  </nb-card-header>
+  <nb-card-body>
+    <nb-list class="full-border">
+      <nb-list-item><nb-checkbox status="basic" [(ngModel)]="BJTable.FinalizeChecklist">Finalize Checklist</nb-checkbox></nb-list-item>
+      <nb-list-item>Percent Complete: {{BJTable.ChecklistMetadata.PercentComplete}}</nb-list-item>
+      <nb-list-item style="background-color: #f5f5f5;"><h6 style="margin-bottom: 0;">{{BJTable.PitTable}}-{{BJTable.SerialNumber}}</h6></nb-list-item>
+      <nb-list-item><b>Is the number of spots correct?</b></nb-list-item>
+      <nb-list-item>
+        <nb-checkbox status="basic" [(ngModel)]="Checklist.SpotsCorrect.Yes" (change)="applyToChecklist('SpotsCorrect', 'Yes')">Yes</nb-checkbox>
+        <nb-checkbox status="basic" [(ngModel)]="Checklist.SpotsCorrect.No" (change)="applyToChecklist('SpotsCorrect', 'No')">No</nb-checkbox>
+      </nb-list-item>
+      <nb-list-item [style.backgroundColor]="BJTable.Checklist.HowManySpots ? '': 'rgba(255, 0, 0, 0.705)'">
+        <div class="grid-container">
+          <div style="display: flex;"><div class="vertical-center"><b>How many spots are on the felt?</b></div></div>
+          <div>
+            <nb-select class="float-right" fullWidth [(selected)]="BJTable.Checklist.HowManySpots" (selectedChange)="updatePercentComplete()">
+              <nb-option></nb-option>
+              <nb-option value="5">5</nb-option>
+              <nb-option value="6">6</nb-option>
+              <nb-option value="7">7</nb-option>
+              <nb-option value="8">8</nb-option>
+            </nb-select>
+          </div>
+        </div>
+      </nb-list-item>
+      <nb-list-item><b>Are there Hand Fee spots?</b></nb-list-item>
+      <nb-list-item>
+        <nb-checkbox status="basic" [(ngModel)]="Checklist.HandFeeSpots.Yes" (change)="applyToChecklist('HandFeeSpots', 'Yes')">Yes</nb-checkbox>
+        <nb-checkbox status="basic" [(ngModel)]="Checklist.HandFeeSpots.No" (change)="applyToChecklist('HandFeeSpots', 'No')">No</nb-checkbox>
+      </nb-list-item>
+      <nb-list-item><b>Blackjack pays at least 3 to 2?</b></nb-list-item>
+      <nb-list-item>
+        <nb-checkbox status="basic" [(ngModel)]="Checklist.PaysAtLeast.Yes" (change)="applyToChecklist('PaysAtLeast', 'Yes')">Yes</nb-checkbox>
+        <nb-checkbox status="basic" [(ngModel)]="Checklist.PaysAtLeast.No" (change)="applyToChecklist('PaysAtLeast', 'No')">No</nb-checkbox>
+      </nb-list-item>
+      <nb-list-item><b>Insurance pays 2 to 1?</b></nb-list-item>
+      <nb-list-item>
+        <nb-checkbox status="basic" [(ngModel)]="Checklist.InsurancePays.Yes" (change)="applyToChecklist('InsurancePays', 'Yes')">Yes</nb-checkbox>
+        <nb-checkbox status="basic" [(ngModel)]="Checklist.InsurancePays.No" (change)="applyToChecklist('InsurancePays', 'No')">No</nb-checkbox>
+      </nb-list-item>
+      <nb-list-item><b>Over under 13 should say "Over under 13 pays even money?"</b></nb-list-item>
+      <nb-list-item>
+        <nb-checkbox status="basic" [(ngModel)]="Checklist.OverUnder13.Yes" (change)="applyToChecklist('OverUnder13', 'Yes')">Yes</nb-checkbox>
+        <nb-checkbox status="basic" [(ngModel)]="Checklist.OverUnder13.No" (change)="applyToChecklist('OverUnder13', 'No')">No</nb-checkbox>
+        <nb-checkbox status="basic" [(ngModel)]="Checklist.OverUnder13.No" (change)="applyToChecklist('OverUnder13', 'NA')">N/A</nb-checkbox>
+      </nb-list-item>
+      <nb-list-item><b>Is the camera coverage correct?</b></nb-list-item>
+      <nb-list-item>
+        <nb-checkbox status="basic" [(ngModel)]="Checklist.CameraCoverageCorrect.Yes" (change)="applyToChecklist('CameraCoverageCorrect', 'Yes')">Yes</nb-checkbox>
+        <nb-checkbox status="basic" [(ngModel)]="Checklist.CameraCoverageCorrect.No" (change)="applyToChecklist('CameraCoverageCorrect', 'No')">No</nb-checkbox>
+      </nb-list-item>
+      <nb-list-item [style.backgroundColor]="BJTable.Checklist.WhatAreTheCameraNumber.length > 0 ? '': 'rgba(255, 0, 0, 0.705)'">
+        <div class="grid-container">
+          <div style="display: flex;"><div class="vertical-center"><b>What are the camera number(s) used/verified.</b></div></div>
+          <div>
+            <input nbInput class="float-right" fullWidth [(ngModel)]="BJTable.Checklist.WhatAreTheCameraNumber" (ngModelChange)="updatePercentComplete()"/>
+          </div>
+        </div>
+      </nb-list-item>
+      <nb-list-item><b>Is Table information correct? (Verify GC serial # and Surrender)</b></nb-list-item>
+      <nb-list-item>
+        <nb-checkbox status="basic" [(ngModel)]="Checklist.TableInformationCorrect.Yes" (change)="applyToChecklist('TableInformationCorrect', 'Yes')">Yes</nb-checkbox>
+        <nb-checkbox status="basic" [(ngModel)]="Checklist.TableInformationCorrect.No" (change)="applyToChecklist('TableInformationCorrect', 'No')">No</nb-checkbox>
+      </nb-list-item>
+      <nb-list-item [style.backgroundColor]="Checklist.FeltInspectionCompliant.NonCompliant ? 'rgba(255, 0, 0, 0.705)': ''"><b>Was this felt inspection compliant?</b></nb-list-item>
+      <nb-list-item>
+        <nb-checkbox status="basic" [(ngModel)]="Checklist.FeltInspectionCompliant.Compliant" (change)="applyToChecklist('FeltInspectionCompliant', 'Compliant')">Compliant</nb-checkbox>
+        <nb-checkbox status="basic" [(ngModel)]="Checklist.FeltInspectionCompliant.NonCompliant" (change)="applyToChecklist('FeltInspectionCompliant', 'NonCompliant')">Non-Compliant</nb-checkbox>
+      </nb-list-item>
+      <nb-list-item>
+        <div class="grid-container">
+          <div style="display: flex;"><div class="vertical-center"><b>Comments</b></div></div>
+          <div>
+            <input nbInput class="float-right" fullWidth [(ngModel)]="BJTable.Checklist.Comments"/>
+          </div>
+        </div>
+      </nb-list-item>
+    </nb-list>
+    <button nbButton size="large" fullWidth (click)=confirm()>Confirm</button>
+  </nb-card-body>
+</nb-card>

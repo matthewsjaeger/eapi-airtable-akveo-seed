@@ -97,4 +97,8 @@ export class BjTableComponent extends EffortlessComponentBase implements OnInit 
   logFeltChange() {
     this.router.navigateByUrl('effortless/log-felt-change')
   }
+
+  feltChangeChecklist() {
+    this.router.navigateByUrl('effortless/felt-change-checklist')
+  }
 }
