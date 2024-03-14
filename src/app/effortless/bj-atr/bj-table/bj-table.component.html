@@ -1,6 +1,9 @@
 <nb-card *ngIf="BJTable">
   <nb-card-header>
-    <nb-list>
+    <div>
+      <button nbButton size="large" class="float-left" (click)=back()>< Back</button><h4 style="width: fit-content; margin: auto; margin-top: .5em;">Blackjack Table</h4>
+    </div>
+    <nb-list style="margin-top: 3em;">
       <nb-list-item><b>{{BJTable.PitTable}} - {{BJTable.SerialNumber}}</b></nb-list-item>
       <nb-list-item><b>Shuffler Type: </b>{{BJTable.ShufflerType}}</nb-list-item>
       <nb-list-item><b>Number of Decks: </b>{{BJTable.NumberofDecks}}</nb-list-item>

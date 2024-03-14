@@ -101,4 +101,8 @@ export class BjTableComponent extends EffortlessComponentBase implements OnInit 
   feltChangeChecklist() {
     this.router.navigateByUrl('effortless/felt-change-checklist')
   }
+
+  back() {
+    this.router.navigateByUrl('effortless/search-tables')
+  }
 }
