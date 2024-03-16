@@ -51,6 +51,7 @@ import { ScheduleTableRemoveComponent } from './bj-atr/bj-table/schedule-table-r
 import { ScheduleTournamentComponent } from './bj-atr/bj-table/schedule-tournament/schedule-tournament.component';
 import { LogFeltChangeComponent } from './bj-atr/bj-table/log-felt-change/log-felt-change.component';
 import { FeltChangeChecklistComponent } from './bj-atr/bj-table/felt-change-checklist/felt-change-checklist.component';
+import { CompleteTableModificationComponent } from './bj-atr/bj-table/complete-table-modification/complete-table-modification.component';
 
 let effortlessChildren = [
   {
@@ -249,6 +250,10 @@ let effortlessChildren = [
   {
     path: 'felt-change-checklist',
     component: FeltChangeChecklistComponent
+  },
+  {
+    path: 'complete-table-modification',
+    component: CompleteTableModificationComponent
   }
 ];
 

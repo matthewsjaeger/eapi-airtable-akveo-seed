@@ -106,7 +106,7 @@ export class FeltChangeChecklistComponent extends EffortlessComponentBase implem
       var payload2 = self.gds.createPayload();
       payload2.SearchTerm = self.BJTable.SerialNumber;
       self.gds.smqUser.SearchBJTables(payload2).then(function (resp) {
-        self.gds.currentBJTables = resp.BJTables[0];
+        self.gds.currentBJTables = [resp.BJTables[0]];
         self.router.navigateByUrl('effortless/bj-table');
       });
     })

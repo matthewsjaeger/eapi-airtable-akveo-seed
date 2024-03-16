@@ -1,0 +1,21 @@
+<nb-card>
+  <nb-card-header>
+    <h4 style="width: fit-content; margin: auto; margin-top: .5em;">Complete Modification</h4>
+  </nb-card-header>
+  <nb-card-body>
+    <nb-list>
+      <nb-list-item>{{BJTable.PitTable}}-{{BJTable.SerialNumber}}</nb-list-item>
+      <nb-list-item *ngIf="BJTable.PitTable != BJTable.Conversion.PitTable"><b>PitTable:</b> {{BJTable.PitTable}} &#8594; {{BJTable.Conversion.PitTable}}</nb-list-item>
+      <nb-list-item><b>Shuffler Type:</b> {{BJTable.ShufflerType}} &#8594; {{BJTable.Conversion.ShufflerType}}</nb-list-item>
+      <nb-list-item><b># of Decks:</b> {{BJTable.NumberofDecks}} &#8594; {{BJTable.Conversion.NumberofDecks}}</nb-list-item>
+      <nb-list-item><b># of Spots:</b> {{BJTable.NumberofSpots}} &#8594; {{BJTable.Conversion.NumberofSpots}}</nb-list-item>
+      <nb-list-item><b>Fee Game:</b> {{BJTable.FeeGame || "False"}} &#8594; {{BJTable.Conversion.FeeGame || "False"}}</nb-list-item>
+      <nb-list-item><b>Over/Under:</b> {{BJTable.OverUnder || "False"}} &#8594; {{BJTable.Conversion.OverUnder || "False"}}</nb-list-item>
+      <nb-list-item><b>Surrender:</b> {{BJTable.Surrender || "False"}} &#8594; {{BJTable.Conversion.Surrender || "False"}}</nb-list-item>
+    </nb-list>
+    <button nbButton class="float-left" (click)="confirm()">
+      Confirm
+    </button>
+    <button nbButton style="margin-top:.5em" class="float-right" status="danger" (click)="close()">Cancel</button>
+  </nb-card-body>
+</nb-card>

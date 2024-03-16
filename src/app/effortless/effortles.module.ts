@@ -72,6 +72,7 @@ import { ScheduleTableRemoveComponent } from './bj-atr/bj-table/schedule-table-r
 import { ScheduleTournamentComponent } from './bj-atr/bj-table/schedule-tournament/schedule-tournament.component';
 import { LogFeltChangeComponent } from './bj-atr/bj-table/log-felt-change/log-felt-change.component';
 import { FeltChangeChecklistComponent } from './bj-atr/bj-table/felt-change-checklist/felt-change-checklist.component';
+import { CompleteTableModificationComponent } from './bj-atr/bj-table/complete-table-modification/complete-table-modification.component';
 
 let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComponent, Page3Component,
   StorageSlotsComponent, SlotProjectsComponent, SearchStorageSlotsComponent, SlotProjectComponent, NewProjectComponent,
@@ -85,7 +86,8 @@ RequestActivationComponent, MlcPlaceSlotComponent, MlcAddComponent, MlcBreakComp
   LscChecklistComponent, CompleteMoveToStorageComponent, ScheduleMoveToStorageComponent, EditComponentsComponent, MultiOnFloorComponent,
   CdiComponent, ComponentGeneratedComponent, CdiStatusComponent, CdiConflictedComponent, ConflictedDetailsComponent, CdiManualComponent,
   ComponentMatchedComponent, InstalledDetailsComponent, CdiSearchComponent, CdiLetterComponent, BjAtrComponent, SearchTablesComponent, BjTableComponent,
-ScheduleTableModificationComponent, ScheduleTableRemoveComponent, ScheduleTournamentComponent, LogFeltChangeComponent, FeltChangeChecklistComponent];
+  ScheduleTableModificationComponent, ScheduleTableRemoveComponent, ScheduleTournamentComponent, LogFeltChangeComponent, FeltChangeChecklistComponent,
+  CompleteTableModificationComponent];
 
 @NgModule({
   declarations: declarations,
@@ -118,7 +120,7 @@ ScheduleTableModificationComponent, ScheduleTableRemoveComponent, ScheduleTourna
   entryComponents: [ AddSealComponent, ReplaceSealComponent, BreakSealComponent, PlaceSlotSealsComponent, 
     ReplaceWitnessesComponent, MlcAddComponent, MlcBreakComponent, MlcReplaceComponent,
     PlaceConversionComponent, LscAddComponent, LscReplaceComponent, LscBreakComponent, LscPlaceConversionComponent,
-    ComponentGeneratedComponent, CdiStatusComponent, ComponentMatchedComponent]
+    ComponentGeneratedComponent, CdiStatusComponent, ComponentMatchedComponent, CompleteTableModificationComponent]
 })
 export class EffortlessModule {
 

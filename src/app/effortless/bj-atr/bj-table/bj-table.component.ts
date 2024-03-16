@@ -4,6 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { DataEndpoint } from '../../services/eapi-data-services/data-endpoint/data-endpoint';
 import { NbMenuService, NbToastrService, NbDialogService } from '@nebular/theme';
 import { EffortlessComponentBase } from '../../efforless-base-component';
+import { CdiStatusComponent } from '../../cdi-status/cdi-status.component';
+import { CompleteTableModificationComponent } from './complete-table-modification/complete-table-modification.component';
 
 @Component({
   selector: 'ngx-bj-table',
@@ -21,12 +23,20 @@ export class BjTableComponent extends EffortlessComponentBase implements OnInit 
   }
 
   ngOnInit() {
-    if (!this.gds || !this.gds.currentBJTables || this.gds.currentBJTables.length < 1) {
-      this.router.navigateByUrl('effortless/search-tables');
+    let self = this;
+    this.safeSubscribe(this.gds.onReady().subscribe(ready => {
+      self.reload(self);
+    }));
+  }
+
+  reload(self) {
+    if (!self.gds || !self.gds.currentBJTables || self.gds.currentBJTables.length < 1) {
+      self.router.navigateByUrl('effortless/search-tables');
     } else {
-      this.BJTable = this.gds.currentBJTables[0];
-      this.configureActions();
-      console.error('asdf', this.BJTable);
+      console.error('EEEEE');
+      self.BJTable = self.gds.currentBJTables[0];
+      self.configureActions();
+      console.error('asdf', self.BJTable);
     }
   }
 
@@ -104,5 +114,22 @@ export class BjTableComponent extends EffortlessComponentBase implements OnInit 
 
   back() {
     this.router.navigateByUrl('effortless/search-tables')
+  }
+
+  compareModification(jur) {
+    let self = this;
+    this.dialogService.open(CompleteTableModificationComponent, {
+      context: {
+        'BJTable': self.BJTable
+      }
+    }).onClose.subscribe(resp => self.completeModification(resp));
+  }
+
+  completeModification(resp) {
+    if (resp) {
+      console.error('FFFFF');
+      let self = this;
+      this.reload(self);
+    }
   }
 }
