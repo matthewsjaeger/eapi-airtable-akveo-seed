@@ -1,0 +1,14 @@
+<nb-card>
+  <nb-card-header>
+    <h4 style="width: fit-content; margin: auto; margin-top: .5em;">Complete Removal</h4>
+  </nb-card-header>
+  <nb-card-body>
+    <nb-list>
+      <nb-list-item>{{BJTable.PitTable}}-{{BJTable.SerialNumber}}</nb-list-item>
+    </nb-list>
+    <button nbButton style="margin-top:.5em" class="float-left" (click)="confirm()">
+      Confirm
+    </button>
+    <button nbButton style="margin-top:.5em" class="float-right" status="danger" (click)="close()">Cancel</button>
+  </nb-card-body>
+</nb-card>

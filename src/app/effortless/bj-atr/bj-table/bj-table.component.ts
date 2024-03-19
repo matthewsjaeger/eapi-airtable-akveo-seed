@@ -6,6 +6,7 @@ import { NbMenuService, NbToastrService, NbDialogService } from '@nebular/theme'
 import { EffortlessComponentBase } from '../../efforless-base-component';
 import { CdiStatusComponent } from '../../cdi-status/cdi-status.component';
 import { CompleteTableModificationComponent } from './complete-table-modification/complete-table-modification.component';
+import { CompleteTableRemoveComponent } from './complete-table-remove/complete-table-remove.component';
 
 @Component({
   selector: 'ngx-bj-table',
@@ -116,7 +117,7 @@ export class BjTableComponent extends EffortlessComponentBase implements OnInit 
     this.router.navigateByUrl('effortless/search-tables')
   }
 
-  compareModification(jur) {
+  compareModification() {
     let self = this;
     this.dialogService.open(CompleteTableModificationComponent, {
       context: {
@@ -128,6 +129,23 @@ export class BjTableComponent extends EffortlessComponentBase implements OnInit 
   completeModification(resp) {
     if (resp) {
       console.error('FFFFF');
+      let self = this;
+      this.reload(self);
+    }
+  }
+
+  compareRemoval() {
+    let self = this;
+    this.dialogService.open(CompleteTableRemoveComponent, {
+      context: {
+        'BJTable': self.BJTable
+      }
+    }).onClose.subscribe(resp => self.completeRemoval(resp));
+  }
+
+  completeRemoval(resp) {
+    if (resp) {
+      console.error('GGGGG');
       let self = this;
       this.reload(self);
     }

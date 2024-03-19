@@ -23,6 +23,6 @@
     <button nbButton size="large" fullWidth (click)=stopTournament() *ngIf="availableActions.stopTournament">End Tournament</button>
     <button nbButton size="large" fullWidth (click)=compareModification() *ngIf="(gds.isBJFeltLog || gds.isAdmin) && availableActions.completeModification">Complete Modification</button>
     <button nbButton size="large" fullWidth (click)=completeAdd() *ngIf="availableActions.completeAdd">Complete Table Add</button>
-    <button nbButton size="large" fullWidth (click)=completeRemoval() *ngIf="availableActions.completeRemoval">Complete Table Remove</button>
+    <button nbButton size="large" fullWidth (click)=compareRemoval() *ngIf="availableActions.completeRemoval">Complete Table Remove</button>
   </nb-card-body>
 </nb-card>
