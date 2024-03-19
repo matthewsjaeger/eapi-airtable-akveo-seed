@@ -17,12 +17,12 @@
     <button nbButton size="large" fullWidth (click)=scheduleTableRemove() *ngIf="availableActions.remove">Schedule Table Remove</button>
     <button nbButton size="large" fullWidth (click)=scheduleBJTournament() *ngIf="availableActions.scheduleTournament">Schedule BJ Tournament</button>
     <button nbButton size="large" fullWidth (click)=logFeltChange() *ngIf="(gds.isBJFeltLog || gds.isAdmin) && availableActions.logFeltChange">Log Felt Change</button>
-    <button nbButton size="large" fullWidth (click)=tableAddNotification() *ngIf="availableActions.add">Table Add Notification</button>
-    <button nbButton size="large" fullWidth (click)=activateTournament() *ngIf="availableActions.activateTournament">Activate Tournament</button>
+    <button nbButton size="large" disabled fullWidth (click)=tableAddNotification() *ngIf="availableActions.add">Table Add Notification</button>
+    <button nbButton size="large" disabled fullWidth (click)=activateTournament() *ngIf="availableActions.activateTournament">Activate Tournament</button>
     <button nbButton size="large" fullWidth (click)=feltChangeChecklist() *ngIf="(gds.isGamingAgent || gds.isAdmin) && availableActions.feltReview">Felt Review Checklist</button>
-    <button nbButton size="large" fullWidth (click)=stopTournament() *ngIf="availableActions.stopTournament">End Tournament</button>
+    <button nbButton size="large" disabled fullWidth (click)=stopTournament() *ngIf="availableActions.stopTournament">End Tournament</button>
     <button nbButton size="large" fullWidth (click)=compareModification() *ngIf="(gds.isBJFeltLog || gds.isAdmin) && availableActions.completeModification">Complete Modification</button>
-    <button nbButton size="large" fullWidth (click)=completeAdd() *ngIf="availableActions.completeAdd">Complete Table Add</button>
+    <button nbButton size="large" disabled fullWidth (click)=completeAdd() *ngIf="availableActions.completeAdd">Complete Table Add</button>
     <button nbButton size="large" fullWidth (click)=compareRemoval() *ngIf="availableActions.completeRemoval">Complete Table Remove</button>
   </nb-card-body>
 </nb-card>
