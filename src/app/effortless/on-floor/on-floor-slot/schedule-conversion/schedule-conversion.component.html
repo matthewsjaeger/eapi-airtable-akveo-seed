@@ -1,0 +1,54 @@
+<nb-card>
+  <nb-card-header>
+    <h4 style="width: fit-content; margin: auto; margin-top: .5em;">Schedule Conversion (Adv)</h4>
+    <!--<h4 *ngIf="Slot.Conversion">bla - <div *ngIf="Slot.Conversion.Zone">{{Slot.Conversion.Zone}}</div></h4>-->
+  </nb-card-header>
+  <nb-card-body *ngIf="isReady && Slot.Conversion">
+    <nb-list>
+      <nb-list-item><b>{{Slot.SerialNumber}}</b></nb-list-item>
+      <nb-list-item>
+        <div class="grid-container">
+          <div style="display: flex;"><div class="vertical-center"><b>Scheduled Date:</b></div></div>
+          <input nbInput placeholder="Select Date" [nbDatepicker]="datePicker" [(ngModel)]="scheduledDate">
+          <nb-datepicker #datePicker></nb-datepicker>
+        </div>
+      </nb-list-item>
+      <nb-list-item><div class="grid-container"><div class="vertical-center"><b>Zone:</b></div><input class="searchBar" [(ngModel)]="Slot.Conversion.Zone" autocomplete="off" type="text" nbInput fullWidth></div></nb-list-item>
+      <nb-list-item><div class="grid-container"><div class="vertical-center"><b>Address:</b></div><input class="searchBar" [(ngModel)]="Slot.Conversion.Address" autocomplete="off" type="text" nbInput fullWidth></div></nb-list-item>
+      <nb-list-item><div class="grid-container"><div class="vertical-center"><b>System Address:</b></div><input class="searchBar" [(ngModel)]="Slot.Conversion.SystemAddress" autocomplete="off" type="text" nbInput fullWidth></div></nb-list-item>
+      <nb-list-item><div class="grid-container"><div class="vertical-center"><b>Location:</b></div><input class="searchBar" [(ngModel)]="Slot.Conversion.SlotLocation" autocomplete="off" type="text" nbInput fullWidth></div></nb-list-item>
+      <nb-list-item></nb-list-item>
+      <nb-list-item><div class="grid-container"><div class="vertical-center"><b>Slot Number:</b></div><input class="searchBar" [(ngModel)]="Slot.Conversion.SlotNumber" autocomplete="off" type="text" nbInput fullWidth></div></nb-list-item>
+      <nb-list-item><div class="grid-container"><div class="vertical-center"><b>Game Type:</b></div><input class="searchBar" [(ngModel)]="Slot.Conversion.GameType" autocomplete="off" type="text" nbInput fullWidth></div></nb-list-item>
+      <nb-list-item><div class="grid-container"><div class="vertical-center"><b>TITO:</b></div><input class="searchBar" [(ngModel)]="Slot.Conversion.TITO" autocomplete="off" type="text" nbInput fullWidth></div></nb-list-item>
+      <nb-list-item><div class="grid-container"><div class="vertical-center"><b>Bill:</b></div><input class="searchBar" [(ngModel)]="Slot.Conversion.Bill" autocomplete="off" type="text" nbInput fullWidth></div></nb-list-item>
+      <nb-list-item><div class="grid-container"><div class="vertical-center"><b>Coin:</b></div><input class="searchBar" [(ngModel)]="Slot.Conversion.Coin" autocomplete="off" type="text" nbInput fullWidth></div></nb-list-item>
+      <nb-list-item><div class="grid-container"><div class="vertical-center"><b>Tokenized:</b></div><input class="searchBar" [(ngModel)]="Slot.Conversion.Tokenized" autocomplete="off" type="text" nbInput fullWidth></div></nb-list-item>
+      <nb-list-item><div class="grid-container"><div class="vertical-center"><b>EFT Enabled:</b></div><input class="searchBar" [(ngModel)]="Slot.Conversion.EFTEnabled" autocomplete="off" type="text" nbInput fullWidth></div></nb-list-item>
+      <nb-list-item></nb-list-item>
+      <nb-list-item><div class="grid-container"><div class="vertical-center"><b>DOM:</b></div><input class="searchBar" [(ngModel)]="Slot.Conversion.DOM" autocomplete="off" type="text" nbInput fullWidth></div></nb-list-item>
+      <nb-list-item><div class="grid-container"><div class="vertical-center"><b>Last Audited:</b></div><input class="searchBar" [(ngModel)]="Slot.Conversion.LastAudited" autocomplete="off" type="text" nbInput fullWidth></div></nb-list-item>
+      <nb-list-item><div class="grid-container"><div class="vertical-center"><b>Version:</b></div><input class="searchBar" [(ngModel)]="Slot.Conversion.Version" autocomplete="off" type="text" nbInput fullWidth></div></nb-list-item>
+      <nb-list-item><div class="grid-container"><div class="vertical-center"><b>Cabinet Model:</b></div><input class="searchBar" [(ngModel)]="Slot.Conversion.CabinetModel" autocomplete="off" type="text" nbInput fullWidth></div></nb-list-item>
+      <nb-list-item><div class="grid-container"><div class="vertical-center"><b>Cabinet Color:</b></div><input class="searchBar" [(ngModel)]="Slot.Conversion.CabinetColor" autocomplete="off" type="text" nbInput fullWidth></div></nb-list-item>
+      <nb-list-item></nb-list-item>
+      <nb-list-item><div class="grid-container"><div class="vertical-center"><b>DBA Type:</b></div><input class="searchBar" [(ngModel)]="Slot.Conversion.DBAType" autocomplete="off" type="text" nbInput fullWidth></div></nb-list-item>
+      <nb-list-item><div class="grid-container"><div class="vertical-center"><b>Printer Type:</b></div><input class="searchBar" [(ngModel)]="Slot.Conversion.PrinterType" autocomplete="off" type="text" nbInput fullWidth></div></nb-list-item>
+      <nb-list-item><div class="grid-container"><div class="vertical-center"><b>Coin Comparator:</b></div><input class="searchBar" [(ngModel)]="Slot.Conversion.CoinComparator" autocomplete="off" type="text" nbInput fullWidth></div></nb-list-item>
+      <nb-list-item><div class="grid-container"><div class="vertical-center"><b>Type Code:</b></div><input class="searchBar" [(ngModel)]="Slot.Conversion.TypeCode" autocomplete="off" type="text" nbInput fullWidth></div></nb-list-item>
+      <nb-list-item><div class="grid-container"><div class="vertical-center"><b>Date Of Delivery:</b></div><input class="searchBar" [(ngModel)]="Slot.Conversion.DateOfDelivery" autocomplete="off" type="text" nbInput fullWidth></div></nb-list-item>
+      <nb-list-item><div class="grid-container"><div class="vertical-center"><b>HSN Enabled:</b></div><input class="searchBar" [(ngModel)]="Slot.Conversion.HSNEnabled" autocomplete="off" type="text" nbInput fullWidth></div></nb-list-item>
+      <nb-list-item><div class="grid-container"><div class="vertical-center"><b>Notes:</b></div><input class="searchBar" [(ngModel)]="Slot.Conversion.Notes" autocomplete="off" type="text" nbInput fullWidth></div></nb-list-item>
+      <nb-list-item><div class="grid-container"><div class="vertical-center"><b>Link Number:</b></div><input class="searchBar" [(ngModel)]="Slot.Conversion.LinkNumber" autocomplete="off" type="text" nbInput fullWidth></div></nb-list-item>
+      <nb-list-item><div class="grid-container"><div class="vertical-center"><b>Disposition ApprovalDate:</b></div><input class="searchBar" [(ngModel)]="Slot.Conversion.DispositionApprovalDate" autocomplete="off" type="text" nbInput fullWidth></div></nb-list-item>
+      <nb-list-item><div class="grid-container"><div class="vertical-center"><b>Disposition Resolution Number:</b></div><input class="searchBar" [(ngModel)]="Slot.Conversion.DispositionResolutionNumber" autocomplete="off" type="text" nbInput fullWidth></div></nb-list-item>
+    </nb-list>
+    <button nbButton style="margin-top:.5em" class="float-left" (click)="confirm()">
+      Confirm
+    </button>
+    <button nbButton class="float-left" style="margin-left: 1em; margin-top: .5em;" (click)="editComponents()">
+      Edit Components
+    </button>
+    <button nbButton style="margin-top:.5em" class="float-right" status="danger" (click)="close()">Cancel</button>
+  </nb-card-body>
+</nb-card>

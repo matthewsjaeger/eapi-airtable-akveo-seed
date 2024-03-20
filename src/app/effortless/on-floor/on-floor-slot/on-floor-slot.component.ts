@@ -150,8 +150,8 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
   requestActivation() {
     this.router.navigateByUrl('effortless/request-activation/' + this.sid)
   }
-  scheduleConversions() {
-
+  scheduleConversion() {
+    this.router.navigateByUrl('effortless/schedule-conversion/' + this.sid);
   }
   scheduleMoveToStorage() {
 
