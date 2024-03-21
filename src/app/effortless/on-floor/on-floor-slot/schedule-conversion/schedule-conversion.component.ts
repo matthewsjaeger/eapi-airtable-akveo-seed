@@ -14,6 +14,8 @@ export class ScheduleConversionComponent extends EffortlessComponentBase impleme
   Slot: any = {};
   sid: any;
   isReady: boolean = false;
+  scheduledDate: Date = new Date(new Date().setHours(0, 0, 0, 0));
+
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, public route: ActivatedRoute) {
     super(gds, data, menuService)
