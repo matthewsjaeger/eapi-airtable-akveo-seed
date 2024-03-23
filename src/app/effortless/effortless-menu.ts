@@ -28,11 +28,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'folder-add',
     link: '/effortless/multi-select',
   },
-  //{
-  //  title: 'Slot Projects',
-  //  icon: 'person',
-  //  link: '/effortless/slot-projects',
-  //},
+  {
+    title: 'Slot Projects',
+    icon: 'person',
+    link: '/effortless/slot-projects',
+  },
   {
     title: 'CDI',
     icon: 'cloud-download',

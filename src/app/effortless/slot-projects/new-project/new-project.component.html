@@ -1,26 +1,81 @@
-<nb-card [size]="'large'">
+<!--<nb-card>
+  <button nbButton size="medium" class="float-left" (click)="goBack()"><nb-icon icon="arrow-ios-back-outline"></nb-icon>Slots Projects</button>
+  <h4 style="width: fit-content; margin: auto; margin-bottom: .5em; margin-top:.5em;">Start Slot Project</h4>
+</nb-card>-->
+<div class="base-grid-container">
+  <nb-card>
     <nb-card-header>
-      <button nbButton ghost size="medium" class="float-left" (click)="goBack()"><nb-icon icon="arrow-ios-back-outline"></nb-icon>Slots Projects</button>
-        <h4 style="width: fit-content; margin: auto;">Start Slot Project</h4>
+      <button nbButton ghost size="medium" class="float-left" (click)="actionContext()">
+        <nb-icon icon="arrow-ios-back-outline"></nb-icon> Back
+      </button>
+      <h4 style="width: fit-content; margin: auto; margin-top:.2em;">Start Project</h4>
+    </nb-card-header>
+    <nb-card-body>
+      <nb-tabset>
+        <nb-tab tabTitle="Info">
+          <nb-list>
+            <nb-list-item><div class="grid-container"><div class="vertical-center"><b>Name:</b></div><input [(ngModel)]="Project.Name" autocomplete="off" type="text" nbInput fullWidth></div></nb-list-item>
+            <nb-list-item>
+              <div class="grid-container">
+                <div class="vertical-center"><b>Due Date:</b></div><input nbInput placeholder="Select Date" [nbDatepicker]="datePicker" [(ngModel)]="scheduledDate">
+                <nb-datepicker #datePicker></nb-datepicker>
+              </div>
+            </nb-list-item>
+            <nb-list-item>
+              <div class="grid-container">
+                <div class="vertical-center"><b>Casino:</b></div><nb-select class="float-right" fullWidth [(selected)]="Project.MSProperty">
+                  <nb-option value="E81E341E-AA08-4ED8-8883-62277750BF25" selected>Mystic Lake</nb-option>
+                  <nb-option value="FF104981-8393-4479-81A5-71367B8AC608">Little Six</nb-option>
+                </nb-select>
+              </div>
+            </nb-list-item>
+            <nb-list-item><div class="grid-container"><div class="vertical-center"><b>Description:</b></div><textarea [(ngModel)]="Project.Description" autocomplete="off" type="text" nbInput fullWidth></textarea></div></nb-list-item>
+          </nb-list>
+          <button nbButton fullWidth status="success" (click)=save()>Save</button>
+        </nb-tab>
+        <nb-tab tabTitle="Slots ({{addedSlots.length}})">
+          <nb-list>
+            <nb-list-item *ngFor="let slot of addedSlots" (click)=removeSlot(slot)>
+              <b>Serial Number: </b>{{slot.SerialNumber}} <b>|</b>
+              <b>Machine #:</b>{{slot.SlotNumber}} <b>|</b>
+              <b>License #:</b>{{slot.LicenseNumber}}
+              <br>
+              <b>Location:</b>{{slot.DisplayLocation}} <b>|</b>
+              <b>Zone:</b>{{slot.Zone}}  <b>|</b>
+              <b>Floor Address:</b>{{slot.Address}}
+              <br />
+              <b>Manufacturer:</b> {{slot.DisplayManufacturer}} <b>|</b>
+              <b>Updated By:</b> {{slot.DisplayUpdatedBy }}
+              <i class="float-right">{{slot.WorkflowState}} </i>
+            </nb-list-item>
+          </nb-list>
+          <button *ngIf="addedSlots.length > 0" nbButton fullWidth status="success" (click)=save()>Save</button>
+        </nb-tab>
+      </nb-tabset>
+    </nb-card-body>
+  </nb-card>
+  <nb-card>
+    <nb-card-header>
+      <h4 style="width: fit-content; margin: auto;">Add Slots</h4>
+      <input class="searchBar" [(ngModel)]="searchTerm" autocomplete="off" (change)="searchSlots()" type="text"
+             nbInput fullWidth placeholder="Search for slots">
     </nb-card-header>
     <nb-card-body>
       <nb-list>
-        <nb-list-item>
-            <label> Name:
-                <input type="text" nbInput fullWidth placeholder="Name">
-            </label>
-        </nb-list-item>
-        <nb-list-item>
-            <label> Schedule Date:
-                <input type="text" nbInput fullWidth placeholder="Schedule Date">
-            </label> 
-        </nb-list-item>
-        <nb-list-item>
-            <label> Description:
-                <input type="text" nbInput fullWidth placeholder="Description">
-            </label>
+        <nb-list-item *ngFor="let slot of slotViews" (click)=addSlot(slot)>
+          <b>Serial Number: </b>{{slot.SerialNumber}} <b>|</b>
+          <b>Machine #:</b>{{slot.SlotNumber}} <b>|</b>
+          <b>License #:</b>{{slot.LicenseNumber}}
+          <br>
+          <b>Location:</b>{{slot.DisplayLocation}} <b>|</b>
+          <b>Zone:</b>{{slot.Zone}}  <b>|</b>
+          <b>Floor Address:</b>{{slot.Address}}
+          <br />
+          <b>Manufacturer:</b> {{slot.DisplayManufacturer}} <b>|</b>
+          <b>Updated By:</b> {{slot.DisplayUpdatedBy }}
+          <i class="float-right">{{slot.WorkflowState}} </i>
         </nb-list-item>
       </nb-list>
-      <button nbButton fullWidth status="success" (click)=save()>Save</button>
     </nb-card-body>
   </nb-card>
+</div>
