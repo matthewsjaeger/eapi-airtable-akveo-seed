@@ -1,27 +1,73 @@
 <nb-card [size]="'large'">
   <nb-card-header>
-    <button nbButton ghost size="medium" class="float-left" (click)="goBack()">
-      <nb-icon icon="arrow-ios-back-outline"></nb-icon>Slot Projects
-    </button>
-    <h4 style="width: fit-content; margin: auto;"> Project Name</h4>
-    <div style="width: fit-content; text-align: center; margin:auto;">
-      <!-- <button  nbButton shape="rectangle" status="primary" style="margin-bottom: 5px;"
-        (click)=editProject()>Edit Project</button>
+    <div class="clearfix">
+      <button nbButton ghost size="medium" class="float-left" (click)="goBack()">
+        <nb-icon icon="arrow-ios-back-outline"></nb-icon>Slot Projects
+      </button>
+      <h4 style="width: fit-content; margin: auto;">{{project.Name}}</h4>
+    </div>
+    <p><b>Scheduled Date: </b>{{project.DueDate}}<br /><b>Description: </b>{{project.Description}}</p>
+    <div class="grid-container">
+      <button nbButton shape="rectangle" status="primary" style="margin-bottom: 5px;"
+              (click)=editProject()>
+        Edit Project
+      </button>
       <button nbButton shape="rectangle" status="info" style="margin-bottom: 5px;"
-        (click)=addRemoveTables()>Add/ Remove Tables</button>
+              (click)=addRemoveTables()>
+        Add/ Remove Tables
+      </button>
       <button nbButton shape="rectangle" status="success" style="margin-bottom: 5px;"
-        (click)=completeProject()>Complete project</button> -->
+              (click)=completeProject()>
+        Complete project
+      </button>
     </div>
   </nb-card-header>
   <nb-card-body>
-    <nb-list>
-      <nb-list-item>
-        <nb-toggle class="float-right"></nb-toggle>
-        <p>Active</p>
+    <nb-list *ngIf="loaded">
+      <nb-list-item *ngFor="let list of filteredSlots">
+        <div class="grid-container-5">
+          <p><b>{{list.title}}</b></p>
+          <div>
+            <div *ngIf="selectedState == list.title" class="grid-container">
+              <button nbButton style="margin-bottom: 5px;" (click)=editProject()>
+                Schedule Conversion
+              </button>
+              <button nbButton style="margin-bottom: 5px;" (click)=addRemoveTables()>
+                Schedule Move to Storage
+              </button>
+              <button nbButton style="margin-bottom: 5px;" (click)=completeProject()>
+                Schedule Tournament
+              </button>
+            </div>
+          </div>
+          <div>
+            <nb-toggle class="float-right" [(ngModel)]="list.selected" (ngModelChange)="focusGroup(list)"></nb-toggle>
+          </div>
+        </div>
+        <nb-list>
+          <nb-list-item *ngFor="let slot of list.Slots" (click)="toggleSlot(slot, list)">
+            <b>Serial Number: </b>{{slot.SerialNumber}} <b>|</b>
+            <b>Machine #:</b>{{slot.SlotNumber}} <b>|</b>
+            <b>License #:</b>{{slot.LicenseNumber}}
+            <br>
+            <b>Location:</b>{{slot.DisplayLocation}} <b>|</b>
+            <b>Zone:</b>{{slot.Zone}}  <b>|</b>
+            <b>Floor Address:</b>{{slot.Address}}
+            <br />
+            <b>Manufacturer:</b> {{slot.DisplayManufacturer}} <b>|</b>
+            <b>Updated By:</b> {{slot.DisplayUpdatedBy }}
+            <div class="selected float-right">
+              <i class="ion-checkmark" *ngIf="slot.selected"></i>
+            </div>
+            <span class="item-note float-right">{{slot.WorkflowState}} </span>
+
+          </nb-list-item>
+        </nb-list>
       </nb-list-item>
-      <nb-list-item>
-        <h5>Slot 1</h5>
-      </nb-list-item>
+      <!--<nb-list-item *ngFor="let slot of list.Slots">
+        <h5>Slot.SerialNumber</h5>
+      </nb-list-item>-->
+      <!--</ng-container>-->
     </nb-list>
   </nb-card-body>
 </nb-card>

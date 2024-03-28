@@ -10,7 +10,7 @@
 
 <nb-card *ngFor=" let slotProject of slotProjects">
   <nb-card-header>
-    <button nbButton size="small" class="float-right" (click)=openProject(project)>Open Project</button>
+    <button nbButton size="small" class="float-right" (click)=openProject(slotProject)>Open Project</button>
     <h5> {{slotProject.Name}} </h5>
   </nb-card-header>
   <nb-card-body>

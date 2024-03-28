@@ -5,10 +5,13 @@
 <div class="base-grid-container">
   <nb-card>
     <nb-card-header>
-      <button nbButton ghost size="medium" class="float-left" (click)="actionContext()">
-        <nb-icon icon="arrow-ios-back-outline"></nb-icon> Back
-      </button>
-      <h4 style="width: fit-content; margin: auto; margin-top:.2em;">Start Project</h4>
+      <div class="header-container">
+        <button nbButton ghost size="medium" class="float-left" (click)="goBack()">
+          <nb-icon icon="arrow-ios-back-outline"></nb-icon> Back
+        </button>
+        <h4 style="width: fit-content; margin: auto; margin-top:.2em;">Start Project</h4>
+        <button nbButton size="medium" status="success" class="float-right" (click)=save()>Save</button>
+      </div>
     </nb-card-header>
     <nb-card-body>
       <nb-tabset>
@@ -31,11 +34,11 @@
             </nb-list-item>
             <nb-list-item><div class="grid-container"><div class="vertical-center"><b>Description:</b></div><textarea [(ngModel)]="Project.Description" autocomplete="off" type="text" nbInput fullWidth></textarea></div></nb-list-item>
           </nb-list>
-          <button nbButton fullWidth status="success" (click)=save()>Save</button>
+          <!--<button nbButton fullWidth status="success" (click)=save()>Save</button>-->
         </nb-tab>
         <nb-tab tabTitle="Slots ({{addedSlots.length}})">
-          <nb-list>
-            <nb-list-item *ngFor="let slot of addedSlots" (click)=removeSlot(slot)>
+          <nb-list [@listAnimation]="addedSlots.length">
+            <nb-list-item *ngFor="let slot of addedSlots" (click)=removeSlot(slot) class="dynamic-list-item">
               <b>Serial Number: </b>{{slot.SerialNumber}} <b>|</b>
               <b>Machine #:</b>{{slot.SlotNumber}} <b>|</b>
               <b>License #:</b>{{slot.LicenseNumber}}
@@ -49,20 +52,33 @@
               <i class="float-right">{{slot.WorkflowState}} </i>
             </nb-list-item>
           </nb-list>
-          <button *ngIf="addedSlots.length > 0" nbButton fullWidth status="success" (click)=save()>Save</button>
+          <!--<div>
+            <h3>List Two</h3>
+            <ul [@listAnimation]="listTwo.length">
+              <li *ngFor="let item of listTwo">{{ item }}</li>
+            </ul>
+          </div>-->
+          <!--<button *ngIf="addedSlots.length > 0" nbButton fullWidth status="success" (click)=save()>Save</button>-->
         </nb-tab>
       </nb-tabset>
     </nb-card-body>
   </nb-card>
   <nb-card>
-    <nb-card-header>
+    <nb-card-header [nbSpinner]="loading">
       <h4 style="width: fit-content; margin: auto;">Add Slots</h4>
       <input class="searchBar" [(ngModel)]="searchTerm" autocomplete="off" (change)="searchSlots()" type="text"
              nbInput fullWidth placeholder="Search for slots">
     </nb-card-header>
     <nb-card-body>
-      <nb-list>
-        <nb-list-item *ngFor="let slot of slotViews" (click)=addSlot(slot)>
+      <!--<div>
+        <h3>List One</h3>
+        <ul [@listAnimation]="listOne.length">
+          <li *ngFor="let item of listOne" (click)="moveItem(item)">{{ item }}</li>
+        </ul>
+      </div>-->
+
+      <nb-list [@listAnimation]="slotViews.length">
+        <nb-list-item *ngFor="let slot of FilteredSlotsList" class="dynamic-list-item" (click)=addSlot(slot)>
           <b>Serial Number: </b>{{slot.SerialNumber}} <b>|</b>
           <b>Machine #:</b>{{slot.SlotNumber}} <b>|</b>
           <b>License #:</b>{{slot.LicenseNumber}}

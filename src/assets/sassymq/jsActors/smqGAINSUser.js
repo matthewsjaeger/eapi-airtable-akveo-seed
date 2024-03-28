@@ -518,6 +518,22 @@ function generateGAINSUserActor() {
             
             return deferred.promise;
         }
+
+        smqGAINSUser.SearchAllSlots = function () {
+          smqGAINSUser.SearchAllSlots('{}');
+        }
+
+        smqGAINSUser.SearchAllSlots = function (payload) {
+          payload = smqGAINSUser.stringifyValue(payload);
+          var id = smqGAINSUser.createUUID();
+          var deferred = smqGAINSUser.waitingReply[id] = smqGAINSUser.defer();
+          if (smqGAINSUser.showPingPongs) console.log('Search All Slots - ');
+          smqGAINSUser.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.searchallslots', { "content-type": "text/plain", "reply-to": "/temp-queue/response-queue", "correlation-id": id }, payload);
+
+          smqGAINSUser.waitFor(id);
+
+          return deferred.promise;
+        }
         
         smqGAINSUser.SearchShuffleMasters = function() {
             smqGAINSUser.SearchShuffleMasters('{}');
