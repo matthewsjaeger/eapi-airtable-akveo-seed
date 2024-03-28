@@ -75,6 +75,7 @@ import { FeltChangeChecklistComponent } from './bj-atr/bj-table/felt-change-chec
 import { CompleteTableModificationComponent } from './bj-atr/bj-table/complete-table-modification/complete-table-modification.component';
 import { CompleteTableRemoveComponent } from './bj-atr/bj-table/complete-table-remove/complete-table-remove.component';
 import { ScheduleConversionComponent } from './on-floor/on-floor-slot/schedule-conversion/schedule-conversion.component';
+import { ProjectScheduleConversionComponent } from './slot-projects/slot-project/project-schedule-conversion/project-schedule-conversion.component';
 
 let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComponent, Page3Component,
   StorageSlotsComponent, SlotProjectsComponent, SearchStorageSlotsComponent, SlotProjectComponent, NewProjectComponent,
@@ -89,7 +90,7 @@ RequestActivationComponent, MlcPlaceSlotComponent, MlcAddComponent, MlcBreakComp
   CdiComponent, ComponentGeneratedComponent, CdiStatusComponent, CdiConflictedComponent, ConflictedDetailsComponent, CdiManualComponent,
   ComponentMatchedComponent, InstalledDetailsComponent, CdiSearchComponent, CdiLetterComponent, BjAtrComponent, SearchTablesComponent, BjTableComponent,
   ScheduleTableModificationComponent, ScheduleTableRemoveComponent, ScheduleTournamentComponent, LogFeltChangeComponent, FeltChangeChecklistComponent,
-  CompleteTableModificationComponent, CompleteTableRemoveComponent, ScheduleConversionComponent];
+  CompleteTableModificationComponent, CompleteTableRemoveComponent, ScheduleConversionComponent, ProjectScheduleConversionComponent];
 
 @NgModule({
   declarations: declarations,

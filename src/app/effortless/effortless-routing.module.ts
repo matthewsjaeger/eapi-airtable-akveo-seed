@@ -54,6 +54,7 @@ import { FeltChangeChecklistComponent } from './bj-atr/bj-table/felt-change-chec
 import { CompleteTableModificationComponent } from './bj-atr/bj-table/complete-table-modification/complete-table-modification.component';
 import { CompleteTableRemoveComponent } from './bj-atr/bj-table/complete-table-remove/complete-table-remove.component';
 import { ScheduleConversionComponent } from './on-floor/on-floor-slot/schedule-conversion/schedule-conversion.component';
+import { ProjectScheduleConversionComponent } from './slot-projects/slot-project/project-schedule-conversion/project-schedule-conversion.component';
 
 let effortlessChildren = [
   {
@@ -264,6 +265,10 @@ let effortlessChildren = [
   {
     path: 'schedule-conversion/:sid',
     component: ScheduleConversionComponent
+  },
+  {
+    path: 'project-schedule-conversion',
+    component: ProjectScheduleConversionComponent
   }
 ];
 

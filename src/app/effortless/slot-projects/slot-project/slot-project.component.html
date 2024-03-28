@@ -29,13 +29,13 @@
           <p><b>{{list.title}}</b></p>
           <div>
             <div *ngIf="selectedState == list.title" class="grid-container">
-              <button nbButton style="margin-bottom: 5px;" (click)=editProject()>
+              <button nbButton style="margin-bottom: 5px;" (click)=scheduleConversion(list)>
                 Schedule Conversion
               </button>
-              <button nbButton style="margin-bottom: 5px;" (click)=addRemoveTables()>
+              <button nbButton style="margin-bottom: 5px;" (click)=scheduleMoveToStorage()>
                 Schedule Move to Storage
               </button>
-              <button nbButton style="margin-bottom: 5px;" (click)=completeProject()>
+              <button nbButton style="margin-bottom: 5px;" (click)=scheduleTournament()>
                 Schedule Tournament
               </button>
             </div>

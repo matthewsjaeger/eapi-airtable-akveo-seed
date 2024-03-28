@@ -121,4 +121,13 @@ export class SlotProjectComponent extends EffortlessComponentBase implements OnI
       this.selectedState = "";
     }
   }
+
+  scheduleConversion(list) {
+    this.gds.slotList = [];
+    list.Slots.forEach(function (slot) {
+      if (slot.selected) {
+        this.gds.slotList.push(slot);
+      }
+    });
+  }
 }
