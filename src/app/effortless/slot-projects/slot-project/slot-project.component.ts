@@ -123,11 +123,13 @@ export class SlotProjectComponent extends EffortlessComponentBase implements OnI
   }
 
   scheduleConversion(list) {
+    let self = this;
     this.gds.slotList = [];
     list.Slots.forEach(function (slot) {
       if (slot.selected) {
-        this.gds.slotList.push(slot);
+        self.gds.slotList.push(slot);
       }
     });
+    this.router.navigateByUrl('effortless/project-schedule-conversion');
   }
 }
