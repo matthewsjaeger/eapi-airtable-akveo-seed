@@ -1,1 +1,31 @@
-<p>project-schedule-conversion works!</p>
+<nb-card [size]="'large'">
+  <nb-card-header>
+    <button nbButton class="float-left" style="margin-bottom: 5px;" (click)=saveAsCSV()>
+      Download
+    </button>
+    <label for="file-upload" class="custom-file-upload float-left">
+      UPLOAD
+    </label><input type="file" class="upload" (change)="changeListener($event)" id="file-upload">
+    <h4 style="width: fit-content; margin: auto;">Change Summary</h4>
+  </nb-card-header>
+  <nb-card-body>
+    <nb-list>
+      <nb-list-item *ngFor="let change of changes">
+        <span [ngStyle]="{'color': (change.Errors.length > 0) ? 'red' : (change.Changes.length > 0) ?
+              ((change.Ambiguous) ? 'blue' : 'green') : 'inherit'}"><b>{{change.Description}}</b></span>
+        <span *ngIf="change.Unchanged"> (Unchanged)</span>
+        <div *ngIf="change.Errors.length > 0" style="color: red">Error: {{change.Errors}}</div>
+        <div *ngIf="change.Errors.length < 1 && change.Changes.length > 0">
+          <nb-list>
+            <nb-list-item *ngFor="let fieldChange of change.Changes">
+              <b>{{fieldChange.Field}}:</b> {{fieldChange.Old}} -> {{fieldChange.New}}
+            </nb-list-item>
+          </nb-list>
+        </div>
+      </nb-list-item>
+    </nb-list>
+  </nb-card-body>
+</nb-card>
+
+
+

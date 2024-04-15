@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EffortlessComponentBase } from '../../../efforless-base-component';
 import { Router, ActivatedRoute } from '@angular/router';
-import { NbMenuService } from '@nebular/theme';
+import { NbMenuService, NbDialogService } from '@nebular/theme';
 import { DataEndpoint } from '../../../services/eapi-data-services/data-endpoint/data-endpoint';
 import { GDS } from '../../../services/gds.service';
 
@@ -11,31 +11,136 @@ import { GDS } from '../../../services/gds.service';
   styleUrls: ['./project-schedule-conversion.component.scss']
 })
 export class ProjectScheduleConversionComponent extends EffortlessComponentBase implements OnInit {
+  slots: any = [];
+  project: any = {};
+  readOnly: any = ['SerialNumber', 'BarcodeData']
+  changes: any = [];
 
-  constructor(private router: Router, protected menuService: NbMenuService, public data: DataEndpoint, public gds: GDS, public route: ActivatedRoute) {
+  constructor(private router: Router, protected menuService: NbMenuService, public data: DataEndpoint, public gds: GDS,
+    public route: ActivatedRoute, private dialogService: NbDialogService) {
     super(gds, data, menuService)
-
-    //this.safeSubscribe(this.route.params.subscribe((params) => {
-    //  this.pid = params['pid'];
-    //}))
 
   }
 
   ngOnInit() {
+    let self = this;
     this.safeSubscribe(this.gds.onReady().subscribe(ready => {
-      //let self = this
-      //let payload = self.gds.createPayload();
-      //payload.SlotProject = {};
-      //payload.SlotProject.SlotProjectId = self.pid;
-      //console.error(self.gds);
-      //self.gds.smqUser.GetSlotProject(payload).then(function (reply) {
-      //  self.project = reply.SlotProject;
-      //  self.filteredSlots = self.createFilteredSlots(self.project.Slots);
-      //  self.baseFilteredSlots = self.filteredSlots;
-      //  console.error(self.filteredSlots);
-      //  self.loaded = true;
-      //});
+      if (self.gds.slotList && self.gds.slotList.length > 0) {
+        self.slots = self.gds.slotList;
+      } else {
+        self.router.navigateByUrl('effortless/slot-projects');
+      }
     }));
   }
 
+  saveAsCSVOld() {
+    let sheet = [];
+    this.slots.forEach(function (slot) {
+      let row = {
+        SerialNumber: slot.SerialNumber,
+        Barcode: slot.BarcodeData,
+        "": "",
+        Zone: slot.Zone,
+        Address: slot.Address,
+        SystemAddress: slot.SystemAddress,
+        Location: slot.slotLocation,
+
+        SlotNumber: slot.SlotNumber,
+        GameType: slot.GameType,
+        GameName: slot.GameName,
+        TITO: slot.TITO,
+        Bill: slot.Bill,
+        Coin: slot.Coin,
+        Tokenized: slot.Tokenized,
+        EFTEnabled: slot.EFTEnabled,
+
+        DOM: slot.DOM,
+        LastAudited: slot.LastAudited,
+        Version: slot.Version,
+        CabinetModel: slot.CabinetModel,
+        CabinetColor: slot.CabinetColor,
+
+        DBAType: slot.U01,
+        PrinterType: slot.U02,
+        CoinComparator: slot.U03,
+        TypeCode: slot.U04,
+        DateOfDelivery: slot.U05,
+        HSNEnabled: slot.U06,
+        Notes: slot.U10,
+        LinkNumber: slot.U18,
+        DispositionApprovalDate: slot.U22,
+        DispositionResolutionNumber: slot.U23,
+      }
+      sheet.push(row);
+    });
+
+    //var bla = [['asdf', 'gda', 'qwer'], ['zxcv', 'bvc', 'mnb']];
+    //this.csvService.exportToCsv('test.csv', sheet);
+  }
+
+  saveAsCSV() {
+    let self = this;
+    let payload = self.gds.createPayload();
+    payload.SlotViews = this.slots;
+    self.gds.smqSlotRepairAdmin.ScheduleConversionWrite(payload).then(function (reply) {
+      if (reply.ErrorMessage) {
+        console.error('TTTT', reply.ErrorMessage);
+      } else {
+        self.writeFile(reply.SearchTerm, "test.csv");
+      }
+    });
+  }
+
+  writeFile(csvContent, filename) {
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    if (navigator.msSaveBlob) { // IE 10+
+      navigator.msSaveBlob(blob, filename);
+    } else {
+      const link = document.createElement('a');
+      if (link.download !== undefined) {
+        // Browsers that support HTML5 download attribute
+        const url = URL.createObjectURL(blob);
+        link.setAttribute('href', url);
+        link.setAttribute('download', filename);
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    }
+  }
+
+  public changeListener(event) {
+    const files: FileList = event.target.files
+    let self = this;
+    if (files && files.length > 0) {
+      let file: File = files.item(0);
+      let reader: FileReader = new FileReader();
+      reader.readAsText(file);
+      reader.onload = (e) => {
+        let csv: string = reader.result as string;
+        console.log(csv);
+        let payload = self.gds.createPayload();
+        payload.SearchTerm = csv;
+        self.gds.smqSlotRepairAdmin.ScheduleConversionRead(payload).then(function (reply) {
+          if (reply.ErrorMessage) {
+            console.error('VVVVV', reply.ErrorMessage);
+          } else {
+            console.error(reply);
+            self.changes = reply.ChangeSummary.Changes;
+          }
+        });
+      }
+      event.target.value = null;
+    }
+  }
+
+  resolveAmbiguity(jur) {
+    let self = this;
+    //this.dialogService.open(CdiStatusComponent, {
+    //  context: {
+    //    'scd': jur
+    //  }
+    //}).onClose.subscribe(resp => self.generateComponent(resp));
+  }
 }

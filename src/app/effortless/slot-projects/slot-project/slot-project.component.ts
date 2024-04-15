@@ -67,11 +67,11 @@ export class SlotProjectComponent extends EffortlessComponentBase implements OnI
         , { 'title': 'GC Review', 'Slots': [], 'isVisible': true, 'selected': false }
         , { 'title': 'Stored', 'Slots': [], 'isVisible': true, 'selected': false }
         , { 'title': 'Removal Scheduled', 'Slots': [], 'isVisible': true, 'selected': false }
+        , { 'title': 'Request Receive Slot(s)', 'Slots': [], 'isVisable':true, 'selected': false}
       ];
 
     template.forEach(function (list) {
       slots.forEach(function (slot) {
-        console.error(slot.WorkflowState);
         if (slot.WorkflowState == list.title) {
           list.Slots.push(slot);
         }
@@ -123,11 +123,13 @@ export class SlotProjectComponent extends EffortlessComponentBase implements OnI
   }
 
   scheduleConversion(list) {
+    let self = this;
     this.gds.slotList = [];
     list.Slots.forEach(function (slot) {
       if (slot.selected) {
-        this.gds.slotList.push(slot);
+        self.gds.slotList.push(slot);
       }
     });
+    this.router.navigateByUrl('effortless/project-schedule-conversion');
   }
 }
