@@ -1,5 +1,8 @@
 <nb-card [size]="'large'">
-  <nb-card-header>
+  <nb-card-header [nbSpinner]="loading">
+    <button nbButton class="float-right" style="margin-bottom: 5px;" *ngIf="complete">
+      Confirm
+    </button>
     <button nbButton class="float-left" style="margin-bottom: 5px;" (click)=saveAsCSV()>
       Download
     </button>
@@ -10,14 +13,15 @@
   </nb-card-header>
   <nb-card-body>
     <nb-list>
-      <nb-list-item *ngFor="let change of changes">
+      <nb-list-item *ngFor="let change of changes" [ngStyle]="{'cursor': (change.Errors.length > 0) ? 'pointer' : (change.Changes.length > 0) ?
+              ((change.Ambiguous) ? 'pointer' : 'inherit') : 'inherit'}">
         <span [ngStyle]="{'color': (change.Errors.length > 0) ? 'red' : (change.Changes.length > 0) ?
-              ((change.Ambiguous) ? 'blue' : 'green') : 'inherit'}"><b>{{change.Description}}</b></span>
+              ((change.Ambiguous) ? 'orange' : 'green') : 'inherit'}"><b>{{change.Description}}</b></span>
         <span *ngIf="change.Unchanged"> (Unchanged)</span>
         <div *ngIf="change.Errors.length > 0" style="color: red">Error: {{change.Errors}}</div>
         <div *ngIf="change.Errors.length < 1 && change.Changes.length > 0">
           <nb-list>
-            <nb-list-item *ngFor="let fieldChange of change.Changes">
+            <nb-list-item *ngFor="let fieldChange of change.Changes" (click)="resolveAmbiguity(change, fieldChange)">
               <b>{{fieldChange.Field}}:</b> {{fieldChange.Old}} -> {{fieldChange.New}}
             </nb-list-item>
           </nb-list>
@@ -27,5 +31,7 @@
   </nb-card-body>
 </nb-card>
 
-
-
+<!--<span [ngStyle]="{'color': (change.Errors.length > 0) ? 'red' : (change.Changes.length > 0) ?
+((change.Ambiguous) ? 'orange' : 'green') : 'inherit',
+cursor: (change.Errors.length > 0) ? 'pointer' : (change.Changes.length > 0) ?
+((change.Ambiguous) > 'pointer' : 'inherit') : 'inherit'}"><b>{{change.Description}}</b></span>-->

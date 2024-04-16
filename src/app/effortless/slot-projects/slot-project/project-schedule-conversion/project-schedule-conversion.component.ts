@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NbMenuService, NbDialogService } from '@nebular/theme';
 import { DataEndpoint } from '../../../services/eapi-data-services/data-endpoint/data-endpoint';
 import { GDS } from '../../../services/gds.service';
+import { ResolveComponentAmbiguityComponent } from './resolve-component-ambiguity/resolve-component-ambiguity.component';
 
 @Component({
   selector: 'ngx-project-schedule-conversion',
@@ -15,6 +16,8 @@ export class ProjectScheduleConversionComponent extends EffortlessComponentBase 
   project: any = {};
   readOnly: any = ['SerialNumber', 'BarcodeData']
   changes: any = [];
+  loading: boolean = false;
+  complete: boolean = false;
 
   constructor(private router: Router, protected menuService: NbMenuService, public data: DataEndpoint, public gds: GDS,
     public route: ActivatedRoute, private dialogService: NbDialogService) {
@@ -122,25 +125,69 @@ export class ProjectScheduleConversionComponent extends EffortlessComponentBase 
         console.log(csv);
         let payload = self.gds.createPayload();
         payload.SearchTerm = csv;
+        self.loading = true;
         self.gds.smqSlotRepairAdmin.ScheduleConversionRead(payload).then(function (reply) {
+          self.loading = false;
           if (reply.ErrorMessage) {
             console.error('VVVVV', reply.ErrorMessage);
           } else {
             console.error(reply);
             self.changes = reply.ChangeSummary.Changes;
+            self.checkForAmbiguities(self);
+            //self.handleAmbiguities(self.changes, self);
           }
-        });
+        }).catch(function (error) {
+          console.error(error);
+          self.loading = false;
+        });;
       }
       event.target.value = null;
     }
   }
+  handleAmbiguities(changes, self) {
+    console.error('SSSSS', changes);
+    changes.forEach(function (change) {
+      if (change.Ambiguous) {
+        change.Changes.forEach(function (fieldChange) {
+          if (fieldChange.Comps.length > 0) {
+            self.resolveAmbiguity(change.Description, fieldChange.Comps);
+          }
+        });
+      }
+    });
+  }
 
-  resolveAmbiguity(jur) {
+  resolveAmbiguity(change, fieldChange) {
+    var scds = fieldChange.Comps;
+    if (!scds || scds.length < 1) {
+      return;
+    }
     let self = this;
-    //this.dialogService.open(CdiStatusComponent, {
-    //  context: {
-    //    'scd': jur
-    //  }
-    //}).onClose.subscribe(resp => self.generateComponent(resp));
+    this.dialogService.open(ResolveComponentAmbiguityComponent, {
+      context: {
+        'scds': fieldChange.Comps,
+        'slot': change.Description
+      }
+    }).onClose.subscribe(resp => self.resolveComponent(resp, change, fieldChange, self));
+  }
+
+  resolveComponent(resp, change, fieldChange, self) {
+    if (resp) {
+      change.Ambiguous = false;
+      fieldChange.New = resp.SimplifiedDisplayText;
+      self.checkForAmbiguities(self);
+    }
+  }
+
+  checkForAmbiguities(self) {
+    let resolved = true;
+    self.changes.forEach(function (change) {
+      if (change.Ambiguous || change.Errors) {
+        resolved = false;
+      }
+    });
+    if (resolved) {
+      self.complete = true;
+    }
   }
 }

@@ -55,6 +55,7 @@ import { CompleteTableModificationComponent } from './bj-atr/bj-table/complete-t
 import { CompleteTableRemoveComponent } from './bj-atr/bj-table/complete-table-remove/complete-table-remove.component';
 import { ScheduleConversionComponent } from './on-floor/on-floor-slot/schedule-conversion/schedule-conversion.component';
 import { ProjectScheduleConversionComponent } from './slot-projects/slot-project/project-schedule-conversion/project-schedule-conversion.component';
+import { ResolveComponentAmbiguityComponent } from './slot-projects/slot-project/project-schedule-conversion/resolve-component-ambiguity/resolve-component-ambiguity.component';
 
 let effortlessChildren = [
   {
@@ -205,6 +206,10 @@ let effortlessChildren = [
   {
     path: 'cdi-status',
     component: CdiStatusComponent
+  },
+  {
+    path: 'resolve-component-ambiguity',
+    component: ResolveComponentAmbiguityComponent
   },
   {
     path: 'cdi-conflicted',
