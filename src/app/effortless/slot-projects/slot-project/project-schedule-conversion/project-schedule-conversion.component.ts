@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { EffortlessComponentBase } from '../../../efforless-base-component';
 import { Router, ActivatedRoute } from '@angular/router';
-import { NbMenuService, NbDialogService } from '@nebular/theme';
+import { NbMenuService, NbDialogService, NbToastrService } from '@nebular/theme';
 import { DataEndpoint } from '../../../services/eapi-data-services/data-endpoint/data-endpoint';
 import { GDS } from '../../../services/gds.service';
 import { ResolveComponentAmbiguityComponent } from './resolve-component-ambiguity/resolve-component-ambiguity.component';
+import { ResolveReadOnlyComponent } from './resolve-read-only/resolve-read-only.component';
 
 @Component({
   selector: 'ngx-project-schedule-conversion',
@@ -20,7 +21,7 @@ export class ProjectScheduleConversionComponent extends EffortlessComponentBase 
   complete: boolean = false;
 
   constructor(private router: Router, protected menuService: NbMenuService, public data: DataEndpoint, public gds: GDS,
-    public route: ActivatedRoute, private dialogService: NbDialogService) {
+    public route: ActivatedRoute, private dialogService: NbDialogService, public toastr: NbToastrService) {
     super(gds, data, menuService)
 
   }
@@ -160,6 +161,9 @@ export class ProjectScheduleConversionComponent extends EffortlessComponentBase 
   resolveAmbiguity(change, fieldChange) {
     var scds = fieldChange.Comps;
     if (!scds || scds.length < 1) {
+      if (fieldChange.Error) {
+        this.resolveReadOnly(change, fieldChange);
+      }
       return;
     }
     let self = this;
@@ -189,5 +193,41 @@ export class ProjectScheduleConversionComponent extends EffortlessComponentBase 
     if (resolved) {
       self.complete = true;
     }
+  }
+
+  resolveReadOnly(change, fieldChange) {
+    let self = this;
+    this.dialogService.open(ResolveReadOnlyComponent, {
+      context: {
+        'message': 'Revert to previous value?'
+      }
+    }).onClose.subscribe(resp => self.finishReadOnly(resp, change, fieldChange, self));
+  }
+
+  finishReadOnly(resp, change, fieldChange, self) {
+    if (resp) {
+      var i = change.Changes.length;
+      let resolved = true;
+      console.error(change);
+      console.error(fieldChange);
+      while (i--) {
+        console.error(i);
+        if (change.Changes[i].Field == fieldChange.Field) {
+          change.Changes.splice(i, 1);
+        } else {
+          if (change.Changes[i].Error) {
+            resolved = false;
+          }
+        }
+      }
+      if (resolved) {
+        change.Errors = false;
+      }
+      self.checkForAmbiguities(self);
+    }
+  }
+
+  confirmSchedule() {
+    this.toastr.warning("Working on confirm backend.");
   }
 }

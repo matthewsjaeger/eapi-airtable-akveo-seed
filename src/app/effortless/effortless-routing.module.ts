@@ -56,6 +56,7 @@ import { CompleteTableRemoveComponent } from './bj-atr/bj-table/complete-table-r
 import { ScheduleConversionComponent } from './on-floor/on-floor-slot/schedule-conversion/schedule-conversion.component';
 import { ProjectScheduleConversionComponent } from './slot-projects/slot-project/project-schedule-conversion/project-schedule-conversion.component';
 import { ResolveComponentAmbiguityComponent } from './slot-projects/slot-project/project-schedule-conversion/resolve-component-ambiguity/resolve-component-ambiguity.component';
+import { ResolveReadOnlyComponent } from './slot-projects/slot-project/project-schedule-conversion/resolve-read-only/resolve-read-only.component';
 
 let effortlessChildren = [
   {
@@ -83,7 +84,7 @@ let effortlessChildren = [
     component: NewProjectComponent,
   },
   {
-    path: 'edit-project',
+    path: 'edit-project/:pid',
     component: EditProjectComponent,
   },
   {
@@ -210,6 +211,10 @@ let effortlessChildren = [
   {
     path: 'resolve-component-ambiguity',
     component: ResolveComponentAmbiguityComponent
+  },
+  {
+    path: 'resolve-read-only',
+    component: ResolveReadOnlyComponent
   },
   {
     path: 'cdi-conflicted',

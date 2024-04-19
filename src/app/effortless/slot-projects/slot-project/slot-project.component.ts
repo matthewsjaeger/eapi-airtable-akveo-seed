@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { NbMenuService } from '@nebular/theme';
+import { NbMenuService, NbToastrService } from '@nebular/theme';
 import { DataEndpoint } from '../../services/eapi-data-services/data-endpoint/data-endpoint';
 import { GDS } from '../../services/gds.service';
 import { EffortlessComponentBase } from '../../efforless-base-component';
@@ -19,7 +19,8 @@ export class SlotProjectComponent extends EffortlessComponentBase implements OnI
   selectedState: string = "";
 
 
-  constructor(private router: Router, protected menuService: NbMenuService, public data: DataEndpoint, public gds: GDS, public route: ActivatedRoute) {
+  constructor(private router: Router, protected menuService: NbMenuService, public data: DataEndpoint, public gds: GDS, public route: ActivatedRoute
+              , public toastr: NbToastrService) {
     super(gds, data, menuService)
 
     this.safeSubscribe(this.route.params.subscribe((params) => {
@@ -34,7 +35,6 @@ export class SlotProjectComponent extends EffortlessComponentBase implements OnI
       let payload = self.gds.createPayload();
       payload.SlotProject = {};
       payload.SlotProject.SlotProjectId = self.pid;
-      console.error(self.gds);
       self.gds.smqUser.GetSlotProject(payload).then(function (reply) {
         self.project = reply.SlotProject;
         self.filteredSlots = self.createFilteredSlots(self.project.Slots);
@@ -50,7 +50,7 @@ export class SlotProjectComponent extends EffortlessComponentBase implements OnI
   }
 
   editProject() {
-    this.router.navigateByUrl('effortless/edit-project');
+    this.router.navigateByUrl('effortless/edit-project/' + this.pid);
   }
 
   createFilteredSlots = function (slots) {
@@ -77,12 +77,20 @@ export class SlotProjectComponent extends EffortlessComponentBase implements OnI
         }
       });
     });
+
+    let i = template.length;
+    while (i--) {
+      if (template[i].Slots.length == 0) {
+        template.splice(i, 1);
+      }
+    }
     return template;
   };
 
   completeProject() {
     console.error(this.filteredSlots);
     console.error(this.selectedState);
+    this.toastr.warning("Not implemented yet.")
   }
 
   consoleError(msg) {
@@ -131,5 +139,29 @@ export class SlotProjectComponent extends EffortlessComponentBase implements OnI
       }
     });
     this.router.navigateByUrl('effortless/project-schedule-conversion');
+  }
+
+  scheduleMoveToStorage(list) {
+
+  }
+
+  scheduleTournament(list) {
+
+  }
+
+  scheduleDestruction(list) {
+
+  }
+
+  scheduleReturn(list) {
+
+  }
+
+  scheduleSale(list) {
+
+  }
+
+  scheduleStorageToFloor(list) {
+
   }
 }

@@ -1,22 +1,30 @@
 <nb-card>
-    <nb-card-header>
-        <h4 style="width: fit-content; margin: auto;">Slot Projects</h4>
-        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=newProject()>Start New Project</button>
-        <input type="text" nbInput fullWidth placeholder="Search projects">
-    </nb-card-header>
-    <nb-card-body>
-    </nb-card-body>
+  <nb-card-header>
+    <h4 style="width: fit-content; margin: auto;">Slot Projects</h4>
+    <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=newProject()>Start New Project</button>
+    <input type="text" nbInput fullWidth placeholder="Search projects">
+  </nb-card-header>
+  <nb-card-body>
+    <nb-list>
+      <nb-list-item *ngFor=" let slotProject of slotProjects">
+        <button nbButton size="small" class="float-right" (click)=openProject(slotProject)>Open Project</button>
+        <div class="float-left">
+          <h6>{{slotProject.Name}}</h6>
+          <b>Description:</b> {{slotProject.Description}} <br>
+          <b>Due Date:</b> {{slotProject.DueDate | date: mediumDate}}
+        </div>
+      </nb-list-item>
+    </nb-list>
+  </nb-card-body>
 </nb-card>
 
-<nb-card *ngFor=" let slotProject of slotProjects">
+<!--<nb-card *ngFor=" let slotProject of slotProjects">
   <nb-card-header>
     <button nbButton size="small" class="float-right" (click)=openProject(slotProject)>Open Project</button>
     <h5> {{slotProject.Name}} </h5>
   </nb-card-header>
   <nb-card-body>
-    <b>Description:</b> {{slotProject.Description}} <br> 
+    <b>Description:</b> {{slotProject.Description}} <br>
     <b>Due Date:</b> {{slotProject.DueDate | date: mediumDate}}
   </nb-card-body>
-</nb-card>
-
-   
+</nb-card>-->

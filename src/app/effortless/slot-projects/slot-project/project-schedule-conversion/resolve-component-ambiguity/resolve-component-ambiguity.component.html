@@ -4,7 +4,7 @@
   </nb-card-header>
   <nb-card-body>
     <nb-list>
-      <nb-list-item *ngFor="let scd of scds" (click)="selectScd(scd)">
+      <nb-list-item *ngFor="let scd of scds" (click)="selectScd(scd)" style="cursor: pointer;">
         {{scd.SimplifiedDisplayText}}
       </nb-list-item>
     </nb-list>

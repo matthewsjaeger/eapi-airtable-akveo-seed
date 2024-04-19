@@ -12,7 +12,7 @@
               (click)=editProject()>
         Edit Project
       </button>
-      <button nbButton shape="rectangle" status="info" style="margin-bottom: 5px;"
+      <button nbButton shape="rectangle" status="info" style="margin-bottom: 5px;" disabled
               (click)=addRemoveTables()>
         Add/ Remove Tables
       </button>
@@ -28,15 +28,29 @@
         <div class="grid-container-5">
           <p><b>{{list.title}}</b></p>
           <div>
-            <div *ngIf="selectedState == list.title" class="grid-container">
+            <div *ngIf="selectedState == list.title && selectedState == 'Active'" class="grid-container">
               <button nbButton style="margin-bottom: 5px;" (click)=scheduleConversion(list)>
                 Schedule Conversion
               </button>
-              <button nbButton style="margin-bottom: 5px;" (click)=scheduleMoveToStorage()>
+              <button nbButton style="margin-bottom: 5px;" disabled (click)=scheduleMoveToStorage()>
                 Schedule Move to Storage
               </button>
-              <button nbButton style="margin-bottom: 5px;" (click)=scheduleTournament()>
+              <button nbButton style="margin-bottom: 5px;" disabled (click)=scheduleTournament()>
                 Schedule Tournament
+              </button>
+            </div>
+            <div *ngIf="selectedState == list.title && selectedState == 'Stored'" class="grid-container">
+              <button nbButton style="margin-bottom: 5px;" disabled (click)=scheduleDestruction(list)>
+                Schedule Destruction
+              </button>
+              <button nbButton style="margin-bottom: 5px;" disabled (click)=scheduleReturn()>
+                Schedule Return
+              </button>
+              <button nbButton style="margin-bottom: 5px;" disabled (click)=scheduleSale()>
+                Schedule Sale
+              </button>
+              <button nbButton style="margin-bottom: 5px;" disabled (click)=scheduleStorageToFloor()>
+                Schedule Storage to Floor
               </button>
             </div>
           </div>

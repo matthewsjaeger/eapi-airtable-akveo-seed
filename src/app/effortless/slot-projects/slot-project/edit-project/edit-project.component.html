@@ -8,15 +8,18 @@
   <nb-card-body>
     <nb-list>
       <nb-list-item>
-        <label> Name: <input type="text" nbInput placeholder="Name">
-        </label>
+        <label><b>Name: </b></label>
+        <input type="text" nbInput placeholder="Name" [(ngModel)]="project.Name" fullWidth>
       </nb-list-item>
       <nb-list-item>
-        <label> Schedule Date: <input type="text" nbInput placeholder="Schedule Date"></label>
+        <div class="grid-container">
+          <div class="vertical-center"><b>Due Date:</b></div><input nbInput placeholder="Select Date" [nbDatepicker]="datePicker" [(ngModel)]="scheduledDate">
+          <nb-datepicker #datePicker></nb-datepicker>
+        </div>
       </nb-list-item>
       <nb-list-item>
-        <label> Description: </label>
-        <textarea nbInput fullWidth placeholder="Description"></textarea>
+        <label><b>Description: </b></label>
+        <textarea nbInput fullWidth placeholder="Description" [(ngModel)]="project.Description" rows="4"></textarea>
       </nb-list-item>
     </nb-list>
     <button nbButton fullWidth status="success" (click)=save()>Save</button>

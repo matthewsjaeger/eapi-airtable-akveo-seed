@@ -1,0 +1,13 @@
+<nb-card>
+  <nb-card-header>
+    <h5>{{message}}</h5>
+  </nb-card-header>
+  <nb-card-body>
+    <button nbButton class="float-left" style="margin-top:.5em" (click)="closeFoo(true)">
+      Confirm
+    </button>
+    <button nbButton class="float-right" style="margin-top:.5em" (click)="closeFoo(false)" status="danger">
+      Cancel
+    </button>
+  </nb-card-body>
+</nb-card>
