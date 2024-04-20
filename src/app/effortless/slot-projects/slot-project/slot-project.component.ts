@@ -87,6 +87,10 @@ export class SlotProjectComponent extends EffortlessComponentBase implements OnI
     return template;
   };
 
+  addRemoveTables() {
+    this.toastr.warning("Not implemented yet.")
+  }
+
   completeProject() {
     console.error(this.filteredSlots);
     console.error(this.selectedState);
@@ -117,6 +121,7 @@ export class SlotProjectComponent extends EffortlessComponentBase implements OnI
     if (this.selectedState == "") {
       this.selectedState = list.title;
       list.selected = true;
+      this.filteredSlots = [list];
     }
     slot.selected = slot.selected ? false : true;
     let clearList = true;
