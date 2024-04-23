@@ -17,6 +17,7 @@ export class SlotProjectComponent extends EffortlessComponentBase implements OnI
   pid: any;
   loaded: boolean = false;
   selectedState: string = "";
+  scheduledDate: Date;
 
 
   constructor(private router: Router, protected menuService: NbMenuService, public data: DataEndpoint, public gds: GDS, public route: ActivatedRoute
@@ -39,6 +40,7 @@ export class SlotProjectComponent extends EffortlessComponentBase implements OnI
         self.project = reply.SlotProject;
         self.filteredSlots = self.createFilteredSlots(self.project.Slots);
         self.baseFilteredSlots = self.filteredSlots;
+        self.scheduledDate = new Date(self.project.DueDate);
         console.error(self.filteredSlots);
         self.loaded = true;
       });
@@ -135,8 +137,9 @@ export class SlotProjectComponent extends EffortlessComponentBase implements OnI
     }
   }
 
-  scheduleConversion(list) {
+  scheduleConversion() {
     let self = this;
+    let list = this.filteredSlots[0];
     this.gds.slotList = [];
     list.Slots.forEach(function (slot) {
       if (slot.selected) {

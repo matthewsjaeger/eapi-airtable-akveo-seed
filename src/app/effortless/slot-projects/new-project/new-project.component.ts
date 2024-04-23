@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { GDS } from '../../services/gds.service';
 import { DataEndpoint } from '../../services/eapi-data-services/data-endpoint/data-endpoint';
-import { NbMenuService } from '@nebular/theme';
+import { NbMenuService, NbToastrService } from '@nebular/theme';
 import { EffortlessComponentBase } from '../../efforless-base-component';
 import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
 
@@ -41,7 +41,8 @@ export class NewProjectComponent extends EffortlessComponentBase implements OnIn
   loading: boolean = false;
 
 
-  constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, public route: ActivatedRoute) {
+  constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService, public route: ActivatedRoute,
+                public toastr: NbToastrService) {
     super(gds, data, menuService)
 
     this.safeSubscribe(this.route.params.subscribe((params) => {
@@ -64,7 +65,9 @@ export class NewProjectComponent extends EffortlessComponentBase implements OnIn
     payload.Scheduled = this.scheduledDate;
     this.gds.smqUser.CreateSlotProject(payload).then(function (reply) {
       if (reply.ErrorMessage) {
-
+        self.toastr.danger(reply.ErrorMessage);
+      } else {
+        self.router.navigateByUrl('effortless/slot-projects');
       }
     });
   }

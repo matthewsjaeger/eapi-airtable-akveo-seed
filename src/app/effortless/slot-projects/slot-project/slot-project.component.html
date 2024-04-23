@@ -6,8 +6,8 @@
       </button>
       <h4 style="width: fit-content; margin: auto;">{{project.Name}}</h4>
     </div>
-    <p><b>Scheduled Date: </b>{{project.DueDate}}<br /><b>Description: </b>{{project.Description}}</p>
-    <div class="grid-container">
+    <p><b>Scheduled Date: </b>{{scheduledDate | date:'mediumDate'}}<br /><b>Description: </b>{{project.Description}}</p>
+    <div class="grid-container" *ngIf="selectedState == ''">
       <button nbButton shape="rectangle" status="primary" style="margin-bottom: 5px;"
               (click)=editProject()>
         Edit Project
@@ -23,7 +23,7 @@
     </div>
     <div>
       <div *ngIf="selectedState == 'Active'" class="grid-container" style="margin-top: 5px">
-        <button nbButton style="margin-bottom: 5px;" status="info" (click)=scheduleConversion(list)>
+        <button nbButton style="margin-bottom: 5px;" status="info" (click)=scheduleConversion()>
           Schedule Conversion
         </button>
         <button nbButton style="margin-bottom: 5px;" disabled (click)=scheduleMoveToStorage()>
