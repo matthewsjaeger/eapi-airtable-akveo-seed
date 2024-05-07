@@ -89,8 +89,8 @@ export class SlotProjectComponent extends EffortlessComponentBase implements OnI
     return template;
   };
 
-  addRemoveTables() {
-    this.toastr.warning("Not implemented yet.")
+  addRemoveSlots() {
+    this.router.navigateByUrl('effortless/add-remove-slots/' + this.pid);
   }
 
   completeProject() {

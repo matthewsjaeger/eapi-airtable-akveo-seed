@@ -88,11 +88,36 @@ export class ProjectScheduleConversionComponent extends EffortlessComponentBase 
     payload.SlotViews = this.slots;
     self.gds.smqSlotRepairAdmin.ScheduleConversionWrite(payload).then(function (reply) {
       if (reply.ErrorMessage) {
-        console.error('TTTT', reply.ErrorMessage);
+        self.toastr.danger(reply.ErrorMessage);
       } else {
-        self.writeFile(reply.SearchTerm, "test.csv");
+        self.writeFileXlsx(reply.File, reply.SearchTerm);
       }
     });
+  }
+
+  writeFileXlsx(xlsx, filename) {
+    const binaryString = window.atob(xlsx);
+    const len = binaryString.length;
+    const bytes = new Uint8Array(len);
+    for (let i = 0; i < len; i++) {
+      bytes[i] = binaryString.charCodeAt(i);
+    }
+    const blob = new Blob([bytes], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    if (navigator.msSaveBlob) { // IE 10+
+      navigator.msSaveBlob(blob, filename);
+    } else {
+      const link = document.createElement('a');
+      if (link.download !== undefined) {
+        // Browsers that support HTML5 download attribute
+        const url = URL.createObjectURL(blob);
+        link.setAttribute('href', url);
+        link.setAttribute('download', filename);
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    }
   }
 
   writeFile(csvContent, filename) {
@@ -115,6 +140,60 @@ export class ProjectScheduleConversionComponent extends EffortlessComponentBase 
   }
 
   public changeListener(event) {
+    const files: FileList = event.target.files
+    let self = this;
+    if (files && files.length > 0) {
+      let file: File = files.item(0);
+      let reader: FileReader = new FileReader();
+      reader.onload = (e) => {
+        const arrayBuffer = reader.result as ArrayBuffer;
+        const uint8Array = new Uint8Array(arrayBuffer);
+        const base64Encoded = this.arrayBufferToBase64(uint8Array);
+        console.log('Base64 Encoded String:', base64Encoded);
+
+        this.parseChanges(this, base64Encoded);
+      }
+      reader.onerror = (error) => {
+        console.error('Error reading file:', error);
+      };
+
+      reader.readAsArrayBuffer(file); // Read the file as an ArrayBuffer
+
+      event.target.value = null;
+    }
+  }
+
+  parseChanges(self, base64Encoded) {
+    let payload = self.gds.createPayload();
+    payload.File = base64Encoded;
+    self.loading = true;
+    self.gds.smqSlotRepairAdmin.ScheduleConversionRead(payload).then(function (reply) {
+      self.loading = false;
+      if (reply.ErrorMessage) {
+        console.error('VVVVV', reply.ErrorMessage);
+      } else {
+        console.error(reply);
+        self.changes = reply.ChangeSummary.Changes;
+        self.checkForAmbiguities(self);
+        //self.handleAmbiguities(self.changes, self);
+      }
+    }).catch(function (error) {
+      console.error(error);
+      self.loading = false;
+    });;
+  }
+
+  arrayBufferToBase64(buffer: Uint8Array): string {
+    let binary = '';
+    const bytes = buffer;
+    const len = bytes.byteLength;
+    for (let i = 0; i < len; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    return window.btoa(binary);
+  }
+
+  public changeListenerOld(event) {
     const files: FileList = event.target.files
     let self = this;
     if (files && files.length > 0) {
@@ -145,8 +224,8 @@ export class ProjectScheduleConversionComponent extends EffortlessComponentBase 
       event.target.value = null;
     }
   }
+
   handleAmbiguities(changes, self) {
-    console.error('SSSSS', changes);
     changes.forEach(function (change) {
       if (change.Ambiguous) {
         change.Changes.forEach(function (fieldChange) {
@@ -167,10 +246,12 @@ export class ProjectScheduleConversionComponent extends EffortlessComponentBase 
       return;
     }
     let self = this;
+    console.error('SSSS', change)
     this.dialogService.open(ResolveComponentAmbiguityComponent, {
       context: {
         'scds': fieldChange.Comps,
-        'slot': change.Description
+        'slot': change.Description,
+        'searchTerm': fieldChange.SearchTerm
       }
     }).onClose.subscribe(resp => self.resolveComponent(resp, change, fieldChange, self));
   }

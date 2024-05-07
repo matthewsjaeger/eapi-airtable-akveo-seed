@@ -41,7 +41,18 @@ export class EditProjectComponent extends EffortlessComponentBase implements OnI
     this.router.navigateByUrl('effortless/slot-project/' + this.pid);
   }
 
-  save(){
-    this.toastr.warning("Not implemented yet.")
+  save() {
+    let self = this;
+    var payload = this.gds.createPayload();
+    payload.SlotProject = this.project;
+    payload.Scheduled = this.scheduledDate;
+    payload.SearchTerm = "ProjectOnly";
+    this.gds.smqUser.UpdateSlotProject(payload).then(function (reply) {
+      if (reply.ErrorMessage) {
+        self.toastr.danger(reply.ErrorMessage);
+      } else {
+        self.router.navigateByUrl('effortless/slot-project/' + self.pid);
+      }
+    });
   }
 }

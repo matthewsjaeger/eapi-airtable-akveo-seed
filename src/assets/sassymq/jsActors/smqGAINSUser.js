@@ -662,6 +662,22 @@ function generateGAINSUserActor() {
             
             return deferred.promise;
         }
+
+        smqGAINSUser.UpdateSlotProject = function () {
+          smqGAINSUser.UpdateSlotProject('{}');
+        }
+
+        smqGAINSUser.UpdateSlotProject = function (payload) {
+          payload = smqGAINSUser.stringifyValue(payload);
+          var id = smqGAINSUser.createUUID();
+          var deferred = smqGAINSUser.waitingReply[id] = smqGAINSUser.defer();
+          if (smqGAINSUser.showPingPongs) console.log('Update Slot Project - ');
+          smqGAINSUser.client.send('/exchange/gainsusermic/gainscoordinator.assets.gainsuser.updateslotproject', { "content-type": "text/plain", "reply-to": "/temp-queue/response-queue", "correlation-id": id }, payload);
+
+          smqGAINSUser.waitFor(id);
+
+          return deferred.promise;
+        }
         
         smqGAINSUser.AddSlotToProject = function() {
             smqGAINSUser.AddSlotToProject('{}');
