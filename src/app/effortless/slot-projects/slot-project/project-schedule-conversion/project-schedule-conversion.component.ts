@@ -309,6 +309,17 @@ export class ProjectScheduleConversionComponent extends EffortlessComponentBase 
   }
 
   confirmSchedule() {
-    this.toastr.warning("Working on confirm backend.");
+    let self = this;
+    let payload = self.gds.createPayload();
+    payload.ChangeSummary = { Changes: self.changes };
+    self.gds.smqSlotRepairAdmin.ScheduleConversionConfirm(payload).then(function (reply) {
+      self.loading = false;
+      if (reply.ErrorMessage) {
+        self.toastr.danger(reply.ErrorMessage);
+      } else {
+        self.toastr.success("Conversion scheduled.");
+        self.router.navigateByUrl('effortless/slot-projects');
+      }
+    });
   }
 }
