@@ -258,8 +258,16 @@ export class ProjectScheduleConversionComponent extends EffortlessComponentBase 
 
   resolveComponent(resp, change, fieldChange, self) {
     if (resp) {
-      change.Ambiguous = false;
       fieldChange.New = resp.SimplifiedDisplayText;
+      let resolved = true;
+      change.Changes.forEach(function (fChange) {
+        if (fChange.New == "Resolving ambiguity") {
+          resolved = false;
+        }
+      });
+      if (resolved) {
+        change.Ambiguous = false;
+      }
       self.checkForAmbiguities(self);
     }
   }
