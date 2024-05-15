@@ -149,8 +149,16 @@ export class SlotProjectComponent extends EffortlessComponentBase implements OnI
     this.router.navigateByUrl('effortless/project-schedule-conversion');
   }
 
-  scheduleMoveToStorage(list) {
-
+  scheduleMoveToStorage() {
+    let self = this;
+    let list = this.filteredSlots[0];
+    this.gds.slotList = [];
+    list.Slots.forEach(function (slot) {
+      if (slot.selected) {
+        self.gds.slotList.push(slot);
+      }
+    });
+    this.router.navigateByUrl('effortless/project-schedule-move-to-storage');
   }
 
   scheduleTournament(list) {

@@ -58,6 +58,7 @@ import { ProjectScheduleConversionComponent } from './slot-projects/slot-project
 import { ResolveComponentAmbiguityComponent } from './slot-projects/slot-project/project-schedule-conversion/resolve-component-ambiguity/resolve-component-ambiguity.component';
 import { ResolveReadOnlyComponent } from './slot-projects/slot-project/project-schedule-conversion/resolve-read-only/resolve-read-only.component';
 import { AddRemoveSlotsComponent } from './slot-projects/slot-project/add-remove-slots/add-remove-slots.component';
+import { ProjectScheduleMoveToStorageComponent } from './slot-projects/slot-project/project-schedule-move-to-storage/project-schedule-move-to-storage.component';
 
 let effortlessChildren = [
   {
@@ -284,6 +285,10 @@ let effortlessChildren = [
   {
     path: 'project-schedule-conversion',
     component: ProjectScheduleConversionComponent
+  },
+  {
+    path: 'project-schedule-move-to-storage',
+    component: ProjectScheduleMoveToStorageComponent
   }
 ];
 

@@ -4,15 +4,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NbMenuService, NbDialogService, NbToastrService } from '@nebular/theme';
 import { DataEndpoint } from '../../../services/eapi-data-services/data-endpoint/data-endpoint';
 import { GDS } from '../../../services/gds.service';
-import { ResolveComponentAmbiguityComponent } from './resolve-component-ambiguity/resolve-component-ambiguity.component';
-import { ResolveReadOnlyComponent } from './resolve-read-only/resolve-read-only.component';
+import { ResolveReadOnlyComponent } from '../project-schedule-conversion/resolve-read-only/resolve-read-only.component';
+import { ResolveComponentAmbiguityComponent } from '../project-schedule-conversion/resolve-component-ambiguity/resolve-component-ambiguity.component';
 
 @Component({
-  selector: 'ngx-project-schedule-conversion',
-  templateUrl: './project-schedule-conversion.component.html',
-  styleUrls: ['./project-schedule-conversion.component.scss']
+  selector: 'ngx-project-schedule-move-to-storage',
+  templateUrl: './project-schedule-move-to-storage.component.html',
+  styleUrls: ['./project-schedule-move-to-storage.component.scss']
 })
-export class ProjectScheduleConversionComponent extends EffortlessComponentBase implements OnInit {
+export class ProjectScheduleMoveToStorageComponent extends EffortlessComponentBase implements OnInit {
   slots: any = [];
   project: any = {};
   readOnly: any = ['SerialNumber', 'BarcodeData']
@@ -86,7 +86,7 @@ export class ProjectScheduleConversionComponent extends EffortlessComponentBase 
     let self = this;
     let payload = self.gds.createPayload();
     payload.SlotViews = this.slots;
-    self.gds.smqSlotRepairAdmin.ScheduleConversionWrite(payload).then(function (reply) {
+    self.gds.smqSlotRepairAdmin.ScheduleMoveToStorageWrite(payload).then(function (reply) {
       if (reply.ErrorMessage) {
         self.toastr.danger(reply.ErrorMessage);
       } else {
@@ -166,7 +166,7 @@ export class ProjectScheduleConversionComponent extends EffortlessComponentBase 
     let payload = self.gds.createPayload();
     payload.File = base64Encoded;
     self.loading = true;
-    self.gds.smqSlotRepairAdmin.ScheduleConversionRead(payload).then(function (reply) {
+    self.gds.smqSlotRepairAdmin.ScheduleMoveToStorageRead(payload).then(function (reply) {
       self.loading = false;
       if (reply.ErrorMessage) {
         console.error('VVVVV', reply.ErrorMessage);
@@ -205,7 +205,7 @@ export class ProjectScheduleConversionComponent extends EffortlessComponentBase 
         let payload = self.gds.createPayload();
         payload.SearchTerm = csv;
         self.loading = true;
-        self.gds.smqSlotRepairAdmin.ScheduleConversionRead(payload).then(function (reply) {
+        self.gds.smqSlotRepairAdmin.ScheduleMoveToStorageRead(payload).then(function (reply) {
           self.loading = false;
           if (reply.ErrorMessage) {
             console.error('VVVVV', reply.ErrorMessage);
@@ -242,7 +242,7 @@ export class ProjectScheduleConversionComponent extends EffortlessComponentBase 
       this.resolveReadOnly(change, fieldChange);
       return;
     }
-    
+
     let self = this;
     console.error('SSSS', change)
     this.dialogService.open(ResolveComponentAmbiguityComponent, {
@@ -318,7 +318,7 @@ export class ProjectScheduleConversionComponent extends EffortlessComponentBase 
     let self = this;
     let payload = self.gds.createPayload();
     payload.ChangeSummary = { Changes: self.changes };
-    self.gds.smqSlotRepairAdmin.ScheduleConversionConfirm(payload).then(function (reply) {
+    self.gds.smqSlotRepairAdmin.ScheduleMoveToStorageConfirm(payload).then(function (reply) {
       self.loading = false;
       if (reply.ErrorMessage) {
         self.toastr.danger(reply.ErrorMessage);
