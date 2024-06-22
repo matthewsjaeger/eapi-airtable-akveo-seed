@@ -55,6 +55,12 @@ export class SlotProjectComponent extends EffortlessComponentBase implements OnI
     this.router.navigateByUrl('effortless/edit-project/' + this.pid);
   }
 
+  openSlot(slot) {
+    let relUrl = this.router.createUrlTree(['effortless/on-floor-slot/' + slot.SlotId]);
+    let baseUrl = window.location.href.replace(this.router.url, '');
+    window.open(baseUrl + relUrl, '_blank');
+  }
+
   createFilteredSlots = function (slots) {
     var template =
       [

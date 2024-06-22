@@ -9,7 +9,7 @@
       <nb-list-item *ngFor="let scd of scds" (click)="selectScd(scd)" style="cursor: pointer;">
         {{scd.SimplifiedDisplayText}}
       </nb-list-item>
-      <nb-list-item *ngIf="scds.length < 1" style="color: red;">No components found matching "{{searchTerm}}".</nb-list-item>
+      <nb-list-item *ngIf="scds.length < 1" style="color: red;">No components found matching "{{processedSearchTerm}}".</nb-list-item>
     </nb-list>
     <button nbButton fullWidth style="margin-top:.5em" class="float-right" (click)="close()" status="danger">
       Cancel

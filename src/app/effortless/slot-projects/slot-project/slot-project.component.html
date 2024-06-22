@@ -61,28 +61,33 @@
           </div>
         </div>
         <nb-list>
-          <nb-list-item *ngFor="let slot of list.Slots" (click)="toggleSlot(slot, list)">
-            <b>Serial Number: </b>{{slot.SerialNumber}} <b>|</b>
-            <b>Machine #:</b>{{slot.SlotNumber}} <b>|</b>
-            <b>License #:</b>{{slot.LicenseNumber}}
-            <br>
-            <b>Location:</b>{{slot.DisplayLocation}} <b>|</b>
-            <b>Zone:</b>{{slot.Zone}}  <b>|</b>
-            <b>Floor Address:</b>{{slot.Address}}
-            <br />
-            <b>Manufacturer:</b> {{slot.DisplayManufacturer}} <b>|</b>
-            <b>Updated By:</b> {{slot.DisplayUpdatedBy }}
-            <div class="selected float-right">
-              <i class="ion-checkmark" *ngIf="slot.selected"></i>
+          <nb-list-item *ngFor="let slot of list.Slots">
+            <div class="grid-container-slot">
+              <div>
+                <button nbButton (click)=openSlot(slot)>
+                  Open Slot
+                </button>
+              </div>
+              <div (click)="toggleSlot(slot, list)">
+                <b>Serial Number: </b>{{slot.SerialNumber}} <b>|</b>
+                <b>Machine #:</b>{{slot.SlotNumber}} <b>|</b>
+                <b>License #:</b>{{slot.LicenseNumber}}
+                <br>
+                <b>Location:</b>{{slot.DisplayLocation}} <b>|</b>
+                <b>Zone:</b>{{slot.Zone}}  <b>|</b>
+                <b>Floor Address:</b>{{slot.Address}}
+                <br />
+                <b>Manufacturer:</b> {{slot.DisplayManufacturer}} <b>|</b>
+                <b>Updated By:</b> {{slot.DisplayUpdatedBy }}
+                <div class="selected float-right">
+                  <i class="ion-checkmark" *ngIf="slot.selected"></i>
+                </div>
+                <span class="item-note float-right">{{slot.WorkflowState}} </span>
+              </div>
             </div>
-            <span class="item-note float-right">{{slot.WorkflowState}} </span>
           </nb-list-item>
         </nb-list>
       </nb-list-item>
-      <!--<nb-list-item *ngFor="let slot of list.Slots">
-        <h5>Slot.SerialNumber</h5>
-      </nb-list-item>-->
-      <!--</ng-container>-->
     </nb-list>
   </nb-card-body>
 </nb-card>

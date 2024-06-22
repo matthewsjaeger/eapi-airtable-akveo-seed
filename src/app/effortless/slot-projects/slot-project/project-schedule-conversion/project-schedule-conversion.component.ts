@@ -169,7 +169,7 @@ export class ProjectScheduleConversionComponent extends EffortlessComponentBase 
     self.gds.smqSlotRepairAdmin.ScheduleConversionRead(payload).then(function (reply) {
       self.loading = false;
       if (reply.ErrorMessage) {
-        console.error('VVVVV', reply.ErrorMessage);
+        self.toastr.warning(reply.ErrorMessage);
       } else {
         console.error(reply);
         self.changes = reply.ChangeSummary.Changes;
@@ -177,7 +177,7 @@ export class ProjectScheduleConversionComponent extends EffortlessComponentBase 
         //self.handleAmbiguities(self.changes, self);
       }
     }).catch(function (error) {
-      console.error(error);
+      self.toastr.warning("Request timed out.");
       self.loading = false;
     });;
   }
@@ -208,7 +208,7 @@ export class ProjectScheduleConversionComponent extends EffortlessComponentBase 
         self.gds.smqSlotRepairAdmin.ScheduleConversionRead(payload).then(function (reply) {
           self.loading = false;
           if (reply.ErrorMessage) {
-            console.error('VVVVV', reply.ErrorMessage);
+            self.toastr.warning(reply.ErrorMessage);
           } else {
             console.error(reply);
             self.changes = reply.ChangeSummary.Changes;
@@ -216,7 +216,7 @@ export class ProjectScheduleConversionComponent extends EffortlessComponentBase 
             //self.handleAmbiguities(self.changes, self);
           }
         }).catch(function (error) {
-          console.error(error);
+          self.toastr.warning("Request timed out.");
           self.loading = false;
         });;
       }

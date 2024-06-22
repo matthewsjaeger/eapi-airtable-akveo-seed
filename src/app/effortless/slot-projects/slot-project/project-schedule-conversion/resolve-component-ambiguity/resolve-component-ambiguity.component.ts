@@ -15,6 +15,7 @@ export class ResolveComponentAmbiguityComponent extends EffortlessComponentBase 
   @Input() slot: any;
   @Input() searchTerm: string = "";
   isLoading: boolean = false;
+  processedSearchTerm: string = "";
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService,
     public route: ActivatedRoute, protected dialogRef: NbDialogRef<ResolveComponentAmbiguityComponent>, private dialogService: NbDialogService, public toastr: NbToastrService) {
@@ -22,6 +23,7 @@ export class ResolveComponentAmbiguityComponent extends EffortlessComponentBase 
   }
 
   ngOnInit() {
+    this.processedSearchTerm = this.searchTerm;
   }
 
   selectScd(selected) {
@@ -42,6 +44,7 @@ export class ResolveComponentAmbiguityComponent extends EffortlessComponentBase 
       if (reply.ErrorMessage) {
         self.toastr.warning(reply.ErrorMessage);
       } else {
+        self.processedSearchTerm = self.searchTerm;
         if (reply.SlotComponentDefs != null) {
           self.scds = reply.SlotComponentDefs;
         } else {
