@@ -1537,6 +1537,54 @@ function generateSlotRepairAdminActor() {
 
           return deferred.promise;
         }
+
+        smqSlotRepairAdmin.ScheduleStorageToFloorWrite = function () {
+          smqSlotRepairAdmin.ScheduleStorageToFloorWrite('{}');
+        }
+
+        smqSlotRepairAdmin.ScheduleStorageToFloorWrite = function (payload) {
+          payload = smqSlotRepairAdmin.stringifyValue(payload);
+          var id = smqSlotRepairAdmin.createUUID();
+          var deferred = smqSlotRepairAdmin.waitingReply[id] = smqSlotRepairAdmin.defer();
+          if (smqSlotRepairAdmin.showPingPongs) console.log('Schedule Storage To Floor Write - ');
+          smqSlotRepairAdmin.client.send('/exchange/slotrepairadminmic/gainscoordinator.onfloor.slotrepairadmin.schedulestoragetofloorwrite', { "content-type": "text/plain", "reply-to": "/temp-queue/response-queue", "correlation-id": id }, payload);
+
+          smqSlotRepairAdmin.waitFor(id);
+
+          return deferred.promise;
+        }
+
+        smqSlotRepairAdmin.ScheduleStorageToFloorRead = function () {
+          smqSlotRepairAdmin.ScheduleStorageToFloorRead('{}');
+        }
+
+        smqSlotRepairAdmin.ScheduleStorageToFloorRead = function (payload) {
+          payload = smqSlotRepairAdmin.stringifyValue(payload);
+          var id = smqSlotRepairAdmin.createUUID();
+          var deferred = smqSlotRepairAdmin.waitingReply[id] = smqSlotRepairAdmin.defer();
+          if (smqSlotRepairAdmin.showPingPongs) console.log('Schedule Storage To Floor Read - ');
+          smqSlotRepairAdmin.client.send('/exchange/slotrepairadminmic/gainscoordinator.onfloor.slotrepairadmin.schedulestoragetofloorread', { "content-type": "text/plain", "reply-to": "/temp-queue/response-queue", "correlation-id": id }, payload);
+
+          smqSlotRepairAdmin.waitFor(id);
+
+          return deferred.promise;
+        }
+
+        smqSlotRepairAdmin.ScheduleStorageToFloorConfirm = function () {
+          smqSlotRepairAdmin.ScheduleStorageToFloorConfirm('{}');
+        }
+
+        smqSlotRepairAdmin.ScheduleStorageToFloorConfirm = function (payload) {
+          payload = smqSlotRepairAdmin.stringifyValue(payload);
+          var id = smqSlotRepairAdmin.createUUID();
+          var deferred = smqSlotRepairAdmin.waitingReply[id] = smqSlotRepairAdmin.defer();
+          if (smqSlotRepairAdmin.showPingPongs) console.log('Schedule Storage To Floor - ');
+          smqSlotRepairAdmin.client.send('/exchange/slotrepairadminmic/gainscoordinator.onfloor.slotrepairadmin.schedulestoragetofloorconfirm', { "content-type": "text/plain", "reply-to": "/temp-queue/response-queue", "correlation-id": id }, payload);
+
+          smqSlotRepairAdmin.waitFor(id);
+
+          return deferred.promise;
+        }
         
         smqSlotRepairAdmin.ScheduleMoveToStorage = function() {
             smqSlotRepairAdmin.ScheduleMoveToStorage('{}');

@@ -80,22 +80,23 @@ import { ResolveComponentAmbiguityComponent } from './slot-projects/slot-project
 import { ResolveReadOnlyComponent } from './slot-projects/slot-project/project-schedule-conversion/resolve-read-only/resolve-read-only.component';
 import { AddRemoveSlotsComponent } from './slot-projects/slot-project/add-remove-slots/add-remove-slots.component';
 import { ProjectScheduleMoveToStorageComponent } from './slot-projects/slot-project/project-schedule-move-to-storage/project-schedule-move-to-storage.component';
+import { ProjectStorageToFloorComponent } from './slot-projects/slot-project/project-storage-to-floor/project-storage-to-floor.component';
 
 let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComponent, Page3Component,
   StorageSlotsComponent, SlotProjectsComponent, SearchStorageSlotsComponent, SlotProjectComponent, NewProjectComponent,
-   EditProjectComponent, StorageSlotComponent, OnFloorComponent, OnFloorSlotComponent,
+  EditProjectComponent, StorageSlotComponent, OnFloorComponent, OnFloorSlotComponent,
   VerifyTenTwentyComponent, StackerFullRecordComponent, MediaVerificationComponent, PreventativeMaintenanceComponent, VerifyTwentyFiftyComponent,
-VerifyFiftyOnehundredComponent, VerifyOnehundredAboveComponent, StateInspectionComponent, GcInspectionComponent,
-LscConversionComponent, MlcConversionComponent, EditSealsComponent, AddSealComponent, ReplaceSealComponent, BreakSealComponent,
-PlaceSlotSealsComponent, ReplaceWitnessesComponent, EditSealsLogicAccessComponent,  UpdateActiveSlotComponent, 
-RequestActivationComponent, MlcPlaceSlotComponent, MlcAddComponent, MlcBreakComponent, MlcReplaceComponent, PlaceConversionComponent,
- MlcChecklistComponent, LscPlaceSlotComponent, LscAddComponent, LscReplaceComponent, LscBreakComponent, LscPlaceConversionComponent,
+  VerifyFiftyOnehundredComponent, VerifyOnehundredAboveComponent, StateInspectionComponent, GcInspectionComponent,
+  LscConversionComponent, MlcConversionComponent, EditSealsComponent, AddSealComponent, ReplaceSealComponent, BreakSealComponent,
+  PlaceSlotSealsComponent, ReplaceWitnessesComponent, EditSealsLogicAccessComponent,  UpdateActiveSlotComponent, 
+  RequestActivationComponent, MlcPlaceSlotComponent, MlcAddComponent, MlcBreakComponent, MlcReplaceComponent, PlaceConversionComponent,
+  MlcChecklistComponent, LscPlaceSlotComponent, LscAddComponent, LscReplaceComponent, LscBreakComponent, LscPlaceConversionComponent,
   LscChecklistComponent, CompleteMoveToStorageComponent, ScheduleMoveToStorageComponent, EditComponentsComponent, MultiOnFloorComponent,
   CdiComponent, ComponentGeneratedComponent, CdiStatusComponent, CdiConflictedComponent, ConflictedDetailsComponent, CdiManualComponent,
   ComponentMatchedComponent, InstalledDetailsComponent, CdiSearchComponent, CdiLetterComponent, BjAtrComponent, SearchTablesComponent, BjTableComponent,
   ScheduleTableModificationComponent, ScheduleTableRemoveComponent, ScheduleTournamentComponent, LogFeltChangeComponent, FeltChangeChecklistComponent,
   CompleteTableModificationComponent, CompleteTableRemoveComponent, ScheduleConversionComponent, ProjectScheduleConversionComponent, ResolveComponentAmbiguityComponent,
-  ResolveReadOnlyComponent, AddRemoveSlotsComponent, ProjectScheduleMoveToStorageComponent];
+  ResolveReadOnlyComponent, AddRemoveSlotsComponent, ProjectScheduleMoveToStorageComponent, ProjectStorageToFloorComponent];
 
 @NgModule({
   declarations: declarations,
