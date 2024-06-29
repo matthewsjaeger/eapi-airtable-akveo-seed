@@ -78,12 +78,27 @@ export class SlotProjectComponent extends EffortlessComponentBase implements OnI
         , { 'title': 'Request Receive Slot(s)', 'Slots': [], 'isVisable':true, 'selected': false}
       ];
 
-    template.forEach(function (list) {
-      slots.forEach(function (slot) {
+    //template.forEach(function (list) {
+    //  slots.forEach(function (slot) {
+    //    if (slot.WorkflowState == list.title) {
+    //      list.Slots.push(slot);
+    //    }
+    //  });
+    //});
+
+    slots.forEach(function (slot) {
+      let matched = false;
+      template.forEach(function (list) {
         if (slot.WorkflowState == list.title) {
           list.Slots.push(slot);
+          matched = true;
         }
       });
+      if (matched == false) {
+        let category = { 'title': slot.WorkflowState, 'Slots': [], 'isVisable': true, 'selected': false };
+        category.Slots.push(slot);
+        template.push(category);
+      }
     });
 
     let i = template.length;
