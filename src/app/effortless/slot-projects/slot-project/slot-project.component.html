@@ -34,17 +34,11 @@
         </button>
       </div>
       <div *ngIf="selectedState == 'Stored'" class="grid-container" style="margin-top: 5px">
-        <button nbButton style="margin-bottom: 5px;" disabled (click)=scheduleDestruction(list)>
-          Schedule Destruction
-        </button>
-        <button nbButton style="margin-bottom: 5px;" disabled (click)=scheduleReturn()>
-          Schedule Return
-        </button>
-        <button nbButton style="margin-bottom: 5px;" disabled (click)=scheduleSale()>
-          Schedule Sale
-        </button>
         <button nbButton style="margin-bottom: 5px;" (click)=scheduleStorageToFloor()>
           Schedule Storage to Floor
+        </button>
+        <button nbButton style="margin-bottom: 5px;" (click)=scheduleRemoval()>
+          Schedule Removal
         </button>
       </div>
     </div>
