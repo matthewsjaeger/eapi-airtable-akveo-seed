@@ -81,6 +81,8 @@ import { ResolveReadOnlyComponent } from './slot-projects/slot-project/project-s
 import { AddRemoveSlotsComponent } from './slot-projects/slot-project/add-remove-slots/add-remove-slots.component';
 import { ProjectScheduleMoveToStorageComponent } from './slot-projects/slot-project/project-schedule-move-to-storage/project-schedule-move-to-storage.component';
 import { ProjectStorageToFloorComponent } from './slot-projects/slot-project/project-storage-to-floor/project-storage-to-floor.component';
+import { RemovalTypeComponent } from './slot-projects/slot-project/removal-type/removal-type.component';
+import { ProjectScheduleRemovalComponent } from './slot-projects/slot-project/project-schedule-removal/project-schedule-removal.component';
 
 let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComponent, Page3Component,
   StorageSlotsComponent, SlotProjectsComponent, SearchStorageSlotsComponent, SlotProjectComponent, NewProjectComponent,
@@ -96,7 +98,7 @@ let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComp
   ComponentMatchedComponent, InstalledDetailsComponent, CdiSearchComponent, CdiLetterComponent, BjAtrComponent, SearchTablesComponent, BjTableComponent,
   ScheduleTableModificationComponent, ScheduleTableRemoveComponent, ScheduleTournamentComponent, LogFeltChangeComponent, FeltChangeChecklistComponent,
   CompleteTableModificationComponent, CompleteTableRemoveComponent, ScheduleConversionComponent, ProjectScheduleConversionComponent, ResolveComponentAmbiguityComponent,
-  ResolveReadOnlyComponent, AddRemoveSlotsComponent, ProjectScheduleMoveToStorageComponent, ProjectStorageToFloorComponent];
+  ResolveReadOnlyComponent, AddRemoveSlotsComponent, ProjectScheduleMoveToStorageComponent, ProjectStorageToFloorComponent, RemovalTypeComponent, ProjectScheduleRemovalComponent];
 
 @NgModule({
   declarations: declarations,
@@ -130,7 +132,7 @@ let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComp
     ReplaceWitnessesComponent, MlcAddComponent, MlcBreakComponent, MlcReplaceComponent,
     PlaceConversionComponent, LscAddComponent, LscReplaceComponent, LscBreakComponent, LscPlaceConversionComponent,
     ComponentGeneratedComponent, CdiStatusComponent, ComponentMatchedComponent, CompleteTableModificationComponent,
-    CompleteTableRemoveComponent, ResolveComponentAmbiguityComponent, ResolveReadOnlyComponent]
+    CompleteTableRemoveComponent, ResolveComponentAmbiguityComponent, ResolveReadOnlyComponent, RemovalTypeComponent]
 })
 export class EffortlessModule {
 

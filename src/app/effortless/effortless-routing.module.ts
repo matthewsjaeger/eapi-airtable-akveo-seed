@@ -60,6 +60,8 @@ import { ResolveReadOnlyComponent } from './slot-projects/slot-project/project-s
 import { AddRemoveSlotsComponent } from './slot-projects/slot-project/add-remove-slots/add-remove-slots.component';
 import { ProjectScheduleMoveToStorageComponent } from './slot-projects/slot-project/project-schedule-move-to-storage/project-schedule-move-to-storage.component';
 import { ProjectStorageToFloorComponent } from './slot-projects/slot-project/project-storage-to-floor/project-storage-to-floor.component';
+import { RemovalTypeComponent } from './slot-projects/slot-project/removal-type/removal-type.component';
+import { ProjectScheduleRemovalComponent } from './slot-projects/slot-project/project-schedule-removal/project-schedule-removal.component';
 
 let effortlessChildren = [
   {
@@ -99,7 +101,7 @@ let effortlessChildren = [
     component: StorageSlotComponent,
   },
   {
-    path: 'on-floor/:sid',
+    path: 'on-floor',
     component: OnFloorComponent
   },
   {
@@ -294,6 +296,14 @@ let effortlessChildren = [
   {
     path: 'project-storage-to-floor',
     component: ProjectStorageToFloorComponent
+  },
+  {
+    path: 'removal-type',
+    component: RemovalTypeComponent
+  },
+  {
+    path: 'project-schedule-removal/:rType',
+    component: ProjectScheduleRemovalComponent
   }
 ];
 

@@ -1,10 +1,13 @@
 <nb-card>
-    <nb-card-header>
-        <button nbButton ghost size="medium" class="float-left" (click)="goBack()">
-            <nb-icon icon="arrow-ios-back-outline"></nb-icon>On Floor Slots
-        </button>
-        <h4 style="width: fit-content; margin: auto;">Slot Details</h4>
-    </nb-card-header>
+  <nb-card-header>
+    <button nbButton ghost size="medium" class="float-left" (click)="goBack('floor')" *ngIf="slot && sid && slot.WorkflowState != 'Stored'">
+      <nb-icon icon="arrow-ios-back-outline"></nb-icon>On Floor Slots
+    </button>
+    <button nbButton ghost size="medium" class="float-left" (click)="goBack('stored')" *ngIf="slot && sid && slot.WorkflowState == 'Stored'">
+      <nb-icon icon="arrow-ios-back-outline"></nb-icon>Stored Slots
+    </button>
+    <h4 style="width: fit-content; margin: auto;">Slot Details</h4>
+  </nb-card-header>
     <nb-card-body>
       <div>
         <nb-list *ngIf="slot && sid">
@@ -390,7 +393,7 @@
         </button>
 
       </div>
-      <div *ngIf="slot.WorkflowState =='Tournament Scheduled'">
+      <div *ngIf="slot.WorkflowState == 'Tournament Scheduled'">
         <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=activateTournamentMode()
                 disabled>
           Activate Tournament Mode
@@ -454,19 +457,19 @@
         </button>
 
       </div>
-      <div *ngIf="slot.WorkflowState =='Conversion Completed'">
+      <div *ngIf="slot.WorkflowState == 'Conversion Completed'">
         <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=requestActivation()>
           Request Activation
         </button>
       </div>
-      <div *ngIf="slot.WorkflowState =='Activation Requested'">
+      <div *ngIf="slot.WorkflowState == 'Activation Requested'">
         <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=gcInspection()>
           GC
           Inspection
         </button>
       </div>
 
-      <div *ngIf="slot.WorkflowState =='Stored'">
+      <div *ngIf="slot.WorkflowState == 'Stored'">
         <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=completeConversionLSC()>
           Complete Conversion LSC
         </button>

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { NbMenuService, NbToastrService } from '@nebular/theme';
+import { NbMenuService, NbToastrService, NbDialogService } from '@nebular/theme';
 import { DataEndpoint } from '../../services/eapi-data-services/data-endpoint/data-endpoint';
 import { GDS } from '../../services/gds.service';
 import { EffortlessComponentBase } from '../../efforless-base-component';
+import { RemovalTypeComponent } from './removal-type/removal-type.component';
 
 @Component({
   selector: 'ngx-slot-project',
@@ -20,8 +21,8 @@ export class SlotProjectComponent extends EffortlessComponentBase implements OnI
   scheduledDate: Date;
 
 
-  constructor(private router: Router, protected menuService: NbMenuService, public data: DataEndpoint, public gds: GDS, public route: ActivatedRoute
-              , public toastr: NbToastrService) {
+  constructor(private router: Router, protected menuService: NbMenuService, public data: DataEndpoint, public gds: GDS, public route: ActivatedRoute,
+      public toastr: NbToastrService, private dialogService: NbDialogService) {
     super(gds, data, menuService)
 
     this.safeSubscribe(this.route.params.subscribe((params) => {
@@ -186,16 +187,25 @@ export class SlotProjectComponent extends EffortlessComponentBase implements OnI
 
   }
 
-  scheduleDestruction(list) {
-
+  scheduleRemoval() {
+    let self = this;
+    this.dialogService.open(RemovalTypeComponent, {
+      context: {
+      }
+    }).onClose.subscribe(resp => self.finishRemovalType(resp, self));
   }
 
-  scheduleReturn(list) {
-
-  }
-
-  scheduleSale(list) {
-
+  finishRemovalType(resp,  self) {
+    if (resp) {
+      let list = self.filteredSlots[0];
+      self.gds.slotList = [];
+      list.Slots.forEach(function (slot) {
+        if (slot.selected) {
+          self.gds.slotList.push(slot);
+        }
+      });
+      this.router.navigateByUrl('effortless/project-schedule-removal/' + resp);
+    }
   }
 
   scheduleStorageToFloor() {

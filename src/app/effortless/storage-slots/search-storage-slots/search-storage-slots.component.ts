@@ -59,7 +59,7 @@ export class SearchStorageSlotsComponent extends EffortlessComponentBase impleme
   selectSlot(slot){
   // this.gds.GAINSUser.currentSlots = [slot]
   console.error()
-    this.router.navigateByUrl('effortless/storage-slot/' + slot.SlotId);
+    this.router.navigateByUrl('effortless/on-floor-slot/' + slot.SlotId);
   }
 
   createFilteredSlots(){

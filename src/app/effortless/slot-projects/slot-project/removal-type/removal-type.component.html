@@ -1,0 +1,21 @@
+<nb-card>
+  <nb-card-header>
+    <h5>Select Removal Type:</h5>
+  </nb-card-header>
+  <nb-card-body>
+    <nb-list>
+      <nb-list-item (click)="selectType('destruction')" style="cursor: pointer;">
+        Destruction
+      </nb-list-item>
+      <nb-list-item (click)="selectType('return')" style="cursor: pointer;">
+        Return
+      </nb-list-item>
+      <nb-list-item (click)="selectType('sale')" style="cursor: pointer;">
+        Sale
+      </nb-list-item>
+      <nb-list-item (click)="selectType('museum')" style="cursor: pointer;">
+        Museum
+      </nb-list-item>
+    </nb-list>
+  </nb-card-body>
+</nb-card>

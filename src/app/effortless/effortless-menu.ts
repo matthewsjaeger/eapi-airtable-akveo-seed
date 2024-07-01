@@ -16,7 +16,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'On Floor',
     icon: 'play-circle',
-    link: '/effortless/on-floor/:sid',
+    link: '/effortless/on-floor',
   },
   {
     title: 'Storage Slots',
