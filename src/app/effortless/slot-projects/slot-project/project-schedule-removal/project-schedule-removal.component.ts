@@ -90,7 +90,8 @@ export class ProjectScheduleRemovalComponent extends EffortlessComponentBase imp
     let self = this;
     let payload = self.gds.createPayload();
     payload.SlotViews = this.slots;
-    self.gds.smqSlotRepairAdmin.ScheduleConversionWrite(payload).then(function (reply) {
+    payload.Flag = this.rType;
+    self.gds.smqSlotRepairAdmin.ScheduleRemovalWrite(payload).then(function (reply) {
       if (reply.ErrorMessage) {
         self.toastr.danger(reply.ErrorMessage);
       } else {
@@ -170,7 +171,7 @@ export class ProjectScheduleRemovalComponent extends EffortlessComponentBase imp
     let payload = self.gds.createPayload();
     payload.File = base64Encoded;
     self.loading = true;
-    self.gds.smqSlotRepairAdmin.ScheduleConversionRead(payload).then(function (reply) {
+    self.gds.smqSlotRepairAdmin.ScheduleRemovalRead(payload).then(function (reply) {
       self.loading = false;
       if (reply.ErrorMessage) {
         self.toastr.warning(reply.ErrorMessage);
@@ -196,37 +197,37 @@ export class ProjectScheduleRemovalComponent extends EffortlessComponentBase imp
     return window.btoa(binary);
   }
 
-  public changeListenerOld(event) {
-    const files: FileList = event.target.files
-    let self = this;
-    if (files && files.length > 0) {
-      let file: File = files.item(0);
-      let reader: FileReader = new FileReader();
-      reader.readAsText(file);
-      reader.onload = (e) => {
-        let csv: string = reader.result as string;
-        console.log(csv);
-        let payload = self.gds.createPayload();
-        payload.SearchTerm = csv;
-        self.loading = true;
-        self.gds.smqSlotRepairAdmin.ScheduleConversionRead(payload).then(function (reply) {
-          self.loading = false;
-          if (reply.ErrorMessage) {
-            self.toastr.warning(reply.ErrorMessage);
-          } else {
-            console.error(reply);
-            self.changes = reply.ChangeSummary.Changes;
-            self.checkForAmbiguities(self);
-            //self.handleAmbiguities(self.changes, self);
-          }
-        }).catch(function (error) {
-          self.toastr.warning("Request timed out.");
-          self.loading = false;
-        });;
-      }
-      event.target.value = null;
-    }
-  }
+  //public changeListenerOld(event) {
+  //  const files: FileList = event.target.files
+  //  let self = this;
+  //  if (files && files.length > 0) {
+  //    let file: File = files.item(0);
+  //    let reader: FileReader = new FileReader();
+  //    reader.readAsText(file);
+  //    reader.onload = (e) => {
+  //      let csv: string = reader.result as string;
+  //      console.log(csv);
+  //      let payload = self.gds.createPayload();
+  //      payload.SearchTerm = csv;
+  //      self.loading = true;
+  //      self.gds.smqSlotRepairAdmin.ScheduleConversionRead(payload).then(function (reply) {
+  //        self.loading = false;
+  //        if (reply.ErrorMessage) {
+  //          self.toastr.warning(reply.ErrorMessage);
+  //        } else {
+  //          console.error(reply);
+  //          self.changes = reply.ChangeSummary.Changes;
+  //          self.checkForAmbiguities(self);
+  //          //self.handleAmbiguities(self.changes, self);
+  //        }
+  //      }).catch(function (error) {
+  //        self.toastr.warning("Request timed out.");
+  //        self.loading = false;
+  //      });;
+  //    }
+  //    event.target.value = null;
+  //  }
+  //}
 
   handleAmbiguities(changes, self) {
     changes.forEach(function (change) {
@@ -322,7 +323,7 @@ export class ProjectScheduleRemovalComponent extends EffortlessComponentBase imp
     let self = this;
     let payload = self.gds.createPayload();
     payload.ChangeSummary = { Changes: self.changes };
-    self.gds.smqSlotRepairAdmin.ScheduleConversionConfirm(payload).then(function (reply) {
+    self.gds.smqSlotRepairAdmin.ScheduleRemovalConfirm(payload).then(function (reply) {
       self.loading = false;
       if (reply.ErrorMessage) {
         self.toastr.danger(reply.ErrorMessage);
