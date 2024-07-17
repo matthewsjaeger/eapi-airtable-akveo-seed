@@ -1,0 +1,26 @@
+<nb-card [size]="'large'">
+  <nb-card-header>
+    <div class="clearfix">
+      <button nbButton ghost size="medium" class="float-left" (click)="goBack()">
+        <nb-icon icon="arrow-ios-back-outline"></nb-icon>Back
+      </button>
+      <h4 style="width: fit-content; margin: auto;">Cancel Scheduled Events</h4>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <nb-list *ngIf="loaded">
+      <nb-list-item *ngFor="let event of events">
+        <div (click)="toggleEvent(event)">
+          <b>Description: </b>{{event.Description}} <b>|</b>
+          <b>Scheduled:</b>{{event.Scheduled}}
+          <div class="selected float-right">
+            <i class="ion-checkmark" *ngIf="event.selected"></i>
+          </div>
+        </div>
+      </nb-list-item>
+    </nb-list>
+    <button nbButton size="medium" class="float-left" (click)="cancelEvents()">
+      Cancel Selected Events
+    </button>
+  </nb-card-body>
+</nb-card>

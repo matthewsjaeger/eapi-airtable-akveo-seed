@@ -40,13 +40,12 @@
 </nb-card>
 <nb-card>
     <nb-card-header>
-        <h5 style="width: fit-content; margin:auto">Avaliable Actions</h5>
+        <h5 style="width: fit-content; margin:auto">Available Actions</h5>
     </nb-card-header>
     <nb-card-body>
 
       <div *ngIf=" slot.WorkflowState == 'Active' ">
-        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=cancelScheduledEvent()
-                disabled>
+        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=cancelScheduledEvents()>
           Cancel Scheduled Event(s)
         </button>
         <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=completeConversionLSC()>
@@ -398,8 +397,7 @@
                 disabled>
           Activate Tournament Mode
         </button>
-        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=cancelScheduledEvents()
-                disabled>
+        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=cancelScheduledEvents()>
           Cancel Scheduled Event(s)
         </button>
         <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=editSealGC() disabled>
@@ -483,8 +481,7 @@
         <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=editSeals()>
           Edit Seals
         </button>
-        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=cancelScheduledEvents()
-                disabled>
+        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=cancelScheduledEvents()>
           Cancel Scheduled Event(s)
         </button>
       </div>
@@ -500,8 +497,7 @@
         <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=editSeals()>
           Edit Seals
         </button>
-        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=cancelScheduledEvents()
-                disabled>
+        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=cancelScheduledEvents()>
           Cancel Scheduled Event(s)
         </button>
       </div>

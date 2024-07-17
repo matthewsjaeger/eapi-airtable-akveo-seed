@@ -1633,6 +1633,38 @@ function generateSlotRepairAdminActor() {
 
           return deferred.promise;
         }
+
+        smqSlotRepairAdmin.GetOpenEvents = function () {
+          smqSlotRepairAdmin.GetOpenEvents('{}');
+        }
+
+        smqSlotRepairAdmin.GetOpenEvents = function (payload) {
+          payload = smqSlotRepairAdmin.stringifyValue(payload);
+          var id = smqSlotRepairAdmin.createUUID();
+          var deferred = smqSlotRepairAdmin.waitingReply[id] = smqSlotRepairAdmin.defer();
+          if (smqSlotRepairAdmin.showPingPongs) console.log('Get Open Events - ');
+          smqSlotRepairAdmin.client.send('/exchange/slotrepairadminmic/gainscoordinator.onfloor.slotrepairadmin.getopenevents', { "content-type": "text/plain", "reply-to": "/temp-queue/response-queue", "correlation-id": id }, payload);
+
+          smqSlotRepairAdmin.waitFor(id);
+
+          return deferred.promise;
+        }
+
+        smqSlotRepairAdmin.CancelScheduledEvents = function () {
+          smqSlotRepairAdmin.CancelScheduledEvents('{}');
+        }
+
+        smqSlotRepairAdmin.CancelScheduledEvents = function (payload) {
+          payload = smqSlotRepairAdmin.stringifyValue(payload);
+          var id = smqSlotRepairAdmin.createUUID();
+          var deferred = smqSlotRepairAdmin.waitingReply[id] = smqSlotRepairAdmin.defer();
+          if (smqSlotRepairAdmin.showPingPongs) console.log('Cancel Scheduled Events - ');
+          smqSlotRepairAdmin.client.send('/exchange/slotrepairadminmic/gainscoordinator.onfloor.slotrepairadmin.cancelscheduledevents', { "content-type": "text/plain", "reply-to": "/temp-queue/response-queue", "correlation-id": id }, payload);
+
+          smqSlotRepairAdmin.waitFor(id);
+
+          return deferred.promise;
+        }
         
         smqSlotRepairAdmin.ScheduleMoveToStorage = function() {
             smqSlotRepairAdmin.ScheduleMoveToStorage('{}');

@@ -83,6 +83,7 @@ import { ProjectScheduleMoveToStorageComponent } from './slot-projects/slot-proj
 import { ProjectStorageToFloorComponent } from './slot-projects/slot-project/project-storage-to-floor/project-storage-to-floor.component';
 import { RemovalTypeComponent } from './slot-projects/slot-project/removal-type/removal-type.component';
 import { ProjectScheduleRemovalComponent } from './slot-projects/slot-project/project-schedule-removal/project-schedule-removal.component';
+import { CancelScheduledEventsComponent } from './slot-projects/slot-project/cancel-scheduled-events/cancel-scheduled-events.component';
 
 let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComponent, Page3Component,
   StorageSlotsComponent, SlotProjectsComponent, SearchStorageSlotsComponent, SlotProjectComponent, NewProjectComponent,
@@ -98,7 +99,8 @@ let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComp
   ComponentMatchedComponent, InstalledDetailsComponent, CdiSearchComponent, CdiLetterComponent, BjAtrComponent, SearchTablesComponent, BjTableComponent,
   ScheduleTableModificationComponent, ScheduleTableRemoveComponent, ScheduleTournamentComponent, LogFeltChangeComponent, FeltChangeChecklistComponent,
   CompleteTableModificationComponent, CompleteTableRemoveComponent, ScheduleConversionComponent, ProjectScheduleConversionComponent, ResolveComponentAmbiguityComponent,
-  ResolveReadOnlyComponent, AddRemoveSlotsComponent, ProjectScheduleMoveToStorageComponent, ProjectStorageToFloorComponent, RemovalTypeComponent, ProjectScheduleRemovalComponent];
+  ResolveReadOnlyComponent, AddRemoveSlotsComponent, ProjectScheduleMoveToStorageComponent, ProjectStorageToFloorComponent, RemovalTypeComponent, ProjectScheduleRemovalComponent,
+  CancelScheduledEventsComponent];
 
 @NgModule({
   declarations: declarations,

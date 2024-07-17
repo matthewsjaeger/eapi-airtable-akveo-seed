@@ -93,13 +93,12 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
   activateTournamentMode() {
 
   }
-
-  cancelScheduledEvent() {
-
+  cancelScheduledEvents() {
+    this.router.navigateByUrl('effortless/cancel-scheduled-events/' + this.sid);
   }
   completeConversionLSC() {
     this.gds.stageMngr = { slot: this.sid, operation: 'lsc-conversion', stage: 'seals' };
-    this.router.navigateByUrl('effortless/lsc-conversion/' +this.sid)
+    this.router.navigateByUrl('effortless/lsc-conversion/' + this.sid);
   }
   completeConversionMLC() {
     this.gds.stageMngr = { slot: this.sid, operation: 'mlc-conversion', stage: 'seals' };
