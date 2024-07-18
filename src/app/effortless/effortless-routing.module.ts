@@ -63,6 +63,8 @@ import { ProjectStorageToFloorComponent } from './slot-projects/slot-project/pro
 import { RemovalTypeComponent } from './slot-projects/slot-project/removal-type/removal-type.component';
 import { ProjectScheduleRemovalComponent } from './slot-projects/slot-project/project-schedule-removal/project-schedule-removal.component';
 import { CancelScheduledEventsComponent } from './slot-projects/slot-project/cancel-scheduled-events/cancel-scheduled-events.component';
+import { CreateActionsComponent } from './create-actions/create-actions.component';
+import { CreateSlotComponent } from './create-actions/create-slot/create-slot.component';
 
 let effortlessChildren = [
   {
@@ -309,6 +311,14 @@ let effortlessChildren = [
   {
     path: 'cancel-scheduled-events/:sid',
     component: CancelScheduledEventsComponent
+  },
+  {
+    path: 'create-actions',
+    component: CreateActionsComponent
+  },
+  {
+    path: 'create-slot',
+    component: CreateSlotComponent
   }
 ];
 

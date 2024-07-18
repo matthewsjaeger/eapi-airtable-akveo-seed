@@ -1,0 +1,16 @@
+<nb-card [size]="'large'">
+  <nb-card-header>
+      <h4 style="width: fit-content; margin: auto;">Create Actions</h4>
+  </nb-card-header>
+  <nb-card-body>
+    <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)="createSlot()">
+      Create Slot
+    </button>
+    <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)="createGame()" disabled>
+      Create Game
+    </button>
+    <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)="createProgressiveDef()" disabled>
+      Create Progressive Def
+    </button>
+  </nb-card-body>
+</nb-card>

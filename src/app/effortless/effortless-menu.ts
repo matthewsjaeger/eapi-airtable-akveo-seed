@@ -34,6 +34,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/effortless/slot-projects',
   },
   {
+    title: 'Create Actions',
+    icon: 'plus-circle',
+    link: '/effortless/create-actions',
+  },
+  {
     title: 'CDI',
     icon: 'cloud-download',
     children: [

@@ -1,0 +1,20 @@
+<nb-card [size]="'large'">
+  <nb-card-header>
+    <h4 style="width: fit-content; margin: auto;">Create Slot</h4>
+  </nb-card-header>
+  <nb-card-body>
+    <nb-list *ngIf="loaded">
+      <nb-list-item><div class="grid-container"><div class="vertical-center"><b>Serial Number:</b></div><input [(ngModel)]="slotPayload.SlotView.SerialNumber" autocomplete="off" type="text" nbInput fullWidth></div></nb-list-item>
+      <nb-list-item><div class="grid-container"><div class="vertical-center"><b>Manufacturer:</b></div>
+        <input [(ngModel)]="searchTerm" (change)="searchMan()" *ngIf="slotPayload.SlotView.Manufacturer == ''" autocomplete="off" type="text" nbInput fullWidth>
+        <div *ngIf="slotPayload.SlotView.Manufacturer != ''"style="padding-top:1em; cursor: pointer;" (click)="unselectMan()">{{slotPayload.SlotView.fullManufacturer.Description}} <nb-icon icon="close-circle" status="danger"></nb-icon></div>
+      </div></nb-list-item>
+    </nb-list>
+    <nb-list style="margin-left: 1em;" *ngIf="loaded && slotPayload.SlotView.Manufacturer == ''">
+      <nb-list-item *ngFor="let man of matchingManufacturers" (click)="setMan(man)"><b>{{man.Description}}</b></nb-list-item>
+    </nb-list>
+    <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)="createSlot()">
+      Create Slot
+    </button>
+  </nb-card-body>
+</nb-card>
