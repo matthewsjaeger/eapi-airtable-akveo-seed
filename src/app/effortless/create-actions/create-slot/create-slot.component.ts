@@ -13,9 +13,14 @@ import { GDS } from '../../services/gds.service';
 export class CreateSlotComponent extends EffortlessComponentBase implements OnInit {
   loaded: boolean = false;
   manufacturers: any = [];
-  slotPayload: any = {};
   matchingManufacturers: any = [];
+  serialNumber: string = "";
+  serialNumbers: any = [];
+  manufacturer: string = "";
+  fullManufacturer: any = {};
   searchTerm: string = "";
+  noResults: boolean = false;
+  emptyTerm: string = "";
 
   constructor(private router: Router, protected menuService: NbMenuService, public data: DataEndpoint, public gds: GDS, public route: ActivatedRoute,
     public toastr: NbToastrService, private dialogService: NbDialogService) {
@@ -33,8 +38,8 @@ export class CreateSlotComponent extends EffortlessComponentBase implements OnIn
         } else {
           self.manufacturers = reply.Manufacturers
           console.error(self.manufacturers);
-          self.slotPayload = self.gds.createPayload();
-          self.slotPayload.SlotView = { SerialNumber: "", Manufacturer: "", fullManufacturer: {}}
+          //self.slotPayload = self.gds.createPayload();
+          //self.slotPayload.SlotView = { SerialNumber: "", Manufacturer: "", fullManufacturer: {}}
           self.loaded = true;
         }
       });
@@ -42,6 +47,7 @@ export class CreateSlotComponent extends EffortlessComponentBase implements OnIn
   }
 
   searchMan() {
+    this.noResults = false;
     if (this.searchTerm == "") {
       this.matchingManufacturers = [];
       return;
@@ -52,16 +58,63 @@ export class CreateSlotComponent extends EffortlessComponentBase implements OnIn
       if (man.Description.toLowerCase().includes(self.searchTerm.toLowerCase())) {
         self.matchingManufacturers.push(man);
       }
+      if (self.matchingManufacturers.length == 0) {
+        self.emptyTerm = self.searchTerm;
+        self.noResults = true;
+      }
     });
   }
 
   setMan(man) {
-    this.slotPayload.SlotView.Manufacturer = man.ManufacturerId;
-    this.slotPayload.SlotView.fullManufacturer = man;
+    this.manufacturer = man.ManufacturerId;
+    this.fullManufacturer = man;
   }
 
   unselectMan() {
-    this.slotPayload.SlotView.Manufacturer = "";
-    this.slotPayload.SlotView.fullManufacturer = "";
+    this.manufacturer = "";
+    this.fullManufacturer = "";
+  }
+
+  addNum() {
+    if (this.serialNumber) {
+      let duplicate = false;
+      let self = this;
+      this.serialNumbers.forEach(function (num) {
+        if (num.toLowerCase() == self.serialNumber.toLowerCase()) {
+          self.toastr.warning(num + " already added to serial number list.")
+          duplicate = true;
+        }
+      });
+      if (!duplicate) {
+        this.serialNumbers.push(this.serialNumber);
+      }
+    }
+    this.serialNumber = "";
+  }
+
+  unselectNum(num) {
+    for (let i = this.serialNumbers.length; i > 0; i--) {
+      if (this.serialNumbers[i - 1] == num) {
+        this.serialNumbers.splice(i - 1, 1);
+        break;
+      }
+    }
+  }
+
+  createSlot() {
+    let self = this;
+    let payload = this.gds.createPayload();
+    payload.SlotViews = [];
+    this.serialNumbers.forEach(function (num) {
+      payload.SlotViews.push({ SerialNumber: num, Manufacturer: self.manufacturer });
+    });
+    this.gds.smqSlotRepairAdmin.CreateSlot(payload).then(function (reply) {
+      if(reply.ErrorMessage) {
+        self.toastr.danger(reply.ErrorMessage);
+      } else {
+        self.toastr.success("Slots created.");
+        self.router.navigateByUrl('effortless/create-actions');
+      }
+    });
   }
 }

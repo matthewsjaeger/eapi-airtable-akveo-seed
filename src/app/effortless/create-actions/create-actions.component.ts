@@ -28,4 +28,10 @@ export class CreateActionsComponent extends EffortlessComponentBase implements O
   createSlot() {
     this.router.navigateByUrl('effortless/create-slot');
   }
+  createGame() {
+
+  }
+  createProgressiveDef() {
+
+  }
 }

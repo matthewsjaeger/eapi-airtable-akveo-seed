@@ -41,6 +41,11 @@
           Schedule Removal
         </button>
       </div>
+      <div *ngIf="selectedState == 'Purchased'" class="grid-container" style="margin-top: 5px">
+        <button nbButton style="margin-bottom: 5px;" disabled (click)=scheduleStorageToFloor()>
+          Schedule Purchased to Stored
+        </button>
+      </div>
     </div>
   </nb-card-header>
   <nb-card-body>
