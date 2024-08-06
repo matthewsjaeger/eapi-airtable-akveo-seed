@@ -486,7 +486,7 @@
         </button>
       </div>
 
-      <div *ngIf="slot.WorkflowState =='Removal Scheduled'">
+      <div *ngIf="slot.WorkflowState == 'Removal Scheduled'">
         <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=completeRemoval() disabled>
           Complete Removal (Adv)
         </button>
@@ -499,6 +499,12 @@
         </button>
         <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=cancelScheduledEvents()>
           Cancel Scheduled Event(s)
+        </button>
+      </div>
+
+      <div *ngIf="slot.WorkflowState == 'Request Receive Slot(s)'">
+        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=receiveSlot()>
+          Receive Slot
         </button>
       </div>
 

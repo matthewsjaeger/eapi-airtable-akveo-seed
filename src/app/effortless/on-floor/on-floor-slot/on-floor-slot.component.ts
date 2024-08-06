@@ -172,6 +172,9 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
   updateActiveSlot() {
     this.router.navigateByUrl('effortless/update-active-slot/' + this.sid)
   }
+  receiveSlot() {
+    this.router.navigateByUrl('effortless/receive-slot/' + this.sid);
+  }
 
   completeConversionFloor() { }
   completeConversionFloorAdv() { }

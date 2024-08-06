@@ -20,7 +20,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'Storage Slots',
-    icon: 'person',
+    icon: 'archive',
     link: '/effortless/search-storage-slots',
   },
   {
@@ -30,7 +30,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'Slot Projects',
-    icon: 'person',
+    icon: 'layers',
     link: '/effortless/slot-projects',
   },
   {

@@ -22,7 +22,7 @@ export class SlotProjectComponent extends EffortlessComponentBase implements OnI
 
 
   constructor(private router: Router, protected menuService: NbMenuService, public data: DataEndpoint, public gds: GDS, public route: ActivatedRoute,
-      public toastr: NbToastrService, private dialogService: NbDialogService) {
+    public toastr: NbToastrService, private dialogService: NbDialogService) {
     super(gds, data, menuService)
 
     this.safeSubscribe(this.route.params.subscribe((params) => {
@@ -33,19 +33,23 @@ export class SlotProjectComponent extends EffortlessComponentBase implements OnI
 
   ngOnInit() {
     this.safeSubscribe(this.gds.onReady().subscribe(ready => {
-      let self = this
-      let payload = self.gds.createPayload();
-      payload.SlotProject = {};
-      payload.SlotProject.SlotProjectId = self.pid;
-      self.gds.smqUser.GetSlotProject(payload).then(function (reply) {
-        self.project = reply.SlotProject;
-        self.filteredSlots = self.createFilteredSlots(self.project.Slots);
-        self.baseFilteredSlots = self.filteredSlots;
-        self.scheduledDate = new Date(self.project.DueDate);
-        console.error(self.filteredSlots);
-        self.loaded = true;
-      });
+      this.reload();
     }));
+  }
+
+  reload() {
+    let self = this
+    let payload = self.gds.createPayload();
+    payload.SlotProject = {};
+    payload.SlotProject.SlotProjectId = self.pid;
+    self.gds.smqUser.GetSlotProject(payload).then(function (reply) {
+      self.project = reply.SlotProject;
+      self.filteredSlots = self.createFilteredSlots(self.project.Slots);
+      self.baseFilteredSlots = self.filteredSlots;
+      self.scheduledDate = new Date(self.project.DueDate);
+      console.error(self.filteredSlots);
+      self.loaded = true;
+    });
   }
 
   goBack() {
@@ -76,7 +80,7 @@ export class SlotProjectComponent extends EffortlessComponentBase implements OnI
         , { 'title': 'GC Review', 'Slots': [], 'isVisible': true, 'selected': false }
         , { 'title': 'Stored', 'Slots': [], 'isVisible': true, 'selected': false }
         , { 'title': 'Removal Scheduled', 'Slots': [], 'isVisible': true, 'selected': false }
-        , { 'title': 'Request Receive Slot(s)', 'Slots': [], 'isVisable':true, 'selected': false}
+        , { 'title': 'Request Receive Slot(s)', 'Slots': [], 'isVisable': true, 'selected': false }
       ];
 
     //template.forEach(function (list) {
@@ -195,7 +199,7 @@ export class SlotProjectComponent extends EffortlessComponentBase implements OnI
     }).onClose.subscribe(resp => self.finishRemovalType(resp, self));
   }
 
-  finishRemovalType(resp,  self) {
+  finishRemovalType(resp, self) {
     if (resp) {
       let list = self.filteredSlots[0];
       self.gds.slotList = [];
@@ -219,4 +223,23 @@ export class SlotProjectComponent extends EffortlessComponentBase implements OnI
     });
     this.router.navigateByUrl('effortless/project-storage-to-floor');
   }
+
+  requestReceiveSlot() {
+    let self = this;
+    let payload = self.gds.createPayload();
+    let list = this.filteredSlots[0];
+    payload.SlotViews = [];
+    list.Slots.forEach(function (slot) {
+      if (slot.selected) {
+        payload.SlotViews.push(slot);
+      }
+    });
+    self.gds.smqSlotRepairAdmin.RequestReceiveSlot(payload).then(function (reply) {
+      if (reply.ErrorMessage) {
+        self.toastr.danger(reply.ErrorMessage);
+      } else {
+        self.reload();
+      }
+    });
+  }  
 }

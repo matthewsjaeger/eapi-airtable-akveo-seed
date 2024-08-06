@@ -1,0 +1,37 @@
+<nb-card [size]="'large'">
+  <nb-card-header>
+    <button nbButton ghost size="medium" status="danger" class="float-left" (click)="cancel()">
+      <nb-icon icon="slash-outline"></nb-icon>Cancel
+    </button>
+    <h4 style="width: fit-content; margin: auto;">Receive Slot</h4>
+  </nb-card-header>
+  <nb-card-body>
+    <nb-list>
+      <nb-list-item [style.backgroundColor]="tempChecklist.Manufacturer.No ? '#ff3d71': ''">
+        <label> <b>Is the manufacturer "{{slot.DisplayManufacturer}}" correct?</b> </label>
+        <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Manufacturer.No"
+                     (change)="applyToChecklist('Manufacturer', 'No')">No</nb-checkbox>
+        <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Manufacturer.Yes"
+                     (change)="applyToChecklist('Manufacturer', 'Yes')">Yes</nb-checkbox>
+      </nb-list-item>
+      <nb-list-item [style.backgroundColor]="tempChecklist.SerialNumber.No ? '#ff3d71': ''">
+        <label> <b>Is the serial number "{{slot.SerialNumber}}" correct?</b></label>
+        <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SerialNumber.No"
+                     (change)="applyToChecklist('SerialNumber', 'No')">No</nb-checkbox>
+        <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SerialNumber.Yes"
+                     (change)="applyToChecklist('SerialNumber', 'Yes')">Yes</nb-checkbox>
+      </nb-list-item>
+      <nb-list-item [style.backgroundColor]="tempChecklist.CabinetModel.No ? '#ff3d71': ''">
+        <label> <b>Is the cabinet model "{{slot.CabinetModel}}" correct?</b> </label>
+        <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.CabinetModel.No"
+                     (change)="applyToChecklist('CabinetModel', 'No')">No</nb-checkbox>
+        <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.CabinetModel.Yes"
+                     (change)="applyToChecklist('CabinetModel', 'Yes')">Yes</nb-checkbox>
+      </nb-list-item>
+    </nb-list>
+    <button nbButton class="float-right" size="medium" (click)="finish()" style="margin-top: .25em">Finish</button>
+    <button nbButton size="medium" status="danger" (click)="cancel()" style="margin-top: .25em">
+      <nb-icon icon="slash-outline"></nb-icon>Cancel
+    </button>
+  </nb-card-body>
+</nb-card>

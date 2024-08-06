@@ -1681,6 +1681,38 @@ function generateSlotRepairAdminActor() {
 
           return deferred.promise;
         }
+
+        smqSlotRepairAdmin.RequestReceiveSlot = function () {
+          smqSlotRepairAdmin.RequestReceiveSlot('{}');
+        }
+
+        smqSlotRepairAdmin.RequestReceiveSlot = function (payload) {
+          payload = smqSlotRepairAdmin.stringifyValue(payload);
+          var id = smqSlotRepairAdmin.createUUID();
+          var deferred = smqSlotRepairAdmin.waitingReply[id] = smqSlotRepairAdmin.defer();
+          if (smqSlotRepairAdmin.showPingPongs) console.log('Request Receive Slot - ');
+          smqSlotRepairAdmin.client.send('/exchange/slotrepairadminmic/gainscoordinator.onfloor.slotrepairadmin.requestreceiveslot', { "content-type": "text/plain", "reply-to": "/temp-queue/response-queue", "correlation-id": id }, payload);
+
+          smqSlotRepairAdmin.waitFor(id);
+
+          return deferred.promise;
+        }
+
+        smqSlotRepairAdmin.ReceivePurchasedSlot = function () {
+          smqSlotRepairAdmin.ReceivePurchasedSlot('{}');
+        }
+
+        smqSlotRepairAdmin.ReceivePurchasedSlot = function (payload) {
+          payload = smqSlotRepairAdmin.stringifyValue(payload);
+          var id = smqSlotRepairAdmin.createUUID();
+          var deferred = smqSlotRepairAdmin.waitingReply[id] = smqSlotRepairAdmin.defer();
+          if (smqSlotRepairAdmin.showPingPongs) console.log('Receive Purchased Slot - ');
+          smqSlotRepairAdmin.client.send('/exchange/slotrepairadminmic/gainscoordinator.onfloor.slotrepairadmin.receivepurchasedslot', { "content-type": "text/plain", "reply-to": "/temp-queue/response-queue", "correlation-id": id }, payload);
+
+          smqSlotRepairAdmin.waitFor(id);
+
+          return deferred.promise;
+        }
         
         smqSlotRepairAdmin.ScheduleMoveToStorage = function() {
             smqSlotRepairAdmin.ScheduleMoveToStorage('{}');
