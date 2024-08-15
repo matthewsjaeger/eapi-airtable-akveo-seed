@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { EffortlessComponentBase } from '../efforless-base-component';
-import { NbMenuService } from '@nebular/theme';
+import { NbMenuService, NbToastrService } from '@nebular/theme';
 import { DataEndpoint } from '../services/eapi-data-services/data-endpoint/data-endpoint';
 import { GDS } from '../services/gds.service';
 
@@ -17,9 +17,10 @@ export class SlotProjectsComponent extends EffortlessComponentBase implements On
   BJProject: any;
   slotProject: any = '';
   pid: any;
+  loading: boolean = false;
 
 
-  constructor(public gds: GDS, public data: DataEndpoint, protected menuService: NbMenuService, public router: Router) { 
+  constructor(public gds: GDS, public data: DataEndpoint, protected menuService: NbMenuService, public router: Router, public toastr: NbToastrService) { 
     super(gds, data, menuService)
   
     
@@ -31,9 +32,14 @@ export class SlotProjectsComponent extends EffortlessComponentBase implements On
       let self = this
       var payload = self.gds.createPayload();
       // payload.SlotProject = self.slotProject
+      this.loading = true;
       self.gds.smqUser.GetSlotProjects(payload).then(function(reply){
         console.log(reply);
         self.slotProjects = reply.SlotProjects;
+        self.loading = false;
+      }).catch(function (error) {
+        self.toastr.warning(error);
+        self.loading = false;
       });
   }));
 

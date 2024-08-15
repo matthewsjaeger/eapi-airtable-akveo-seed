@@ -4,7 +4,7 @@
     <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=newProject()>Start New Project</button>
     <input type="text" nbInput fullWidth placeholder="Search projects">
   </nb-card-header>
-  <nb-card-body>
+  <nb-card-body [nbSpinner]="loading" nbSpinnerStatus="danger">
     <nb-list>
       <nb-list-item *ngFor=" let slotProject of slotProjects">
         <button nbButton size="small" class="float-right" (click)=openProject(slotProject)>Open Project</button>

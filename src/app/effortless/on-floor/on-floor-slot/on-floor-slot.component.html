@@ -508,5 +508,11 @@
         </button>
       </div>
 
+      <div *ngIf="slot.WorkflowState == 'New'">
+        <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=applyLicense()>
+          Apply License
+        </button>
+      </div>
+
     </nb-card-body>
 </nb-card>

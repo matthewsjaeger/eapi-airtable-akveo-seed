@@ -241,5 +241,24 @@ export class SlotProjectComponent extends EffortlessComponentBase implements OnI
         self.reload();
       }
     });
+  }
+
+  requestLicense() {
+    let self = this;
+    let payload = self.gds.createPayload();
+    let list = this.filteredSlots[0];
+    payload.SlotViews = [];
+    list.Slots.forEach(function (slot) {
+      if (slot.selected) {
+        payload.SlotViews.push(slot);
+      }
+    });
+    self.gds.smqSlotRepairAdmin.RequestLicense(payload).then(function (reply) {
+      if (reply.ErrorMessage) {
+        self.toastr.danger(reply.ErrorMessage);
+      } else {
+        self.reload();
+      }
+    });
   }  
 }

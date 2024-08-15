@@ -175,6 +175,9 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
   receiveSlot() {
     this.router.navigateByUrl('effortless/receive-slot/' + this.sid);
   }
+  applyLicense() {
+    this.router.navigateByUrl('effortless/receive-slot/' + this.sid)
+  }
 
   completeConversionFloor() { }
   completeConversionFloorAdv() { }
