@@ -1730,6 +1730,22 @@ function generateSlotRepairAdminActor() {
           return deferred.promise;
         }
 
+        smqSlotRepairAdmin.ApplyLicense = function () {
+          smqSlotRepairAdmin.ApplyLicense('{}');
+        }
+
+        smqSlotRepairAdmin.ApplyLicense = function (payload) {
+          payload = smqSlotRepairAdmin.stringifyValue(payload);
+          var id = smqSlotRepairAdmin.createUUID();
+          var deferred = smqSlotRepairAdmin.waitingReply[id] = smqSlotRepairAdmin.defer();
+          if (smqSlotRepairAdmin.showPingPongs) console.log('Apply License - ');
+          smqSlotRepairAdmin.client.send('/exchange/slotrepairadminmic/gainscoordinator.onfloor.slotrepairadmin.applylicense', { "content-type": "text/plain", "reply-to": "/temp-queue/response-queue", "correlation-id": id }, payload);
+
+          smqSlotRepairAdmin.waitFor(id);
+
+          return deferred.promise;
+        }
+
         smqSlotRepairAdmin.ScheduleMoveToStorage = function() {
             smqSlotRepairAdmin.ScheduleMoveToStorage('{}');
         }

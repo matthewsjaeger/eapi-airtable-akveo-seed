@@ -1,0 +1,55 @@
+<nb-card [size]="'large'">
+  <nb-card-header>
+    <button nbButton ghost size="medium" status="danger" class="float-left" (click)="cancel()">
+      <nb-icon icon="slash-outline"></nb-icon>Cancel
+    </button>
+    <h4 style="width: fit-content; margin: auto;">Apply License</h4>
+  </nb-card-header>
+  <nb-card-body>
+    <nb-list>
+      <nb-list-item [style.backgroundColor]="tempChecklist.SerialNumber.Fail ? '#ff3d71': ''">
+        <label> <b>Verify Serial Number "{{slot.SerialNumber}}"</b></label>
+        <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SerialNumber.Fail"
+                     (change)="applyToChecklist('SerialNumber', 'Fail')">Fail</nb-checkbox>
+        <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.SerialNumber.Pass"
+                     (change)="applyToChecklist('SerialNumber', 'Pass')">Pass</nb-checkbox>
+      </nb-list-item>
+      <nb-list-item [style.backgroundColor]="tempChecklist.ModelNumber.Fail ? '#ff3d71': ''">
+        <label> <b>Verify Model Number</b></label>
+        <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ModelNumber.Fail"
+                     (change)="applyToChecklist('ModelNumber', 'Fail')">Fail</nb-checkbox>
+        <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ModelNumber.Pass"
+                     (change)="applyToChecklist('ModelNumber', 'Pass')">Pass</nb-checkbox>
+      </nb-list-item>
+      <nb-list-item [style.backgroundColor]="tempChecklist.Manufacturer.Fail ? '#ff3d71': ''">
+        <label> <b>Verify Manufacturer "{{slot.DisplayManufacturer}}"</b> </label>
+        <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Manufacturer.Fail"
+                     (change)="applyToChecklist('Manufacturer', 'Fail')">Fail</nb-checkbox>
+        <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.Manufacturer.Pass"
+                     (change)="applyToChecklist('Manufacturer', 'Pass')">Pass</nb-checkbox>
+      </nb-list-item>
+      <nb-list-item [style.backgroundColor]="tempChecklist.LabCertification.Fail ? '#ff3d71': ''">
+        <label> <b>Verify Cabinet Lab Certification</b></label>
+        <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.LabCertification.Fail"
+                     (change)="applyToChecklist('LabCertification', 'Fail')">Fail</nb-checkbox>
+        <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.LabCertification.Pass"
+                     (change)="applyToChecklist('LabCertification', 'Pass')">Pass</nb-checkbox>
+      </nb-list-item>
+      <nb-list-item [style.backgroundColor]="tempChecklist.CommissionLicense.Fail ? '#ff3d71': ''">
+        <label> <b>Applied Gaming Commission License</b></label>
+        <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.CommissionLicense.Fail"
+                     (change)="applyToChecklist('CommissionLicense', 'Fail')">Fail</nb-checkbox>
+        <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.CommissionLicense.Pass"
+                     (change)="applyToChecklist('CommissionLicense', 'Pass')">Pass</nb-checkbox>
+      </nb-list-item>
+      <!--<nb-list-item>
+        <label> <b>Enter license number:</b> </label>
+        <input nbInput class="float-right" placeholder="License number" [(ngModel)]="slot.BarcodeData">
+      </nb-list-item>-->
+    </nb-list>
+    <button nbButton class="float-right" size="medium" (click)="finish()" style="margin-top: .25em">Finish</button>
+    <button nbButton size="medium" status="danger" (click)="cancel()" style="margin-top: .25em">
+      <nb-icon icon="slash-outline"></nb-icon>Cancel
+    </button>
+  </nb-card-body>
+</nb-card>
