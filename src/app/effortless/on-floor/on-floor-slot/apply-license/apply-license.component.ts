@@ -4,6 +4,7 @@ import { GDS } from '../../../services/gds.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DataEndpoint } from '../../../services/eapi-data-services/data-endpoint/data-endpoint';
 import { NbToastrService, NbMenuService, NbDialogService } from '@nebular/theme';
+import { AddLicenseBarcodeComponent } from './add-license-barcode/add-license-barcode.component';
 
 @Component({
   selector: 'ngx-apply-license',
@@ -11,13 +12,8 @@ import { NbToastrService, NbMenuService, NbDialogService } from '@nebular/theme'
   styleUrls: ['./apply-license.component.scss']
 })
 export class ApplyLicenseComponent extends EffortlessComponentBase implements OnInit {
-  search: any;
   slot: any = {};
-  slots: any = {};
   sid: any;
-  slotView: any;
-  avaliableActions: any = '';
-  Active: any;
 
   checklist: any = {
     Manufacturer: '', SerialNumber: '', ModelNumber: '', LabCertification: '', CommissionLicense: ''
@@ -99,15 +95,29 @@ export class ApplyLicenseComponent extends EffortlessComponentBase implements On
     payload.Flag = "Step1";
     this.gds.smqSlotRepairAdmin.ApplyLicense(payload).then(resp => {
       if (resp.ErrorMessage) {
-        this.toastr.danger(resp.ErrorMessage);
+        self.toastr.danger(resp.ErrorMessage);
       } else {
-        this.router.navigateByUrl('effortless/on-floor-slot/' + self.sid);
+        self.getBarcode();
       }
     });
   }
 
   cancel() {
     let self = this;
+    this.router.navigateByUrl('effortless/on-floor-slot/' + self.sid);
+  }
+
+  getBarcode() {
+    let self = this;
+    this.dialogService.open(AddLicenseBarcodeComponent, {
+      closeOnBackdropClick: false,
+      context: {
+        'slot': self.slot
+      }
+    }).onClose.subscribe(resp => self.finishBarcode(resp, self));
+  }
+
+  finishBarcode(resp, self) {
     this.router.navigateByUrl('effortless/on-floor-slot/' + self.sid);
   }
 
