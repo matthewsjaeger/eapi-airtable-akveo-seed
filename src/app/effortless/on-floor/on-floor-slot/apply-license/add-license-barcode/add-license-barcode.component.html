@@ -1,0 +1,8 @@
+<nb-card>
+  <nb-card-body>
+    <div class="vertical-center"><b>Enter License/Barcode:</b></div>
+    <input [(ngModel)]="slot.BarcodeData" autocomplete="off" type="text" nbInput fullWidth>
+    <button nbButton class="float-right" size="medium" (click)="confirm()" style="margin-top: .25em">Confirm</button>
+    <button nbButton class="float-left" size="medium" status="danger" (click)="cancel()" style="margin-top: .25em">Cancel</button>
+  </nb-card-body>
+</nb-card>

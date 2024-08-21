@@ -68,6 +68,7 @@ import { CreateSlotComponent } from './create-actions/create-slot/create-slot.co
 import { ReceiveSlotComponent } from './on-floor/on-floor-slot/receive-slot/receive-slot.component';
 import { ProjectSetUpSlotComponent } from './slot-projects/slot-project/project-set-up-slot/project-set-up-slot.component';
 import { ApplyLicenseComponent } from './on-floor/on-floor-slot/apply-license/apply-license.component';
+import { AddLicenseBarcodeComponent } from './on-floor/on-floor-slot/apply-license/add-license-barcode/add-license-barcode.component';
 
 let effortlessChildren = [
   {
@@ -306,6 +307,10 @@ let effortlessChildren = [
   {
     path: 'removal-type',
     component: RemovalTypeComponent
+  },
+  {
+    path: 'add-license-barcode',
+    component: AddLicenseBarcodeComponent
   },
   {
     path: 'project-schedule-removal/:rType',
