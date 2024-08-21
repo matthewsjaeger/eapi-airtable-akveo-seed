@@ -69,6 +69,7 @@ import { ReceiveSlotComponent } from './on-floor/on-floor-slot/receive-slot/rece
 import { ProjectSetUpSlotComponent } from './slot-projects/slot-project/project-set-up-slot/project-set-up-slot.component';
 import { ApplyLicenseComponent } from './on-floor/on-floor-slot/apply-license/apply-license.component';
 import { AddLicenseBarcodeComponent } from './on-floor/on-floor-slot/apply-license/add-license-barcode/add-license-barcode.component';
+import { ConfigureSlotComponent } from './slot-projects/slot-project/configure-slot/configure-slot.component';
 
 let effortlessChildren = [
   {
@@ -339,6 +340,10 @@ let effortlessChildren = [
   {
     path: 'apply-license/:sid',
     component: ApplyLicenseComponent
+  },
+  {
+    path: 'configure-slot',
+    component: ConfigureSlotComponent
   }
 ];
 

@@ -90,6 +90,7 @@ import { ReceiveSlotComponent } from './on-floor/on-floor-slot/receive-slot/rece
 import { ProjectSetUpSlotComponent } from './slot-projects/slot-project/project-set-up-slot/project-set-up-slot.component';
 import { ApplyLicenseComponent } from './on-floor/on-floor-slot/apply-license/apply-license.component';
 import { AddLicenseBarcodeComponent } from './on-floor/on-floor-slot/apply-license/add-license-barcode/add-license-barcode.component';
+import { ConfigureSlotComponent } from './slot-projects/slot-project/configure-slot/configure-slot.component';
 
 let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComponent, Page3Component,
   StorageSlotsComponent, SlotProjectsComponent, SearchStorageSlotsComponent, SlotProjectComponent, NewProjectComponent,
@@ -106,7 +107,8 @@ let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComp
   ScheduleTableModificationComponent, ScheduleTableRemoveComponent, ScheduleTournamentComponent, LogFeltChangeComponent, FeltChangeChecklistComponent,
   CompleteTableModificationComponent, CompleteTableRemoveComponent, ScheduleConversionComponent, ProjectScheduleConversionComponent, ResolveComponentAmbiguityComponent,
   ResolveReadOnlyComponent, AddRemoveSlotsComponent, ProjectScheduleMoveToStorageComponent, ProjectStorageToFloorComponent, RemovalTypeComponent, ProjectScheduleRemovalComponent,
-  CancelScheduledEventsComponent, CreateActionsComponent, CreateSlotComponent, ReceiveSlotComponent, ProjectSetUpSlotComponent, ApplyLicenseComponent, AddLicenseBarcodeComponent];
+  CancelScheduledEventsComponent, CreateActionsComponent, CreateSlotComponent, ReceiveSlotComponent, ProjectSetUpSlotComponent, ApplyLicenseComponent, AddLicenseBarcodeComponent,
+  ConfigureSlotComponent];
 
 @NgModule({
   declarations: declarations,
