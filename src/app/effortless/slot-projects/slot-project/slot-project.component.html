@@ -40,10 +40,18 @@
         <button nbButton style="margin-bottom: 5px;" (click)=scheduleRemoval()>
           Schedule Removal
         </button>
+        <button nbButton style="margin-bottom: 5px;" (click)=configureSlot()>
+          Configure Slot
+        </button>
       </div>
       <div *ngIf="selectedState == 'Purchased'" class="grid-container" style="margin-top: 5px">
         <button nbButton style="margin-bottom: 5px;" (click)=requestReceiveSlot()>
           Request Receive Slot
+        </button>
+      </div>
+      <div *ngIf="selectedState == 'Licensed'" class="grid-container" style="margin-top: 5px">
+        <button nbButton style="margin-bottom: 5px;" (click)=configureSlot()>
+          Configure Slot
         </button>
       </div>
     </div>

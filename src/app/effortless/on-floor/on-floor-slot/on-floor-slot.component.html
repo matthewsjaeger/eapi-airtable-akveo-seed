@@ -516,9 +516,9 @@
 
       <div *ngIf="slot.WorkflowState == 'Licensed'">
         <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=configureSlot()>
-          Configure Slot
+          Configure Slot *
         </button>
       </div>
-
+      <p style="margin-top: .5em;" *ngIf="slot.WorkflowState == 'Licensed'">* Also available as multiple slot action from project page.</p>
     </nb-card-body>
 </nb-card>

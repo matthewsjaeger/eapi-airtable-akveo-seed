@@ -19,11 +19,16 @@ export class ConfigureSlotComponent extends EffortlessComponentBase implements O
   changes: any = [];
   loading: boolean = false;
   complete: boolean = false;
+  sid: any;
 
   constructor(private router: Router, protected menuService: NbMenuService, public data: DataEndpoint, public gds: GDS,
     public route: ActivatedRoute, private dialogService: NbDialogService, public toastr: NbToastrService) {
     super(gds, data, menuService)
 
+    this.safeSubscribe(this.route.params.subscribe((params) => {
+      this.sid = params['sid'];
+      console.error('JJJJJ' + this.sid);
+    }));
   }
 
   ngOnInit() {
@@ -32,7 +37,18 @@ export class ConfigureSlotComponent extends EffortlessComponentBase implements O
       if (self.gds.slotList && self.gds.slotList.length > 0) {
         self.slots = self.gds.slotList;
       } else {
-        self.router.navigateByUrl('effortless/slot-projects');
+        console.error('KKKKK', this.sid);
+        if (this.sid) {
+          let payload = self.gds.createPayload();
+          payload.Slot = {};
+          payload.Slot.SlotId = self.sid;
+          self.gds.smqUser.GetSlotViewDetails(payload).then(function (reply) {
+            self.slots = [reply.SlotView];
+            console.error("IIIII", reply.SlotView);
+          });
+        } else {
+          self.router.navigateByUrl('effortless/slot-projects');
+        }
       }
     }));
   }
@@ -83,19 +99,16 @@ export class ConfigureSlotComponent extends EffortlessComponentBase implements O
   }
 
   saveAsCSV() {
-    this.toastr.warning("Not implemented yet.");
-    return;
-
-    //let self = this;
-    //let payload = self.gds.createPayload();
-    //payload.SlotViews = this.slots;
-    //self.gds.smqSlotRepairAdmin.ScheduleConversionWrite(payload).then(function (reply) {
-    //  if (reply.ErrorMessage) {
-    //    self.toastr.danger(reply.ErrorMessage);
-    //  } else {
-    //    self.writeFileXlsx(reply.File, reply.SearchTerm);
-    //  }
-    //});
+    let self = this;
+    let payload = self.gds.createPayload();
+    payload.SlotViews = this.slots;
+    self.gds.smqSlotRepairAdmin.ConfigureSlotWrite(payload).then(function (reply) {
+      if (reply.ErrorMessage) {
+        self.toastr.danger(reply.ErrorMessage);
+      } else {
+        self.writeFileXlsx(reply.File, reply.SearchTerm);
+      }
+    });
   }
 
   writeFileXlsx(xlsx, filename) {
@@ -143,36 +156,33 @@ export class ConfigureSlotComponent extends EffortlessComponentBase implements O
   }
 
   public changeListener(event) {
-    this.toastr.warning("Not implemented yet.");
-    return;
+    const files: FileList = event.target.files
+    let self = this;
+    if (files && files.length > 0) {
+      let file: File = files.item(0);
+      let reader: FileReader = new FileReader();
+      reader.onload = (e) => {
+        const arrayBuffer = reader.result as ArrayBuffer;
+        const uint8Array = new Uint8Array(arrayBuffer);
+        const base64Encoded = this.arrayBufferToBase64(uint8Array);
 
-    //const files: FileList = event.target.files
-    //let self = this;
-    //if (files && files.length > 0) {
-    //  let file: File = files.item(0);
-    //  let reader: FileReader = new FileReader();
-    //  reader.onload = (e) => {
-    //    const arrayBuffer = reader.result as ArrayBuffer;
-    //    const uint8Array = new Uint8Array(arrayBuffer);
-    //    const base64Encoded = this.arrayBufferToBase64(uint8Array);
+        this.parseChanges(this, base64Encoded);
+      }
+      reader.onerror = (error) => {
+        console.error('Error reading file:', error);
+      };
 
-    //    this.parseChanges(this, base64Encoded);
-    //  }
-    //  reader.onerror = (error) => {
-    //    console.error('Error reading file:', error);
-    //  };
+      reader.readAsArrayBuffer(file);
 
-    //  reader.readAsArrayBuffer(file); // Read the file as an ArrayBuffer
-
-    //  event.target.value = null;
-    //}
+      event.target.value = null;
+    }
   }
 
   parseChanges(self, base64Encoded) {
     let payload = self.gds.createPayload();
     payload.File = base64Encoded;
     self.loading = true;
-    self.gds.smqSlotRepairAdmin.ScheduleConversionRead(payload).then(function (reply) {
+    self.gds.smqSlotRepairAdmin.ConfigureSlotRead(payload).then(function (reply) {
       self.loading = false;
       if (reply.ErrorMessage) {
         self.toastr.warning(reply.ErrorMessage);
@@ -248,6 +258,9 @@ export class ConfigureSlotComponent extends EffortlessComponentBase implements O
       this.resolveReadOnly(change, fieldChange);
       return;
     }
+    if (!change.Ambiguous && ! change.wasAmbiguous) {
+      return;
+    }
 
     let self = this;
     console.error('SSSS', change)
@@ -271,6 +284,7 @@ export class ConfigureSlotComponent extends EffortlessComponentBase implements O
       });
       if (resolved) {
         change.Ambiguous = false;
+        change.wasAmbiguous = true;
       }
       self.checkForAmbiguities(self);
     }
@@ -324,12 +338,12 @@ export class ConfigureSlotComponent extends EffortlessComponentBase implements O
     let self = this;
     let payload = self.gds.createPayload();
     payload.ChangeSummary = { Changes: self.changes };
-    self.gds.smqSlotRepairAdmin.ScheduleConversionConfirm(payload).then(function (reply) {
+    self.gds.smqSlotRepairAdmin.ConfigureSlotConfirm(payload).then(function (reply) {
       self.loading = false;
       if (reply.ErrorMessage) {
         self.toastr.danger(reply.ErrorMessage);
       } else {
-        self.toastr.success("Conversion scheduled.");
+        self.toastr.success("Changes updated.");
         self.router.navigateByUrl('effortless/slot-projects');
       }
     });

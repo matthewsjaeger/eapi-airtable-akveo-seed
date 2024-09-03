@@ -181,7 +181,7 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
   configureSlot() {
     this.gds.slotList = [];
     this.gds.slotList.push(this.slot);
-    this.router.navigateByUrl('effortless/configure-slot')
+    this.router.navigateByUrl('effortless/configure-slot/' + this.sid)
   }
 
   completeConversionFloor() { }

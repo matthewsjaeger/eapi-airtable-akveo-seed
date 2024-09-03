@@ -342,6 +342,10 @@ let effortlessChildren = [
     component: ApplyLicenseComponent
   },
   {
+    path: 'configure-slot/:sid',
+    component: ConfigureSlotComponent
+  },
+  {
     path: 'configure-slot',
     component: ConfigureSlotComponent
   }
