@@ -3,3 +3,9 @@
   grid-template-columns: 9fr 1fr;
   grid-gap: 5px;
 }
+
+.grid-container-dropdown {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-gap: 5px;
+}

@@ -4,15 +4,28 @@
   </nb-card-header>
   <nb-card-body>
     <nb-list *ngIf="loaded">
-      <nb-list-item><div class="vertical-center"><b>Serial Number:</b></div>
-        <div class="grid-container"><div><input [(ngModel)]="serialNumber" autocomplete="off" type="text" nbInput fullWidth (keyup.enter)="addNum()"></div>
-        <div><button nbButton fullWidth (click)="addNum()">Add</button></div></div>
+      <nb-list-item>
+        <div class="vertical-center"><b>Casino:</b></div>
+        <nb-select class="float-right" fullWidth [(selected)]="msProperty">
+          <nb-option value="E81E341E-AA08-4ED8-8883-62277750BF25" selected>Mystic Lake</nb-option>
+          <nb-option value="FF104981-8393-4479-81A5-71367B8AC608">Little Six</nb-option>
+        </nb-select>
+      </nb-list-item>
+      <nb-list-item>
+        <div class="vertical-center"><b>Serial Number:</b></div>
+        <div class="grid-container">
+          <div><input [(ngModel)]="serialNumber" autocomplete="off" type="text" nbInput fullWidth (keyup.enter)="addNum()"></div>
+          <div><button nbButton fullWidth (click)="addNum()">Add</button></div>
+        </div>
         <nb-list><nb-list-item *ngFor="let num of serialNumbers" (click)="unselectNum(num)" style="cursor: pointer;">{{num}} <nb-icon icon="close-circle" status="danger"></nb-icon></nb-list-item></nb-list>
       </nb-list-item>
-      <nb-list-item><div class="vertical-center"><b>Manufacturer:</b></div>
+      <nb-list-item>
+        <div class="vertical-center"><b>Manufacturer:</b></div>
         <input [(ngModel)]="searchTerm" (change)="searchMan()" *ngIf="manufacturer == ''" autocomplete="off" type="text" nbInput fullWidth>
-        <div *ngIf="manufacturer != ''"style="padding-top:1em; cursor: pointer;" (click)="unselectMan()">{{fullManufacturer.Description}} <nb-icon icon="close-circle" status="danger"></nb-icon>
-      </div></nb-list-item>
+        <div *ngIf="manufacturer != ''" style="padding-top:1em; cursor: pointer;" (click)="unselectMan()">
+          {{fullManufacturer.Description}} <nb-icon icon="close-circle" status="danger"></nb-icon>
+        </div>
+      </nb-list-item>
     </nb-list>
     <nb-list style="margin-left: 1em;" *ngIf="loaded && manufacturer == ''">
       <nb-list-item *ngFor="let man of matchingManufacturers" (click)="setMan(man)" style="cursor: pointer;"><b>{{man.Description}}</b></nb-list-item>

@@ -19,6 +19,7 @@ export class CreateSlotComponent extends EffortlessComponentBase implements OnIn
   manufacturer: string = "";
   fullManufacturer: any = {};
   searchTerm: string = "";
+  msProperty: string = "E81E341E-AA08-4ED8-8883-62277750BF25";
   noResults: boolean = false;
   emptyTerm: string = "";
 
@@ -106,7 +107,7 @@ export class CreateSlotComponent extends EffortlessComponentBase implements OnIn
     let payload = this.gds.createPayload();
     payload.SlotViews = [];
     this.serialNumbers.forEach(function (num) {
-      payload.SlotViews.push({ SerialNumber: num, Manufacturer: self.manufacturer });
+      payload.SlotViews.push({ SerialNumber: num, Manufacturer: self.manufacturer, MSProperty: self.msProperty });
     });
     this.gds.smqSlotRepairAdmin.CreateSlot(payload).then(function (reply) {
       if(reply.ErrorMessage) {
