@@ -183,6 +183,9 @@ export class OnFloorSlotComponent extends EffortlessComponentBase implements OnI
     this.gds.slotList.push(this.slot);
     this.router.navigateByUrl('effortless/configure-slot/' + this.sid)
   }
+  addCabinetModel() {
+    this.router.navigateByUrl('effortless/add-cabinet-model/' + this.sid);
+  }
 
   completeConversionFloor() { }
   completeConversionFloorAdv() { }

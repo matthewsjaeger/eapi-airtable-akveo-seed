@@ -1,0 +1,19 @@
+<nb-card [size]="'large'">
+  <nb-card-header>
+    <h4 style="width: fit-content; margin: auto;">Add Cabinet Model</h4>
+  </nb-card-header>
+  <nb-card-body>
+    <nb-list>
+      <nb-list-item>
+        <div class="grid-container">
+          <div><label> <b>Cabinet Model:</b> </label></div>
+          <div><input nbInput fullWidth [(ngModel)]="slot.CabinetModel"></div>
+        </div>
+      </nb-list-item>
+    </nb-list>
+    <button nbButton class="float-right" size="medium" (click)="finish()" style="margin-top: .25em">Finish</button>
+    <button nbButton size="medium" status="danger" (click)="cancel()" style="margin-top: .25em">
+      <nb-icon icon="slash-outline"></nb-icon>Cancel
+    </button>
+  </nb-card-body>
+</nb-card>
