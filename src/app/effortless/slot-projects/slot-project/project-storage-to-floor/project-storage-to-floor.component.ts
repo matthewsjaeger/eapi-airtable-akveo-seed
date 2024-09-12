@@ -19,6 +19,7 @@ export class ProjectStorageToFloorComponent extends EffortlessComponentBase impl
   changes: any = [];
   loading: boolean = false;
   complete: boolean = false;
+  scheduledDate: Date;
 
   constructor(private router: Router, protected menuService: NbMenuService, public data: DataEndpoint, public gds: GDS,
     public route: ActivatedRoute, private dialogService: NbDialogService, public toastr: NbToastrService) {
@@ -286,6 +287,7 @@ export class ProjectStorageToFloorComponent extends EffortlessComponentBase impl
     let self = this;
     let payload = self.gds.createPayload();
     payload.ChangeSummary = { Changes: self.changes };
+    payload.Scheduled = self.scheduledDate;
     self.gds.smqSlotRepairAdmin.ScheduleStorageToFloorConfirm(payload).then(function (reply) {
       self.loading = false;
       if (reply.ErrorMessage) {

@@ -15,7 +15,7 @@
                      (change)="applyToChecklist('SerialNumber', 'Pass')">Pass</nb-checkbox>
       </nb-list-item>
       <nb-list-item [style.backgroundColor]="tempChecklist.ModelNumber.Fail ? '#ff3d71': ''">
-        <label> <b>Verify Model Number</b></label>
+        <label> <b>Verify Model Number "{{slot.CabinetModel}}"</b></label>
         <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ModelNumber.Fail"
                      (change)="applyToChecklist('ModelNumber', 'Fail')">Fail</nb-checkbox>
         <nb-checkbox class="float-right" status="basic" [(ngModel)]="tempChecklist.ModelNumber.Pass"
