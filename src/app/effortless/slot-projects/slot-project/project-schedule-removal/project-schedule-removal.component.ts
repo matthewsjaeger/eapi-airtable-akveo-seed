@@ -20,6 +20,8 @@ export class ProjectScheduleRemovalComponent extends EffortlessComponentBase imp
   loading: boolean = false;
   complete: boolean = false;
   rType: any;
+  scheduledDate: Date;
+
 
   constructor(private router: Router, protected menuService: NbMenuService, public data: DataEndpoint, public gds: GDS,
     public route: ActivatedRoute, private dialogService: NbDialogService, public toastr: NbToastrService) {
@@ -323,6 +325,7 @@ export class ProjectScheduleRemovalComponent extends EffortlessComponentBase imp
     let self = this;
     let payload = self.gds.createPayload();
     payload.ChangeSummary = { Changes: self.changes };
+    payload.Scheduled = self.scheduledDate;
     self.gds.smqSlotRepairAdmin.ScheduleRemovalConfirm(payload).then(function (reply) {
       self.loading = false;
       if (reply.ErrorMessage) {

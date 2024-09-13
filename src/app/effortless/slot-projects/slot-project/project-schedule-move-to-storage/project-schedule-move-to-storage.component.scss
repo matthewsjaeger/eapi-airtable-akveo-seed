@@ -36,3 +36,9 @@ input[type="file"] {
 .cursor {
   cursor: pointer;
 }
+
+.grid-container-date {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-gap: 5px;
+}

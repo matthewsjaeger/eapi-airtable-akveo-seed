@@ -1,8 +1,12 @@
 <nb-card [size]="'large'">
   <nb-card-header [nbSpinner]="loading" nbSpinnerStatus="danger">
-    <button nbButton class="float-right" style="margin-bottom: 5px;" *ngIf="complete" (click)="confirmSchedule()">
+    <button nbButton class="float-right" style="margin-bottom: 5px; margin-left: .5em;" *ngIf="complete" (click)="confirmSchedule()">
       Confirm
     </button>
+    <div class="float-right">
+      <input nbInput placeholder="Scheduled Date" [nbDatepicker]="datePicker" [(ngModel)]="scheduledDate">
+      <nb-datepicker #datePicker></nb-datepicker>
+    </div>
     <button nbButton class="float-left" style="margin-bottom: 5px;" (click)=saveAsCSV()>
       Download
     </button>
