@@ -6,6 +6,7 @@ import { GDS } from '../../../services/gds.service';
 import { NbDialogService, NbToastrService, NbMenuService } from '@nebular/theme';
 import { ResolveComponentAmbiguityComponent } from '../project-schedule-conversion/resolve-component-ambiguity/resolve-component-ambiguity.component';
 import { ResolveReadOnlyComponent } from '../project-schedule-conversion/resolve-read-only/resolve-read-only.component';
+import { ResolveGameAmbiguityComponent } from '../project-schedule-conversion/resolve-game-ambiguity/resolve-game-ambiguity.component';
 
 @Component({
   selector: 'ngx-project-storage-to-floor',
@@ -212,20 +213,48 @@ export class ProjectStorageToFloorComponent extends EffortlessComponentBase impl
       return;
     }
 
-    let self = this;
-    console.error('SSSS', change)
-    this.dialogService.open(ResolveComponentAmbiguityComponent, {
-      context: {
-        'scds': fieldChange.Comps,
-        'slot': change.Description,
-        'searchTerm': fieldChange.SearchTerm
-      }
-    }).onClose.subscribe(resp => self.resolveComponent(resp, change, fieldChange, self));
+    if (fieldChange.Comps) {
+      let self = this;
+      console.error('SSSS', change)
+      this.dialogService.open(ResolveComponentAmbiguityComponent, {
+        context: {
+          'scds': fieldChange.Comps,
+          'slot': change.Description,
+          'searchTerm': fieldChange.SearchTerm
+        }
+      }).onClose.subscribe(resp => self.resolveComponent(resp, change, fieldChange, self));
+    } else if (fieldChange.Games) {
+      let self = this;
+      console.error('RRRR', change)
+      this.dialogService.open(ResolveGameAmbiguityComponent, {
+        context: {
+          'sgds': fieldChange.Games,
+          'slot': change.Description,
+          'searchTerm': fieldChange.SearchTerm
+        }
+      }).onClose.subscribe(resp => self.resolveGame(resp, change, fieldChange, self));
+    }
   }
 
   resolveComponent(resp, change, fieldChange, self) {
     if (resp) {
       fieldChange.New = resp.SimplifiedDisplayText;
+      let resolved = true;
+      change.Changes.forEach(function (fChange) {
+        if (fChange.New == "Resolving ambiguity") {
+          resolved = false;
+        }
+      });
+      if (resolved) {
+        change.Ambiguous = false;
+      }
+      self.checkForAmbiguities(self);
+    }
+  }
+
+  resolveGame(resp, change, fieldChange, self) {
+    if (resp) {
+      fieldChange.New = resp.ToStringText;
       let resolved = true;
       change.Changes.forEach(function (fChange) {
         if (fChange.New == "Resolving ambiguity") {

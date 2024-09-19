@@ -17,16 +17,18 @@
   </nb-card-header>
   <nb-card-body>
     <nb-list>
-      <nb-list-item *ngFor="let change of changes" [ngStyle]="{'cursor': (change.Errors) ? 'pointer' : (change.Changes.length > 0) ?
-              ((change.Ambiguous) ? 'pointer' : 'inherit') : 'inherit'}">
+      <nb-list-item *ngFor="let change of changes">
         <span [ngStyle]="{'color': (change.Errors) ? 'red' : (change.Changes.length > 0) ?
               ((change.Ambiguous) ? 'orange' : 'green') : 'inherit'}"><b>{{change.Description}}</b></span>
         <span *ngIf="change.Unchanged"> (Unchanged)</span>
         <!--<div *ngIf="change.Errors > 0" style="color: red">Error: {{change.Errors}}</div>-->
         <div *ngIf="change.Changes.length > 0">
           <nb-list>
-            <nb-list-item *ngFor="let fieldChange of change.Changes" (click)="resolveAmbiguity(change, fieldChange)">
-              <div *ngIf="!change.Errors"><b>{{fieldChange.Field}}:</b> {{fieldChange.Old}} -> {{fieldChange.New}}</div>
+            <nb-list-item *ngFor="let fieldChange of change.Changes" (click)="resolveAmbiguity(change, fieldChange)"
+                [ngStyle]="{
+                  'cursor': fieldChange.Error || fieldChange.New === 'Resolving ambiguity' ? 'pointer' : 'inherit'
+                }">
+              <div *ngIf="!change.Errors" [ngStyle]="{'color': fieldChange.New === 'Resolving ambiguity' ? 'orange' : 'inherit'}"><b>{{fieldChange.Field}}:</b> {{fieldChange.Old}} -> {{fieldChange.New}}</div>
               <div *ngIf="change.Errors" style="color: red"><b>{{fieldChange.Field}}:</b> {{fieldChange.Error}}</div>
             </nb-list-item>
           </nb-list>

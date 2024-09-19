@@ -92,6 +92,7 @@ import { ApplyLicenseComponent } from './on-floor/on-floor-slot/apply-license/ap
 import { AddLicenseBarcodeComponent } from './on-floor/on-floor-slot/apply-license/add-license-barcode/add-license-barcode.component';
 import { ConfigureSlotComponent } from './slot-projects/slot-project/configure-slot/configure-slot.component';
 import { AddCabinetModelComponent } from './on-floor/on-floor-slot/add-cabinet-model/add-cabinet-model.component';
+import { ResolveGameAmbiguityComponent } from './slot-projects/slot-project/project-schedule-conversion/resolve-game-ambiguity/resolve-game-ambiguity.component';
 
 let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComponent, Page3Component,
   StorageSlotsComponent, SlotProjectsComponent, SearchStorageSlotsComponent, SlotProjectComponent, NewProjectComponent,
@@ -109,7 +110,7 @@ let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComp
   CompleteTableModificationComponent, CompleteTableRemoveComponent, ScheduleConversionComponent, ProjectScheduleConversionComponent, ResolveComponentAmbiguityComponent,
   ResolveReadOnlyComponent, AddRemoveSlotsComponent, ProjectScheduleMoveToStorageComponent, ProjectStorageToFloorComponent, RemovalTypeComponent, ProjectScheduleRemovalComponent,
   CancelScheduledEventsComponent, CreateActionsComponent, CreateSlotComponent, ReceiveSlotComponent, ProjectSetUpSlotComponent, ApplyLicenseComponent, AddLicenseBarcodeComponent,
-  ConfigureSlotComponent, AddCabinetModelComponent];
+  ConfigureSlotComponent, AddCabinetModelComponent, ResolveGameAmbiguityComponent];
 
 @NgModule({
   declarations: declarations,
@@ -144,7 +145,7 @@ let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComp
     PlaceConversionComponent, LscAddComponent, LscReplaceComponent, LscBreakComponent, LscPlaceConversionComponent,
     ComponentGeneratedComponent, CdiStatusComponent, ComponentMatchedComponent, CompleteTableModificationComponent,
     CompleteTableRemoveComponent, ResolveComponentAmbiguityComponent, ResolveReadOnlyComponent, RemovalTypeComponent,
-    AddLicenseBarcodeComponent]
+    AddLicenseBarcodeComponent, ResolveGameAmbiguityComponent]
 })
 export class EffortlessModule {
 

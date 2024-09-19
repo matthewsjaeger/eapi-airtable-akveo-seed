@@ -1,0 +1,18 @@
+<nb-card class="scrollable-dialog">
+  <nb-card-header [nbSpinner]="isLoading" nbSpinnerStatus="danger">
+    <h5>Select matching game for {{slot}}:</h5>
+    <input class="searchBar" [(ngModel)]="searchTerm" autocomplete="off" (change)="searchComps()" type="text"
+           nbInput fullWidth placeholder="Search for components">
+  </nb-card-header>
+  <nb-card-body>
+    <nb-list>
+      <nb-list-item *ngFor="let sgd of sgds" (click)="selectSgd(sgd)" style="cursor: pointer;">
+        {{sgd.ToStringText}}
+      </nb-list-item>
+      <nb-list-item *ngIf="sgds.length < 1" style="color: red;">No games found matching "{{processedSearchTerm}}".</nb-list-item>
+    </nb-list>
+    <button nbButton fullWidth style="margin-top:.5em" class="float-right" (click)="close()" status="danger">
+      Cancel
+    </button>
+  </nb-card-body>
+</nb-card>

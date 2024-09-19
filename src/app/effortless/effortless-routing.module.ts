@@ -71,6 +71,7 @@ import { ApplyLicenseComponent } from './on-floor/on-floor-slot/apply-license/ap
 import { AddLicenseBarcodeComponent } from './on-floor/on-floor-slot/apply-license/add-license-barcode/add-license-barcode.component';
 import { ConfigureSlotComponent } from './slot-projects/slot-project/configure-slot/configure-slot.component';
 import { AddCabinetModelComponent } from './on-floor/on-floor-slot/add-cabinet-model/add-cabinet-model.component';
+import { ResolveGameAmbiguityComponent } from './slot-projects/slot-project/project-schedule-conversion/resolve-game-ambiguity/resolve-game-ambiguity.component';
 
 let effortlessChildren = [
   {
@@ -229,6 +230,10 @@ let effortlessChildren = [
   {
     path: 'resolve-component-ambiguity',
     component: ResolveComponentAmbiguityComponent
+  },
+  {
+    path: 'resolve-game-ambiguity',
+    component: ResolveGameAmbiguityComponent
   },
   {
     path: 'resolve-read-only',
