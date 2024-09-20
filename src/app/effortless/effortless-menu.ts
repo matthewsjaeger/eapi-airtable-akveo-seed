@@ -3,13 +3,7 @@ import { NbMenuItem } from '@nebular/theme';
 export const MENU_ITEMS: NbMenuItem[] = [
   
   {
-    title: 'BJ/ATR',
-    icon: 'home-outline',
-    link: '/effortless/ionic',
-    home: true,
-  },
-  {
-    title: 'BJ/ATR New',
+    title: 'Table Games/ATR New',
     icon: 'home-outline',
     link: '/effortless/bj-atr',
   },
@@ -23,11 +17,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'archive',
     link: '/effortless/search-storage-slots',
   },
-  {
-    title: 'Multi-Slot Actions',
-    icon: 'folder-add',
-    link: '/effortless/multi-select',
-  },
+  //{
+  //  title: 'Multi-Slot Actions',
+  //  icon: 'folder-add',
+  //  link: '/effortless/multi-select',
+  //},
   {
     title: 'Slot Projects',
     icon: 'layers',
@@ -66,5 +60,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/auth/login',
     hidden: false,
     expanded: false,
+  },
+  {
+    title: 'Table Games/ATR',
+    icon: 'home-outline',
+    link: '/effortless/ionic',
+    home: true,
   },
 ];

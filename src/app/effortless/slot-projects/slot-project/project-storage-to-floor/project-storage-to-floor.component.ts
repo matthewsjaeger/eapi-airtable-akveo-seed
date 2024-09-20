@@ -7,6 +7,7 @@ import { NbDialogService, NbToastrService, NbMenuService } from '@nebular/theme'
 import { ResolveComponentAmbiguityComponent } from '../project-schedule-conversion/resolve-component-ambiguity/resolve-component-ambiguity.component';
 import { ResolveReadOnlyComponent } from '../project-schedule-conversion/resolve-read-only/resolve-read-only.component';
 import { ResolveGameAmbiguityComponent } from '../project-schedule-conversion/resolve-game-ambiguity/resolve-game-ambiguity.component';
+import { ResolveProgressiveAmbiguityComponent } from '../project-schedule-conversion/resolve-progressive-ambiguity/resolve-progressive-ambiguity.component';
 
 @Component({
   selector: 'ngx-project-storage-to-floor',
@@ -223,6 +224,16 @@ export class ProjectStorageToFloorComponent extends EffortlessComponentBase impl
           'searchTerm': fieldChange.SearchTerm
         }
       }).onClose.subscribe(resp => self.resolveComponent(resp, change, fieldChange, self));
+    } else if (fieldChange.Progs) {
+      let self = this;
+      console.error('TTTT', change)
+      this.dialogService.open(ResolveProgressiveAmbiguityComponent, {
+        context: {
+          'progs': fieldChange.Progs,
+          'slot': change.Description,
+          'searchTerm': fieldChange.SearchTerm
+        }
+      }).onClose.subscribe(resp => self.resolveProgressive(resp, change, fieldChange, self));
     } else if (fieldChange.Games) {
       let self = this;
       console.error('RRRR', change)
@@ -239,6 +250,22 @@ export class ProjectStorageToFloorComponent extends EffortlessComponentBase impl
   resolveComponent(resp, change, fieldChange, self) {
     if (resp) {
       fieldChange.New = resp.SimplifiedDisplayText;
+      let resolved = true;
+      change.Changes.forEach(function (fChange) {
+        if (fChange.New == "Resolving ambiguity") {
+          resolved = false;
+        }
+      });
+      if (resolved) {
+        change.Ambiguous = false;
+      }
+      self.checkForAmbiguities(self);
+    }
+  }
+
+  resolveProgressive(resp, change, fieldChange, self) {
+    if (resp) {
+      fieldChange.New = resp.DisplayDescription;
       let resolved = true;
       change.Changes.forEach(function (fChange) {
         if (fChange.New == "Resolving ambiguity") {
