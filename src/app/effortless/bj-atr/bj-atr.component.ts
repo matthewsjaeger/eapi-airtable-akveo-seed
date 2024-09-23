@@ -28,6 +28,10 @@ export class BjAtrComponent extends EffortlessComponentBase implements OnInit {
     this.router.navigateByUrl('effortless/search-tables');
   }
 
+  openRelicensing() {
+    this.router.navigateByUrl('effortless/relicensing');
+  }
+
   openShufflers() {
 
   }

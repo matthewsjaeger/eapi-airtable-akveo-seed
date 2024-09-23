@@ -3,7 +3,7 @@ import { NbMenuItem } from '@nebular/theme';
 export const MENU_ITEMS: NbMenuItem[] = [
   
   {
-    title: 'Table Games/ATR New',
+    title: 'Table Games / ATR New',
     icon: 'home-outline',
     link: '/effortless/bj-atr',
   },
@@ -62,7 +62,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     expanded: false,
   },
   {
-    title: 'Table Games/ATR',
+    title: 'Table Games / ATR Old',
     icon: 'home-outline',
     link: '/effortless/ionic',
     home: true,

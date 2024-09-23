@@ -73,6 +73,7 @@ import { ConfigureSlotComponent } from './slot-projects/slot-project/configure-s
 import { AddCabinetModelComponent } from './on-floor/on-floor-slot/add-cabinet-model/add-cabinet-model.component';
 import { ResolveGameAmbiguityComponent } from './slot-projects/slot-project/project-schedule-conversion/resolve-game-ambiguity/resolve-game-ambiguity.component';
 import { ResolveProgressiveAmbiguityComponent } from './slot-projects/slot-project/project-schedule-conversion/resolve-progressive-ambiguity/resolve-progressive-ambiguity.component';
+import { RelicensingComponent } from './bj-atr/relicensing/relicensing.component';
 
 let effortlessChildren = [
   {
@@ -363,6 +364,10 @@ let effortlessChildren = [
   {
     path: 'add-cabinet-model/:sid',
     component: AddCabinetModelComponent
+  },
+  {
+    path: 'relicensing',
+    component: RelicensingComponent
   }
 ];
 

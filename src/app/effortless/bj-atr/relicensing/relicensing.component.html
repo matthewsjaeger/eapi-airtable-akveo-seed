@@ -1,0 +1,52 @@
+<nb-card>
+  <nb-card-header>
+    <button nbButton ghost size="medium" class="float-left" (click)="goBack()">
+      <nb-icon icon="arrow-ios-back-outline"></nb-icon>Table Games / Atr
+    </button>
+    <h4 style="width: fit-content; margin: auto;">Relicensing</h4>
+    <input type="text" nbInput fullWidth placeholder="Search Slot#, Serial#, License#, Address or Barcode" [(ngModel)]="searchTerm" autocomplete="off" (change)="searchSlots()">
+  </nb-card-header>
+  <nb-card-body [nbSpinner]="loading" nbSpinnerStatus="danger">
+    <nb-list>
+      <nb-list-item *ngFor=" let slot of slots">
+        <button nbButton size="medium" class="float-right" style="background-color: #47C2E6; border-color: #47C2E6;" (click)=relicenseAndRevisit(slot)>Relicense and Revisit</button>
+        <button nbButton size="medium" class="float-right" style="margin-right: .5em;" (click)=relicense(slot)>Relicense</button>
+        <div class="float-left">
+          <b>Slot #:</b> {{slot.SlotNumber}}
+          <b>|</b>
+          <b>License #:</b> {{slot.SlotLicenses[0].Number}}
+          <b>|</b>
+          <b>Serial #:</b> {{slot.SerialNumber}}
+          <br>
+          <b>Cabinet Model:</b> {{slot.CabinetModel}}
+          <b>|</b>
+          <b>Floor Address:</b> {{slot.Address}}
+          <b>|</b>
+          <b>Lic. Expiriation:</b> {{slot.SlotLicenses[0].Expiration | date}}
+        </div>
+      </nb-list-item>
+    </nb-list>
+  </nb-card-body>
+  <nb-card-footer>
+    <h6 style="background-color: #edf1f7; padding: .5em;">Requires Revisit</h6>
+    <nb-list>
+      <nb-list-item *ngFor=" let recheck of rechecks">
+        <button nbButton size="medium" class="float-right" style="background-color: #47C2E6; border-color: #47C2E6;" (click)=resolve(recheck)>Resolve</button>
+        <button nbButton size="medium" class="float-right" style="margin-right: .5em;" (click)=unlicense(recheck)>Unlicense</button>
+        <div class="float-left">
+          <b>Slot #:</b> {{recheck.SlotNumber}}
+          <b>|</b>
+          <b>License #:</b> {{recheck.SlotLicenses[0].Number}}
+          <b>|</b>
+          <b>Serial #:</b> {{recheck.SerialNumber}}
+          <br>
+          <b>Cabinet Model:</b> {{recheck.CabinetModel}}
+          <b>|</b>
+          <b>Floor Address:</b> {{recheck.Address}}
+          <b>|</b>
+          <b>Lic. Expiriation:</b> {{recheck.SlotLicenses[0].Expiration | date}}
+        </div>
+      </nb-list-item>
+    </nb-list>
+  </nb-card-footer>
+</nb-card>
