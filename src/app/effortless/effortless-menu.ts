@@ -67,4 +67,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/effortless/ionic',
     home: true,
   },
+  {
+    title: 'Relicensing',
+    icon: 'checkmark-circle-2',
+    link: '/effortless/relicensing',
+    home: true,
+  },
 ];

@@ -95,6 +95,7 @@ import { AddCabinetModelComponent } from './on-floor/on-floor-slot/add-cabinet-m
 import { ResolveGameAmbiguityComponent } from './slot-projects/slot-project/project-schedule-conversion/resolve-game-ambiguity/resolve-game-ambiguity.component';
 import { ResolveProgressiveAmbiguityComponent } from './slot-projects/slot-project/project-schedule-conversion/resolve-progressive-ambiguity/resolve-progressive-ambiguity.component';
 import { RelicensingComponent } from './bj-atr/relicensing/relicensing.component';
+import { ShuffleMastersComponent } from './bj-atr/shuffle-masters/shuffle-masters.component';
 
 let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComponent, Page3Component,
   StorageSlotsComponent, SlotProjectsComponent, SearchStorageSlotsComponent, SlotProjectComponent, NewProjectComponent,
@@ -112,7 +113,7 @@ let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComp
   CompleteTableModificationComponent, CompleteTableRemoveComponent, ScheduleConversionComponent, ProjectScheduleConversionComponent, ResolveComponentAmbiguityComponent,
   ResolveReadOnlyComponent, AddRemoveSlotsComponent, ProjectScheduleMoveToStorageComponent, ProjectStorageToFloorComponent, RemovalTypeComponent, ProjectScheduleRemovalComponent,
   CancelScheduledEventsComponent, CreateActionsComponent, CreateSlotComponent, ReceiveSlotComponent, ProjectSetUpSlotComponent, ApplyLicenseComponent, AddLicenseBarcodeComponent,
-  ConfigureSlotComponent, AddCabinetModelComponent, ResolveGameAmbiguityComponent, ResolveProgressiveAmbiguityComponent, RelicensingComponent];
+  ConfigureSlotComponent, AddCabinetModelComponent, ResolveGameAmbiguityComponent, ResolveProgressiveAmbiguityComponent, RelicensingComponent, ShuffleMastersComponent];
 
 @NgModule({
   declarations: declarations,

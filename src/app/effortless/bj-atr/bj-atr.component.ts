@@ -33,7 +33,7 @@ export class BjAtrComponent extends EffortlessComponentBase implements OnInit {
   }
 
   openShufflers() {
-
+    this.router.navigateByUrl('effortless/shuffle-masters')
   }
 
   openATR() {

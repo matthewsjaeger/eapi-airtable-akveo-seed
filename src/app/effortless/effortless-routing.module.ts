@@ -74,6 +74,7 @@ import { AddCabinetModelComponent } from './on-floor/on-floor-slot/add-cabinet-m
 import { ResolveGameAmbiguityComponent } from './slot-projects/slot-project/project-schedule-conversion/resolve-game-ambiguity/resolve-game-ambiguity.component';
 import { ResolveProgressiveAmbiguityComponent } from './slot-projects/slot-project/project-schedule-conversion/resolve-progressive-ambiguity/resolve-progressive-ambiguity.component';
 import { RelicensingComponent } from './bj-atr/relicensing/relicensing.component';
+import { ShuffleMastersComponent } from './bj-atr/shuffle-masters/shuffle-masters.component';
 
 let effortlessChildren = [
   {
@@ -368,6 +369,10 @@ let effortlessChildren = [
   {
     path: 'relicensing',
     component: RelicensingComponent
+  },
+  {
+    path: 'shuffle-masters',
+    component: ShuffleMastersComponent
   }
 ];
 
