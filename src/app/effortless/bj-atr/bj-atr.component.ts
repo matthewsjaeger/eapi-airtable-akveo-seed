@@ -21,7 +21,7 @@ export class BjAtrComponent extends EffortlessComponentBase implements OnInit {
   }
 
   openBJProjects() {
-
+    this.router.navigateByUrl('effortless/bj-projects');
   }
 
   openBJTables() {

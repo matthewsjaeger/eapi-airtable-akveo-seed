@@ -1,0 +1,100 @@
+<nb-card [size]="'large'">
+  <nb-card-header>
+    <div class="clearfix">
+      <button nbButton ghost size="medium" class="float-left" (click)="goBack()">
+        <nb-icon icon="arrow-ios-back-outline"></nb-icon>Table Game Projects
+      </button>
+      <h4 style="width: fit-content; margin: auto;">{{project.Name}}</h4>
+    </div>
+    <p><b>Scheduled Date: </b>{{scheduledDate | date:'mediumDate'}}<br /><b>Description: </b>{{project.Description}}</p>
+    <div class="grid-container" *ngIf="selectedState == ''">
+      <button nbButton shape="rectangle" status="primary" style="margin-bottom: 5px;"
+              (click)=editProject()>
+        Edit Project
+      </button>
+      <button nbButton shape="rectangle" status="primary" style="margin-bottom: 5px;"
+              (click)=addRemoveSlots()>
+        Add/ Remove Slots
+      </button>
+      <button nbButton shape="rectangle" status="success" style="margin-bottom: 5px;"
+              (click)=completeProject()>
+        Complete project
+      </button>
+    </div>
+    <div>
+      <div *ngIf="selectedState == 'Active'" class="grid-container" style="margin-top: 5px">
+        <button nbButton style="margin-bottom: 5px;" status="info" (click)=scheduleConversion()>
+          Schedule Conversion
+        </button>
+        <button nbButton style="margin-bottom: 5px;" (click)=scheduleMoveToStorage()>
+          Schedule Move to Storage
+        </button>
+        <button nbButton style="margin-bottom: 5px;" disabled (click)=scheduleTournament()>
+          Schedule Tournament
+        </button>
+      </div>
+      <div *ngIf="selectedState == 'Stored'" class="grid-container" style="margin-top: 5px">
+        <button nbButton style="margin-bottom: 5px;" (click)=scheduleStorageToFloor()>
+          Schedule Storage to Floor
+        </button>
+        <button nbButton style="margin-bottom: 5px;" (click)=scheduleRemoval()>
+          Schedule Removal
+        </button>
+        <button nbButton style="margin-bottom: 5px;" (click)=configureSlot()>
+          Configure Slot
+        </button>
+      </div>
+      <div *ngIf="selectedState == 'Purchased'" class="grid-container" style="margin-top: 5px">
+        <button nbButton style="margin-bottom: 5px;" (click)=requestReceiveSlot()>
+          Request Receive Slot
+        </button>
+      </div>
+      <div *ngIf="selectedState == 'Licensed'" class="grid-container" style="margin-top: 5px">
+        <button nbButton style="margin-bottom: 5px;" (click)=configureSlot()>
+          Configure Slot
+        </button>
+      </div>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <nb-list *ngIf="loaded">
+      <nb-list-item *ngFor="let list of filteredSlots">
+        <div class="clearfix">
+          <div class="float-left">
+            <p><b>{{list.title}}</b></p>
+          </div>
+          <div class="float-right">
+            <nb-toggle [(ngModel)]="list.selected" (ngModelChange)="focusGroup(list)"></nb-toggle>
+          </div>
+        </div>
+        <nb-list>
+          <nb-list-item *ngFor="let slot of list.Slots">
+            <div class="grid-container-slot">
+              <div>
+                <button nbButton (click)=openSlot(slot)>
+                  Open Slot
+                </button>
+              </div>
+              <div (click)="toggleSlot(slot, list)">
+                <b>Serial Number: </b>{{slot.SerialNumber}} <b>|</b>
+                <b>Machine #:</b>{{slot.SlotNumber}} <b>|</b>
+                <b>License #:</b>{{slot.LicenseNumber}}
+                <br>
+                <b>Location:</b>{{slot.DisplayLocation}} <b>|</b>
+                <b>Zone:</b>{{slot.Zone}}  <b>|</b>
+                <b>Floor Address:</b>{{slot.Address}}
+                <br />
+                <b>Manufacturer:</b> {{slot.DisplayManufacturer}} <b>|</b>
+                <b>Updated By:</b> {{slot.DisplayUpdatedBy }}
+                <div class="selected float-right">
+                  <i class="ion-checkmark" *ngIf="slot.selected"></i>
+                </div>
+                <span class="item-note float-right">{{slot.WorkflowState}} </span>
+              </div>
+            </div>
+          </nb-list-item>
+        </nb-list>
+      </nb-list-item>
+    </nb-list>
+  </nb-card-body>
+</nb-card>

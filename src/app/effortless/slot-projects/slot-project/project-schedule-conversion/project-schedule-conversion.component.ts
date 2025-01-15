@@ -6,6 +6,8 @@ import { DataEndpoint } from '../../../services/eapi-data-services/data-endpoint
 import { GDS } from '../../../services/gds.service';
 import { ResolveComponentAmbiguityComponent } from './resolve-component-ambiguity/resolve-component-ambiguity.component';
 import { ResolveReadOnlyComponent } from './resolve-read-only/resolve-read-only.component';
+import { ResolveProgressiveAmbiguityComponent } from './resolve-progressive-ambiguity/resolve-progressive-ambiguity.component';
+import { ResolveGameAmbiguityComponent } from './resolve-game-ambiguity/resolve-game-ambiguity.component';
 
 @Component({
   selector: 'ngx-project-schedule-conversion',
@@ -243,21 +245,75 @@ export class ProjectScheduleConversionComponent extends EffortlessComponentBase 
       this.resolveReadOnly(change, fieldChange);
       return;
     }
-    
-    let self = this;
-    console.error('SSSS', change)
-    this.dialogService.open(ResolveComponentAmbiguityComponent, {
-      context: {
-        'scds': fieldChange.Comps,
-        'slot': change.Description,
-        'searchTerm': fieldChange.SearchTerm
-      }
-    }).onClose.subscribe(resp => self.resolveComponent(resp, change, fieldChange, self));
+
+    if (fieldChange.Comps) {
+      let self = this;
+      console.error('SSSS', change)
+      this.dialogService.open(ResolveComponentAmbiguityComponent, {
+        context: {
+          'scds': fieldChange.Comps,
+          'slot': change.Description,
+          'searchTerm': fieldChange.SearchTerm
+        }
+      }).onClose.subscribe(resp => self.resolveComponent(resp, change, fieldChange, self));
+    } else if (fieldChange.Progs) {
+      let self = this;
+      console.error('TTTT', change)
+      this.dialogService.open(ResolveProgressiveAmbiguityComponent, {
+        context: {
+          'progs': fieldChange.Progs,
+          'slot': change.Description,
+          'searchTerm': fieldChange.SearchTerm
+        }
+      }).onClose.subscribe(resp => self.resolveProgressive(resp, change, fieldChange, self));
+    } else if (fieldChange.Games) {
+      let self = this;
+      console.error('RRRR', change)
+      this.dialogService.open(ResolveGameAmbiguityComponent, {
+        context: {
+          'sgds': fieldChange.Games,
+          'slot': change.Description,
+          'searchTerm': fieldChange.SearchTerm
+        }
+      }).onClose.subscribe(resp => self.resolveGame(resp, change, fieldChange, self));
+    }
   }
 
   resolveComponent(resp, change, fieldChange, self) {
     if (resp) {
       fieldChange.New = resp.SimplifiedDisplayText;
+      let resolved = true;
+      change.Changes.forEach(function (fChange) {
+        if (fChange.New == "Resolving ambiguity") {
+          resolved = false;
+        }
+      });
+      if (resolved) {
+        change.Ambiguous = false;
+      }
+      self.checkForAmbiguities(self);
+    }
+  }
+
+  resolveProgressive(resp, change, fieldChange, self) {
+    if (resp) {
+      fieldChange.New = resp.DisplayDescription;
+      let resolved = true;
+      change.Changes.forEach(function (fChange) {
+        if (fChange.New == "Resolving ambiguity") {
+          resolved = false;
+        }
+      });
+      if (resolved) {
+        change.Ambiguous = false;
+      }
+      self.checkForAmbiguities(self);
+    }
+  }
+
+  resolveGame(resp, change, fieldChange, self) {
+    if (resp) {
+      fieldChange.New = resp.ToStringText;
       let resolved = true;
       change.Changes.forEach(function (fChange) {
         if (fChange.New == "Resolving ambiguity") {

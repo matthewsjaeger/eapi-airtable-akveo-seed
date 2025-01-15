@@ -1,0 +1,21 @@
+<nb-card>
+  <nb-card-header>
+    <h4 style="width: fit-content; margin: auto;">Table Game Projects</h4>
+    <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=newProject()>Start New Project</button>
+    <input type="text" nbInput fullWidth placeholder="Search projects">
+  </nb-card-header>
+  <nb-card-body [nbSpinner]="loading" nbSpinnerStatus="danger">
+    <nb-list>
+      <nb-list-item *ngFor=" let slotProject of slotProjects" class="grid-container2">
+        <div>
+          <h6>{{slotProject.Name}}</h6>
+          <b>Description:</b> {{slotProject.DisplayDescription}} <br>
+          <b>Due Date:</b> {{slotProject.DueDate | date: mediumDate}}
+        </div>
+        <div>
+          <button nbButton size="small" class="float-right" (click)=openProject(slotProject)>Open Project</button>
+        </div>
+      </nb-list-item>
+    </nb-list>
+  </nb-card-body>
+</nb-card>

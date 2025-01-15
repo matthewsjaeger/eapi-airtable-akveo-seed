@@ -75,6 +75,8 @@ import { ResolveGameAmbiguityComponent } from './slot-projects/slot-project/proj
 import { ResolveProgressiveAmbiguityComponent } from './slot-projects/slot-project/project-schedule-conversion/resolve-progressive-ambiguity/resolve-progressive-ambiguity.component';
 import { RelicensingComponent } from './bj-atr/relicensing/relicensing.component';
 import { ShuffleMastersComponent } from './bj-atr/shuffle-masters/shuffle-masters.component';
+import { BjProjectsComponent } from './bj-atr/bj-projects/bj-projects.component';
+import { BjProjectComponent } from './bj-atr/bj-projects/bj-project/bj-project.component';
 
 let effortlessChildren = [
   {
@@ -96,6 +98,10 @@ let effortlessChildren = [
   {
     path: 'slot-project/:pid',
     component: SlotProjectComponent,
+  },
+  {
+    path: 'bj-project/:pid',
+    component: BjProjectComponent,
   },
   {
     path: 'new-project',
@@ -269,6 +275,10 @@ let effortlessChildren = [
   {
     path: 'search-tables',
     component: SearchTablesComponent
+  },
+  {
+    path: 'bj-projects',
+    component: BjProjectsComponent
   },
   {
     path: 'bj-table',

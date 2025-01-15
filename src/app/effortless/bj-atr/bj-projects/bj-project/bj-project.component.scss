@@ -1,0 +1,52 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 5px;
+}
+
+.grid-container-5 {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-gap: 5px;
+}
+
+.grid-container-slot {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-gap: 5px;
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+
+.clearfix:after { /* für Firefox, IE8, Opera, Safari, etc. */
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+* + html .clearfix { /* für IE7 */
+  display: inline-block;
+}
+
+* html .clearfix { /* für IE6 */
+  height: 1%;
+}
+
+.selected {
+  width: 2em;
+  height: 2em;
+  margin-top: -1.5em;
+}
+
+.ion-checkmark {
+  font-size: 2em;
+}
