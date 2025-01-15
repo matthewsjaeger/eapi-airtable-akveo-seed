@@ -140,24 +140,24 @@ export class BjProjectComponent extends EffortlessComponentBase implements OnIni
       });
     });
 
-    slots.forEach(function (slot) {
+    tables.forEach(function (table) {
       let matched = false;
       template.forEach(function (list) {
-        if (slot.WorkflowState == list.title) {
-          list.Slots.push(slot);
+        if (table.WorkflowState == list.title) {
+          list.BJTables.push(table);
           matched = true;
         }
       });
       if (matched == false) {
-        let category = { 'title': slot.WorkflowState, 'Slots': [], 'isVisable': true, 'selected': false };
-        category.Slots.push(slot);
+        let category = { 'title': table.WorkflowState, 'BJTables': [], 'isVisible': true, 'selected': false };
+        category.BJTables.push(table);
         template.push(category);
       }
     });
 
     let i = template.length;
     while (i--) {
-      if (template[i].Slots.length == 0) {
+      if (template[i].BJTables.length == 0) {
         template.splice(i, 1);
       }
     }
@@ -235,57 +235,6 @@ export class BjProjectComponent extends EffortlessComponentBase implements OnIni
     });
     this.router.navigateByUrl('effortless/project-schedule-move-to-storage');
   }
-
-  configureActions = function (bjTable) {
-    $scope.availableActions = {
-      'add': false
-      , 'remove': false
-      , 'scheduleTournament': false
-      , 'activateTournament': false
-      , 'modify': false
-      , 'completeRemoval': false
-      , 'completeModification': false
-      , 'stopTournament': false
-      , 'completeAdd': false
-      , 'feltReview': false
-      , 'logFeltChange': false
-
-    };
-    switch (bjTable.WorkflowState) {
-      case 'In Play':
-        $scope.availableActions.modify = true;
-        $scope.availableActions.remove = true;
-        $scope.availableActions.scheduleTournament = true;
-        $scope.availableActions.logFeltChange = true;
-        break;
-      case 'Not In Play':
-        $scope.availableActions.add = true;
-        $scope.availableActions.modify = true;
-        $scope.availableActions.scheduleTournament = true;
-        break;
-      case 'BJ Tournament Scheduled':
-        $scope.availableActions.modify = true;
-        $scope.availableActions.activateTournament = true;
-        break;
-      case 'Table Add Scheduled':
-        $scope.availableActions.modify = true;
-        $scope.availableActions.completeAdd = true;
-        break;
-      case 'Table Removal Scheduled':
-        $scope.availableActions.completeRemoval = true;
-        break;
-      case 'Felt Review':
-        $scope.availableActions.modify = true;
-        $scope.availableActions.feltReview = true;
-        break;
-      case 'Table Modification Scheduled':
-        $scope.availableActions.completeModification = true;
-        break;
-      case 'BJ Tournament Active':
-        $scope.availableActions.stopTournament = true;
-        break;
-    }
-  };
 
   configureSlot() {
     let self = this;
