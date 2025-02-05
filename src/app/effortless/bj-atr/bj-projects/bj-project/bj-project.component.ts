@@ -13,8 +13,8 @@ import { RemovalTypeComponent } from '../../../slot-projects/slot-project/remova
 })
 export class BjProjectComponent extends EffortlessComponentBase implements OnInit {
   project: any = {};
-  filteredSlots = [];
-  baseFilteredSlots = [];
+  filteredBJTables = [];
+  baseFilteredBJTables = [];
   availableActions = [];
   pid: any;
   loaded: boolean = false;
@@ -41,15 +41,18 @@ export class BjProjectComponent extends EffortlessComponentBase implements OnIni
   reload() {
     let self = this
     let payload = self.gds.createPayload();
-    payload.SlotProject = {};
-    payload.SlotProject.SlotProjectId = self.pid;
-    self.gds.smqUser.GetSlotProject(payload).then(function (reply) {
-      self.project = reply.SlotProject;
-      self.filteredSlots = self.createFilteredSlots(self.project.Slots);
-      self.baseFilteredSlots = self.filteredSlots;
-      self.scheduledDate = new Date(self.project.DueDate);
-      console.error(self.filteredSlots);
-      self.loaded = true;
+    payload.BJProject = {};
+    payload.BJProject.BJTableProjectId = self.pid;
+    self.gds.smqUser.GetProjects(payload).then(function (reply) {
+      reply.BJProjects.forEach(project => {
+        if (project.BJTableProjectId == payload.BJProject.BJTableProjectId) {
+          self.project = project;
+          self.filteredBJTables = self.createFilteredBJTables(self.project.BJTables);
+          self.baseFilteredBJTables = self.filteredBJTables;
+          self.scheduledDate = new Date(self.project.DueDate);
+          self.loaded = true;
+        }
+      });
     });
   }
 
@@ -61,11 +64,9 @@ export class BjProjectComponent extends EffortlessComponentBase implements OnIni
     this.router.navigateByUrl('effortless/edit-project/' + this.pid);
   }
 
-  openSlot(slot) {
-    let relUrl = this.router.createUrlTree(['effortless/on-floor-slot/' + slot.SlotId]);
-    let baseUrl = window.location.href.replace(this.router.url, '');
-    window.open(baseUrl + relUrl, '_blank');
-  }
+  openBJTable(table) {
+    this.gds.currentBJTables = [table];
+    this.router.navigateByUrl('effortless/bj-table');  }
 
   configureActions = function (bjTable) {
     this.availableActions = {
@@ -118,7 +119,7 @@ export class BjProjectComponent extends EffortlessComponentBase implements OnIni
     }
   };
 
-  createFilteredSlots = function (tables) {
+  createFilteredBJTables = function (tables) {
     var template =
       [
         { 'title': 'In Play', 'BJTables': [], 'isVisible': true, 'selected': false }
@@ -132,13 +133,13 @@ export class BjProjectComponent extends EffortlessComponentBase implements OnIni
         , { 'title': 'BJ Tournament Active', 'BJTables': [], 'isVisible': true, 'selected': false }
       ];
 
-    template.forEach(function (list) {
-      tables.forEach(function (table) {
-        if (table.WorkflowState == list.title) {
-          list.BJTables.push(table);
-        }
-      });
-    });
+    //template.forEach(function (list) {
+    //  tables.forEach(function (table) {
+    //    if (table.WorkflowState == list.title) {
+    //      list.BJTables.push(table);
+    //    }
+    //  });
+    //});
 
     tables.forEach(function (table) {
       let matched = false;
@@ -169,9 +170,17 @@ export class BjProjectComponent extends EffortlessComponentBase implements OnIni
   }
 
   completeProject() {
-    console.error(this.filteredSlots);
-    console.error(this.selectedState);
-    this.toastr.warning("Not implemented yet.")
+    let self = this;
+    let payload = self.gds.createPayload();
+    payload.BJTableProject = self.project;
+    self.gds.smqUser.CompleteProject(payload).then(function (reply) {
+      if (reply.ErrorMessage) {
+        self.toastr.danger(reply.ErrorMessage);
+      } else {
+        self.toastr.success("Project completed.");
+        self.goBack();
+      }
+    });
   }
 
   consoleError(msg) {
@@ -180,41 +189,45 @@ export class BjProjectComponent extends EffortlessComponentBase implements OnIni
 
   focusGroup(list) {
     if (list.selected) {
-      list.Slots.forEach(function (slot) {
-        slot.selected = true;
+      list.BJTables.forEach(function (bjTable) {
+        bjTable.selected = true;
       });
-      this.filteredSlots = [list];
+      this.filteredBJTables = [list];
       this.selectedState = list.title;
+      this.configureActions(list.BJTables[0]);
     } else {
-      list.Slots.forEach(function (slot) {
-        slot.selected = false;
+      list.BJTables.forEach(function (bjTable) {
+        bjTable.selected = false;
       });
-      this.filteredSlots = this.baseFilteredSlots;
+      this.filteredBJTables = this.baseFilteredBJTables;
       this.selectedState = "";
+      this.configureActions({ WorkflowState: null });
     }
   }
 
-  toggleSlot(slot, list) {
+  toggleBJTable(bjTable, list) {
     if (this.selectedState == "") {
       this.selectedState = list.title;
       list.selected = true;
-      this.filteredSlots = [list];
+      this.filteredBJTables = [list];
+      this.configureActions(bjTable);
     }
-    slot.selected = slot.selected ? false : true;
+    bjTable.selected = bjTable.selected ? false : true;
     let clearList = true;
-    list.Slots.forEach(function (slot) {
-      if (slot.selected) clearList = false;
+    list.BJTables.forEach(function (bjTable) {
+      if (bjTable.selected) clearList = false;
     });
     if (clearList) {
       list.selected = false;
-      this.filteredSlots = this.baseFilteredSlots;
+      this.filteredBJTables = this.baseFilteredBJTables;
       this.selectedState = "";
+      this.configureActions({ WorkflowState: null });
     }
   }
 
   scheduleConversion() {
     let self = this;
-    let list = this.filteredSlots[0];
+    let list = this.filteredBJTables[0];
     this.gds.slotList = [];
     list.Slots.forEach(function (slot) {
       if (slot.selected) {
@@ -226,7 +239,7 @@ export class BjProjectComponent extends EffortlessComponentBase implements OnIni
 
   scheduleMoveToStorage() {
     let self = this;
-    let list = this.filteredSlots[0];
+    let list = this.filteredBJTables[0];
     this.gds.slotList = [];
     list.Slots.forEach(function (slot) {
       if (slot.selected) {
@@ -238,7 +251,7 @@ export class BjProjectComponent extends EffortlessComponentBase implements OnIni
 
   configureSlot() {
     let self = this;
-    let list = this.filteredSlots[0];
+    let list = this.filteredBJTables[0];
     this.gds.slotList = [];
     list.Slots.forEach(function (slot) {
       if (slot.selected) {
@@ -262,7 +275,7 @@ export class BjProjectComponent extends EffortlessComponentBase implements OnIni
 
   finishRemovalType(resp, self) {
     if (resp) {
-      let list = self.filteredSlots[0];
+      let list = self.filteredBJTables[0];
       self.gds.slotList = [];
       list.Slots.forEach(function (slot) {
         if (slot.selected) {
@@ -275,7 +288,7 @@ export class BjProjectComponent extends EffortlessComponentBase implements OnIni
 
   scheduleStorageToFloor() {
     let self = this;
-    let list = this.filteredSlots[0];
+    let list = this.filteredBJTables[0];
     this.gds.slotList = [];
     list.Slots.forEach(function (slot) {
       if (slot.selected) {
@@ -288,7 +301,7 @@ export class BjProjectComponent extends EffortlessComponentBase implements OnIni
   requestReceiveSlot() {
     let self = this;
     let payload = self.gds.createPayload();
-    let list = this.filteredSlots[0];
+    let list = this.filteredBJTables[0];
     payload.SlotViews = [];
     list.Slots.forEach(function (slot) {
       if (slot.selected) {
@@ -307,7 +320,7 @@ export class BjProjectComponent extends EffortlessComponentBase implements OnIni
   requestLicense() {
     let self = this;
     let payload = self.gds.createPayload();
-    let list = this.filteredSlots[0];
+    let list = this.filteredBJTables[0];
     payload.SlotViews = [];
     list.Slots.forEach(function (slot) {
       if (slot.selected) {

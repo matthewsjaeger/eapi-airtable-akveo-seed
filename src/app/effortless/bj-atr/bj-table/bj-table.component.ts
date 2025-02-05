@@ -15,11 +15,16 @@ import { CompleteTableRemoveComponent } from './complete-table-remove/complete-t
 })
 export class BjTableComponent extends EffortlessComponentBase implements OnInit {
   BJTable: any = {};
+  sid: any;
   availableActions: any = {};
 
   constructor(public gds: GDS, public router: Router, public data: DataEndpoint, protected menuService: NbMenuService,
     public route: ActivatedRoute, public toastr: NbToastrService, private dialogService: NbDialogService) {
     super(gds, data, menuService)
+
+    this.safeSubscribe(this.route.params.subscribe((params) => {
+      this.sid = params['sid'];
+    }));
 
   }
 

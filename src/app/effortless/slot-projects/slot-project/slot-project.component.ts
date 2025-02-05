@@ -120,9 +120,17 @@ export class SlotProjectComponent extends EffortlessComponentBase implements OnI
   }
 
   completeProject() {
-    console.error(this.filteredSlots);
-    console.error(this.selectedState);
-    this.toastr.warning("Not implemented yet.")
+    let self = this;
+    let payload = self.gds.createPayload();
+    payload.SlotProject = self.project;
+    self.gds.smqUser.CompleteProject(payload).then(function (reply) {
+      if (reply.ErrorMessage) {
+        self.toastr.danger(reply.ErrorMessage);
+      } else {
+        self.toastr.success("Project completed.");
+        self.goBack();
+      }
+    });
   }
 
   consoleError(msg) {

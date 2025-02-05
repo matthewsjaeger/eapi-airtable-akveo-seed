@@ -14,51 +14,74 @@
       </button>
       <button nbButton shape="rectangle" status="primary" style="margin-bottom: 5px;"
               (click)=addRemoveSlots()>
-        Add/ Remove Slots
+        Add/Remove Table Games
       </button>
       <button nbButton shape="rectangle" status="success" style="margin-bottom: 5px;"
               (click)=completeProject()>
         Complete project
       </button>
     </div>
-    <div>
-      <div *ngIf="selectedState == 'Active'" class="grid-container" style="margin-top: 5px">
-        <button nbButton style="margin-bottom: 5px;" status="info" (click)=scheduleConversion()>
-          Schedule Conversion
-        </button>
-        <button nbButton style="margin-bottom: 5px;" (click)=scheduleMoveToStorage()>
-          Schedule Move to Storage
-        </button>
-        <button nbButton style="margin-bottom: 5px;" disabled (click)=scheduleTournament()>
-          Schedule Tournament
+    <div class="grid-container" style="margin-top: 5px">
+      <div *ngIf="availableActions.completeAdd" style="margin-top: 5px">
+        <button nbButton fullWidth style="margin-bottom: 5px;" status="info" (click)=completeAdd()>
+          Complete Table Add
         </button>
       </div>
-      <div *ngIf="selectedState == 'Stored'" class="grid-container" style="margin-top: 5px">
-        <button nbButton style="margin-bottom: 5px;" (click)=scheduleStorageToFloor()>
-          Schedule Storage to Floor
-        </button>
-        <button nbButton style="margin-bottom: 5px;" (click)=scheduleRemoval()>
-          Schedule Removal
-        </button>
-        <button nbButton style="margin-bottom: 5px;" (click)=configureSlot()>
-          Configure Slot
+      <div *ngIf="availableActions.completeRemove" style="margin-top: 5px">
+        <button nbButton fullWidth style="margin-bottom: 5px;" status="info" (click)=completeRemove()>
+          Complete Table Remove
         </button>
       </div>
-      <div *ngIf="selectedState == 'Purchased'" class="grid-container" style="margin-top: 5px">
-        <button nbButton style="margin-bottom: 5px;" (click)=requestReceiveSlot()>
-          Request Receive Slot
+      <div *ngIf="availableActions.completeModification" style="margin-top: 5px">
+        <button nbButton fullWidth style="margin-bottom: 5px;" status="info" (click)=completeModification()>
+          Complete Modification
         </button>
       </div>
-      <div *ngIf="selectedState == 'Licensed'" class="grid-container" style="margin-top: 5px">
-        <button nbButton style="margin-bottom: 5px;" (click)=configureSlot()>
-          Configure Slot
+      <div *ngIf="availableActions.stopTournament" style="margin-top: 5px">
+        <button nbButton fullWidth style="margin-bottom: 5px;" status="info" (click)=stopTournament()>
+          End Tournament
+        </button>
+      </div>
+      <div *ngIf="availableActions.feltReview" style="margin-top: 5px">
+        <button nbButton fullWidth style="margin-bottom: 5px;" status="info" (click)=feltReview()>
+          Felt Review Checklist
+        </button>
+      </div>
+      <div *ngIf="availableActions.activateTournament" style="margin-top: 5px">
+        <button nbButton fullWidth style="margin-bottom: 5px;" status="info" (click)=activateTournament()>
+          Activate Tournament
+        </button>
+      </div>
+      <div *ngIf="availableActions.add" style="margin-top: 5px">
+        <button nbButton fullWidth style="margin-bottom: 5px;" status="info" (click)=add()>
+          Schedule Table Add
+        </button>
+      </div>
+      <div *ngIf="availableActions.logFeltChange" style="margin-top: 5px">
+        <button nbButton fullWidth style="margin-bottom: 5px;" status="info" (click)=logFeltChange()>
+          Log Felt Change
+        </button>
+      </div>
+      <div *ngIf="availableActions.remove" style="margin-top: 5px">
+        <button nbButton fullWidth style="margin-bottom: 5px;" status="info" (click)=remove()>
+          Schedule Table Removal
+        </button>
+      </div>
+      <div *ngIf="availableActions.modify" style="margin-top: 5px">
+        <button nbButton fullWidth style="margin-bottom: 5px;" status="info" (click)=modify()>
+          Schedule Table Modification
+        </button>
+      </div>
+      <div *ngIf="availableActions.scheduleTournament" style="margin-top: 5px">
+        <button nbButton fullWidth style="margin-bottom: 5px;" status="info" (click)=scheduleTournament()>
+          Schedule BJ Tournament
         </button>
       </div>
     </div>
   </nb-card-header>
   <nb-card-body>
     <nb-list *ngIf="loaded">
-      <nb-list-item *ngFor="let list of filteredSlots">
+      <nb-list-item *ngFor="let list of filteredBJTables" class="slim-padding">
         <div class="clearfix">
           <div class="float-left">
             <p><b>{{list.title}}</b></p>
@@ -68,29 +91,30 @@
           </div>
         </div>
         <nb-list>
-          <nb-list-item *ngFor="let slot of list.Slots">
+          <nb-list-item *ngFor="let BJTable of list.BJTables" class="slim-padding">
             <div class="grid-container-slot">
-              <div>
-                <button nbButton (click)=openSlot(slot)>
-                  Open Slot
+              <div class="grid-slot-tall">
+                <button nbButton (click)=openBJTable(BJTable)>
+                  Open Game
                 </button>
               </div>
-              <div (click)="toggleSlot(slot, list)">
-                <b>Serial Number: </b>{{slot.SerialNumber}} <b>|</b>
-                <b>Machine #:</b>{{slot.SlotNumber}} <b>|</b>
-                <b>License #:</b>{{slot.LicenseNumber}}
+              <div class="grid-slot-tall" (click)="toggleBJTable(BJTable, list)">
+                {{BJTable.PitTable}} - {{BJTable.SerialNumber}}
                 <br>
-                <b>Location:</b>{{slot.DisplayLocation}} <b>|</b>
-                <b>Zone:</b>{{slot.Zone}}  <b>|</b>
-                <b>Floor Address:</b>{{slot.Address}}
-                <br />
-                <b>Manufacturer:</b> {{slot.DisplayManufacturer}} <b>|</b>
-                <b>Updated By:</b> {{slot.DisplayUpdatedBy }}
-                <div class="selected float-right">
-                  <i class="ion-checkmark" *ngIf="slot.selected"></i>
-                </div>
-                <span class="item-note float-right">{{slot.WorkflowState}} </span>
+                <b>Shuffle Type: </b>{{BJTable.ShufflerType}}
+                <b>|</b>
+                <b>Deck Colors: </b> {{BJTable.DeckColors}}
+                <b>|</b>
+                <b>No. Spots: </b> {{BJTable.NumberofSpots}}
+                <b>|</b>
+                <b>No. Decks: </b> {{BJTable.NumberofDecks}}
               </div>
+                <div (click)="toggleBJTable(BJTable, list)">
+                  <i class="ion-checkmark float-right" *ngIf="BJTable.selected"></i>
+                </div>
+                <div (click)="toggleBJTable(BJTable, list)">
+                  <span class="item-note float-right">{{BJTable.WorkflowState}} </span>
+                </div>
             </div>
           </nb-list-item>
         </nb-list>

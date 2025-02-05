@@ -12,8 +12,13 @@
 
 .grid-container-slot {
   display: grid;
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: 1fr 5fr 1fr;
+  grid-template-rows: 1fr 1fr;
   grid-gap: 5px;
+}
+
+.grid-slot-tall {
+  grid-row: span 2;
 }
 
 .clearfix:after {
@@ -44,9 +49,16 @@
 .selected {
   width: 2em;
   height: 2em;
-  margin-top: -1.5em;
 }
 
 .ion-checkmark {
   font-size: 2em;
+}
+
+.item-note {
+  bottom: 0px;
+}
+
+.slim-padding {
+  padding: .5rem;
 }

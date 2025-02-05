@@ -1,7 +1,10 @@
 <nb-card *ngIf="BJTable">
   <nb-card-header>
     <div>
-      <button nbButton size="large" class="float-left" (click)=back()>< Back</button><h4 style="width: fit-content; margin: auto; margin-top: .5em;">Table Game</h4>
+      <button nbButton ghost size="medium" class="float-left" (click)="back()">
+        <nb-icon icon="arrow-ios-back-outline"></nb-icon>Table Games
+      </button>
+      <h4 style="width: fit-content; margin: auto; margin-top: .5em;">Table Game</h4>
     </div>
     <nb-list style="margin-top: 3em;">
       <nb-list-item><b>{{BJTable.PitTable}} - {{BJTable.SerialNumber}}</b></nb-list-item>
