@@ -15,7 +15,21 @@ export class BjProjectComponent extends EffortlessComponentBase implements OnIni
   project: any = {};
   filteredBJTables = [];
   baseFilteredBJTables = [];
-  availableActions = [];
+  availableActions = {
+    'add': false
+    , 'completeRemove': false
+    , 'remove': false
+    , 'scheduleTournament': false
+    , 'activateTournament': false
+    , 'modify': false
+    , 'completeRemoval': false
+    , 'completeModification': false
+    , 'stopTournament': false
+    , 'completeAdd': false
+    , 'feltReview': false
+    , 'logFeltChange': false
+
+  };
   pid: any;
   loaded: boolean = false;
   selectedState: string = "";
@@ -261,10 +275,6 @@ export class BjProjectComponent extends EffortlessComponentBase implements OnIni
     this.router.navigateByUrl('effortless/configure-slot');
   }
 
-  scheduleTournament(list) {
-
-  }
-
   scheduleRemoval() {
     let self = this;
     this.dialogService.open(RemovalTypeComponent, {
@@ -334,5 +344,38 @@ export class BjProjectComponent extends EffortlessComponentBase implements OnIni
         self.reload();
       }
     });
+  }
+  completeAdd() {
+
+  }
+  completeRemove() {
+
+  }
+  completeModification() {
+
+  }
+  stopTournament() {
+
+  }
+  feltReview() {
+
+  }
+  activateTournament() {
+
+  }
+  add() {
+
+  }
+  logFeltChange() {
+
+  }
+  remove() {
+
+  }
+  modify() {
+
+  }
+  scheduleTournament() {
+
   }
 }

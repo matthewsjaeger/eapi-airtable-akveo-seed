@@ -77,6 +77,7 @@ import { RelicensingComponent } from './bj-atr/relicensing/relicensing.component
 import { ShuffleMastersComponent } from './bj-atr/shuffle-masters/shuffle-masters.component';
 import { BjProjectsComponent } from './bj-atr/bj-projects/bj-projects.component';
 import { BjProjectComponent } from './bj-atr/bj-projects/bj-project/bj-project.component';
+import { NewBjProjectComponent } from './bj-atr/bj-projects/new-bj-project/new-bj-project.component';
 
 let effortlessChildren = [
   {
@@ -106,6 +107,10 @@ let effortlessChildren = [
   {
     path: 'new-project',
     component: NewProjectComponent,
+  },
+  {
+    path: 'new-bj-project',
+    component: NewBjProjectComponent,
   },
   {
     path: 'edit-project/:pid',

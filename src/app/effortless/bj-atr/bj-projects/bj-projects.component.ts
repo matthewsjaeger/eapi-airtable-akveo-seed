@@ -52,22 +52,18 @@ export class BjProjectsComponent extends EffortlessComponentBase implements OnIn
   }
 
   newProject() {
-    this.router.navigateByUrl('effortless/new-project');
+    this.router.navigateByUrl('effortless/new-bj-project');
   }
 
   sortProjects(projects) {
     var ret = projects.sort((a, b) => (a.DueDate < b.DueDate) ? 1 : ((b.DueDate < a.DueDate) ? -1 : 0));
-    console.error('AA', ret);
     ret.forEach(project => {
-      console.error('BB', project);
-      console.error('CC', project.Description);
       if (project.Description && project.Description.length > 100) {
         project.DisplayDescription = project.Description.substring(0, 100) + '...';
       } else {
         project.DisplayDescription = project.Description;
       }
     });
-    console.error('DD', ret);
     return ret;
   }
 }

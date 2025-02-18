@@ -98,6 +98,7 @@ import { RelicensingComponent } from './bj-atr/relicensing/relicensing.component
 import { ShuffleMastersComponent } from './bj-atr/shuffle-masters/shuffle-masters.component';
 import { BjProjectsComponent } from './bj-atr/bj-projects/bj-projects.component';
 import { BjProjectComponent } from './bj-atr/bj-projects/bj-project/bj-project.component';
+import { NewBjProjectComponent } from './bj-atr/bj-projects/new-bj-project/new-bj-project.component';
 
 let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComponent, Page3Component,
   StorageSlotsComponent, SlotProjectsComponent, SearchStorageSlotsComponent, SlotProjectComponent, NewProjectComponent,
@@ -116,7 +117,7 @@ let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, IonicComp
   ResolveReadOnlyComponent, AddRemoveSlotsComponent, ProjectScheduleMoveToStorageComponent, ProjectStorageToFloorComponent, RemovalTypeComponent, ProjectScheduleRemovalComponent,
   CancelScheduledEventsComponent, CreateActionsComponent, CreateSlotComponent, ReceiveSlotComponent, ProjectSetUpSlotComponent, ApplyLicenseComponent, AddLicenseBarcodeComponent,
   ConfigureSlotComponent, AddCabinetModelComponent, ResolveGameAmbiguityComponent, ResolveProgressiveAmbiguityComponent, RelicensingComponent, ShuffleMastersComponent, BjProjectsComponent,
-  BjProjectComponent];
+  BjProjectComponent, NewBjProjectComponent];
 
 @NgModule({
   declarations: declarations,
