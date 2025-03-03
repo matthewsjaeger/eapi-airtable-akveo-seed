@@ -26,6 +26,7 @@ export class ShuffleMastersComponent extends EffortlessComponentBase implements 
   offSiteShuffleMasters: any[] = [];
   reviewShuffleMasters: any[] = [];
   onSiteShuffleMasters: any[] = [];
+  allOnSite: any[] = [];
 
   constructor(public gds: GDS, public data: DataEndpoint, protected menuService: NbMenuService, public router: Router, public toastr: NbToastrService) {
     super(gds, data, menuService)
@@ -71,12 +72,28 @@ export class ShuffleMastersComponent extends EffortlessComponentBase implements 
         console.log("On Site");
         console.log(reply);
         self.onSiteShuffleMasters = reply.ShuffleMasters;
+        self.allOnSite = reply.ShuffleMasters;
       }
     });
   }
 
   goBack() {
     this.router.navigateByUrl('effortless/bj-atr');
+  }
+
+  searchShuffleMasters() {
+    if (!/\S/.test(this.searchTerm)) {
+      this.onSiteShuffleMasters = this.allOnSite;
+      return;
+    }
+    let self = this;
+    let tempShuffleMasters = [];
+    this.allOnSite.forEach(function (shuffleMaster) {
+      if (shuffleMaster.SerialNumber.toLowerCase().includes(self.searchTerm.toLowerCase()) || shuffleMaster.ShufflerType.toLowerCase().includes(self.searchTerm.toLowerCase())) {
+        tempShuffleMasters.push(shuffleMaster);
+      }
+    });
+    this.onSiteShuffleMasters = tempShuffleMasters;
   }
 
 }
