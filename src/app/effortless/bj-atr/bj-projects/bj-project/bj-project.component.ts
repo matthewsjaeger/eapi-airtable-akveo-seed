@@ -180,7 +180,7 @@ export class BjProjectComponent extends EffortlessComponentBase implements OnIni
   };
 
   addRemoveSlots() {
-    this.router.navigateByUrl('effortless/add-remove-slots/' + this.pid);
+    this.router.navigateByUrl('effortless/add-remove-tables/' + this.pid);
   }
 
   completeProject() {

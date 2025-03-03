@@ -78,6 +78,7 @@ import { ShuffleMastersComponent } from './bj-atr/shuffle-masters/shuffle-master
 import { BjProjectsComponent } from './bj-atr/bj-projects/bj-projects.component';
 import { BjProjectComponent } from './bj-atr/bj-projects/bj-project/bj-project.component';
 import { NewBjProjectComponent } from './bj-atr/bj-projects/new-bj-project/new-bj-project.component';
+import { AddRemoveTablesComponent } from './bj-atr/bj-projects/add-remove-tables/add-remove-tables.component';
 
 let effortlessChildren = [
   {
@@ -119,6 +120,10 @@ let effortlessChildren = [
   {
     path: 'add-remove-slots/:pid',
     component: AddRemoveSlotsComponent,
+  },
+  {
+    path: 'add-remove-tables/:pid',
+    component: AddRemoveTablesComponent,
   },
   {
     path: 'storage-slot/:sid',

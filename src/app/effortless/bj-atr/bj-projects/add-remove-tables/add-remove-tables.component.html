@@ -1,0 +1,52 @@
+<div class="base-grid-container">
+  <nb-card>
+    <nb-card-header>
+      <div class="header-container">
+        <button nbButton ghost size="medium" class="float-left" (click)="goBack()">
+          <nb-icon icon="arrow-ios-back-outline"></nb-icon> Back
+        </button>
+        <h4 style="width: fit-content; margin: auto; margin-top:.2em;">Add / Remove Tables ({{ addedSlots.length }})</h4>
+        <button nbButton size="medium" status="success" class="float-right" (click)=save()>Save</button>
+      </div>
+    </nb-card-header>
+    <nb-card-body>
+      <nb-list [@listAnimation]="addedSlots.length">
+        <nb-list-item *ngFor="let slot of addedSlots" (click)=removeSlot(slot) class="dynamic-list-item">
+          {{slot.PitTable}} - {{slot.SerialNumber}}
+          <br>
+          <b>Shuffle Type: </b>{{slot.ShufflerType}}
+          <b>|</b>
+          <b>Deck Colors: </b> {{slot.DeckColors}}
+          <br>
+          <b>No. Spots: </b> {{slot.NumberofSpots}}
+          <b>|</b>
+          <b>No. Decks: </b> {{slot.NumberofDecks}}
+          <i class="float-right">{{slot.WorkflowState}} </i>
+        </nb-list-item>
+      </nb-list>
+    </nb-card-body>
+  </nb-card>
+  <nb-card>
+    <nb-card-header [nbSpinner]="loading">
+      <h4 style="width: fit-content; margin: auto;">Add Tables</h4>
+      <input class="searchBar" [(ngModel)]="searchTerm" autocomplete="off" (change)="searchSlots()" type="text"
+             nbInput fullWidth placeholder="Search for slots">
+    </nb-card-header>
+    <nb-card-body>
+      <nb-list [@listAnimation]="slotViews.length">
+        <nb-list-item *ngFor="let slot of FilteredSlotsList" class="dynamic-list-item" (click)=addSlot(slot)>
+          {{slot.PitTable}} - {{slot.SerialNumber}}
+          <br>
+          <b>Shuffle Type: </b>{{slot.ShufflerType}}
+          <b>|</b>
+          <b>Deck Colors: </b> {{slot.DeckColors}}
+          <br>
+          <b>No. Spots: </b> {{slot.NumberofSpots}}
+          <b>|</b>
+          <b>No. Decks: </b> {{slot.NumberofDecks}}
+          <i class="float-right">{{slot.WorkflowState}} </i>
+        </nb-list-item>
+      </nb-list>
+    </nb-card-body>
+  </nb-card>
+</div>

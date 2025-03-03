@@ -1,11 +1,50 @@
 <nb-card>
   <nb-card-header>
     <button nbButton ghost size="medium" class="float-left" (click)="goBack()">
-      <nb-icon icon="arrow-ios-back-outline"></nb-icon>Back</button>
+      <nb-icon icon="arrow-ios-back-outline"></nb-icon>Back
+    </button>
     <h4 style="width: fit-content; margin: auto;">ShuffleMasters</h4>
   </nb-card-header>
   <nb-card-body [nbSpinner]="loading" nbSpinnerStatus="danger">
     <nb-list>
+      <nb-list-item class="item-divider with-border"><b>Waiting Review</b></nb-list-item>
+      <nb-list-item class="no-shuffler-issues with-border">
+        Currently no ShuffleMasters waiting review
+      </nb-list-item>
+      <nb-list-item class="item-icon-left with-border" *ngFor="let ShuffleMaster of reviewShuffleMasters" (click)="saveToStorage(ShuffleMaster)">
+        <i class="icon ion-android-happy"></i>
+        <b>Serial Number:</b> {{ShuffleMaster.SerialNumber}}
+        <span class="item-note">
+          <b>Shuffler Type: </b>{{ShuffleMaster.ShufflerType}}
+        </span>
+      </nb-list-item>
+    </nb-list>
+    <nb-list>
+      <nb-list-item class="item-divider with-border"><b>Off Site</b></nb-list-item>
+      <nb-list-item class="no-shuffler-issues with-border">
+        Currently no ShuffleMasters off-site
+      </nb-list-item>
+      <nb-list-item class="item-icon-left with-border" *ngFor="let ShuffleMaster of offSiteShuffleMasters" (click)="saveToStorage(ShuffleMaster)">
+        <i class="icon ion-android-happy"></i>
+        <b>Serial Number:</b> {{ShuffleMaster.SerialNumber}}
+        <span class="item-note">
+          <b>Shuffler Type: </b>{{ShuffleMaster.ShufflerType}}
+        </span>
+      </nb-list-item>
+    </nb-list>
+    <nb-list>
+      <nb-list-item class="item-divider with-border"><b>On Site</b></nb-list-item>
+      <nb-list-item class="with-border">
+        <input class="searchBar" [(ngModel)]="searchTerm" autocomplete="off" (change)="searchShuffleMasters()" type="text"
+               nbInput fullWidth placeholder="Search ShuffleMasters">
+      </nb-list-item>
+      <nb-list-item class="item-icon-left with-border" *ngFor="let ShuffleMaster of onSiteShuffleMasters" (click)="saveToStorage(ShuffleMaster)">
+        <i class="icon ion-android-happy"></i>
+        <b>Serial Number:</b> {{ShuffleMaster.SerialNumber}}
+        <span class="item-note">
+          <b>Shuffler Type: </b>{{ShuffleMaster.ShufflerType}}
+        </span>
+      </nb-list-item>
     </nb-list>
   </nb-card-body>
 </nb-card>

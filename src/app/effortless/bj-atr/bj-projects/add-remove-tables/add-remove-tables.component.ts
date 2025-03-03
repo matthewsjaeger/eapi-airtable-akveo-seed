@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { EffortlessComponentBase } from '../../../efforless-base-component';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NbMenuService, NbToastrService } from '@nebular/theme';
 import { DataEndpoint } from '../../../services/eapi-data-services/data-endpoint/data-endpoint';
 import { GDS } from '../../../services/gds.service';
-import { ActivatedRoute, Router } from '@angular/router';
 import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
 
 
 @Component({
-  selector: 'ngx-add-remove-slots',
-  templateUrl: './add-remove-slots.component.html',
-  styleUrls: ['./add-remove-slots.component.scss'],
+  selector: 'ngx-add-remove-tables',
+  templateUrl: './add-remove-tables.component.html',
+  styleUrls: ['./add-remove-tables.component.scss'],
   animations: [
     trigger('listAnimation', [
       transition('* => *', [
@@ -27,7 +27,7 @@ import { trigger, transition, style, animate, query, stagger } from '@angular/an
     ])
   ]
 })
-export class AddRemoveSlotsComponent extends EffortlessComponentBase implements OnInit {
+export class AddRemoveTablesComponent extends EffortlessComponentBase implements OnInit {
   project: any = {};
   pid: any;
   scheduledDate: Date;
@@ -49,18 +49,20 @@ export class AddRemoveSlotsComponent extends EffortlessComponentBase implements 
 
   ngOnInit() {
     this.safeSubscribe(this.gds.onReady().subscribe(ready => {
-      let self = this
+      let self = this;
       let payload = self.gds.createPayload();
-      payload.SlotProject = {};
-      payload.SlotProject.SlotProjectId = self.pid;
-      self.gds.smqUser.GetSlotProject(payload).then(function (reply) {
-        self.project = reply.SlotProject;
-        self.scheduledDate = new Date(self.project.DueDate);
-        self.addedSlots = self.project.Slots;
-        self.addedSlots.sort(function (a, b) {
-          return ((a.WorkflowState < b.WorkflowState) ? -1 : ((a.WorkflowState > b.WorkflowState) ? 1 : 0));
-        })
-        console.error(self.project);
+      payload.BJProject = {};
+      payload.BJProject.BJTableProjectId = self.pid;
+      self.gds.smqUser.GetProjects(payload).then(function (reply) {
+        reply.BJProjects.forEach(project => {
+          if (project.BJTableProjectId == payload.BJProject.BJTableProjectId) {
+            self.project = project;
+            self.addedSlots = self.project.BJTables;
+            self.addedSlots.sort(function (a, b) {
+              return ((a.WorkflowState < b.WorkflowState) ? -1 : ((a.WorkflowState > b.WorkflowState) ? 1 : 0));
+            });
+          }
+        });
       });
     }));
   }
@@ -68,14 +70,14 @@ export class AddRemoveSlotsComponent extends EffortlessComponentBase implements 
   save() {
     let self = this;
     var payload = this.gds.createPayload();
-    payload.SlotProject = this.project;
-    payload.SlotViews = this.addedSlots;
+    payload.BJTableProject = this.project;
+    payload.BJTables = this.addedSlots;
     payload.SearchTerm = "SlotsOnly";
     this.gds.smqUser.UpdateSlotProject(payload).then(function (reply) {
       if (reply.ErrorMessage) {
         self.toastr.danger(reply.ErrorMessage);
       } else {
-        self.router.navigateByUrl('effortless/slot-project/' + self.pid);
+        self.router.navigateByUrl('effortless/bj-project/' + self.pid);
       }
     });
   }
@@ -86,12 +88,12 @@ export class AddRemoveSlotsComponent extends EffortlessComponentBase implements 
       var payload = this.gds.createPayload();
       payload.SearchTerm = this.searchTerm;
       this.loading = true;
-      self.gds.smqUser.SearchAllSlots(payload).then(function (reply) {
+      self.gds.smqUser.SearchBJTables(payload).then(function (reply) {
         self.loading = false;
         console.error(reply)
-        if (reply.SlotViews.length > 0) {
-          self.slotViews = reply.SlotViews;
-          self.FilteredSlotsList = reply.SlotViews;
+        if (reply.BJTables.length > 0) {
+          self.slotViews = reply.BJTables;
+          self.FilteredSlotsList = reply.BJTables;
           self.noResults = false;
         } else {
           self.noResults = true;
@@ -104,12 +106,13 @@ export class AddRemoveSlotsComponent extends EffortlessComponentBase implements 
       self.FilteredSlotsList = [];
       self.noResults = false;
     }
+
   }
 
   addSlot(slot) {
     var idx = -1;
     this.addedSlots.forEach((selected, i) => {
-      if (slot.SlotId == selected.SlotId) {
+      if (slot.BJTableId == selected.BJTableId) {
         idx = i;
       }
     });
@@ -119,7 +122,7 @@ export class AddRemoveSlotsComponent extends EffortlessComponentBase implements 
 
     idx = -1;
     this.FilteredSlotsList.forEach((selected, i) => {
-      if (slot.SlotId == selected.SlotId) {
+      if (slot.BJTableId == selected.BJTableId) {
         idx = i;
       }
     });
@@ -131,7 +134,7 @@ export class AddRemoveSlotsComponent extends EffortlessComponentBase implements 
   removeSlot(slot) {
     var idx = -1;
     this.addedSlots.forEach((selected, i) => {
-      if (slot.SlotId == selected.SlotId) {
+      if (slot.BJTableId == selected.BJTableId) {
         idx = i;
       }
     });
@@ -143,4 +146,7 @@ export class AddRemoveSlotsComponent extends EffortlessComponentBase implements 
   goBack() {
     this.router.navigateByUrl('effortless/slot-project/' + this.pid);
   }
+
+
+
 }
