@@ -32,24 +32,3 @@
   @include nb-overrides();
 };
 
-/* Global customization for menu items */
-nb-menu-item {
-  color: #ff6347; /* Custom text color for all menu items */
-  border: none !important; /* Remove gray bars or borders */
-  padding: 0 !important; /* Optional: adjust padding to remove spacing between items */
-}
-
-/* Optionally, set hover color */
-nb-menu-item:hover {
-  color: #00bfff; /* Hover text color */
-}
-
-/* To target menu items within a menu that contains sub-items */
-nb-menu nb-menu-item {
-  border: none !important;
-}
-
-/* If there is a divider or border between sub-menu items */
-nb-menu nb-menu-item > nb-menu-item {
-  border: none !important;
-}

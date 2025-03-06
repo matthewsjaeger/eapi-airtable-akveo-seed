@@ -68,11 +68,12 @@
 
 
   nb-action.control-item {
-    border: none;    /* Remove any border */
+    border: none !important; /* Ensures no border */
   }
   
   nb-action.user-action {
-    border: none;    /* Remove any border */
+    padding: 0 !important; /* Reduces spacing */
   }
+
   
 }
