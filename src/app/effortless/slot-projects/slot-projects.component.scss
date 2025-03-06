@@ -56,6 +56,8 @@
 
 .header-container{
   color: #637381;
+  font-weight: 500;
+  size: 14px;
 }
 
 .project-name-column{
@@ -66,13 +68,7 @@
 }
 
 .description {
-  margin-left: 100px; /* Space between Description and Project Name */
-}
-
-/* Push "Due Date" to the far right */
-.due-date {
-  margin-left: auto; /* Pushes "Due Date" to the right */
-  margin-right: 40px; /* Adjust as needed */
+  margin-left: 150px; /* Space between Description and Project Name */
 }
 
 .nb-list-item {

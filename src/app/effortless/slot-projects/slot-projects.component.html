@@ -24,25 +24,27 @@
     <section class="header-container">
       <span class="project-name">Project Name</span>
       <span class="description">Description</span>
-      <span class="due-date">Due Date</span>
+      <span class="ml-auto mr-20">Due Date</span>
     </section>
   
     <!-- List of Slot Projects -->
   <nb-list>
     <nb-list-item *ngFor="let slotProject of slotProjects" class="header-container">
       <!-- Project Name Column -->
-      <span class="project-name-column clickable-text" (click)="openProject(slotProject)">
+      <span class="project-name-column" (click)="openProject(slotProject)">
         <span>{{ slotProject.Name }}</span>
       </span>
     
       <!-- Description Column -->
       <span class="description">
-        <span class="ml-4">{{ slotProject.Description }}</span>
+        <nb-icon icon="description" pack="custom"></nb-icon>
+        <span>{{ slotProject.Description }}</span>
       </span>
     
       <!-- Due Date Column -->
-      <span class="due-date">
-        <span>{{ slotProject.DueDate | date: 'mediumDate' }}</span>
+      <span class="ml-auto">
+        <nb-icon icon="calendar" pack="custom"></nb-icon>
+        <span class="ml-2">{{ slotProject.DueDate | date: 'mediumDate' }}</span>
       </span>
     </nb-list-item>
     

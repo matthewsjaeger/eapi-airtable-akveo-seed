@@ -80,6 +80,8 @@ export class AppModule {
       'relicensing': '<img src="assets/icons/check_circle.svg" width="24px" height="24px"/>',
       'header-arrow': '<img src="assets/icons/arrow_hamburger.svg" width="32px" height="32px"/>',
       'chevron-down': '<img src="assets/icons/chevron_right.svg" width="24px" height="24px"/>',
+      'description': '<img src="assets/icons/description.svg" width="18px" height="19px"/>',
+      'calendar': '<img src="assets/icons/calendar_clock.svg" width="18px" height="18px"/>',
     });
 
     this.iconLibraries.setDefaultPack('custom'); // Set the default icon pack
