@@ -1,16 +1,21 @@
-/* styles.css or component-specific stylesheet */
+.header-text{
+  font-size: x-large;
+}
+
 /* styles.css or component-specific stylesheet */
 .search-input {
   width: 100%; /* Make the search input take available space */
   max-width: 300px; /* Control maximum width of search input */
-  padding: 8px;
+  padding: 2px;
   background-color: transparent !important;  /* Remove background color */
-  border: 2px solid #ffffff;        /* Default border */
-  padding: 0.5rem 1rem;          /* Adjust padding */
-  padding-left: 2.5rem;          /* Add space for the icon inside */
-  border-radius: 0.375rem;       /* Rounded corners */
-  box-shadow: none !important;   /* Remove shadow */
-  font-size: 1rem;
+  border: .2px solid #63738118;     
+  border-radius: 3px;
+  margin-left: 30px;
+  font-weight: 400;
+}
+
+.search-input::placeholder{
+  color: #333333;
 }
 
 /* Prevent border on hover and focus */
@@ -29,4 +34,49 @@
 
 .relative {
   position: relative; /* Allows the absolute positioning of the button */
+}
+
+/* Container to hold the header elements */
+.header-container {
+  display: flex;
+  justify-content: space-between; /* Pushes the "Due Date" to the far right */
+  width: 100%;
+  margin-bottom: 16px; /* Adds some space between the headers and the list items */
+}
+
+/* Style for each header */
+.project-name, .description, .due-date {
+  font-weight: 600; /* Semi-bold text */
+}
+
+/* Optional: Space between "Project Name" and "Description" */
+.project-name {
+  margin-right: 16px; /* Adjust as needed */
+}
+
+.project-name-column{
+  max-width: 5px;
+  margin-right: 16px; /* Adjust as needed */
+}
+
+.description {
+  margin-left: 100px; /* Space between Description and Project Name */
+}
+
+/* Push "Due Date" to the far right */
+.due-date {
+  margin-left: auto; /* Pushes "Due Date" to the right */
+  margin-right: 40px; /* Adjust as needed */
+}
+
+.nb-list-item {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  padding: 10px 0; /* Optional: Add vertical spacing between list items */
+}
+
+.project-name-column,
+.description-column,
+.due-date-column {
+  margin-bottom: 8px; /* Optional: Space between each column */
 }

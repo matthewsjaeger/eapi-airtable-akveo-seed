@@ -1,7 +1,3 @@
-<div class="bg-red-500 text-white p-6">
-  Tailwind CSS is working!
-</div>
-
 <nb-card>
   <nb-card-header class="relative flex items-center justify-between w-full">
 
@@ -24,44 +20,37 @@
 
   <nb-card-body [nbSpinner]="loading" nbSpinnerStatus="danger">
 
-    
-
-    <div class="bg-blue-500">
-    <section class="flex justify-between w-full border-b-2 pb-2 bg-blue-500">
-      <!-- Project Name and Description headers with space between them -->
-        <h1 class="">Project Name</h1>
-        <span class="font-semibold">Description</span>
-    
-      <!-- Due Date header pushed to the far right -->
-      <span class="font-semibold">Due Date</span>
+    <!-- Column Titles Row -->
+    <section class="header-container">
+      <span class="project-name">Project Name</span>
+      <span class="description">Description</span>
+      <span class="due-date">Due Date</span>
     </section>
-    </div>
-
   
     <!-- List of Slot Projects -->
-    <nb-list>
-      <nb-list-item *ngFor="let slotProject of slotProjects" class="flex justify-between">
-        <!-- Project Name Column -->
-        <div class="w-1/3">
-          <div>{{ slotProject.Name }}</div>
-        </div>
-  
-        <!-- Description Column -->
-        <div class="w-1/3 px-4">
-          <div>{{ slotProject.Description }}</div>
-        </div>
-  
-        <!-- Due Date Column -->
-        <div class="w-1/3">
-          <div>{{ slotProject.DueDate | date: 'mediumDate' }}</div>
-        </div>
-  
-        <!-- Open Project Button -->
-        <button nbButton size="small" (click)="openProject(slotProject)" class="float-right">
-          Open Project
-        </button>
-      </nb-list-item>
-    </nb-list>
+  <nb-list>
+    <nb-list-item *ngFor="let slotProject of slotProjects" class="header-container">
+      <!-- Project Name Column -->
+      <span class="project-name-column">
+        <span>{{ slotProject.Name }}</span>
+      </span>
+    
+      <!-- Description Column -->
+      <span class="description">
+        <span class="ml-4">{{ slotProject.Description }}</span>
+      </span>
+    
+      <!-- Due Date Column -->
+      <span class="due-date">
+        <span>{{ slotProject.DueDate | date: 'mediumDate' }}</span>
+      </span>
+    </nb-list-item>
+    
+    <!-- Open Project Button -->
+      <!-- <button nbButton size="small" (click)="openProject(slotProject)" class="float-right">
+        Open Project
+      </button> -->
+  </nb-list>
   </nb-card-body>
 
 </nb-card>
