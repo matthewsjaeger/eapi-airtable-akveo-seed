@@ -31,7 +31,7 @@
   <nb-list>
     <nb-list-item *ngFor="let slotProject of slotProjects" class="header-container">
       <!-- Project Name Column -->
-      <span class="project-name-column">
+      <span class="project-name-column clickable-text" (click)="openProject(slotProject)">
         <span>{{ slotProject.Name }}</span>
       </span>
     

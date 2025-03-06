@@ -1,5 +1,5 @@
 .header-text{
-  font-size: x-large;
+  font-size: large;
 }
 
 /* styles.css or component-specific stylesheet */
@@ -54,9 +54,15 @@
   margin-right: 16px; /* Adjust as needed */
 }
 
+.header-container{
+  color: #637381;
+}
+
 .project-name-column{
   max-width: 5px;
   margin-right: 16px; /* Adjust as needed */
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .description {
