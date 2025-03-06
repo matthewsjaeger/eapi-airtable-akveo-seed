@@ -1,10 +1,6 @@
-<!-- Column Titles (only appear once) -->
-<div class="flex mb-4 flex-nowrap w-full">
-  <div class="flex-1 text-left font-semibold">Project Name</div>
-  <div class="flex-1 text-left font-semibold">Description</div>
-  <div class="flex-1 text-left font-semibold">Due Date</div>
+<div class="bg-red-500 text-white p-6">
+  Tailwind CSS is working!
 </div>
-
 
 <nb-card>
   <nb-card-header class="relative flex items-center justify-between w-full">
@@ -27,7 +23,20 @@
   </nb-card-header>
 
   <nb-card-body [nbSpinner]="loading" nbSpinnerStatus="danger">
+
     
+
+    <div class="bg-blue-500">
+    <section class="flex justify-between w-full border-b-2 pb-2 bg-blue-500">
+      <!-- Project Name and Description headers with space between them -->
+        <h1 class="">Project Name</h1>
+        <span class="font-semibold">Description</span>
+    
+      <!-- Due Date header pushed to the far right -->
+      <span class="font-semibold">Due Date</span>
+    </section>
+    </div>
+
   
     <!-- List of Slot Projects -->
     <nb-list>
