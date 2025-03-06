@@ -4,17 +4,17 @@ export const MENU_ITEMS: NbMenuItem[] = [
   
   {
     title: 'Table Games / ATR New',
-    icon: 'home-outline',
-    link: '/effortless/bj-atr',
+    icon: {icon:'table-game', pack:'custom'},
+    link: '/effortless/bj-atr'
   },
   {
     title: 'On Floor',
-    icon: 'play-circle',
+    icon: {icon: 'on-floor', pack:'custom'},
     link: '/effortless/on-floor',
   },
   {
     title: 'Storage Slots',
-    icon: 'archive',
+    icon: {icon: 'storage-slot', pack: 'custom'},
     link: '/effortless/search-storage-slots',
   },
   //{
@@ -24,17 +24,17 @@ export const MENU_ITEMS: NbMenuItem[] = [
   //},
   {
     title: 'Slot Projects',
-    icon: 'layers',
+    icon: {icon: 'slot-projects', pack: 'custom'},
     link: '/effortless/slot-projects',
   },
   {
     title: 'Create Actions',
-    icon: 'plus-circle',
+    icon: {icon: 'create-actions', pack: 'custom'},
     link: '/effortless/create-actions',
   },
   {
     title: 'CDI',
-    icon: 'cloud-download',
+    icon: {icon: 'cloud-download', pack: 'custom'},
     children: [
       {
         title: 'Recent',
@@ -56,20 +56,21 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'Login',
-    icon: 'shield-outline',
+    icon: {icon: 'login', pack: 'custom'},
     link: '/auth/login',
     hidden: false,
     expanded: false,
   },
-  {
-    title: 'Table Games / ATR Old',
-    icon: 'home-outline',
-    link: '/effortless/ionic',
-    home: true,
-  },
+  // No longer in use according to the Figma
+  // {
+  //   title: 'Table Games / ATR Old',
+  //   icon: 'home-outline',
+  //   link: '/effortless/ionic',
+  //   home: true,
+  // },
   {
     title: 'Relicensing',
-    icon: 'checkmark-circle-2',
+    icon: {icon: 'relicensing', pack: 'custom'},
     link: '/effortless/relicensing',
     home: true,
   },

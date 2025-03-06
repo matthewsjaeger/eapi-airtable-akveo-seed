@@ -12,6 +12,7 @@ import { ThemeModule } from './@theme/theme.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {
+  
   NbChatModule,
   NbDatepickerModule,
   NbDialogModule,
@@ -23,6 +24,8 @@ import {
   NbThemeService,
   NbTabsetModule,
   NbCheckboxModule,
+  NbIconModule,
+  NbIconLibraries,
 } from '@nebular/theme';
 import { GDS } from './effortless/services/gds.service';
 import { DataEndpoint } from './effortless/services/eapi-data-services/data-endpoint/data-endpoint';
@@ -57,7 +60,30 @@ import { Router } from '@angular/router';
   bootstrap: [AppComponent],
 })
 export class AppModule {
-  constructor(private nbMenuService: NbMenuService, public themeService: NbThemeService, private authService: NbAuthService, private gds: GDS, public router: Router) {
+  constructor(
+    private iconLibraries: NbIconLibraries,
+    private nbMenuService: NbMenuService,
+    public themeService: NbThemeService,
+    private authService: NbAuthService,
+    private gds: GDS,
+    public router: Router
+  ) {
+    // Register custom SVG icons
+    this.iconLibraries.registerSvgPack('custom', {
+      'table-game': '<img src="assets/icons/other_houses.svg" width="24px" height="24px"/>',
+      'on-floor': '<img src="assets/icons/play_circle.svg" width="24px" height="24px"/>',
+      'storage-slot': '<img src="assets/icons/inventory_2.svg" width="24px" height="24px"/>',
+      'slot-projects': '<img src="assets/icons/stacks.svg" width="24px" height="24px"/>',
+      'create-actions': '<img src="assets/icons/cloud_download.svg" width="24px" height="24px"/>',
+      'cloud-download': '<img src="assets/icons/add_circle.svg" width="24px" height="24px"/>',
+      'login': '<img src="assets/icons/shield.svg" width="24px" height="24px"/>',
+      'relicensing': '<img src="assets/icons/check_circle.svg" width="24px" height="24px"/>',
+      'header-arrow': '<img src="assets/icons/arrow_hamburger.svg" width="32px" height="32px"/>',
+      'chevron-down': '<img src="assets/icons/chevron_right.svg" width="24px" height="24px"/>',
+    });
+
+    this.iconLibraries.setDefaultPack('custom'); // Set the default icon pack
+
     var gds = this.gds;
     let self = this;
     gds.firstLoad = true;

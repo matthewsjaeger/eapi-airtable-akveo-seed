@@ -1,9 +1,13 @@
 <div class="header-container">
-  <div class="logo-container">
-    <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
-      <nb-icon icon="menu-2-outline"></nb-icon>
+  <div class="logo-container flex items-center">
+    <a href="#" (click)="navigateHome()" class="flex items-center space-x-4">
+      <img src="assets/icons/header_icon.png" alt="Company Logo" class="h-10 w-auto mr-3">
+      <span class="text-lg font-semibold text-gray-500">Mystic Casino</span>
     </a>
-    <a class="logo" href="#" (click)="navigateHome()">EffortlessAPI - <span>admin tool</span></a>
+
+    <a (click)="toggleSidebar()" href="#" class="sidebar-toggle ml-4 flex items-center">
+      <nb-icon icon="header-arrow" pack="custom" [ngStyle]="{'height': '2.5rem' }"></nb-icon> 
+    </a>
   </div>
 </div>
 
@@ -15,12 +19,11 @@
     </nb-action>
     <nb-action class="control-item" icon="email-outline"></nb-action>
     <nb-action class="control-item" icon="bell-outline"></nb-action>
-    <nb-action class="user-action" *nbIsGranted="['view', 'user']" >
-      <nb-user [nbContextMenu]="userMenu"
-               [onlyPicture]="userPictureOnly"
-               [name]="gds.GAINSUser?.Name"
-               [picture]="user?.picture">
+    <nb-action class="user-action" *nbIsGranted="['view', 'user']">
+      <nb-user [nbContextMenu]="userMenu" [onlyPicture]="userPictureOnly" [name]="gds.GAINSUser?.Name"
+        [picture]="user?.picture">
       </nb-user>
     </nb-action>
+    <nb-action class="control-item" icon="chevron-down" pack="custom"></nb-action>
   </nb-actions>
 </div>
