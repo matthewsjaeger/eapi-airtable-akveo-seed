@@ -1,5 +1,20 @@
+nb-list-item {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.header-container {
+  border: none !important;
+  border-bottom: none !important;
+}
+
+.search-input,
+.start-new-project-btn {
+  border: none !important;
+}
+
 .header-text{
-  font-size: large;
+  size: 40px;
 }
 
 /* styles.css or component-specific stylesheet */
@@ -38,37 +53,52 @@
 
 /* Container to hold the header elements */
 .header-container {
+  color: #333333;
+  font-weight: 500;
+  size: 14px;
   display: flex;
   justify-content: space-between; /* Pushes the "Due Date" to the far right */
   width: 100%;
-  margin-bottom: 16px; /* Adds some space between the headers and the list items */
+  padding: 0;
+  margin-bottom: 32px; /* Adds some space between the headers and the list items */
 }
 
-/* Style for each header */
-.project-name, .description, .due-date {
-  font-weight: 600; /* Semi-bold text */
-}
 
 /* Optional: Space between "Project Name" and "Description" */
 .project-name {
   margin-right: 16px; /* Adjust as needed */
 }
 
-.header-container{
+.slotProject-container{
   color: #637381;
   font-weight: 500;
   size: 14px;
+  display: flex;
+  justify-content: space-between; /* Pushes the "Due Date" to the far right */
+  width: 100%;
+  padding: 0;
+  margin-bottom: 16px;
 }
 
 .project-name-column{
-  max-width: 5px;
-  margin-right: 16px; /* Adjust as needed */
+  width: 140px;
   text-decoration: underline;
   cursor: pointer;
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide overflow text */
+  text-overflow: ellipsis; /* Show '...' for overflowed text */
 }
 
-.description {
-  margin-left: 150px; /* Space between Description and Project Name */
+.description-header{
+  margin-left: 96px;
+}
+
+.description-column{
+  margin-left: 32px;
+  max-width: 500px; /* Adjust this value as needed */
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide overflow text */
+  text-overflow: ellipsis; /* Show '...' for overflowed text */
 }
 
 .nb-list-item {
@@ -77,8 +107,16 @@
   padding: 10px 0; /* Optional: Add vertical spacing between list items */
 }
 
+.date-column{
+  margin-left: auto;
+  max-width: 200px; /* Adjust this value as needed */
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide overflow text */
+  text-overflow: ellipsis; /* Show '...' for overflowed text */
+}
+
 .project-name-column,
 .description-column,
-.due-date-column {
+.date-column {
   margin-bottom: 8px; /* Optional: Space between each column */
 }

@@ -1,15 +1,11 @@
-<nb-card>
+<nb-card class="bg-white p-4 rounded-lg shadow-md">
   <nb-card-header class="relative flex items-center justify-between w-full">
 
     <!-- Slot Projects Title (stays on the left) -->
     <span class="header-text">Slot Projects</span>
-    
+
     <!-- Search Input -->
-    <input 
-    type="text" 
-    nbInput 
-    placeholder="Search projects" 
-    class="search-input mx-10">
+    <input type="text" nbInput placeholder="Search projects" class="search-input mx-10">
 
     <!-- Start New Project Button (positioned to the far right) -->
     <button nbButton status="primary" (click)="newProject()" class="start-new-project-btn">
@@ -23,46 +19,31 @@
     <!-- Column Titles Row -->
     <section class="header-container">
       <span class="project-name">Project Name</span>
-      <span class="description">Description</span>
+      <span class="description-header">Description</span>
       <span class="ml-auto mr-20">Due Date</span>
     </section>
-  
-    <!-- List of Slot Projects -->
-  <nb-list>
-    <nb-list-item *ngFor="let slotProject of slotProjects" class="header-container">
-      <!-- Project Name Column -->
-      <span class="project-name-column" (click)="openProject(slotProject)">
-        <span>{{ slotProject.Name }}</span>
-      </span>
-    
-      <!-- Description Column -->
-      <span class="description">
-        <nb-icon icon="description" pack="custom"></nb-icon>
-        <span>{{ slotProject.Description }}</span>
-      </span>
-    
-      <!-- Due Date Column -->
-      <span class="ml-auto">
-        <nb-icon icon="calendar" pack="custom"></nb-icon>
-        <span class="ml-2">{{ slotProject.DueDate | date: 'mediumDate' }}</span>
-      </span>
-    </nb-list-item>
-    
-    <!-- Open Project Button -->
-      <!-- <button nbButton size="small" (click)="openProject(slotProject)" class="float-right">
-        Open Project
-      </button> -->
-  </nb-list>
-  </nb-card-body>
 
-</nb-card>
-<!--<nb-card *ngFor=" let slotProject of slotProjects">
-  <nb-card-header>
-    <button nbButton size="small" class="float-right" (click)=openProject(slotProject)>Open Project</button>
-    <h5> {{slotProject.Name}} </h5>
-  </nb-card-header>
-  <nb-card-body>
-    <b>Description:</b> {{slotProject.Description}} <br>
-    <b>Due Date:</b> {{slotProject.DueDate | date: mediumDate}}
+    <!-- List of Slot Projects -->
+    <nb-list>
+      <nb-list-item *ngFor="let slotProject of slotProjects" class="slotProject-container">
+        <!-- Project Name Column -->
+        <span class="project-name-column" (click)="openProject(slotProject)">
+          <span>{{ slotProject.Name }}</span>
+        </span>
+
+        <!-- Description Column -->
+        <span class="description-column">
+          <nb-icon icon="description" pack="custom"></nb-icon>
+          <span>{{ slotProject.Description }}</span>
+        </span>
+
+        <!-- Due Date Column -->
+        <span class="date-column">
+          <nb-icon icon="calendar" pack="custom"></nb-icon>
+          <span class="ml-2">{{ slotProject.DueDate | date: 'mediumDate' }}</span>
+        </span>
+      </nb-list-item>
+    </nb-list>
+    
   </nb-card-body>
-</nb-card>-->
+</nb-card>
