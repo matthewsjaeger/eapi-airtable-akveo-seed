@@ -39,15 +39,12 @@ export class BjTableComponent extends EffortlessComponentBase implements OnInit 
     if (!self.gds || !self.gds.currentBJTables || self.gds.currentBJTables.length < 1) {
       self.router.navigateByUrl('effortless/search-tables');
     } else {
-      console.error('EEEEE');
       self.BJTable = self.gds.currentBJTables[0];
       self.configureActions();
-      console.error('asdf', self.BJTable);
     }
   }
 
   configureActions = function () {
-    console.error('BBBBB', this.BJTable);
     this.availableActions = {
       'add': false
       , 'remove': false
@@ -133,7 +130,6 @@ export class BjTableComponent extends EffortlessComponentBase implements OnInit 
 
   completeModification(resp) {
     if (resp) {
-      console.error('FFFFF');
       let self = this;
       this.reload(self);
     }
@@ -150,7 +146,6 @@ export class BjTableComponent extends EffortlessComponentBase implements OnInit 
 
   completeRemoval(resp) {
     if (resp) {
-      console.error('GGGGG');
       let self = this;
       this.reload(self);
     }

@@ -80,7 +80,8 @@ export class BjProjectComponent extends EffortlessComponentBase implements OnIni
 
   openBJTable(table) {
     this.gds.currentBJTables = [table];
-    this.router.navigateByUrl('effortless/bj-table');  }
+    this.router.navigateByUrl('effortless/bj-table');
+  }
 
   configureActions = function (bjTable) {
     this.availableActions = {

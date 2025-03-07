@@ -66,6 +66,7 @@ export class GDS {
   public reload$: BehaviorSubject<{}> = new BehaviorSubject(null);
   public slotList: any = [];
   public currentBJTables = [];
+  public shuffleMaster: any = {};
 
   public onReady(): Observable<any> {
     return this.readiness$

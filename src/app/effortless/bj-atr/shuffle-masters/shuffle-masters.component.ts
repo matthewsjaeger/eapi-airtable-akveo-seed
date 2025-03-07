@@ -96,4 +96,10 @@ export class ShuffleMastersComponent extends EffortlessComponentBase implements 
     this.onSiteShuffleMasters = tempShuffleMasters;
   }
 
+  saveToStorage(ShuffleMaster) {
+    console.error('AAAA');
+    this.gds.shuffleMaster = ShuffleMaster;
+    this.router.navigateByUrl('effortless/shuffle-master');
+  }
+
 }

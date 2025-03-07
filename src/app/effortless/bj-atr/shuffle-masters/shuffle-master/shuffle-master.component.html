@@ -1,0 +1,38 @@
+<nb-card>
+  <nb-card-header>
+    <button nbButton ghost size="medium" class="float-left" (click)="goBack('floor')" *ngIf="slot && sid && slot.WorkflowState != 'Stored'">
+      <nb-icon icon="arrow-ios-back-outline"></nb-icon>On Floor Slots
+    </button>
+    <button nbButton ghost size="medium" class="float-left" (click)="goBack('stored')" *ngIf="slot && sid && slot.WorkflowState == 'Stored'">
+      <nb-icon icon="arrow-ios-back-outline"></nb-icon>Stored Slots
+    </button>
+    <h4 style="width: fit-content; margin: auto;">ShuffleMaster Details</h4>
+  </nb-card-header>
+  <nb-card-body>
+    <div *ngIf="shuffleMaster && shuffleMaster.ShuffleMasterId" class="grid-container">
+      <nb-list>
+        <nb-list-item>
+          <label> <b>Serial Number:</b> {{shuffleMaster.SerialNumber}} </label>
+        </nb-list-item>
+      </nb-list>
+      <nb-list>
+        <nb-list-item>
+          <label> <b> Shuffler Type:</b> {{shuffleMaster.ShufflerType}} </label>
+        </nb-list-item>
+      </nb-list>
+    </div>
+  </nb-card-body>
+</nb-card>
+<nb-card>
+  <nb-card-header>
+    <h5 style="width: fit-content; margin:auto">Available Actions</h5>
+  </nb-card-header>
+  <nb-card-body>
+    <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=serviceShuffleMaster()>
+      Service ShuffleMaster
+    </button>
+    <button nbButton fullWidth status="primary" style="margin-bottom: 5px;" (click)=shuffleMasterVerification()>
+      ShuffleMaster Verification
+    </button>
+  </nb-card-body>
+</nb-card>

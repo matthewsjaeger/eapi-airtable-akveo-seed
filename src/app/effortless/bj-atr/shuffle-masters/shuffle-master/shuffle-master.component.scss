@@ -1,8 +1,4 @@
-nb-list :hover {
-  background-color: #edf1f7;
-}
-
-div {
+.grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 5px;

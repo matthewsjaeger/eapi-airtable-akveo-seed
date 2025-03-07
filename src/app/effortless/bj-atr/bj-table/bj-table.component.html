@@ -6,14 +6,25 @@
       </button>
       <h4 style="width: fit-content; margin: auto; margin-top: .5em;">Table Game</h4>
     </div>
-    <nb-list style="margin-top: 3em;">
-      <nb-list-item><b>{{BJTable.PitTable}} - {{BJTable.SerialNumber}}</b></nb-list-item>
-      <nb-list-item><b>Shuffler Type: </b>{{BJTable.ShufflerType}}</nb-list-item>
-      <nb-list-item><b>Number of Decks: </b>{{BJTable.NumberofDecks}}</nb-list-item>
-      <nb-list-item><b>Number of Spots: </b>{{BJTable.NumberofSpots}}</nb-list-item>
-      <nb-list-item><b>Deck Colors: </b>{{BJTable.DeckColors}}</nb-list-item>
-      <nb-list-item><b>Status: </b>{{BJTable.WorkflowState}}</nb-list-item>
-    </nb-list>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="header-grid">
+      <nb-list>
+        <nb-list-item><b>{{BJTable.PitTable}} - {{BJTable.SerialNumber}}</b></nb-list-item>
+        <nb-list-item><b>Shuffler Type: </b>{{BJTable.ShufflerType}}</nb-list-item>
+        <nb-list-item><b>Number of Decks: </b>{{BJTable.NumberofDecks}}</nb-list-item>
+      </nb-list>
+      <nb-list>
+        <nb-list-item><b>Number of Spots: </b>{{BJTable.NumberofSpots}}</nb-list-item>
+        <nb-list-item><b>Deck Colors: </b>{{BJTable.DeckColors}}</nb-list-item>
+        <nb-list-item><b>Status: </b>{{BJTable.WorkflowState}}</nb-list-item>
+      </nb-list>
+    </div>
+  </nb-card-body>
+</nb-card>
+<nb-card>
+  <nb-card-header>
+    <h5 style="width: fit-content; margin:auto">Available Actions</h5>
   </nb-card-header>
   <nb-card-body>
     <button nbButton size="large" fullWidth (click)=scheduleTableModification() *ngIf="availableActions.modify">Schedule Table Modification</button>
