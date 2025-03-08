@@ -2,10 +2,13 @@
   <nb-card-header class="relative flex items-center justify-between w-full">
 
     <!-- Slot Projects Title (stays on the left) -->
-    <span class="header-text">Slot Projects</span>
+    <span class="size-[20px]">Slot Projects</span>
 
     <!-- Search Input -->
-    <input type="text" nbInput placeholder="Search projects" class="search-input mx-10">
+    <div>
+  <nb-icon nbPrefix icon="search-outline"></nb-icon>
+  <input type="text" nbInput placeholder="Search projects" class="search-input mx-10">
+    </div>
 
     <!-- Start New Project Button (positioned to the far right) -->
     <button nbButton status="primary" (click)="newProject()" class="start-new-project-btn">

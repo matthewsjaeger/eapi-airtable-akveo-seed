@@ -78,7 +78,7 @@ export class AppModule {
       'cloud-download': '<img src="assets/icons/add_circle.svg" width="24px" height="24px"/>',
       'login': '<img src="assets/icons/shield.svg" width="24px" height="24px"/>',
       'relicensing': '<img src="assets/icons/check_circle.svg" width="24px" height="24px"/>',
-      'header-arrow': '<img src="assets/icons/arrow_hamburger.svg" width="32px" height="32px"/>',
+      'header-arrow': '<img src="assets/icons/keyboard_double_arrow_left.svg" width="24" height="24px"/>',
       'chevron-down': '<img src="assets/icons/chevron_right.svg" width="24px" height="24px"/>',
       'description': '<img src="assets/icons/description.svg" width="18px" height="19px"/>',
       'calendar': '<img src="assets/icons/calendar_clock.svg" width="18px" height="18px"/>',

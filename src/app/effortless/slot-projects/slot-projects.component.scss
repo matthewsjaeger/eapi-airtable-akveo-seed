@@ -13,15 +13,13 @@ nb-list-item {
   border: none !important;
 }
 
-.header-text{
-  size: 40px;
-}
 
 /* styles.css or component-specific stylesheet */
 .search-input {
   width: 100%; /* Make the search input take available space */
   max-width: 300px; /* Control maximum width of search input */
   padding: 2px;
+  size: 14px;
   background-color: transparent !important;  /* Remove background color */
   border: .2px solid #63738118;     
   border-radius: 3px;
